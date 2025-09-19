@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.*?>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="de.hausknecht.master.ui.MainController">
+    <top>
+        <ToolBar>
+            <Button text="Save Demo" onAction="#onSave"/>
+        </ToolBar>
+    </top>
+    <center>
+        <Label text="Hallo JavaFX + Spring Boot!" />
+    </center>
+</BorderPane>
