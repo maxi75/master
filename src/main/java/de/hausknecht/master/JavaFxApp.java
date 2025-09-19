@@ -1,6 +1,7 @@
 package de.hausknecht.master;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -23,17 +24,24 @@ public class JavaFxApp extends Application {
         loader.setControllerFactory(context::getBean);
 
         Parent root = loader.load();
-        Scene scene = new Scene(root, 900, 600);
-        stage.setTitle("MyApp");
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add(
+                Objects.requireNonNull(getClass().getResource("/ui/app.css")).toExternalForm());
+
+        stage.setTitle("Automata Theory");
+        stage.setMaximized(true);
         stage.getIcons().add(new javafx.scene.image.Image(
                 Objects.requireNonNull(getClass().getResourceAsStream("/packaging/icon.png"))));
-        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/app.css")).toExternalForm());
+
         stage.setScene(scene);
         stage.show();
     }
 
     @Override
     public void stop() {
-        context.close();
+        if (context != null) {
+            context.close();
+        }
+        Platform.exit();
     }
 }
