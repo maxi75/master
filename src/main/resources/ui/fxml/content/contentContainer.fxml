@@ -4,12 +4,10 @@
 <HBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="de.hausknecht.master.ui.ContentContainer">
 
-    <children>
-        <fx:include source="../menu/menuBar.fxml" fx:id="menuBar"/>
+    <fx:include source="../menu/menuBar.fxml" fx:id="menuBar"/>
 
-        <SplitPane dividerPositions="0.5" HBox.hgrow="ALWAYS" id="contentSplitter">
-            <fx:include source="theory/theoryContainer.fxml" fx:id="theoryContainer" HBox.hgrow="ALWAYS"/>
-            <fx:include source="simulation/simulatorContainer.fxml" fx:id="simulatorContainer" HBox.hgrow="ALWAYS"/>
-        </SplitPane>
-    </children>
+    <SplitPane dividerPositions="0.5" HBox.hgrow="ALWAYS" id="contentSplitter">
+        <fx:include source="theory/theoryContainer.fxml" fx:id="theoryContainer" HBox.hgrow="ALWAYS"/>
+        <fx:include source="simulation/simulatorContainer.fxml" fx:id="simulatorContainer" HBox.hgrow="ALWAYS"/>
+    </SplitPane>
 </HBox>

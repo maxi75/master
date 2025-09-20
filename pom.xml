@@ -46,10 +46,14 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-json</artifactId>
+        </dependency>
 
         <!-- JavaFX (plattform-spezifische Natives via classifier) -->
         <dependency>
@@ -168,7 +172,6 @@
                 <version>${jpackage.plugin.version}</version>
                 <configuration>
                     <input>${project.build.directory}/image</input>
-                    <dest>${project.build.directory}/jpackage</dest>
                     <name>Automata Theory</name>
                     <appVersion>${project.version}</appVersion>
                     <vendor>de.hausknecht</vendor>

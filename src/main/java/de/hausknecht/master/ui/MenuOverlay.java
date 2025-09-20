@@ -1,5 +1,6 @@
 package de.hausknecht.master.ui;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -13,6 +14,8 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class MenuOverlay {
+    private final TheoryContainer theoryContainer;
+
     @FXML private VBox menuOverlay;
     @FXML private Button closeButton;
 
@@ -25,6 +28,16 @@ public class MenuOverlay {
 
         closeButton.setOnAction(_ -> this.closeMenu());
         this.closeMenu();
+    }
+
+    @FXML
+    private void loadContent(ActionEvent e) {
+        Button btn = (Button) e.getSource();
+        String file = (String) btn.getUserData();
+        if (file != null && !file.isBlank()) {
+            theoryContainer.renderTheoryData(file);
+            closeMenu();
+        }
     }
 
     private void closeMenu() {

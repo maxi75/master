@@ -10,7 +10,7 @@
     <StackPane>
         <Button fx:id="openMenuButton" styleClass="mainButtons">
             <graphic>
-                <ImageView fitWidth="16" fitHeight="16" preserveRatio="true">
+                <ImageView fitWidth="20" fitHeight="20" preserveRatio="true">
                     <Image url="/packaging/open.png"/>
                 </ImageView>
             </graphic>
