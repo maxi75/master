@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.StackPane?>
+<StackPane xmlns:fx="http://javafx.com/fxml" fx:controller="de.hausknecht.master.ui.MainController">
+    <fx:include source="content/contentContainer.fxml"/>
+    <fx:include source="menu/menuOverlay.fxml" fx:id="menuOverlay"/>
+</StackPane>

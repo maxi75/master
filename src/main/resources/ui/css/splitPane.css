@@ -1,0 +1,4 @@
+.split-pane:horizontal > .split-pane-divider {
+    -fx-padding: 0 2 0 2;
+    -fx-background-color: #1f2937;
+}

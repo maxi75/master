@@ -1,0 +1,75 @@
+#menuOverlay {
+    -fx-background-color: #263c61;
+}
+
+#menuBar {
+    -fx-background-color: #263c61;
+}
+
+.mainButtons {
+    -fx-background-color: transparent;
+    -fx-border-style: none;
+}
+
+.navButtons {
+    -fx-background-color: transparent;
+    -fx-border-style: none;
+
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-family: "Arial";
+    -fx-padding: 5px 10px 2px 10px;
+}
+
+.navButtons:hover {
+    -fx-background-color: #FFFFFF77;
+    -fx-underline: true;
+}
+
+.navLabels {
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+    -fx-font-family: "Arial";
+    -fx-font-weight: bold;
+    -fx-padding: 5px 0 0 0;
+}
+
+.subchapter {
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-family: "Arial";
+    -fx-padding: 5px 0 0 0;
+    -fx-font-weight: bold;
+}
+
+.newChapters {
+    -fx-padding: 50px 0 0 0;
+}
+
+.secondRow {
+    -fx-translate-x: 10px;
+}
+
+.thirdRow {
+    -fx-translate-x: 10px;
+}
+
+/* remove milky background from ScrollPane*/
+#menuOverlay .scroll-pane {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+#menuOverlay .scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+#menuOverlay .scroll-pane .corner {
+    -fx-background-color: transparent;
+}
+
+/* hide scrollbar */
+#menuOverlay .scroll-pane .scroll-bar {
+    -fx-opacity: 0;
+    -fx-padding: 0;
+}
+#menuOverlay .scroll-pane .corner { -fx-background-color: transparent; }

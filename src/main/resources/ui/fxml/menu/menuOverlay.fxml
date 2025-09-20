@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="de.hausknecht.master.ui.MenuOverlay" fx:id="menuOverlay">
+
+    <StackPane>
+        <Button fx:id="closeButton" styleClass="mainButtons">
+            <graphic>
+                <ImageView fitWidth="16" fitHeight="16" preserveRatio="true">
+                    <Image url="/packaging/close.png"/>
+                </ImageView>
+            </graphic>
+        </Button>
+    </StackPane>
+
+    <ScrollPane fitToWidth="true" fitToHeight="true" pannable="true">
+        <VBox>
+            <!-- Kapitel 1 -->
+            <Label styleClass="navLabels, newChapters">1. Grundlagen</Label>
+            <Label styleClass="subchapter, secondRow">1.1 Begriffsdefinitionen</Label>
+            <Button styleClass="navButtons, thirdRow">1.1.1 Alphabet, formale Sprachen und Grammatiken</Button>
+            <Button styleClass="navButtons, thirdRow">1.1.2 Deterministische und nichtdeterministische endliche Automaten</Button>
+            <Button styleClass="navButtons">1.2 Grafische Repräsentation von Automaten</Button>
+
+            <!-- Kapitel 2 -->
+            <Label styleClass="navLabels, newChapters">2. Formale Repräsentation der Grundlagen</Label>
+            <Button styleClass="navButtons">2.1 Alphabet</Button>
+            <Button styleClass="navButtons">2.2 Formale Sprachen</Button>
+            <Button styleClass="navButtons">2.3 Grammatik</Button>
+            <Button styleClass="navButtons">2.4 DEA</Button>
+            <Button styleClass="navButtons">2.5 NEA</Button>
+
+            <!-- Kapitel 3 -->
+            <Label styleClass="navLabels, newChapters">3. Definitionen und Regeln</Label>
+            <Label styleClass="subchapter, secondRow">3.1 Verknüpfung von Wörtern und Sprachen</Label>
+            <Button styleClass="navButtons, thirdRow">3.1.1 Wortebene</Button>
+            <Button styleClass="navButtons, thirdRow">3.1.2 Sprachebene</Button>
+            <Button styleClass="navButtons">3.2 akzeptierend und erzeugend</Button>
+            <Button styleClass="navButtons">3.3 Abgeschlossenheit von Sprachklassen</Button>
+
+            <!-- Kapitel 4 -->
+            <Label styleClass="navLabels, newChapters">4. Automatenkonstruktion</Label>
+            <Button styleClass="navButtons">4.1 Konstruktion eines DEA</Button>
+            <Button styleClass="navButtons">4.2 Konstruktion eines NEA</Button>
+            <Button styleClass="navButtons">4.3 Potenzmengenkonstruktion</Button>
+            <Label styleClass="subchapter, secondRow">4.4 Abschlusseigenschaften</Label>
+            <Button styleClass="navButtons, thirdRow">4.4.1 Vereinigung</Button>
+            <Button styleClass="navButtons, thirdRow">4.4.2 Komplement</Button>
+            <Button styleClass="navButtons, thirdRow">4.4.3 Schnitt</Button>
+            <Button styleClass="navButtons, thirdRow">4.4.4 Konkatenation</Button>
+            <Button styleClass="navButtons, thirdRow">4.4.5 Kleene-Stern</Button>
+        </VBox>
+    </ScrollPane>
+</VBox>
