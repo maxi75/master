@@ -1,4 +1,4 @@
-package de.hausknecht.master.entity;
+package de.hausknecht.master.entity.domain;
 
 import lombok.Data;
 

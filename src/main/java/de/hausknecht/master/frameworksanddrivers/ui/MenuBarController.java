@@ -1,4 +1,4 @@
-package de.hausknecht.master.ui;
+package de.hausknecht.master.frameworksanddrivers.ui;
 
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;

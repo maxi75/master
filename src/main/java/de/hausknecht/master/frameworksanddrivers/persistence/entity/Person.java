@@ -1,4 +1,4 @@
-package de.hausknecht.master.persistence.entity;
+package de.hausknecht.master.frameworksanddrivers.persistence.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

@@ -1,4 +1,4 @@
-package de.hausknecht.master.ui;
+package de.hausknecht.master.frameworksanddrivers.ui;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -32,8 +32,8 @@ public class MenuOverlay {
 
     @FXML
     private void loadContent(ActionEvent e) {
-        Button btn = (Button) e.getSource();
-        String file = (String) btn.getUserData();
+        Button menuNavigationButton = (Button) e.getSource();
+        String file = (String) menuNavigationButton.getUserData();
         if (file != null && !file.isBlank()) {
             theoryContainer.renderTheoryData(file);
             closeMenu();

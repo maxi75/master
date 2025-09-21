@@ -2,7 +2,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.Button?>
 <VBox xmlns:fx="http://javafx.com/fxml"
-      fx:controller="de.hausknecht.master.ui.SimulatorContainer">
+      fx:controller="de.hausknecht.master.frameworksanddrivers.ui.SimulatorContainer">
 
     <Button>Simulator</Button>
 </VBox>
