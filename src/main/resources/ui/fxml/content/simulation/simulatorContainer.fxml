@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.HBox?>
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="de.hausknecht.master.frameworksanddrivers.ui.SimulatorContainer">
+    <Region VBox.vgrow="ALWAYS"/>
 
-    <Button>Simulator</Button>
+    <fx:include source="specificationContainer.fxml" HBox.hgrow="ALWAYS"/>
 </VBox>
