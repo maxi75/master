@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.geometry.Insets?>
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="de.hausknecht.master.frameworksanddrivers.ui.content.simulation.specification.NodeDefinitionContainer"
+      styleClass="sectionContainer">
+
+    <ComboBox fx:id="startingNode" HBox.hgrow="ALWAYS" maxWidth="Infinity" prefWidth="0" styleClass="comboBox" promptText="Startzustand"/>
+
+    <HBox styleClass="sectionHeading">
+        <VBox.margin>
+            <Insets top="15"/>
+        </VBox.margin>
+        <Label>Endzustände</Label>
+    </HBox>
+
+    <ScrollPane styleClass="sectionScrollPane" fitToWidth="true">
+        <VBox fx:id="listElementContainer" spacing="3"/>
+    </ScrollPane>
+
+    <VBox spacing="7">
+        <HBox spacing="7">
+            <ComboBox fx:id="endingNode" HBox.hgrow="ALWAYS" maxWidth="Infinity" prefWidth="0" styleClass="comboBox" promptText="Endzustand"/>
+            <Button fx:id="addButton" styleClass="addButton">+</Button>
+        </HBox>
+    </VBox>
+</VBox>

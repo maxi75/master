@@ -31,6 +31,8 @@ public class JavaFxApp extends Application {
                 Objects.requireNonNull(getClass().getResource("/ui/css/splitPane.css")).toExternalForm());
         scene.getStylesheets().add(
                 Objects.requireNonNull(getClass().getResource("/ui/css/theory.css")).toExternalForm());
+        scene.getStylesheets().add(
+                Objects.requireNonNull(getClass().getResource("/ui/css/simulation.css")).toExternalForm());
 
         stage.setTitle("Automata Theory");
         stage.setMaximized(true);

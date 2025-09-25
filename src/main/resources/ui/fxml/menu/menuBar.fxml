@@ -5,7 +5,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.StackPane?>
 <VBox xmlns:fx="http://javafx.com/fxml"
-      fx:controller="de.hausknecht.master.frameworksanddrivers.ui.MenuBarController" fx:id="menuBar">
+      fx:controller="de.hausknecht.master.frameworksanddrivers.ui.menu.MenuBarController" fx:id="menuBar">
 
     <StackPane>
         <Button fx:id="openMenuButton" styleClass="mainButtons">
