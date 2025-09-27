@@ -1,4 +1,4 @@
-package de.hausknecht.master.frameworksanddrivers.ui;
+package de.hausknecht.master.frameworksanddrivers.ui.content.simulation.specification;
 
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
@@ -27,7 +27,7 @@ public class SimulatorSpecificationContainer {
     private void initialize() {
         specificationContainer.setPrefHeight(COLLAPSED);
         prepareContainerForCollapsing();
-        specificationTabBtn.setOnAction(e -> toggle());
+        specificationTabBtn.setOnAction(_ -> toggle());
     }
 
     private void toggle() {

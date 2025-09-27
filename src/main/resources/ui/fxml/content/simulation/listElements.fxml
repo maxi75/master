@@ -3,7 +3,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Button?>
 <HBox xmlns:fx="http://javafx.com/fxml"
-      fx:controller="de.hausknecht.master.frameworksanddrivers.ui.ListElement"
+      fx:controller="de.hausknecht.master.frameworksanddrivers.ui.content.simulation.specification.ListElement"
       styleClass="listContainer">
 
     <Label fx:id="listElementName" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>

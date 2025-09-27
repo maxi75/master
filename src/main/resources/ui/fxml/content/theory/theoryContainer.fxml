@@ -3,7 +3,7 @@
 <?import javafx.scene.control.ScrollPane?>
 <ScrollPane fitToWidth="true"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="de.hausknecht.master.frameworksanddrivers.ui.TheoryContainer">
+            fx:controller="de.hausknecht.master.frameworksanddrivers.ui.content.theory.TheoryContainer">
     <VBox fx:id="theoryContainer">
 
     </VBox>

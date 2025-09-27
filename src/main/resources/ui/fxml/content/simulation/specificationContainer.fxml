@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.Label?>
 <VBox xmlns:fx="http://javafx.com/fxml"
-      fx:controller="de.hausknecht.master.frameworksanddrivers.ui.SimulatorSpecificationContainer"
+      fx:controller="de.hausknecht.master.frameworksanddrivers.ui.content.simulation.specification.SimulatorSpecificationContainer"
       fx:id="specificationContainer">
 
     <HBox id="specificationTab" spacing="8">
@@ -14,7 +14,7 @@
 
     <HBox fx:id="specificationContent" managed="false">
         <fx:include source="nodeContainer.fxml" HBox.hgrow="ALWAYS" styleClass="contentSection"/>
-        <fx:include source="nodeContainer.fxml" HBox.hgrow="ALWAYS" styleClass="contentSection"/>
-        <fx:include source="nodeContainer.fxml" HBox.hgrow="ALWAYS" styleClass="contentSection"/>
+        <fx:include source="nodeDefinitionContainer.fxml" HBox.hgrow="ALWAYS" styleClass="contentSection"/>
+        <fx:include source="transitionContainer.fxml" HBox.hgrow="ALWAYS" styleClass="contentSection"/>
     </HBox>
 </VBox>

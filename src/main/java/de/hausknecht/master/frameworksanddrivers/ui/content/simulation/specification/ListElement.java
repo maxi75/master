@@ -1,4 +1,4 @@
-package de.hausknecht.master.frameworksanddrivers.ui;
+package de.hausknecht.master.frameworksanddrivers.ui.content.simulation.specification;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -13,11 +13,11 @@ public class ListElement {
     @FXML private Label listElementName;
     @FXML private Button deleteBtn;
 
-    @Setter private NodeContainer nodeContainer;
+    @Setter private ListElementContainer listElementContainer;
 
     @FXML
     private void initialize() {
-        deleteBtn.setOnAction(_ -> nodeContainer.delete(listElementName.getText(), deleteBtn.getParent()));
+        deleteBtn.setOnAction(_ -> listElementContainer.delete(listElementName.getText(), deleteBtn.getParent()));
     }
 
     public void setListName(String listName) {

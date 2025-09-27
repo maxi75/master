@@ -1,4 +1,4 @@
-package de.hausknecht.master.frameworksanddrivers.ui;
+package de.hausknecht.master.frameworksanddrivers.ui.content.theory;
 
 import de.hausknecht.master.entity.domain.TheoryPageData;
 import de.hausknecht.master.usecase.ClasspathData;

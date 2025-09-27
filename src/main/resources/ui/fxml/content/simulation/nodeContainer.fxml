@@ -6,7 +6,7 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <VBox xmlns:fx="http://javafx.com/fxml"
-      fx:controller="de.hausknecht.master.frameworksanddrivers.ui.NodeContainer"
+      fx:controller="de.hausknecht.master.frameworksanddrivers.ui.content.simulation.specification.NodeContainer"
       styleClass="sectionContainer">
 
     <HBox styleClass="sectionHeading">

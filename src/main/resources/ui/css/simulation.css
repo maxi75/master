@@ -66,12 +66,11 @@
 
 /* hide scrollbar */
 .sectionScrollPane .scroll-bar {
-    -fx-opacity: 0;
     -fx-padding: 0;
 }
 .sectionScrollPane .corner { -fx-background-color: transparent; }
 
-.name {
+.name, .transitionWord {
     -fx-border-color: #263c61;
     -fx-border-radius: 4;
 
@@ -104,4 +103,17 @@
     -fx-background-radius: 15;
     -fx-padding: 0 15;
     -fx-text-fill: white;
+}
+
+.comboBox {
+    -fx-background-color: white;
+    -fx-border-color: #263c61;
+    -fx-border-width: 1px;
+    -fx-border-radius: 4;
+
+    -fx-text-fill: #263c61;
+    -fx-prompt-text-fill: #263c61;
+    -fx-font-size: 16px;
+    -fx-font-family: Arial;
+    -fx-padding: 0 10;
 }
