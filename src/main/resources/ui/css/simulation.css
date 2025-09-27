@@ -33,16 +33,75 @@
     -fx-border-width: 1px;
     -fx-border-color: #263c61;
     -fx-border-radius: 4;
+    -fx-alignment: TOP_RIGHT;
 
-    -fx-padding: 5px 10px 2px 10px;
+    -fx-padding: 7px 7px 7px 7px;
 }
 
 .sectionHeading {
+    -fx-background-radius: 4;
     -fx-background-color: #263c61;
-    -fx-border-radius: 4;
+    -fx-padding: 5px 10px 3px 10px;
+}
 
-    -fx-padding: 5px 10px 2px 10px;
+.sectionHeading Label {
+    -fx-text-fill: white;
     -fx-font-size: 16px;
     -fx-font-family: Arial;
+}
+
+.sectionScrollPane {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-border-style: none;
+    -fx-padding: 10 10;
+    -fx-pref-height: 294px;
+}
+.sectionScrollPane > .viewport {
+    -fx-background-color: transparent;
+}
+.sectionScrollPane .corner {
+    -fx-background-color: transparent;
+}
+
+/* hide scrollbar */
+.sectionScrollPane .scroll-bar {
+    -fx-opacity: 0;
+    -fx-padding: 0;
+}
+.sectionScrollPane .corner { -fx-background-color: transparent; }
+
+.name {
+    -fx-border-color: #263c61;
+    -fx-border-radius: 4;
+
+    -fx-text-fill: #263c61;
+    -fx-prompt-text-fill: #263c61;
+    -fx-font-size: 16px;
+    -fx-font-family: Arial;
+    -fx-padding: 6 10;
+}
+
+.addButton {
+    -fx-background-color: #263c61BB;
+    -fx-background-radius: 4;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-family: Arial;
+    -fx-padding: 6 20;
+}
+
+.listContainer {
+    -fx-alignment: LEFT;
+    -fx-border-color: #263c61;
+    -fx-border-width: 1px;
+    -fx-border-radius: 15;
+    -fx-padding: 5 6 5 10;
+}
+
+.deleteButton {
+    -fx-background-color: #263c61BB;
+    -fx-background-radius: 15;
+    -fx-padding: 0 15;
     -fx-text-fill: white;
 }

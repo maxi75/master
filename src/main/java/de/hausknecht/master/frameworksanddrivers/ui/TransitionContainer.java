@@ -3,10 +3,10 @@ package de.hausknecht.master.frameworksanddrivers.ui;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.layout.VBox;
-import javafx.scene.layout.HBox;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 @Component
 @RequiredArgsConstructor
-public class NodeContainer {
+public class TransitionContainer {
     @FXML private VBox listElementContainer;
     @FXML private Button addButton;
     @FXML private TextField nameField;
