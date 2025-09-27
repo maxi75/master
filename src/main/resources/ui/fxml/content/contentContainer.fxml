@@ -2,7 +2,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.SplitPane?>
 <HBox xmlns:fx="http://javafx.com/fxml"
-      fx:controller="de.hausknecht.master.frameworksanddrivers.ui.ContentContainer">
+      fx:controller="de.hausknecht.master.frameworksanddrivers.ui.content.ContentContainer">
 
     <fx:include source="../menu/menuBar.fxml" fx:id="menuBar"/>
 
