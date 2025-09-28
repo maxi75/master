@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.web.WebView?>
+<?import javafx.scene.control.ScrollPane?>
+<ScrollPane xmlns:fx="http://javafx.com/fxml"
+      fx:controller="de.hausknecht.master.frameworksanddrivers.ui.content.simulation.graphView.GraphView"
+      fitToWidth="true" fitToHeight="true" VBox.vgrow="ALWAYS">
+
+    <WebView fx:id="graphView" id="graphView"/>
+</ScrollPane>

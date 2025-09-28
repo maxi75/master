@@ -11,7 +11,7 @@ public interface ListElementContainer {
     void delete(String elementName, Parent listElementParent);
 
     default void addListItemToUI(VBox listElementContainer, String name) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/fxml/content/simulation/listElements.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/fxml/content/simulation/specification/listElements.fxml"));
         HBox elementView;
         try {
             elementView = loader.load();

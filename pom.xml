@@ -31,6 +31,7 @@
         <lombok.version>1.18.42</lombok.version>
         <junit.version>5.13.4</junit.version>
         <assertj.version>3.27.4</assertj.version>
+        <graphviz.version>0.18.1</graphviz.version>
 
         <javafx.maven.plugin.version>0.0.8</javafx.maven.plugin.version>
         <jpackage.plugin.version>1.6.6</jpackage.plugin.version>
@@ -64,6 +65,12 @@
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
+            <artifactId>javafx-web</artifactId>
+            <version>${javafx.version}</version>
+            <classifier>${javafx.platform}</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
             <version>${javafx.version}</version>
             <classifier>${javafx.platform}</classifier>
@@ -73,6 +80,11 @@
             <artifactId>javafx-graphics</artifactId>
             <version>${javafx.version}</version>
             <classifier>${javafx.platform}</classifier>
+        </dependency>
+        <dependency>
+            <groupId>guru.nidi</groupId>
+            <artifactId>graphviz-java</artifactId>
+            <version>${graphviz.version}</version>
         </dependency>
 
         <!-- Persistence -->

@@ -1,6 +1,7 @@
 package de.hausknecht.master.entity.service;
 
 import de.hausknecht.master.entity.domain.TransitionTriple;
+import de.hausknecht.master.entity.domain.eventdata.GraphChanged;
 import de.hausknecht.master.entity.domain.eventdata.TransitionRemoved;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,6 +27,7 @@ public class TransitionRegistry {
 
         if (alreadyExisting) return false;
 
+        applicationEventPublisher.publishEvent(new GraphChanged());
         transitions.add(transition);
         return true;
     }
@@ -57,7 +59,10 @@ public class TransitionRegistry {
 
         boolean removed = foundTriple != null && transitions.remove(foundTriple);
 
-        if (removed) applicationEventPublisher.publishEvent(
-                new TransitionRemoved(foundTriple.fromNode(), foundTriple.toNode(), foundTriple.transitionWord()));
+        if (removed) {
+            applicationEventPublisher.publishEvent(
+                    new TransitionRemoved(foundTriple.fromNode(), foundTriple.toNode(), foundTriple.transitionWord()));
+            applicationEventPublisher.publishEvent(new GraphChanged());
+        }
     }
 }
