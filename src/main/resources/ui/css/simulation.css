@@ -64,13 +64,12 @@
     -fx-background-color: transparent;
 }
 
-/* hide scrollbar */
 .sectionScrollPane .scroll-bar {
     -fx-padding: 0;
 }
 .sectionScrollPane .corner { -fx-background-color: transparent; }
 
-.name, .transitionWord {
+.name, .transitionWord, .word {
     -fx-border-color: #263c61;
     -fx-border-radius: 4;
 
@@ -81,7 +80,7 @@
     -fx-padding: 6 10;
 }
 
-.addButton {
+.addButton, .controlButton {
     -fx-background-color: #263c61BB;
     -fx-background-radius: 4;
     -fx-text-fill: white;
@@ -116,4 +115,17 @@
     -fx-font-size: 16px;
     -fx-font-family: Arial;
     -fx-padding: 0 10;
+}
+
+#simulationOverlayContainer {
+    -fx-background-color: #263c61;
+    -fx-padding: 8 8 8 8;
+}
+
+#simulationControlContainer {
+    -fx-alignment: CENTER;
+}
+
+.controlButton {
+    -fx-background-color: #FFFFFF44;
 }

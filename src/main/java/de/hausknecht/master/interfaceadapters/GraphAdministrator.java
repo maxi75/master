@@ -28,6 +28,17 @@ public class GraphAdministrator {
 
         GraphData graphData = new GraphData(availableNodes, startingNode, endingNodes, transitions);
 
-        return graphRendering.returnGraphDefinition(graphData, Optional.empty());
+        return graphRendering.dfaToDot(graphData);
+    }
+
+    public Optional<String> returnSimulatedGraphDefinition(String input) {
+        List<String> availableNodes = nodeRegistry.getNodes();
+        String startingNode = nodeDefinitionRegistry.getStartingNode();
+        List<String> endingNodes = nodeDefinitionRegistry.getEndingNodes();
+        List<TransitionTriple> transitions = transitionRegistry.getTransitions();
+
+        GraphData graphData = new GraphData(availableNodes, startingNode, endingNodes, transitions);
+
+        return graphRendering.simulatedDFAToDot(graphData, input);
     }
 }
