@@ -3,8 +3,8 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.HBox?>
 <VBox xmlns:fx="http://javafx.com/fxml"
-      fx:controller="de.hausknecht.master.frameworksanddrivers.ui.content.simulation.specification.SimulatorContainer">
+      fx:controller="de.hausknecht.master.frameworksanddrivers.ui.content.simulation.SimulatorContainer">
     <Region VBox.vgrow="ALWAYS"/>
 
-    <fx:include source="specificationContainer.fxml" HBox.hgrow="ALWAYS"/>
+    <fx:include source="specification/specificationContainer.fxml" HBox.hgrow="ALWAYS"/>
 </VBox>
