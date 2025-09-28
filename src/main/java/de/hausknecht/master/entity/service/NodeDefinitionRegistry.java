@@ -1,6 +1,7 @@
 package de.hausknecht.master.entity.service;
 
 import de.hausknecht.master.entity.domain.eventdata.EndingNodeRemoved;
+import de.hausknecht.master.entity.domain.eventdata.GraphChanged;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import lombok.Getter;
@@ -21,12 +22,20 @@ public class NodeDefinitionRegistry {
 
     public boolean addNode(String name){
         if (name == null || name.isBlank() || endingNodes.contains(name)) return false;
+
+        applicationEventPublisher.publishEvent(new GraphChanged());
         return endingNodes.add(name);
     }
 
     public void removeNode(String name){
-        if (endingNodes.remove(name))
-            applicationEventPublisher.publishEvent(
-                    new EndingNodeRemoved(name));
+        if (endingNodes.remove(name)) {
+            applicationEventPublisher.publishEvent(new EndingNodeRemoved(name));
+            applicationEventPublisher.publishEvent(new GraphChanged());
+        }
+    }
+
+    public void setStartingNode(String name){
+        applicationEventPublisher.publishEvent(new GraphChanged());
+        startingNode = name;
     }
 }
