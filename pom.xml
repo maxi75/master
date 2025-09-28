@@ -86,6 +86,21 @@
             <artifactId>graphviz-java</artifactId>
             <version>${graphviz.version}</version>
         </dependency>
+        <dependency>
+            <groupId>net.automatalib</groupId>
+            <artifactId>automata-core</artifactId>
+            <version>0.12.1</version>
+        </dependency>
+        <dependency>
+            <groupId>net.automatalib</groupId>
+            <artifactId>automata-util</artifactId>
+            <version>0.12.1</version>
+        </dependency>
+        <dependency>
+            <groupId>net.automatalib</groupId>
+            <artifactId>automata-serialization-dot</artifactId>
+            <version>0.12.1</version>
+        </dependency>
 
         <!-- Persistence -->
 		<dependency>

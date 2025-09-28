@@ -18,7 +18,10 @@ public class TransitionRegistry {
     private final List<TransitionTriple> transitions = new ArrayList<>();
 
     public boolean addTransition(TransitionTriple transition) {
-        if (isBlank(transition.fromNode()) || isBlank(transition.toNode()) || isBlank(transition.transitionWord())) return false;
+        if (isBlank(transition.fromNode()) ||
+                isBlank(transition.toNode()) ||
+                isBlank(transition.transitionWord()) ||
+                transition.transitionWord().chars().anyMatch(Character::isWhitespace)) return false;
 
         boolean alreadyExisting = transitions.stream().anyMatch(transitionTriple ->
                 transitionTriple.fromNode().equals(transition.fromNode()) &&

@@ -1,15 +1,18 @@
 package de.hausknecht.master.frameworksanddrivers.ui.content.simulation.graphView;
 
 import de.hausknecht.master.entity.domain.eventdata.GraphChanged;
+import de.hausknecht.master.entity.domain.eventdata.SimulationEvent;
 import de.hausknecht.master.interfaceadapters.GraphAdministrator;
 import guru.nidi.graphviz.engine.Format;
 import guru.nidi.graphviz.engine.Graphviz;
+import javafx.concurrent.Worker;
 import javafx.fxml.FXML;
 import javafx.scene.web.WebView;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
+import java.awt.*;
 import java.util.Optional;
 
 @Component
@@ -18,13 +21,15 @@ public class GraphView {
     private static final String SVG_MEDIATYPE = "image/svg+xml";
 
     @FXML private WebView graphView;
+    @FXML private ScrollPane graphViewContainer;
 
     private final GraphAdministrator graphAdministrator;
 
     @FXML
     public void initialize() {
         configureZoom();
-        renderGraph();
+        Optional<String> graphDefinition = graphAdministrator.returnGraphDefinition();
+        renderGraph(graphDefinition);
     }
 
     private void configureZoom() {
@@ -41,11 +46,21 @@ public class GraphView {
 
     @EventListener
     public void onGraphChanged(GraphChanged event) {
-        javafx.application.Platform.runLater(this::renderGraph);
+        javafx.application.Platform.runLater(() -> {
+            Optional<String> graphDefinition = graphAdministrator.returnGraphDefinition();
+            this.renderGraph(graphDefinition);
+        });
     }
 
-    private void renderGraph() {
-        Optional<String> graphDefinition = graphAdministrator.returnGraphDefinition();
+    @EventListener
+    public void simulatedGraph(SimulationEvent event) {
+        javafx.application.Platform.runLater(() -> {
+            Optional<String> graphDefinition = graphAdministrator.returnSimulatedGraphDefinition(event.input());
+            this.renderGraph(graphDefinition);
+        });
+    }
+
+    private void renderGraph(Optional<String> graphDefinition) {
         if (graphDefinition.isEmpty()) return;
 
         try {
