@@ -5,7 +5,6 @@ import de.hausknecht.master.entity.domain.eventdata.SimulationEvent;
 import de.hausknecht.master.interfaceadapters.GraphAdministrator;
 import guru.nidi.graphviz.engine.Format;
 import guru.nidi.graphviz.engine.Graphviz;
-import javafx.concurrent.Worker;
 import javafx.fxml.FXML;
 import javafx.scene.web.WebView;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +20,6 @@ public class GraphView {
     private static final String SVG_MEDIATYPE = "image/svg+xml";
 
     @FXML private WebView graphView;
-    @FXML private ScrollPane graphViewContainer;
 
     private final GraphAdministrator graphAdministrator;
 
