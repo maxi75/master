@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ComboBox?>
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="de.hausknecht.master.frameworksanddrivers.ui.content.simulation.simulationOverlay.SimulationOverlay"
       id="simulationOverlayContainer">
@@ -11,6 +12,7 @@
         <TextField fx:id="word" styleClass="word" HBox.hgrow="ALWAYS" promptText="Beispielwort"/>
 
         <HBox spacing="8" id="simulationControlContainer">
+            <ComboBox fx:id="graphBox" styleClass="comboBox"/>
             <Button fx:id="startBtn" styleClass="controlButton" text="▶"/>
             <Button fx:id="fastBackwordBtn" styleClass="controlButton" text="⏪"/>
             <Button fx:id="backwardBtn" styleClass="controlButton" text="⏴"/>

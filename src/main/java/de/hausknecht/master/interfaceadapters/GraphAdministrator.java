@@ -1,11 +1,9 @@
 package de.hausknecht.master.interfaceadapters;
 
+import de.hausknecht.master.entity.domain.AutomataSimulation;
 import de.hausknecht.master.entity.domain.GraphData;
 import de.hausknecht.master.entity.domain.TransitionTriple;
-import de.hausknecht.master.entity.service.GraphRendering;
-import de.hausknecht.master.entity.service.NodeDefinitionRegistry;
-import de.hausknecht.master.entity.service.NodeRegistry;
-import de.hausknecht.master.entity.service.TransitionRegistry;
+import de.hausknecht.master.entity.service.*;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -19,6 +17,7 @@ public class GraphAdministrator {
     private final NodeDefinitionRegistry nodeDefinitionRegistry;
     private final TransitionRegistry transitionRegistry;
     private final GraphRendering graphRendering;
+    private final GraphRegistry graphRegistry;
 
     public Optional<String> returnGraphDefinition() {
         List<String> availableNodes = nodeRegistry.getNodes();
@@ -28,7 +27,9 @@ public class GraphAdministrator {
 
         GraphData graphData = new GraphData(availableNodes, startingNode, endingNodes, transitions);
 
-        return graphRendering.dfaToDot(graphData);
+        return graphRegistry.getSelectedGraph().equals(AutomataSimulation.DFA) ?
+                graphRendering.dfaToDot(graphData) :
+                graphRendering.nfaToDot(graphData);
     }
 
     public Optional<String> returnSimulatedGraphDefinition(String input) {
@@ -39,6 +40,12 @@ public class GraphAdministrator {
 
         GraphData graphData = new GraphData(availableNodes, startingNode, endingNodes, transitions);
 
-        return graphRendering.simulatedDFAToDot(graphData, input);
+        return graphRegistry.getSelectedGraph().equals(AutomataSimulation.DFA) ?
+                graphRendering.simulatedDFAToDot(graphData, input) :
+                graphRendering.simulatedNFAToDot(graphData, input);
+    }
+
+    public void changeSelectedGraph(AutomataSimulation automataSimulation) {
+        graphRegistry.changeSelectedGraph(automataSimulation);
     }
 }

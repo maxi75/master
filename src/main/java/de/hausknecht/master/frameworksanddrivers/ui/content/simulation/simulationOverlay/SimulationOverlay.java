@@ -1,9 +1,12 @@
 package de.hausknecht.master.frameworksanddrivers.ui.content.simulation.simulationOverlay;
 
+import de.hausknecht.master.entity.domain.AutomataSimulation;
 import de.hausknecht.master.entity.domain.eventdata.GraphChanged;
 import de.hausknecht.master.entity.domain.eventdata.SimulationEvent;
+import de.hausknecht.master.interfaceadapters.GraphAdministrator;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -25,11 +28,13 @@ public class SimulationOverlay {
     @FXML private Button forwardBtn;
     @FXML private Button fastForwardBtn;
     @FXML private Button stopBtn;
+    @FXML private ComboBox<AutomataSimulation> graphBox;
 
     private String alreadySimulatedWord = "";
     private boolean alreadyStarted = false;
 
     private final ApplicationEventPublisher applicationEventPublisher;
+    private final GraphAdministrator graphAdministrator;
 
     @FXML
     public void initialize(){
@@ -40,6 +45,10 @@ public class SimulationOverlay {
         fastForwardBtn.setOnAction(_ -> simulateLast());
         startBtn.setOnAction(_ -> simulateFirst());
         stopBtn.setOnAction(_ -> simulateStop());
+
+        graphBox.getItems().setAll(AutomataSimulation.values());
+        graphBox.setValue(AutomataSimulation.DFA);
+        graphBox.setOnAction(_ -> graphAdministrator.changeSelectedGraph(graphBox.getValue()));
     }
 
     private void simulateForward() {
