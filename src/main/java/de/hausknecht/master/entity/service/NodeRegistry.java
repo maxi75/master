@@ -22,6 +22,10 @@ public class NodeRegistry {
         return nodes.add(name);
     }
 
+    public void removeAllNodes() {
+        nodes.forEach(this::removeNode);
+    }
+
     public void removeNode(String name){
         applicationEventPublisher.publishEvent(new GraphChanged());
         nodes.remove(name);

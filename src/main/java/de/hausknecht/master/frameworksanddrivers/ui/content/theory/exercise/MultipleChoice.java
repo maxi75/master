@@ -4,7 +4,6 @@ import de.hausknecht.master.entity.domain.TheoryPageData;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -20,34 +19,17 @@ public class MultipleChoice {
 
     private static final String CONTAINER_NAME = "Multiple Choice";
 
-    public void addMultipleChoiceExercise(TheoryPageData.Exercise exercise, VBox container) {
-        addTitle(container);
-        addQuestion(exercise, container);
+    public void addMultipleChoiceExercise(TheoryPageData.Exercise exercise, VBox container, ExerciseContainer exerciseContainer) {
+        exerciseContainer.addTitle(container, CONTAINER_NAME);
+        exerciseContainer.addQuestion(container, exercise.getQuestion() != null ? exercise.getQuestion() : "Error loading question");
 
         List<CheckBox> checkBoxes = new ArrayList<>();
         List<String> answers = exercise.getAnswers() != null ? exercise.getAnswers() : List.of();
-        answers.forEach(answer -> addAnswer(answer, container, checkBoxes));
+        answers.forEach(answer -> addAnswer(answer, container, checkBoxes, exerciseContainer));
         addCheck(exercise, checkBoxes, container);
     }
 
-    private void addTitle(VBox container) {
-        Label title = new Label(CONTAINER_NAME);
-        title.getStyleClass().add("exerciseTitle");
-        title.setMaxWidth(Double.MAX_VALUE);
-
-        container.getChildren().add(title);
-    }
-
-    private void addQuestion(TheoryPageData.Exercise exercise, VBox container) {
-        Text question = new Text("Frage: " + (exercise.getQuestion() != null ? exercise.getQuestion() : "Error loading question"));
-        question.getStyleClass().add("exerciseQuestion");
-
-        TextFlow textFlow = createTextFlow(question, container);
-        textFlow.getStyleClass().add("exerciseQuestionContainer");
-        container.getChildren().add(textFlow);
-    }
-
-    private void addAnswer(String answer, VBox container, List<CheckBox> boxes) {
+    private void addAnswer(String answer, VBox container, List<CheckBox> boxes, ExerciseContainer exerciseContainer) {
         HBox hBox = new HBox();
         hBox.getStyleClass().add("hboxAnswerContainer");
         hBox.setSpacing(25);
@@ -58,17 +40,10 @@ public class MultipleChoice {
 
         Text answerText = new Text(answer);
         answerText.getStyleClass().add("exerciseMultipleChoiceAnswer");
-        TextFlow textFlow = createTextFlow(answerText, container);
+        TextFlow textFlow = exerciseContainer.createTextFlow(answerText, container);
 
         hBox.getChildren().add(textFlow);
         container.getChildren().add(hBox);
-    }
-
-    private TextFlow createTextFlow(Text text, VBox container) {
-        TextFlow  textFlow = new TextFlow(text);
-        textFlow.setMaxWidth(Double.MAX_VALUE);
-        textFlow.prefWidthProperty().bind(container.widthProperty());
-        return textFlow;
     }
 
     private void addCheck(TheoryPageData.Exercise exercise, List<CheckBox> checkBoxes, VBox container) {

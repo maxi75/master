@@ -125,3 +125,24 @@
     -fx-padding: 6 20;
 }
 
+.textFieldAnswer {
+    -fx-border-color: #263c61;
+    -fx-border-radius: 4;
+
+    -fx-text-fill: #263c61;
+    -fx-prompt-text-fill: #263c61;
+    -fx-font-size: 14px;
+    -fx-font-family: Arial;
+    -fx-padding: 6 10;
+}
+
+.wordWrongAnswer {
+    -fx-border-color: red;
+    -fx-background-color: #ff000033;
+}
+
+.wordCorrectAnswer {
+    -fx-border-color: green;
+    -fx-background-color: #00ff0033;
+}
+

@@ -1,16 +1,20 @@
 package de.hausknecht.master.entity.service;
 
+import de.hausknecht.master.entity.domain.GraphData;
 import de.hausknecht.master.entity.domain.GraphEvaluationResult;
+import lombok.AllArgsConstructor;
 import net.automatalib.automaton.fsa.impl.CompactDFA;
 import net.automatalib.automaton.fsa.impl.CompactNFA;
 import net.automatalib.word.Word;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor
 public class Simulator {
+
+    private final AutomataGenerator automataGenerator;
 
     public Optional<GraphEvaluationResult> simulatedNFA(CompactNFA<String> nfa, String input) {
         if (nfa == null || input == null) return Optional.empty();
@@ -76,5 +80,47 @@ public class Simulator {
                 List.of() :
                 Arrays.asList(input.trim().split("\\s+"));
         return Word.fromList(inputTokens);
+    }
+
+    public Optional<String> findAcceptingInputForGraphData(GraphData graphData) {
+        CompactDFA<String> dfa = automataGenerator.generateCompactDFA(graphData).dfa();
+
+        Integer current = dfa.getInitialState();
+        if (current == null) return Optional.empty();
+        if (dfa.isAccepting(current)) return Optional.of("");
+
+        List<Integer> visited = new ArrayList<>();
+        visited.add(current);
+
+        return depthFirstSearch(dfa, current, visited);
+    }
+
+    private Optional<String> depthFirstSearch(CompactDFA<String> dfa, int current, List<Integer> visited) {
+        List<Map<Integer, String>> toVisit = reachedAndNotAlreadyVisitedStates(dfa,  current, visited);
+
+        for (Map<Integer, String> step : toVisit) {
+            Map.Entry<Integer, String> entry = step.entrySet().iterator().next();
+            int next = entry.getKey();
+            String token = entry.getValue();
+
+            if (dfa.isAccepting(next)) return Optional.of(token);
+
+            Optional<String> tail = depthFirstSearch(dfa, next, visited);
+            if (tail.isPresent()) return Optional.of(token + tail.get());
+        }
+
+        return Optional.empty();
+    }
+
+    private List<Map<Integer, String>> reachedAndNotAlreadyVisitedStates(CompactDFA<String> dfa, int current, List<Integer> visited) {
+        List<Map<Integer, String>> result = new ArrayList<>();
+        for (String token : dfa.getInputAlphabet()) {
+            int successor = dfa.getSuccessor(current, token);
+
+            if (successor < 0 || visited.contains(successor)) continue;
+            visited.add(successor);
+            result.add(Map.of(successor, token));
+        }
+        return result;
     }
 }
