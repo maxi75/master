@@ -51,3 +51,77 @@
 .exception-container {
     -fx-alignment: center;
 }
+
+.exerciseBox {
+    -fx-padding: 0 0 20 0;
+}
+
+.exerciseTitle {
+    -fx-background-color: #263c61;
+    -fx-background-radius: 7 7 0 0;
+
+    -fx-text-fill: white;
+    -fx-font-family: Arial;
+    -fx-font-size: 16px;
+    -fx-padding: 5px 10px 2px 10px;
+}
+
+.exerciseQuestionContainer {
+    -fx-padding: 15 10 10 10;
+    -fx-border-width: 1px;
+    -fx-border-color: transparent #263c61 transparent #263c61;
+    -fx-border-style: solid;
+}
+
+.hboxAnswerContainer {
+    -fx-padding: 4 10 0 25;
+    -fx-border-width: 1px;
+    -fx-border-color: transparent #263c61 transparent #263c61;
+    -fx-border-style: solid;
+}
+
+.hboxCheck {
+    -fx-padding: 11 10 15 25;
+    -fx-border-width: 1px;
+    -fx-border-color: transparent #263c61 #263c61 #263c61;
+    -fx-border-style: solid;
+    -fx-border-radius: 0 0 7 7;
+    -fx-spacing: 8;
+}
+
+.exerciseQuestion {
+    -fx-text-fill: #263c61;
+    -fx-font-family: Arial;
+    -fx-font-size: 16px;
+    -fx-font-style: bold;
+}
+
+.check-box > .box {
+    -fx-border-radius: 3;
+    -fx-border-color: #263c61;
+    -fx-border-width: 1;
+}
+
+.multipleChoiceWrongAnswer > .box{
+    -fx-border-color: red;
+    -fx-border-radius: 3;
+    -fx-background-color: #ff000033;
+    -fx-background-radius: 3;
+}
+
+.multipleChoiceCorrectAnswer > .box{
+    -fx-border-color: green;
+    -fx-border-radius: 3;
+    -fx-background-color: #00ff0033;
+    -fx-background-radius: 3;
+}
+
+.buttonSolve, .buttonCheck {
+    -fx-background-color: #263c61BB;
+    -fx-background-radius: 4;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-family: Arial;
+    -fx-padding: 6 20;
+}
+
