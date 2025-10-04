@@ -9,6 +9,9 @@ import javafx.scene.control.TextField;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Component
 @RequiredArgsConstructor
 public class NodeContainer implements ListElementContainer {
@@ -18,14 +21,21 @@ public class NodeContainer implements ListElementContainer {
 
     private final NodeAdministrator nodeAdministrator;
 
+    private final Map<String, Parent> items = new HashMap<>();
+
     @FXML
     public void initialize(){
         addButton.setOnAction(_ -> addListItem(nameField.getText()));
     }
 
-    private void addListItem(String name) {
+    public void addListItem(String name) {
         if (!nodeAdministrator.addNode(name)) return;
-        addListItemToUI(listElementContainer, name);
+        Parent item = addListItemToUI(listElementContainer, name);
+        items.put(name, item);
+    }
+
+    public void deleteAll() {
+        items.forEach(this::delete);
     }
 
     public void delete(String nodeName, Parent listItem) {

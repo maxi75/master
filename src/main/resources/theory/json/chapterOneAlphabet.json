@@ -38,6 +38,23 @@
             "s2 --biggerWord--> s2",
             "s2 --c--> s1"
           ]
+        },
+
+        {
+          "kind": "DEA_NEA",
+          "nodes": [
+            "s0", "s1", "s2"
+          ],
+          "startingNode": "s0",
+          "endingNodes": [
+            "s1", "s2"
+          ],
+          "transitions": [
+            "s0 --a--> s1",
+            "s1 --b--> s2",
+            "s2 --biggerWord--> s2",
+            "s2 --c--> s1"
+          ]
         }
       ]
     },

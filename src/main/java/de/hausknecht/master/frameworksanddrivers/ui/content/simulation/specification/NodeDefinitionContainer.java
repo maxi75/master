@@ -34,7 +34,7 @@ public class NodeDefinitionContainer implements ListElementContainer {
         addButton.setOnAction(_ -> addListItem(endingNode.getValue()));
     }
 
-    private void addListItem(String name) {
+    public void addListItem(String name) {
         if (!nodeAdministrator.addEndingNode(name)) return;
         addListItemToUI(listElementContainer, name);
     }
@@ -42,6 +42,11 @@ public class NodeDefinitionContainer implements ListElementContainer {
     public void delete(String nodeName, Parent listItem) {
         nodeAdministrator.removeEndingNode(nodeName);
         listElementContainer.getChildren().remove(listItem);
+    }
+
+    public void setStartingNode(String nodeName) {
+        startingNode.setValue(nodeName);
+        nodeAdministrator.setStartingNode(nodeName);
     }
 
     @EventListener

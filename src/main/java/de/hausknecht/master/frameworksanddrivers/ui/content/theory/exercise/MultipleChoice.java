@@ -1,6 +1,7 @@
 package de.hausknecht.master.frameworksanddrivers.ui.content.theory.exercise;
 
 import de.hausknecht.master.entity.domain.TheoryPageData;
+import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -63,9 +64,10 @@ public class MultipleChoice {
 
         button.setOnAction(_ -> IntStream.range(0, checkBoxes.size())
                 .forEach(i -> {
-                    checkBoxes.get(i).getStyleClass().remove("multipleChoiceWrongAnswer");
-                    checkBoxes.get(i).getStyleClass().remove("multipleChoiceCorrectAnswer");
-                    checkBoxes.get(i).setSelected(exercise.getCorrectAnswers().contains(i));
+                    Platform.runLater(() -> {
+                        checkBoxes.get(i).getStyleClass().removeAll("multipleChoiceWrongAnswer", "multipleChoiceCorrectAnswer");
+                        checkBoxes.get(i).setSelected(exercise.getCorrectAnswers().contains(i));
+                    });
                 }));
 
         return button;
@@ -81,8 +83,10 @@ public class MultipleChoice {
                     boolean isSelected = checkBoxes.get(i).isSelected();
                     boolean shouldBeSelected = exercise.getCorrectAnswers().contains(i);
 
-                    if (isSelected != shouldBeSelected) checkBoxes.get(i).getStyleClass().add("multipleChoiceWrongAnswer");
-                    if (isSelected == shouldBeSelected) checkBoxes.get(i).getStyleClass().add("multipleChoiceCorrectAnswer");
+                    Platform.runLater(() -> checkBoxes.get(i).getStyleClass()
+                            .add(isSelected != shouldBeSelected ?
+                                    "multipleChoiceWrongAnswer" :
+                                    "multipleChoiceCorrectAnswer"));
                 }));
 
         return button;

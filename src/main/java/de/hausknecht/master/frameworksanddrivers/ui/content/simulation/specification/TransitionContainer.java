@@ -41,7 +41,7 @@ public class TransitionContainer implements ListElementContainer {
                 new TransitionTriple(fromTransition.getValue(), toTransition.getValue(), transitionWord.getText())));
     }
 
-    private void addListItem(TransitionTriple transition) {
+    public void addListItem(TransitionTriple transition) {
         if (!nodeAdministrator.addTransition(transition)) return;
         addListItemToUI(listElementContainer, transition.fromNode() + " --" + transition.transitionWord() + "--> " + transition.toNode());
     }

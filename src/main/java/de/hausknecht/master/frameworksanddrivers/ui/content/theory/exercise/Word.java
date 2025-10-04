@@ -35,7 +35,7 @@ public class Word {
     }
 
     private String buildQuestion(GraphData data) {
-        return buildQuestionIntroduction(data) + buildTransitionDefinition(data);
+        return buildQuestionIntroduction(data) + buildTransitionDefinition(data) + buildQuestionPostfix();
     }
 
     private String buildQuestionIntroduction(GraphData data) {
@@ -49,7 +49,7 @@ public class Word {
     }
 
     private String buildTransitionDefinition(GraphData data) {
-        String definition = "mit der Zustandsübergangsfunktion: \n %s \n";
+        String definition = "mit der Zustandsübergangsfunktion: \n %s \n\n";
 
         Map<String, Set<String>> byTarget = new HashMap<>();
         data.transitions().forEach(transition -> computeSingleTransitionDefinition(transition, byTarget));
@@ -59,6 +59,10 @@ public class Word {
                 definitionBuilder.append(computeTransitionDefinitionByTarget(target, definitions)));
 
         return String.format(definition, definitionBuilder);
+    }
+
+    private String buildQuestionPostfix() {
+        return "Welche beispielhafte Eingabefolge wird von dem Automaten akzeptiert? \n";
     }
 
     private void computeSingleTransitionDefinition(TransitionTriple transition, Map<String, Set<String>> byTarget) {
@@ -97,19 +101,18 @@ public class Word {
         hBox.getStyleClass().add("hboxCheck");
         hBox.setAlignment(Pos.CENTER_RIGHT);
 
-        hBox.getChildren().add(addSolveButton(graphData, textField, automata));
+        hBox.getChildren().add(addSolveButton(graphData, textField));
         hBox.getChildren().add(addCheckButton(graphData, textField, automata));
 
         container.getChildren().add(hBox);
     }
 
-    private Button addSolveButton(GraphData graphData, TextField textField, AutomataSimulation automata) {
+    private Button addSolveButton(GraphData graphData, TextField textField) {
         Button button = new Button("Lösen");
         button.getStyleClass().add("buttonSolve");
 
         button.setOnAction(_ -> {
-                    textField.getStyleClass().remove("wordWrongAnswer");
-                    textField.getStyleClass().remove("wordCorrectAnswer");
+                    textField.getStyleClass().removeAll("wrongAnswer", "correctAnswer");
                     textField.setText(graphAdministrator.findAcceptingInputForGraphData(graphData));
                 });
 
@@ -121,12 +124,9 @@ public class Word {
         button.getStyleClass().add("buttonCheck");
 
         button.setOnAction(_ -> {
-            textField.getStyleClass().remove("wordWrongAnswer");
-            textField.getStyleClass().remove("wordCorrectAnswer");
-
+            textField.getStyleClass().removeAll("wrongAnswer",  "correctAnswer");
             boolean result = graphAdministrator.isInputAccepted(graphData, textField.getText(), automata);
-            if (result) textField.getStyleClass().add("wordCorrectAnswer");
-            else textField.getStyleClass().add("wordWrongAnswer");
+            textField.getStyleClass().add(result ? "correctAnswer" : "wrongAnswer");
         });
 
         return button;

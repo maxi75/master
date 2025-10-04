@@ -5,6 +5,8 @@ import de.hausknecht.master.entity.domain.GraphData;
 import de.hausknecht.master.entity.domain.GraphEvaluationResult;
 import de.hausknecht.master.entity.domain.NfaValues;
 import lombok.AllArgsConstructor;
+import net.automatalib.automaton.fsa.impl.CompactDFA;
+import net.automatalib.automaton.fsa.impl.CompactNFA;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -35,6 +37,10 @@ public class GraphRendering {
         }
     }
 
+    public CompactDFA<String> getCompactDFAFromGraphData(GraphData graphData) {
+        return automataGenerator.generateCompactDFA(graphData).dfa();
+    }
+
     public boolean acceptsInputDFA(GraphData graphData, String input) {
         DfaValues dfaValues = automataGenerator.generateCompactDFA(graphData);
         Optional<GraphEvaluationResult> simulationResult = simulator.simulatedDFA(dfaValues.dfa(), input);
@@ -57,6 +63,10 @@ public class GraphRendering {
         } catch (IOException e) {
             return Optional.empty();
         }
+    }
+
+    public CompactNFA<String> getCompactNFAFromGraphData(GraphData graphData) {
+        return automataGenerator.generateCompactNFA(graphData).nfa();
     }
 
     public boolean acceptsInputNFA(GraphData graphData, String input) {

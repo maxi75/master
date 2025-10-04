@@ -10,18 +10,20 @@ import java.io.IOException;
 public interface ListElementContainer {
     void delete(String elementName, Parent listElementParent);
 
-    default void addListItemToUI(VBox listElementContainer, String name) {
+    default Parent addListItemToUI(VBox listElementContainer, String name) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/fxml/content/simulation/specification/listElements.fxml"));
-        HBox elementView;
         try {
-            elementView = loader.load();
+            Parent elementView = loader.load();
+
+            ListElement elementController = loader.getController();
+            elementController.setListElementContainer(this);
+            elementController.setListName(name);
             listElementContainer.getChildren().add(elementView);
+            return elementView;
+
         } catch (IOException e) {
             System.err.println("Failed to load list element");
+            return null;
         }
-
-        ListElement elementController = loader.getController();
-        elementController.setListElementContainer(this);
-        elementController.setListName(name);
     }
 }
