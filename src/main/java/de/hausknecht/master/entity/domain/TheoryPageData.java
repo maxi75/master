@@ -24,7 +24,6 @@ public class TheoryPageData {
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static class Exercise {
         private ExcerciseType kind;
-        private String subtype;
         private String question;
         private List<Integer> correctAnswers;
         private List<String> answers;

@@ -55,6 +55,24 @@
             "s2 --biggerWord--> s2",
             "s2 --c--> s1"
           ]
+        },
+
+        {
+          "kind": "SOLUTION",
+          "question": "Gegeben ist folgende Automatendefinition: \n A=({a, b, c}, {s1, s2}, δ, s0, {s1, s2}) \n\n mit der Zustandsübergangsfunktion: \n δ(s0,a) = δ(s2,c) = s1; δ(s1,b) = s2; \n\n Und die Automatendefinition: \n A=({a, b, c}, {s1, s2}, δ, s0, {s1, s2}) \n\n mit der Zustandsübergangsfunktion: \n δ(s0,a) = δ(s2,c) = s1; δ(s1,b) = s2; \n\n Vereinige beide Definitionen und konstruiere einen beispielhaften Automaten in der Simulation.",
+          "nodes": [
+            "s0", "s1", "s2"
+          ],
+          "startingNode": "s0",
+          "endingNodes": [
+            "s1", "s2"
+          ],
+          "transitions": [
+            "s0 --a--> s1",
+            "s1 --b--> s2",
+            "s2 --biggerWord--> s2",
+            "s2 --c--> s1"
+          ]
         }
       ]
     },

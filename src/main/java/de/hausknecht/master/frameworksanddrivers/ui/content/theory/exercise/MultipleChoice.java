@@ -63,12 +63,10 @@ public class MultipleChoice {
         button.getStyleClass().add("buttonSolve");
 
         button.setOnAction(_ -> IntStream.range(0, checkBoxes.size())
-                .forEach(i -> {
-                    Platform.runLater(() -> {
-                        checkBoxes.get(i).getStyleClass().removeAll("multipleChoiceWrongAnswer", "multipleChoiceCorrectAnswer");
-                        checkBoxes.get(i).setSelected(exercise.getCorrectAnswers().contains(i));
-                    });
-                }));
+                .forEach(i -> Platform.runLater(() -> {
+                    checkBoxes.get(i).getStyleClass().removeAll("multipleChoiceWrongAnswer", "multipleChoiceCorrectAnswer");
+                    checkBoxes.get(i).setSelected(exercise.getCorrectAnswers().contains(i));
+                })));
 
         return button;
     }
@@ -78,16 +76,15 @@ public class MultipleChoice {
         button.getStyleClass().add("buttonCheck");
 
         button.setOnAction(_ -> IntStream.range(0, checkBoxes.size())
-                .forEach(i -> {
-                    checkBoxes.get(i).getStyleClass().removeAll();
+                .forEach(i -> Platform.runLater(() -> {
+                    checkBoxes.get(i).getStyleClass().removeAll("multipleChoiceWrongAnswer", "multipleChoiceCorrectAnswer");
                     boolean isSelected = checkBoxes.get(i).isSelected();
                     boolean shouldBeSelected = exercise.getCorrectAnswers().contains(i);
 
-                    Platform.runLater(() -> checkBoxes.get(i).getStyleClass()
-                            .add(isSelected != shouldBeSelected ?
+                    checkBoxes.get(i).getStyleClass().add(isSelected != shouldBeSelected ?
                                     "multipleChoiceWrongAnswer" :
-                                    "multipleChoiceCorrectAnswer"));
-                }));
+                                    "multipleChoiceCorrectAnswer");
+                })));
 
         return button;
     }

@@ -14,6 +14,7 @@ public class ExerciseContainer {
     private final MultipleChoice multipleChoice;
     private final Word word;
     private final ChangeAutomata changeAutomata;
+    private final Solution solution;
 
     public void addExercise(TheoryPageData.Exercise exercise, VBox theoryContainer) {
         if (exercise == null || exercise.getKind() == null || theoryContainer == null) return;
@@ -39,6 +40,7 @@ public class ExerciseContainer {
             case MULTIPLE_CHOICE -> multipleChoice.addMultipleChoiceExercise(exercise, container, this);
             case DEA_WORD, NEA_WORD -> word.addWordExercise(exercise, container, this);
             case DEA_NEA, NEA_DEA -> changeAutomata.addWordExercise(exercise, container, this);
+            case SOLUTION -> solution.addWordExercise(exercise, container, this);
         }
     }
 

@@ -3,6 +3,7 @@ package de.hausknecht.master.frameworksanddrivers.ui.content.theory.exercise;
 import de.hausknecht.master.entity.domain.*;
 import de.hausknecht.master.interfaceadapters.DataAccessor;
 import de.hausknecht.master.interfaceadapters.GraphAdministrator;
+import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -111,10 +112,10 @@ public class Word {
         Button button = new Button("Lösen");
         button.getStyleClass().add("buttonSolve");
 
-        button.setOnAction(_ -> {
-                    textField.getStyleClass().removeAll("wrongAnswer", "correctAnswer");
-                    textField.setText(graphAdministrator.findAcceptingInputForGraphData(graphData));
-                });
+        button.setOnAction(_ -> Platform.runLater(() -> {
+            textField.getStyleClass().removeAll("wrongAnswer", "correctAnswer");
+            textField.setText(graphAdministrator.findAcceptingInputForGraphData(graphData));
+        }));
 
         return button;
     }
@@ -123,11 +124,11 @@ public class Word {
         Button button = new Button("Prüfe Lösung");
         button.getStyleClass().add("buttonCheck");
 
-        button.setOnAction(_ -> {
+        button.setOnAction(_ -> Platform.runLater(() -> {
             textField.getStyleClass().removeAll("wrongAnswer",  "correctAnswer");
             boolean result = graphAdministrator.isInputAccepted(graphData, textField.getText(), automata);
             textField.getStyleClass().add(result ? "correctAnswer" : "wrongAnswer");
-        });
+        }));
 
         return button;
     }
