@@ -51,6 +51,11 @@ public class SimulationOverlay {
         graphBox.setOnAction(_ -> graphAdministrator.changeSelectedGraph(graphBox.getValue()));
     }
 
+    public void setComboBox(AutomataSimulation simulation){
+        graphBox.setValue(simulation);
+        graphAdministrator.changeSelectedGraph(graphBox.getValue());
+    }
+
     private void simulateForward() {
         if (alreadyStarted) { calculateNextInput(); }
         if (!alreadyStarted) { alreadyStarted = true; }

@@ -48,4 +48,8 @@ public class NodeAdministrator {
     public void removeEndingNode(String nodeName) {
         nodeDefinitionRegistry.removeNode(nodeName);
     }
+
+    public void removeAllNodes() {
+        nodeRegistry.removeAllNodes();
+    }
 }

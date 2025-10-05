@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class DFAGenerator {
+public class AutomataGenerator {
 
     public DfaValues generateCompactDFA(GraphData graphData) {
         Alphabet<String> alphabet = extractAlphabet(graphData);
