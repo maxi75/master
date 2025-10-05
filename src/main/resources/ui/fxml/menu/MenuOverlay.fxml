@@ -8,6 +8,9 @@
       fx:controller="de.hausknecht.master.frameworksanddrivers.ui.menu.MenuOverlay" fx:id="menuOverlay">
 
     <StackPane>
+        <VBox VBox.vgrow="ALWAYS">
+            <Label fx:id="statusPoints" styleClass="statusPoints">Punktzahl: </Label>
+        </VBox>
         <Button fx:id="closeButton" styleClass="mainButtons">
             <graphic>
                 <ImageView fitWidth="20" fitHeight="20" preserveRatio="true">

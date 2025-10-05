@@ -11,6 +11,19 @@
     -fx-border-style: none;
 }
 
+.statusPoints {
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-family: "Arial";
+    -fx-padding: 3 10 2 10;
+
+    -fx-background-color: #FFFFFF77;
+    -fx-background-radius: 15;
+
+    -fx-border-color: #FFFFFF;
+    -fx-border-radius: 15;
+}
+
 .navButtons {
     -fx-background-color: transparent;
     -fx-border-style: none;

@@ -6,6 +6,7 @@ import de.hausknecht.master.frameworksanddrivers.ui.content.simulation.specifica
 import de.hausknecht.master.frameworksanddrivers.ui.content.simulation.specification.TransitionContainer;
 import de.hausknecht.master.interfaceadapters.DataAccessor;
 import de.hausknecht.master.interfaceadapters.GraphAdministrator;
+import de.hausknecht.master.interfaceadapters.PointSystemAdministrator;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -21,9 +22,6 @@ import org.springframework.stereotype.Component;
 import java.util.HashSet;
 import java.util.Set;
 
-import static de.hausknecht.master.entity.domain.AutomataSimulation.DFA;
-import static de.hausknecht.master.entity.domain.AutomataSimulation.NFA;
-
 @Component
 @RequiredArgsConstructor
 public class Solution {
@@ -34,6 +32,7 @@ public class Solution {
     private final NodeDefinitionContainer nodeDefinitionContainer;
     private final TransitionContainer transitionContainer;
     private final GraphAdministrator graphAdministrator;
+    private final PointSystemAdministrator pointSystemAdministrator;
 
     public void addWordExercise(TheoryPageData.Exercise exercise, VBox container, ExerciseContainer exerciseContainer) {
         GraphData data = dataAccessor.getGraphDataFromTheoryPageDataExercise(exercise);
@@ -63,6 +62,7 @@ public class Solution {
 
         button.setOnAction(_ -> {
             nodeContainer.deleteAll();
+            pointSystemAdministrator.subtractPoints(20);
 
             Platform.runLater(() -> {
                 checkButton.getStyleClass().removeAll("wrongAnswer", "correctAnswer");
@@ -82,7 +82,11 @@ public class Solution {
 
         button.setOnAction(_ -> Platform.runLater(() -> {
             button.getStyleClass().removeAll("wrongAnswer", "correctAnswer");
-            button.getStyleClass().add(createdDFAIsCorrect(graphData) ? "correctAnswer" :  "wrongAnswer");
+            boolean answerIsCorrect = createdDFAIsCorrect(graphData);
+
+            button.getStyleClass().add(answerIsCorrect ? "correctAnswer" :  "wrongAnswer");
+            if (answerIsCorrect) pointSystemAdministrator.addPoints(5);
+            else pointSystemAdministrator.subtractPoints(10);
         }));
 
         return button;

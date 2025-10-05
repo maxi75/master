@@ -20,11 +20,13 @@ public class JavaFxApp extends Application {
     }
 
     @Override public void start(Stage stage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/fxml/main.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/fxml/Main.fxml"));
         loader.setControllerFactory(context::getBean);
 
         Parent root = loader.load();
         Scene scene = new Scene(root);
+        scene.getStylesheets().add(
+                Objects.requireNonNull(getClass().getResource("/ui/css/overlay.css")).toExternalForm());
         scene.getStylesheets().add(
                 Objects.requireNonNull(getClass().getResource("/ui/css/menu.css")).toExternalForm());
         scene.getStylesheets().add(
