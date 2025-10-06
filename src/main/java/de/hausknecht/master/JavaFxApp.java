@@ -1,6 +1,6 @@
 package de.hausknecht.master;
 
-import de.hausknecht.master.entity.service.persistence.SessionTime;
+import de.hausknecht.master.frameworksanddrivers.persistence.SessionTime;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -44,7 +44,7 @@ public class JavaFxApp extends Application {
         stage.setTitle("Automata Theory");
         stage.setMaximized(true);
         stage.getIcons().add(new javafx.scene.image.Image(
-                Objects.requireNonNull(getClass().getResourceAsStream("/packaging/icon.png"))));
+                Objects.requireNonNull(getClass().getResourceAsStream("/packaging/icons/icon.png"))));
 
         stage.setScene(scene);
         stage.show();

@@ -11,7 +11,7 @@
         <Button fx:id="openMenuButton" styleClass="mainButtons">
             <graphic>
                 <ImageView fitWidth="20" fitHeight="20" preserveRatio="true">
-                    <Image url="/packaging/open.png"/>
+                    <Image url="/packaging/icons/open.png"/>
                 </ImageView>
             </graphic>
         </Button>

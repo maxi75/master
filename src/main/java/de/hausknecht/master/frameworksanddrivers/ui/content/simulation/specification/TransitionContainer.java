@@ -1,8 +1,8 @@
 package de.hausknecht.master.frameworksanddrivers.ui.content.simulation.specification;
 
-import de.hausknecht.master.entity.domain.TransitionTriple;
+import de.hausknecht.master.entity.domain.automata.TransitionTriple;
 import de.hausknecht.master.entity.domain.eventdata.TransitionRemovedEvent;
-import de.hausknecht.master.interfaceadapters.NodeAdministrator;
+import de.hausknecht.master.usecase.NodeAdministrator;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;

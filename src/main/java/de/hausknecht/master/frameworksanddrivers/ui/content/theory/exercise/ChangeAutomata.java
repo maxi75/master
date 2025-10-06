@@ -1,13 +1,17 @@
 package de.hausknecht.master.frameworksanddrivers.ui.content.theory.exercise;
 
-import de.hausknecht.master.entity.domain.*;
+import de.hausknecht.master.entity.domain.automata.AutomataSimulation;
+import de.hausknecht.master.entity.domain.automata.GraphData;
+import de.hausknecht.master.entity.domain.automata.TransitionTriple;
+import de.hausknecht.master.entity.domain.content.ExcerciseType;
+import de.hausknecht.master.entity.domain.content.TheoryPageData;
 import de.hausknecht.master.frameworksanddrivers.ui.content.simulation.simulationOverlay.SimulationOverlay;
 import de.hausknecht.master.frameworksanddrivers.ui.content.simulation.specification.NodeContainer;
 import de.hausknecht.master.frameworksanddrivers.ui.content.simulation.specification.NodeDefinitionContainer;
 import de.hausknecht.master.frameworksanddrivers.ui.content.simulation.specification.TransitionContainer;
-import de.hausknecht.master.interfaceadapters.DataAccessor;
-import de.hausknecht.master.interfaceadapters.GraphAdministrator;
-import de.hausknecht.master.interfaceadapters.PointSystemAdministrator;
+import de.hausknecht.master.usecase.DataAccessor;
+import de.hausknecht.master.usecase.GraphAdministrator;
+import de.hausknecht.master.usecase.PointSystemAdministrator;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -25,8 +29,8 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import static de.hausknecht.master.entity.domain.AutomataSimulation.DFA;
-import static de.hausknecht.master.entity.domain.AutomataSimulation.NFA;
+import static de.hausknecht.master.entity.domain.automata.AutomataSimulation.DFA;
+import static de.hausknecht.master.entity.domain.automata.AutomataSimulation.NFA;
 
 @Component
 @RequiredArgsConstructor

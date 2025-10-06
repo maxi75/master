@@ -1,7 +1,7 @@
 package de.hausknecht.master.frameworksanddrivers.ui.content.theory.exercise;
 
-import de.hausknecht.master.entity.domain.TheoryPageData;
-import de.hausknecht.master.interfaceadapters.PointSystemAdministrator;
+import de.hausknecht.master.entity.domain.content.TheoryPageData;
+import de.hausknecht.master.usecase.PointSystemAdministrator;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;

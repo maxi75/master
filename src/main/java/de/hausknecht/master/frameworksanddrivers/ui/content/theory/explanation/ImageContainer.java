@@ -1,6 +1,6 @@
 package de.hausknecht.master.frameworksanddrivers.ui.content.theory.explanation;
 
-import de.hausknecht.master.entity.domain.TheoryPageData;
+import de.hausknecht.master.entity.domain.content.TheoryPageData;
 import de.hausknecht.master.usecase.ClasspathData;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;

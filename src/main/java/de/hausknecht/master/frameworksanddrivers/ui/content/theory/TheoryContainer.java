@@ -1,6 +1,6 @@
 package de.hausknecht.master.frameworksanddrivers.ui.content.theory;
 
-import de.hausknecht.master.entity.domain.TheoryPageData;
+import de.hausknecht.master.entity.domain.content.TheoryPageData;
 import de.hausknecht.master.frameworksanddrivers.ui.content.theory.exercise.ExerciseContainer;
 import de.hausknecht.master.frameworksanddrivers.ui.content.theory.explanation.ErrorHandler;
 import de.hausknecht.master.frameworksanddrivers.ui.content.theory.explanation.HeadingContainer;
@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class TheoryContainer {
     static final String LOAD_PAGE_EXCEPTION = "[ERROR: Page not found]";
-    static final String FIRST_PAGE = "chapterOneAlphabet.json";
+    static final String FIRST_PAGE = "chapterOne/alphabet.json";
 
     @FXML private VBox theoryContainer;
 

@@ -2,7 +2,7 @@ package de.hausknecht.master.frameworksanddrivers.ui.content.simulation.graphVie
 
 import de.hausknecht.master.entity.domain.eventdata.GraphChangedEvent;
 import de.hausknecht.master.entity.domain.eventdata.SimulationEvent;
-import de.hausknecht.master.interfaceadapters.GraphAdministrator;
+import de.hausknecht.master.usecase.GraphAdministrator;
 import guru.nidi.graphviz.engine.Format;
 import guru.nidi.graphviz.engine.Graphviz;
 import javafx.fxml.FXML;
@@ -42,7 +42,7 @@ public class GraphView {
     }
 
     @EventListener
-    public void onGraphChanged(GraphChangedEvent event) {
+    public void onGraphChanged(GraphChangedEvent ignored) {
         javafx.application.Platform.runLater(() -> {
             Optional<String> graphDefinition = graphAdministrator.returnGraphDefinition();
             this.renderGraph(graphDefinition);

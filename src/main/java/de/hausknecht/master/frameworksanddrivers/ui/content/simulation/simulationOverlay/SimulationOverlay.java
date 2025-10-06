@@ -1,9 +1,9 @@
 package de.hausknecht.master.frameworksanddrivers.ui.content.simulation.simulationOverlay;
 
-import de.hausknecht.master.entity.domain.AutomataSimulation;
+import de.hausknecht.master.entity.domain.automata.AutomataSimulation;
 import de.hausknecht.master.entity.domain.eventdata.GraphChangedEvent;
 import de.hausknecht.master.entity.domain.eventdata.SimulationEvent;
-import de.hausknecht.master.interfaceadapters.GraphAdministrator;
+import de.hausknecht.master.usecase.GraphAdministrator;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;

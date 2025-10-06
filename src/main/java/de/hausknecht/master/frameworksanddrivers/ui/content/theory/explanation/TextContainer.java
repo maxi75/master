@@ -1,6 +1,6 @@
 package de.hausknecht.master.frameworksanddrivers.ui.content.theory.explanation;
 
-import de.hausknecht.master.entity.domain.TheoryPageData;
+import de.hausknecht.master.entity.domain.content.TheoryPageData;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import org.springframework.stereotype.Component;

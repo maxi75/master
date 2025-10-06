@@ -3,7 +3,7 @@ package de.hausknecht.master.frameworksanddrivers.ui.menu;
 import de.hausknecht.master.entity.domain.eventdata.PointsChangedEvent;
 import de.hausknecht.master.frameworksanddrivers.ui.batch.BatchContainer;
 import de.hausknecht.master.frameworksanddrivers.ui.content.theory.TheoryContainer;
-import de.hausknecht.master.interfaceadapters.PointSystemAdministrator;
+import de.hausknecht.master.usecase.PointSystemAdministrator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
