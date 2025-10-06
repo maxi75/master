@@ -1,6 +1,7 @@
 package de.hausknecht.master.frameworksanddrivers.ui.menu;
 
-import de.hausknecht.master.entity.domain.eventdata.PointsChanged;
+import de.hausknecht.master.entity.domain.eventdata.PointsChangedEvent;
+import de.hausknecht.master.frameworksanddrivers.ui.batch.BatchContainer;
 import de.hausknecht.master.frameworksanddrivers.ui.content.theory.TheoryContainer;
 import de.hausknecht.master.interfaceadapters.PointSystemAdministrator;
 import javafx.event.ActionEvent;
@@ -23,10 +24,12 @@ public class MenuOverlay {
 
     private final TheoryContainer theoryContainer;
     private final PointSystemAdministrator pointSystemAdministrator;
+    private final BatchContainer batchContainer;
 
     @FXML private VBox menuOverlay;
     @FXML private Button closeButton;
     @FXML private Label statusPoints;
+    @FXML private Button batchNavigation;
 
     @FXML
     public void initialize() {
@@ -38,6 +41,10 @@ public class MenuOverlay {
         statusPoints.setText(POINTS + pointSystemAdministrator.getPoints());
 
         closeButton.setOnAction(_ -> this.closeMenu());
+        batchNavigation.setOnAction(_ -> {
+            batchContainer.show();
+            closeMenu();
+        });
         this.closeMenu();
     }
 
@@ -48,16 +55,17 @@ public class MenuOverlay {
         if (file != null && !file.isBlank()) {
             theoryContainer.renderTheoryData(file);
             closeMenu();
+            batchContainer.hide();
         }
     }
 
     @EventListener
-    public void onPointsChanged(PointsChanged ignored) {
+    public void onPointsChanged(PointsChangedEvent ignored) {
         javafx.application.Platform.runLater(() ->
                 statusPoints.setText(POINTS + pointSystemAdministrator.getPoints()));
     }
 
-    private void closeMenu() {
+    public void closeMenu() {
         menuOverlay.setVisible(false);
     }
 

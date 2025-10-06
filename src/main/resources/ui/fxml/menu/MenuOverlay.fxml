@@ -22,6 +22,17 @@
 
     <ScrollPane fitToWidth="true" fitToHeight="true" pannable="true">
         <VBox>
+            <!-- Kapitel 0 -->
+            <Label styleClass="navLabels, newChapters">0. Allgemein</Label>
+            <Button styleClass="navButtons" fx:id="batchNavigation">
+                <userData>chapterFourConstructionDEA.json</userData>
+                0.1 Batches
+            </Button>
+            <Button styleClass="navButtons" onAction="#loadContent">
+                <userData>applicationExplanation.json</userData>
+                0.2 Einführung in die Lernsoftware
+            </Button>
+
             <!-- Kapitel 1 -->
             <Label styleClass="navLabels, newChapters">1. Grundlagen</Label>
             <Label styleClass="subchapter, secondRow">1.1 Begriffsdefinitionen</Label>

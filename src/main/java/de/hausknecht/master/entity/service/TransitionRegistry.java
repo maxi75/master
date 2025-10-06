@@ -1,8 +1,8 @@
 package de.hausknecht.master.entity.service;
 
 import de.hausknecht.master.entity.domain.TransitionTriple;
-import de.hausknecht.master.entity.domain.eventdata.GraphChanged;
-import de.hausknecht.master.entity.domain.eventdata.TransitionRemoved;
+import de.hausknecht.master.entity.domain.eventdata.GraphChangedEvent;
+import de.hausknecht.master.entity.domain.eventdata.TransitionRemovedEvent;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.context.ApplicationEventPublisher;
@@ -30,7 +30,7 @@ public class TransitionRegistry {
 
         if (alreadyExisting) return false;
 
-        applicationEventPublisher.publishEvent(new GraphChanged());
+        applicationEventPublisher.publishEvent(new GraphChangedEvent());
         transitions.add(transition);
         return true;
     }
@@ -64,8 +64,8 @@ public class TransitionRegistry {
 
         if (removed) {
             applicationEventPublisher.publishEvent(
-                    new TransitionRemoved(foundTriple.fromNode(), foundTriple.toNode(), foundTriple.transitionWord()));
-            applicationEventPublisher.publishEvent(new GraphChanged());
+                    new TransitionRemovedEvent(foundTriple.fromNode(), foundTriple.toNode(), foundTriple.transitionWord()));
+            applicationEventPublisher.publishEvent(new GraphChangedEvent());
         }
     }
 }

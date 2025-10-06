@@ -3,7 +3,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.geometry.Insets?>
 <StackPane xmlns:fx="http://javafx.com/fxml"
-           fx:controller="de.hausknecht.master.frameworksanddrivers.ui.overlay.OverlayContainer"
+           fx:controller="de.hausknecht.master.frameworksanddrivers.ui.overlay.PointsOverlayContainer"
            fx:id="overlayContainer"
            pickOnBounds="false" maxWidth="Infinity" maxHeight="Infinity">
 

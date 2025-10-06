@@ -1,0 +1,26 @@
+.batchVContainer {
+    -fx-alignment: center;
+}
+
+.batchHContainer {
+    -fx-alignment: center;
+    -fx-background-color: white;
+}
+
+.batchLabel, .batchMessage {
+    -fx-text-fill: white;
+    -fx-font-size: 20;
+    -fx-font-family: Arial;
+    -fx-padding: 10 30;
+
+    -fx-background-color: #263c61BB;
+    -fx-background-radius: 4;
+
+    -fx-border-color: #263c61BB;
+    -fx-border-radius: 4;
+}
+
+.batchMessage {
+    -fx-background-color: #263c61;
+    -fx-border-color: #263c61;
+}

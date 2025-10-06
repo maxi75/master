@@ -1,6 +1,6 @@
 package de.hausknecht.master.frameworksanddrivers.ui.overlay;
 
-import de.hausknecht.master.entity.domain.eventdata.PointsChanged;
+import de.hausknecht.master.entity.domain.eventdata.PointsChangedEvent;
 import javafx.animation.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class OverlayContainer {
+public class PointsOverlayContainer {
     private final PauseTransition pauseTransition = new PauseTransition(Duration.seconds(3));
 
     @FXML private StackPane overlayContainer;
@@ -67,7 +67,7 @@ public class OverlayContainer {
     }
 
     @EventListener
-    public void onPointsChanged(PointsChanged event) {
+    public void onPointsChanged(PointsChangedEvent event) {
         javafx.application.Platform.runLater(() -> {
             show(event.message(), event.successful());
             pauseTransition.stop();

@@ -1,4 +1,4 @@
 package de.hausknecht.master.entity.domain.eventdata;
 
-public record GraphChanged() {
+public record GraphChangedEvent() {
 }

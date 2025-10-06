@@ -1,6 +1,6 @@
 package de.hausknecht.master.frameworksanddrivers.ui.content.simulation.graphView;
 
-import de.hausknecht.master.entity.domain.eventdata.GraphChanged;
+import de.hausknecht.master.entity.domain.eventdata.GraphChangedEvent;
 import de.hausknecht.master.entity.domain.eventdata.SimulationEvent;
 import de.hausknecht.master.interfaceadapters.GraphAdministrator;
 import guru.nidi.graphviz.engine.Format;
@@ -11,7 +11,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
-import java.awt.*;
 import java.util.Optional;
 
 @Component
@@ -43,7 +42,7 @@ public class GraphView {
     }
 
     @EventListener
-    public void onGraphChanged(GraphChanged event) {
+    public void onGraphChanged(GraphChangedEvent event) {
         javafx.application.Platform.runLater(() -> {
             Optional<String> graphDefinition = graphAdministrator.returnGraphDefinition();
             this.renderGraph(graphDefinition);

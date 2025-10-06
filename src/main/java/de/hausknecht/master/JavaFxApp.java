@@ -1,5 +1,6 @@
 package de.hausknecht.master;
 
+import de.hausknecht.master.entity.service.persistence.SessionTime;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -13,10 +14,12 @@ import java.util.Objects;
 
 public class JavaFxApp extends Application {
     private ConfigurableApplicationContext context;
+    private SessionTime sessionTime;
 
     @Override
     public void init() {
         context = new SpringApplicationBuilder(MasterApplication.class).run();
+        sessionTime = context.getBean(SessionTime.class);
     }
 
     @Override public void start(Stage stage) throws Exception {
@@ -29,6 +32,8 @@ public class JavaFxApp extends Application {
                 Objects.requireNonNull(getClass().getResource("/ui/css/overlay.css")).toExternalForm());
         scene.getStylesheets().add(
                 Objects.requireNonNull(getClass().getResource("/ui/css/menu.css")).toExternalForm());
+        scene.getStylesheets().add(
+                Objects.requireNonNull(getClass().getResource("/ui/css/batch.css")).toExternalForm());
         scene.getStylesheets().add(
                 Objects.requireNonNull(getClass().getResource("/ui/css/splitPane.css")).toExternalForm());
         scene.getStylesheets().add(
@@ -43,13 +48,15 @@ public class JavaFxApp extends Application {
 
         stage.setScene(scene);
         stage.show();
+
+        sessionTime.startSession();
     }
 
     @Override
     public void stop() {
-        if (context != null) {
-            context.close();
-        }
+        if (context != null) context.close();
+
+        sessionTime.endSession();
         Platform.exit();
     }
 }

@@ -1,6 +1,6 @@
 package de.hausknecht.master.frameworksanddrivers.ui.content.simulation.specification;
 
-import de.hausknecht.master.entity.domain.eventdata.EndingNodeRemoved;
+import de.hausknecht.master.entity.domain.eventdata.EndingNodeRemovedEvent;
 import de.hausknecht.master.interfaceadapters.NodeAdministrator;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -50,7 +50,7 @@ public class NodeDefinitionContainer implements ListElementContainer {
     }
 
     @EventListener
-    public void onNodeRemoved(EndingNodeRemoved event) {
+    public void onNodeRemoved(EndingNodeRemovedEvent event) {
         javafx.application.Platform.runLater(() ->{
             List<HBox> list = listElementContainer.getChildren().stream()
                     .filter(HBox.class::isInstance)

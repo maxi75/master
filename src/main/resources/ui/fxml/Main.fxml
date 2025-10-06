@@ -2,6 +2,8 @@
 <?import javafx.scene.layout.StackPane?>
 <StackPane xmlns:fx="http://javafx.com/fxml" fx:controller="de.hausknecht.master.frameworksanddrivers.ui.MainController">
     <fx:include source="content/ContentContainer.fxml"/>
+    <fx:include source="batches/Batches.fxml"/>
     <fx:include source="menu/MenuOverlay.fxml" fx:id="menuOverlay"/>
-    <fx:include source="overlay/OverlayContainer.fxml"/>
+    <fx:include source="overlay/PointsOverlay.fxml"/>
+    <fx:include source="overlay/BatchOverlay.fxml"/>
 </StackPane>
