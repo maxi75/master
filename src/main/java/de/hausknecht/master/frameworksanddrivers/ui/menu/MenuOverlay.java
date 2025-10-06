@@ -10,6 +10,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -30,6 +31,8 @@ public class MenuOverlay {
     @FXML private Button closeButton;
     @FXML private Label statusPoints;
     @FXML private Button batchNavigation;
+    @FXML private Button specialExercise;
+    @FXML private ImageView lockImage;
 
     @FXML
     public void initialize() {
@@ -41,17 +44,36 @@ public class MenuOverlay {
         statusPoints.setText(POINTS + pointSystemAdministrator.getPoints());
 
         closeButton.setOnAction(_ -> this.closeMenu());
+        configureBatchNavigation();
+        configureSpecialExercises();
+        this.closeMenu();
+    }
+
+    private void configureBatchNavigation() {
         batchNavigation.setOnAction(_ -> {
             batchContainer.show();
             closeMenu();
         });
-        this.closeMenu();
+    }
+
+    private void configureSpecialExercises() {
+        int points = pointSystemAdministrator.getPoints();
+        if (points >= 500) lockImage.setImage(null);
+
+        specialExercise.setOnAction(_ -> {
+            String file = (String) specialExercise.getUserData();
+            if (points >= 500) openMenuEntry(file);
+        });
     }
 
     @FXML
     private void loadContent(ActionEvent e) {
         Button menuNavigationButton = (Button) e.getSource();
         String file = (String) menuNavigationButton.getUserData();
+        openMenuEntry(file);
+    }
+
+    private void openMenuEntry(String file) {
         if (file != null && !file.isBlank()) {
             theoryContainer.renderTheoryData(file);
             closeMenu();
@@ -61,8 +83,11 @@ public class MenuOverlay {
 
     @EventListener
     public void onPointsChanged(PointsChangedEvent ignored) {
-        javafx.application.Platform.runLater(() ->
-                statusPoints.setText(POINTS + pointSystemAdministrator.getPoints()));
+        javafx.application.Platform.runLater(() -> {
+            int currentPoints = pointSystemAdministrator.getPoints();
+            statusPoints.setText(POINTS + currentPoints);
+            configureSpecialExercises();
+        });
     }
 
     public void closeMenu() {
