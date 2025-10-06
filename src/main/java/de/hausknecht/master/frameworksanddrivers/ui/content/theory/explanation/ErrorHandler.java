@@ -6,12 +6,13 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ErrorHandler {
+    static final String CSS_PAGE_EXCEPTION_CONTAINER = "exception-container";
 
     public void showError(String cssID, String message, VBox theoryContainer) {
         System.out.println(message);
 
         VBox exceptionContainer = new VBox();
-        exceptionContainer.getStyleClass().add("exception-container");
+        exceptionContainer.getStyleClass().add(CSS_PAGE_EXCEPTION_CONTAINER);
 
         Label exception = new Label(message);
         exception.getStyleClass().add(cssID);

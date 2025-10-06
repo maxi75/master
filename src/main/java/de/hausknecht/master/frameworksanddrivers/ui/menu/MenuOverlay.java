@@ -3,7 +3,7 @@ package de.hausknecht.master.frameworksanddrivers.ui.menu;
 import de.hausknecht.master.entity.domain.eventdata.PointsChangedEvent;
 import de.hausknecht.master.frameworksanddrivers.ui.batch.BatchContainer;
 import de.hausknecht.master.frameworksanddrivers.ui.content.theory.TheoryContainer;
-import de.hausknecht.master.interfaceadapters.PointSystemAdministrator;
+import de.hausknecht.master.usecase.PointSystemAdministrator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -18,10 +18,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
+import static de.hausknecht.master.ConstantProvider.POINTS_SPECIAL_EXERCISE;
+
 @Component
 @RequiredArgsConstructor
 public class MenuOverlay {
-    private static final String POINTS = "Punktzahl: ";
+    static final String POINTS = "Punktzahl: ";
 
     private final TheoryContainer theoryContainer;
     private final PointSystemAdministrator pointSystemAdministrator;
@@ -58,11 +60,11 @@ public class MenuOverlay {
 
     private void configureSpecialExercises() {
         int points = pointSystemAdministrator.getPoints();
-        if (points >= 500) lockImage.setImage(null);
+        if (points >= POINTS_SPECIAL_EXERCISE) lockImage.setImage(null);
 
         specialExercise.setOnAction(_ -> {
             String file = (String) specialExercise.getUserData();
-            if (points >= 500) openMenuEntry(file);
+            if (points >= POINTS_SPECIAL_EXERCISE) openMenuEntry(file);
         });
     }
 

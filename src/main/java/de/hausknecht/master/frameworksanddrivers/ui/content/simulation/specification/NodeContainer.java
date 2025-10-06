@@ -1,6 +1,6 @@
 package de.hausknecht.master.frameworksanddrivers.ui.content.simulation.specification;
 
-import de.hausknecht.master.interfaceadapters.NodeAdministrator;
+import de.hausknecht.master.usecase.NodeAdministrator;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.layout.VBox;

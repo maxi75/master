@@ -1,8 +1,8 @@
 package de.hausknecht.master.frameworksanddrivers.ui.content.simulation.specification;
 
-import de.hausknecht.master.entity.domain.TransitionTriple;
+import de.hausknecht.master.entity.domain.automata.TransitionTriple;
 import de.hausknecht.master.entity.domain.eventdata.TransitionRemovedEvent;
-import de.hausknecht.master.interfaceadapters.NodeAdministrator;
+import de.hausknecht.master.usecase.NodeAdministrator;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
@@ -20,10 +20,14 @@ import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static de.hausknecht.master.ConstantProvider.ARROW;
+import static de.hausknecht.master.ConstantProvider.DOUBLE_MINUS;
+
 @Component
 @RequiredArgsConstructor
 public class TransitionContainer implements ListElementContainer {
-    private static final Pattern NODE_NAME_PATTERN = Pattern.compile("^\\s*(.*?)\\s--\\s*(.*?)\\s*-->\\s*(.*?)\\s*$");
+    static final String ERROR_WHILE_MATCHING = "Matching not possible";
+    static final Pattern NODE_NAME_PATTERN = Pattern.compile("^\\s*(.*?)\\s--\\s*(.*?)\\s*-->\\s*(.*?)\\s*$");
 
     @FXML private VBox listElementContainer;
     @FXML private Button addButton;
@@ -43,7 +47,7 @@ public class TransitionContainer implements ListElementContainer {
 
     public void addListItem(TransitionTriple transition) {
         if (!nodeAdministrator.addTransition(transition)) return;
-        addListItemToUI(listElementContainer, transition.fromNode() + " --" + transition.transitionWord() + "--> " + transition.toNode());
+        addListItemToUI(listElementContainer, transition.fromNode() + DOUBLE_MINUS + transition.transitionWord() + ARROW + transition.toNode());
     }
 
     public void delete(String nodeName, Parent listItem) {
@@ -59,7 +63,7 @@ public class TransitionContainer implements ListElementContainer {
     private Matcher patternMatcherForExtractingNodeInformationFromText(String nodeName) {
         Matcher matcher = NODE_NAME_PATTERN.matcher(nodeName);
         if (!matcher.matches()) {
-            System.err.println("Matching not possible");
+            System.err.println(ERROR_WHILE_MATCHING);
             return null;
         }
 
@@ -75,7 +79,7 @@ public class TransitionContainer implements ListElementContainer {
                     .filter(node -> node.getChildren().stream()
                             .anyMatch(label -> label instanceof Label lbl &&
                                     Objects.equals(lbl.getText(),
-                                            event.fromNode() + " --" + event.transitionWord() + "--> " + event.toNode())))
+                                            event.fromNode() + DOUBLE_MINUS + event.transitionWord() + ARROW + event.toNode())))
                     .toList();
 
             listElementContainer.getChildren().removeAll(list);

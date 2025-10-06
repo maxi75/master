@@ -1,9 +1,9 @@
 package de.hausknecht.master.frameworksanddrivers.ui.content.simulation.simulationOverlay;
 
-import de.hausknecht.master.entity.domain.AutomataSimulation;
+import de.hausknecht.master.entity.domain.automata.AutomataSimulation;
 import de.hausknecht.master.entity.domain.eventdata.GraphChangedEvent;
 import de.hausknecht.master.entity.domain.eventdata.SimulationEvent;
-import de.hausknecht.master.interfaceadapters.GraphAdministrator;
+import de.hausknecht.master.usecase.GraphAdministrator;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -16,12 +16,13 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.Objects;
 
+import static de.hausknecht.master.ConstantProvider.*;
+
 @Setter
 @Component
 @RequiredArgsConstructor
 public class SimulationOverlay {
     @FXML private TextField word;
-
     @FXML private Button startBtn;
     @FXML private Button fastBackwordBtn;
     @FXML private Button backwardBtn;
@@ -30,7 +31,7 @@ public class SimulationOverlay {
     @FXML private Button stopBtn;
     @FXML private ComboBox<AutomataSimulation> graphBox;
 
-    private String alreadySimulatedWord = "";
+    private String alreadySimulatedWord = EMPTY_STRING;
     private boolean alreadyStarted = false;
 
     private final ApplicationEventPublisher applicationEventPublisher;
@@ -38,7 +39,7 @@ public class SimulationOverlay {
 
     @FXML
     public void initialize(){
-        word.textProperty().addListener(_ -> alreadySimulatedWord = "");
+        word.textProperty().addListener(_ -> alreadySimulatedWord = EMPTY_STRING);
         forwardBtn.setOnAction(_ -> simulateForward());
         backwardBtn.setOnAction(_ -> simulateBack());
         fastBackwordBtn.setOnAction(_ -> simulateFirst());
@@ -72,7 +73,7 @@ public class SimulationOverlay {
     private void simulateFirst() {
         if (!alreadyStarted) return;
 
-        alreadySimulatedWord = "";
+        alreadySimulatedWord = EMPTY_STRING;
         applicationEventPublisher.publishEvent(new SimulationEvent(this.alreadySimulatedWord));
     }
 
@@ -84,31 +85,31 @@ public class SimulationOverlay {
 
     private void simulateStop() {
         alreadyStarted = false;
-        alreadySimulatedWord = "";
+        alreadySimulatedWord = EMPTY_STRING;
         applicationEventPublisher.publishEvent(new GraphChangedEvent());
     }
 
     private void calculateNextInput(){
-        List<String> allWordsInTextField = List.of(word.getText().trim().split("\\s+"));
+        List<String> allWordsInTextField = List.of(word.getText().trim().split(SPLIT_BY_REGEX));
         List<String> alreadyCalculatedWords = alreadySimulatedWord == null || alreadySimulatedWord.isBlank() ?
                 List.of() :
-                List.of(alreadySimulatedWord.trim().split("\\s+"));
+                List.of(alreadySimulatedWord.trim().split(SPLIT_BY_REGEX));
 
         if (allWordsInTextField.isEmpty() ||
                 Objects.equals(alreadySimulatedWord, word.getText()) ||
                 alreadyCalculatedWords.size() >= allWordsInTextField.size()) return;
 
         String nextWord = allWordsInTextField.get(alreadyCalculatedWords.size());
-        alreadySimulatedWord = alreadySimulatedWord + nextWord + " ";
+        alreadySimulatedWord = alreadySimulatedWord + nextWord + SPACE;
     }
 
     private void calculateLastInput(){
         List<String> alreadyCalculatedWords = alreadySimulatedWord == null || alreadySimulatedWord.isBlank() ?
                 List.of() :
-                List.of(alreadySimulatedWord.trim().split("\\s+"));
+                List.of(alreadySimulatedWord.trim().split(SPLIT_BY_REGEX));
 
         alreadySimulatedWord = (alreadyCalculatedWords.size() <= 1) ?
-                "" :
-                String.join(" ", alreadyCalculatedWords.subList(0, alreadyCalculatedWords.size() - 1)) + " ";
+                EMPTY_STRING :
+                String.join(SPACE, alreadyCalculatedWords.subList(0, alreadyCalculatedWords.size() - 1)) + SPACE;
     }
 }

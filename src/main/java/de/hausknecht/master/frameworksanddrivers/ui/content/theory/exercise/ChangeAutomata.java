@@ -1,13 +1,17 @@
 package de.hausknecht.master.frameworksanddrivers.ui.content.theory.exercise;
 
-import de.hausknecht.master.entity.domain.*;
+import de.hausknecht.master.entity.domain.automata.AutomataSimulation;
+import de.hausknecht.master.entity.domain.automata.GraphData;
+import de.hausknecht.master.entity.domain.automata.TransitionTriple;
+import de.hausknecht.master.entity.domain.content.ExcerciseType;
+import de.hausknecht.master.entity.domain.content.TheoryPageData;
 import de.hausknecht.master.frameworksanddrivers.ui.content.simulation.simulationOverlay.SimulationOverlay;
 import de.hausknecht.master.frameworksanddrivers.ui.content.simulation.specification.NodeContainer;
 import de.hausknecht.master.frameworksanddrivers.ui.content.simulation.specification.NodeDefinitionContainer;
 import de.hausknecht.master.frameworksanddrivers.ui.content.simulation.specification.TransitionContainer;
-import de.hausknecht.master.interfaceadapters.DataAccessor;
-import de.hausknecht.master.interfaceadapters.GraphAdministrator;
-import de.hausknecht.master.interfaceadapters.PointSystemAdministrator;
+import de.hausknecht.master.usecase.DataAccessor;
+import de.hausknecht.master.usecase.GraphAdministrator;
+import de.hausknecht.master.usecase.PointSystemAdministrator;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -25,13 +29,17 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import static de.hausknecht.master.entity.domain.AutomataSimulation.DFA;
-import static de.hausknecht.master.entity.domain.AutomataSimulation.NFA;
+import static de.hausknecht.master.ConstantProvider.*;
+import static de.hausknecht.master.entity.domain.automata.AutomataSimulation.DFA;
+import static de.hausknecht.master.entity.domain.automata.AutomataSimulation.NFA;
 
 @Component
 @RequiredArgsConstructor
 public class ChangeAutomata {
-    private static final String CONTAINER_NAME = "DEA <-> NEA";
+    static final String CONTAINER_NAME = "DEA <-> NEA";
+    static final String DEA = "DEA";
+    static final String NEA = "NEA";
+    static final String QUESTION = "Baue zu dem gegebenen %s einen beispielhaften %s in der Simulationsansicht. \n";
 
     private final DataAccessor dataAccessor;
     private final NodeContainer nodeContainer;
@@ -55,18 +63,15 @@ public class ChangeAutomata {
     }
 
     private String buildQuestionIntroduction(GraphData data) {
-        String introduction = "Gegeben ist folgende Automatendefinition: \n A=({%s}, {%s}, δ, %s, {%s}) \n\n";
-        String startzustand = data.getStartingNodeAsString();
-        String endzustaende = data.getEndingNodeAsString();
-        String alleZustaende = data.getNodesAsString();
-        String alphabet = data.ermittleAlphabetAsString();
+        String start = data.getStartingNodeAsString();
+        String end = data.getEndingNodeAsString();
+        String nodes = data.getNodesAsString();
+        String alphabet = data.getAlphabetAsString();
 
-        return String.format(introduction, alphabet, alleZustaende, startzustand, endzustaende);
+        return String.format(INTRODUCTION, alphabet, nodes, start, end);
     }
 
     private String buildTransitionDefinition(GraphData data) {
-        String definition = "mit der Zustandsübergangsfunktion: \n %s \n\n";
-
         Map<String, Set<String>> byTarget = new HashMap<>();
         data.transitions().forEach(transition -> computeSingleTransitionDefinition(transition, byTarget));
 
@@ -74,36 +79,36 @@ public class ChangeAutomata {
         byTarget.forEach((target, definitions) ->
                 definitionBuilder.append(computeTransitionDefinitionByTarget(target, definitions)));
 
-        return String.format(definition, definitionBuilder);
+        return String.format(DEFINITION, definitionBuilder);
     }
 
     private String buildQuestionPostfix(TheoryPageData.Exercise exercise) {
-        return String.format("Baue zu dem gegebenen %s einen beispielhaften %s in der Simulationsansicht. \n",
-                exercise.getKind().equals(ExcerciseType.DEA_NEA) ? "DEA" : "NEA",
-                exercise.getKind().equals(ExcerciseType.DEA_NEA) ? "NEA" : "DEA");
+        return String.format(QUESTION,
+                exercise.getKind().equals(ExcerciseType.DEA_NEA) ? DEA : NEA,
+                exercise.getKind().equals(ExcerciseType.DEA_NEA) ? NEA : DEA);
     }
 
     private void computeSingleTransitionDefinition(TransitionTriple transition, Map<String, Set<String>> byTarget) {
         if (transition == null) return;
 
-        String term = "δ(" + transition.fromNode() + "," + transition.transitionWord() + ")";
+        String term = String.format(TERM, transition.fromNode(), transition.transitionWord());
         byTarget.computeIfAbsent(transition.toNode(), _ -> new HashSet<>()).add(term);
     }
 
     private String computeTransitionDefinitionByTarget(String target, Set<String> definitions) {
-        if (definitions == null || definitions.isEmpty()) return "";
+        if (definitions == null || definitions.isEmpty()) return EMPTY_STRING;
 
         StringBuilder definitionByTarget = new StringBuilder();
         for (String definition : definitions) {
-            definitionByTarget.append(definition).append(" = ");
+            definitionByTarget.append(definition).append(EQUALS);
         }
-        definitionByTarget.append(target).append(";   ");
+        definitionByTarget.append(target).append(SEMICOLON);
         return definitionByTarget.toString();
     }
 
     private void addCheck(GraphData graphData, AutomataSimulation automata, VBox container) {
         HBox hBox = new HBox();
-        hBox.getStyleClass().add("hboxCheck");
+        hBox.getStyleClass().add(CHECK_CSS_STYLE);
         hBox.setAlignment(Pos.CENTER_RIGHT);
 
         Button checkButton = addCheckButton(graphData);
@@ -115,15 +120,15 @@ public class ChangeAutomata {
     }
 
     private Button addSolveButton(GraphData graphData, AutomataSimulation automata, Button checkButton) {
-        Button button = new Button("Lösen");
-        button.getStyleClass().add("buttonSolve");
+        Button button = new Button(SOLVE);
+        button.getStyleClass().add(SOLVE_CSS_ID);
 
         button.setOnAction(_ -> {
             nodeContainer.deleteAll();
-            pointSystemAdministrator.subtractPoints(20);
+            pointSystemAdministrator.subtractPoints(SUBTRACT_POINTS_ON_SOLVE);
 
             Platform.runLater(() -> {
-                checkButton.getStyleClass().removeAll("wrongAnswer", "correctAnswer");
+                checkButton.getStyleClass().removeAll(WRONG_ANSWER_CSS_ID, CORRECT_ANSWER_CSS_ID);
                 graphData.availableNodes().forEach(nodeContainer::addListItem);
                 graphData.endingNodes().forEach(nodeDefinitionContainer::addListItem);
                 nodeDefinitionContainer.setStartingNode(graphData.startingNode());
@@ -135,16 +140,16 @@ public class ChangeAutomata {
     }
 
     private Button addCheckButton(GraphData graphData) {
-        Button button = new Button("Prüfe Lösung");
-        button.getStyleClass().add("buttonCheck");
+        Button button = new Button(CHECK_SOLUTION);
+        button.getStyleClass().add(CHECK_SOLUTION_CSS_ID);
 
         button.setOnAction(_ -> Platform.runLater(() -> {
-            button.getStyleClass().removeAll("wrongAnswer", "correctAnswer");
+            button.getStyleClass().removeAll(WRONG_ANSWER_CSS_ID, CORRECT_ANSWER_CSS_ID);
             boolean answerIsCorrect = createdDFAIsCorrect(graphData);
 
-            button.getStyleClass().add(answerIsCorrect ? "correctAnswer" : "wrongAnswer");
-            if (answerIsCorrect) pointSystemAdministrator.addPoints(5);
-            else pointSystemAdministrator.subtractPoints(10);
+            button.getStyleClass().add(answerIsCorrect ? CORRECT_ANSWER_CSS_ID : WRONG_ANSWER_CSS_ID);
+            if (answerIsCorrect) pointSystemAdministrator.addPoints(ADD_POINTS_CORRECT_CHECK);
+            else pointSystemAdministrator.subtractPoints(SUBTRACT_POINTS_WRONG_CHECK);
         }));
 
         return button;

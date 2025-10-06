@@ -10,6 +10,6 @@
 
     <VBox style="-fx-alignment: CENTER" fx:id="batchContentBox">
         <ImageView fitWidth="750" fitHeight="750" preserveRatio="true" fx:id="batchImage"/>
-        <Label fx:id="batchMessage" styleClass="batchMessage" text="Achievement erhalten!" StackPane.alignment="CENTER"/>
+        <Label styleClass="batchMessage" text="Achievement erhalten!" StackPane.alignment="CENTER"/>
     </VBox>
 </StackPane>

@@ -14,7 +14,7 @@
         <HBox VBox.vgrow="ALWAYS" styleClass="batchHContainer">
             <VBox HBox.hgrow="ALWAYS" styleClass="batchVContainer">
                 <ImageView fitWidth="275" fitHeight="275" preserveRatio="true" fx:id="timeNovice">
-                    <Image url="/packaging/TimeNoviceWithoutSaturation.png"/>
+                    <Image url="/packaging/batches/time/TimeNoviceWithoutSaturation.png"/>
                 </ImageView>
                 <Label styleClass="batchLabel">Kaffee-Warmup</Label>
             </VBox>
@@ -22,7 +22,7 @@
         <HBox VBox.vgrow="ALWAYS" styleClass="batchHContainer">
             <VBox HBox.hgrow="ALWAYS" styleClass="batchVContainer">
                 <ImageView fitWidth="275" fitHeight="275" preserveRatio="true" fx:id="timeKing">
-                    <Image url="/packaging/TimeKingWithoutSaturation.png"/>
+                    <Image url="/packaging/batches/time/TimeKingWithoutSaturation.png"/>
                 </ImageView>
                 <Label styleClass="batchLabel">Büffel-Monster</Label>
             </VBox>
@@ -30,7 +30,7 @@
         <HBox VBox.vgrow="ALWAYS" styleClass="batchHContainer">
             <VBox HBox.hgrow="ALWAYS" styleClass="batchVContainer">
                 <ImageView fitWidth="275" fitHeight="275" preserveRatio="true" fx:id="exerciseMaster">
-                    <Image url="/packaging/ExerciseMasterWithoutSaturation.png"/>
+                    <Image url="/packaging/batches/exercise/ExerciseMasterWithoutSaturation.png"/>
                 </ImageView>
                 <Label styleClass="batchLabel">Punkteregen</Label>
             </VBox>
@@ -40,7 +40,7 @@
         <HBox VBox.vgrow="ALWAYS" styleClass="batchHContainer">
             <VBox HBox.hgrow="ALWAYS" styleClass="batchVContainer">
                 <ImageView fitWidth="275" fitHeight="275" preserveRatio="true" fx:id="timeIntermediate">
-                    <Image url="/packaging/TimeIntermediateWithoutSaturation.png"/>
+                    <Image url="/packaging/batches/time/TimeIntermediateWithoutSaturation.png"/>
                 </ImageView>
                 <Label styleClass="batchLabel">Flow-Finder</Label>
             </VBox>
@@ -48,7 +48,7 @@
         <HBox VBox.vgrow="ALWAYS" styleClass="batchHContainer">
             <VBox HBox.hgrow="ALWAYS" styleClass="batchVContainer">
                 <ImageView fitWidth="275" fitHeight="275" preserveRatio="true" fx:id="exerciseNovice">
-                    <Image url="/packaging/ExerciseNoviceWithoutSaturation.png"/>
+                    <Image url="/packaging/batches/exercise/ExerciseNoviceWithoutSaturation.png"/>
                 </ImageView>
                 <Label styleClass="batchLabel">Punkte? Welche Punkte?</Label>
             </VBox>
@@ -56,7 +56,7 @@
         <HBox VBox.vgrow="ALWAYS" styleClass="batchHContainer">
             <VBox HBox.hgrow="ALWAYS" styleClass="batchVContainer">
                 <ImageView fitWidth="275" fitHeight="275" preserveRatio="true" fx:id="exerciseKing">
-                    <Image url="/packaging/ExerciseKingWithoutSaturation.png"/>
+                    <Image url="/packaging/batches/exercise/ExerciseKingWithoutSaturation.png"/>
                 </ImageView>
                 <Label styleClass="batchLabel">Punkte-Meister</Label>
             </VBox>
@@ -66,7 +66,7 @@
         <HBox VBox.vgrow="ALWAYS" styleClass="batchHContainer">
             <VBox HBox.hgrow="ALWAYS" styleClass="batchVContainer">
                 <ImageView fitWidth="275" fitHeight="275" preserveRatio="true" fx:id="timeMaster">
-                    <Image url="/packaging/TimeMasterWithoutSaturation.png"/>
+                    <Image url="/packaging/batches/time/TimeMasterWithoutSaturation.png"/>
                 </ImageView>
                 <Label styleClass="batchLabel">Lernbiber</Label>
             </VBox>
@@ -74,7 +74,7 @@
         <HBox VBox.vgrow="ALWAYS" styleClass="batchHContainer">
             <VBox HBox.hgrow="ALWAYS" styleClass="batchVContainer">
                 <ImageView fitWidth="275" fitHeight="275" preserveRatio="true" fx:id="exerciseIntermediate">
-                    <Image url="/packaging/ExerciseIntermediateWithoutSaturation.png"/>
+                    <Image url="/packaging/batches/exercise/ExerciseIntermediateWithoutSaturation.png"/>
                 </ImageView>
                 <Label styleClass="batchLabel">Punktesucher</Label>
             </VBox>
@@ -82,7 +82,7 @@
         <HBox VBox.vgrow="ALWAYS" styleClass="batchHContainer">
             <VBox HBox.hgrow="ALWAYS" styleClass="batchVContainer">
                 <ImageView fitWidth="275" fitHeight="275" preserveRatio="true" fx:id="legend">
-                    <Image url="/packaging/LegendWithoutSaturation.png"/>
+                    <Image url="/packaging/batches/legend/LegendWithoutSaturation.png"/>
                 </ImageView>
                 <Label styleClass="batchLabel">Legende</Label>
             </VBox>

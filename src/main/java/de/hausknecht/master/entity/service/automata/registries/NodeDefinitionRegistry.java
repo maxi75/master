@@ -1,0 +1,41 @@
+package de.hausknecht.master.entity.service.automata.registries;
+
+import de.hausknecht.master.entity.domain.eventdata.EndingNodeRemovedEvent;
+import de.hausknecht.master.entity.domain.eventdata.GraphChangedEvent;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.stereotype.Component;
+
+@Setter
+@Getter
+@Component
+@RequiredArgsConstructor
+public class NodeDefinitionRegistry {
+    private String startingNode;
+    private final ObservableList<String> endingNodes = FXCollections.observableArrayList();
+
+    private final ApplicationEventPublisher applicationEventPublisher;
+
+    public boolean addNode(String name){
+        if (name == null || name.isBlank() || endingNodes.contains(name)) return false;
+
+        applicationEventPublisher.publishEvent(new GraphChangedEvent());
+        return endingNodes.add(name);
+    }
+
+    public void removeNode(String name){
+        if (endingNodes.remove(name)) {
+            applicationEventPublisher.publishEvent(new EndingNodeRemovedEvent(name));
+            applicationEventPublisher.publishEvent(new GraphChangedEvent());
+        }
+    }
+
+    public void setStartingNode(String name){
+        applicationEventPublisher.publishEvent(new GraphChangedEvent());
+        startingNode = name;
+    }
+}

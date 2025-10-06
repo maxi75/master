@@ -2,7 +2,7 @@ package de.hausknecht.master.frameworksanddrivers.ui.content.simulation.graphVie
 
 import de.hausknecht.master.entity.domain.eventdata.GraphChangedEvent;
 import de.hausknecht.master.entity.domain.eventdata.SimulationEvent;
-import de.hausknecht.master.interfaceadapters.GraphAdministrator;
+import de.hausknecht.master.usecase.GraphAdministrator;
 import guru.nidi.graphviz.engine.Format;
 import guru.nidi.graphviz.engine.Graphviz;
 import javafx.fxml.FXML;
@@ -13,10 +13,13 @@ import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
+import static de.hausknecht.master.ConstantProvider.*;
+
 @Component
 @RequiredArgsConstructor
 public class GraphView {
-    private static final String SVG_MEDIATYPE = "image/svg+xml";
+    static final String ERROR_WHILE_RENDERING = "Error while trying to render graph: ";
+    static final String SVG_MEDIATYPE = "image/svg+xml";
 
     @FXML private WebView graphView;
 
@@ -33,16 +36,16 @@ public class GraphView {
         graphView.setZoom(1.0);
         graphView.setOnScroll(event -> {
             if (event.isControlDown()) {
-                double zoom = graphView.getZoom() + (event.getDeltaY() > 0 ? 0.1 : -0.1);
-                zoom = Math.max(zoom, 0.2);
-                zoom = Math.min(zoom, 5.0);
+                double zoom = graphView.getZoom() + (event.getDeltaY() > 0 ? GRAPH_ZOOM_STEP : -GRAPH_ZOOM_STEP);
+                zoom = Math.max(zoom, GRAPH_ZOOM_MIN);
+                zoom = Math.min(zoom, GRAPH_ZOOM_MAX);
                 graphView.setZoom(zoom);
             }
         });
     }
 
     @EventListener
-    public void onGraphChanged(GraphChangedEvent event) {
+    public void onGraphChanged(GraphChangedEvent ignored) {
         javafx.application.Platform.runLater(() -> {
             Optional<String> graphDefinition = graphAdministrator.returnGraphDefinition();
             this.renderGraph(graphDefinition);
@@ -66,7 +69,7 @@ public class GraphView {
 
             graphView.getEngine().loadContent(svg, SVG_MEDIATYPE);
         } catch (Exception e) {
-            System.err.println("Error while trying to render graph: " + e.getMessage());
+            System.err.println(ERROR_WHILE_RENDERING + e.getMessage());
         }
     }
 }

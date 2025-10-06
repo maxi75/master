@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.SplitPane?>
-<HBox xmlns:fx="http://javafx.com/fxml"
-      fx:controller="de.hausknecht.master.frameworksanddrivers.ui.content.ContentContainer">
+<HBox xmlns:fx="http://javafx.com/fxml">
 
     <fx:include source="../menu/MenuBar.fxml" fx:id="menuBar"/>
 

@@ -1,12 +1,13 @@
 package de.hausknecht.master.frameworksanddrivers.ui.content.theory.exercise;
 
-import de.hausknecht.master.entity.domain.*;
+import de.hausknecht.master.entity.domain.automata.GraphData;
+import de.hausknecht.master.entity.domain.content.TheoryPageData;
 import de.hausknecht.master.frameworksanddrivers.ui.content.simulation.specification.NodeContainer;
 import de.hausknecht.master.frameworksanddrivers.ui.content.simulation.specification.NodeDefinitionContainer;
 import de.hausknecht.master.frameworksanddrivers.ui.content.simulation.specification.TransitionContainer;
-import de.hausknecht.master.interfaceadapters.DataAccessor;
-import de.hausknecht.master.interfaceadapters.GraphAdministrator;
-import de.hausknecht.master.interfaceadapters.PointSystemAdministrator;
+import de.hausknecht.master.usecase.DataAccessor;
+import de.hausknecht.master.usecase.GraphAdministrator;
+import de.hausknecht.master.usecase.PointSystemAdministrator;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -22,10 +23,13 @@ import org.springframework.stereotype.Component;
 import java.util.HashSet;
 import java.util.Set;
 
+import static de.hausknecht.master.ConstantProvider.*;
+
 @Component
 @RequiredArgsConstructor
 public class Solution {
-    private static final String CONTAINER_NAME = "Automatenkonstruktion";
+    static final String CONTAINER_NAME = "Automatenkonstruktion";
+    static final String ERROR_WHILE_LOADING_QUESTION = "Error while loading question.";
 
     private final DataAccessor dataAccessor;
     private final NodeContainer nodeContainer;
@@ -38,14 +42,14 @@ public class Solution {
         GraphData data = dataAccessor.getGraphDataFromTheoryPageDataExercise(exercise);
 
         exerciseContainer.addTitle(container, CONTAINER_NAME);
-        exerciseContainer.addQuestion(container, exercise.getQuestion() != null ? exercise.getQuestion() : "Error while loading question.");
+        exerciseContainer.addQuestion(container, exercise.getQuestion() != null ? exercise.getQuestion() : ERROR_WHILE_LOADING_QUESTION);
 
         addCheck(data, container);
     }
 
     private void addCheck(GraphData graphData, VBox container) {
         HBox hBox = new HBox();
-        hBox.getStyleClass().add("hboxCheck");
+        hBox.getStyleClass().add(CHECK_CSS_STYLE);
         hBox.setAlignment(Pos.CENTER_RIGHT);
 
         Button checkButton = addCheckButton(graphData);
@@ -57,15 +61,15 @@ public class Solution {
     }
 
     private Button addSolveButton(GraphData graphData, Button checkButton) {
-        Button button = new Button("Lösen");
-        button.getStyleClass().add("buttonSolve");
+        Button button = new Button(SOLVE);
+        button.getStyleClass().add(SOLVE_CSS_ID);
 
         button.setOnAction(_ -> {
             nodeContainer.deleteAll();
-            pointSystemAdministrator.subtractPoints(20);
+            pointSystemAdministrator.subtractPoints(SUBTRACT_POINTS_ON_SOLVE);
 
             Platform.runLater(() -> {
-                checkButton.getStyleClass().removeAll("wrongAnswer", "correctAnswer");
+                checkButton.getStyleClass().removeAll(WRONG_ANSWER_CSS_ID, CORRECT_ANSWER_CSS_ID);
                 graphData.availableNodes().forEach(nodeContainer::addListItem);
                 graphData.endingNodes().forEach(nodeDefinitionContainer::addListItem);
                 nodeDefinitionContainer.setStartingNode(graphData.startingNode());
@@ -77,16 +81,16 @@ public class Solution {
     }
 
     private Button addCheckButton(GraphData graphData) {
-        Button button = new Button("Prüfe Lösung");
-        button.getStyleClass().add("buttonCheck");
+        Button button = new Button(CHECK_SOLUTION);
+        button.getStyleClass().add(CHECK_SOLUTION_CSS_ID);
 
         button.setOnAction(_ -> Platform.runLater(() -> {
-            button.getStyleClass().removeAll("wrongAnswer", "correctAnswer");
+            button.getStyleClass().removeAll(WRONG_ANSWER_CSS_ID, CORRECT_ANSWER_CSS_ID);
             boolean answerIsCorrect = createdDFAIsCorrect(graphData);
 
-            button.getStyleClass().add(answerIsCorrect ? "correctAnswer" :  "wrongAnswer");
-            if (answerIsCorrect) pointSystemAdministrator.addPoints(5);
-            else pointSystemAdministrator.subtractPoints(10);
+            button.getStyleClass().add(answerIsCorrect ? CORRECT_ANSWER_CSS_ID :  WRONG_ANSWER_CSS_ID);
+            if (answerIsCorrect) pointSystemAdministrator.addPoints(ADD_POINTS_CORRECT_CHECK);
+            else pointSystemAdministrator.subtractPoints(SUBTRACT_POINTS_WRONG_CHECK);
         }));
 
         return button;
