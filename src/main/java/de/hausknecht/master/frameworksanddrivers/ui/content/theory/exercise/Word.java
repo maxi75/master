@@ -19,13 +19,18 @@ import org.springframework.stereotype.Component;
 
 import java.util.*;
 
+import static de.hausknecht.master.ConstantProvider.*;
 import static de.hausknecht.master.entity.domain.automata.AutomataSimulation.DFA;
 import static de.hausknecht.master.entity.domain.automata.AutomataSimulation.NFA;
 
 @Component
 @RequiredArgsConstructor
 public class Word {
-    private static final String CONTAINER_NAME = "Eingabewort finden";
+    static final String CONTAINER_NAME = "Eingabewort finden";
+    static final String QUESTION = "Welche beispielhafte Eingabefolge wird von dem Automaten akzeptiert? \n";
+    static final String INPUT_PROMPT = "Eingabewort";
+    static final String INPUT_CSS_STYLE = "textFieldAnswer";
+    static final String INPUT_CONTAINER_CSS_STYLE = "hboxAnswerContainer";
 
     private final DataAccessor dataAccessor;
     private final GraphAdministrator graphAdministrator;
@@ -42,22 +47,19 @@ public class Word {
     }
 
     private String buildQuestion(GraphData data) {
-        return buildQuestionIntroduction(data) + buildTransitionDefinition(data) + buildQuestionPostfix();
+        return buildQuestionIntroduction(data) + buildTransitionDefinition(data) + QUESTION;
     }
 
     private String buildQuestionIntroduction(GraphData data) {
-        String introduction = "Gegeben ist folgende Automatendefinition: \n A=({%s}, {%s}, δ, %s, {%s}) \n\n";
-        String startzustand = data.getStartingNodeAsString();
-        String endzustaende = data.getEndingNodeAsString();
-        String alleZustaende = data.getNodesAsString();
-        String alphabet = data.ermittleAlphabetAsString();
+        String start = data.getStartingNodeAsString();
+        String end = data.getEndingNodeAsString();
+        String nodes = data.getNodesAsString();
+        String alphabet = data.getAlphabetAsString();
 
-        return String.format(introduction, alphabet, alleZustaende, startzustand, endzustaende);
+        return String.format(INTRODUCTION, alphabet, nodes, start, end);
     }
 
     private String buildTransitionDefinition(GraphData data) {
-        String definition = "mit der Zustandsübergangsfunktion: \n %s \n\n";
-
         Map<String, Set<String>> byTarget = new HashMap<>();
         data.transitions().forEach(transition -> computeSingleTransitionDefinition(transition, byTarget));
 
@@ -65,38 +67,33 @@ public class Word {
         byTarget.forEach((target, definitions) ->
                 definitionBuilder.append(computeTransitionDefinitionByTarget(target, definitions)));
 
-        return String.format(definition, definitionBuilder);
+        return String.format(DEFINITION, definitionBuilder);
     }
-
-    private String buildQuestionPostfix() {
-        return "Welche beispielhafte Eingabefolge wird von dem Automaten akzeptiert? \n";
-    }
-
     private void computeSingleTransitionDefinition(TransitionTriple transition, Map<String, Set<String>> byTarget) {
         if (transition == null) return;
 
-        String term = "δ(" + transition.fromNode() + "," + transition.transitionWord() + ")";
+        String term = String.format(TERM, transition.fromNode(), transition.transitionWord());
         byTarget.computeIfAbsent(transition.toNode(), _ -> new HashSet<>()).add(term);
     }
 
     private String computeTransitionDefinitionByTarget(String target, Set<String> definitions) {
-        if (definitions == null || definitions.isEmpty()) return "";
+        if (definitions == null || definitions.isEmpty()) return EMPTY_STRING;
 
         StringBuilder definitionByTarget = new StringBuilder();
         for (String definition : definitions) {
-            definitionByTarget.append(definition).append(" = ");
+            definitionByTarget.append(definition).append(EQUALS);
         }
-        definitionByTarget.append(target).append(";   ");
+        definitionByTarget.append(target).append(SEMICOLON);
         return definitionByTarget.toString();
     }
 
     private TextField addInput(VBox container) {
         HBox hBox = new HBox();
-        hBox.getStyleClass().add("hboxAnswerContainer");
+        hBox.getStyleClass().add(INPUT_CONTAINER_CSS_STYLE);
 
         TextField textField = new TextField();
-        textField.getStyleClass().add("textFieldAnswer");
-        textField.setPromptText("Eingabewort");
+        textField.getStyleClass().add(INPUT_CSS_STYLE);
+        textField.setPromptText(INPUT_PROMPT);
 
         hBox.getChildren().add(textField);
         container.getChildren().add(hBox);
@@ -105,7 +102,7 @@ public class Word {
 
     private void addCheck(GraphData graphData, TextField textField, AutomataSimulation automata, VBox container) {
         HBox hBox = new HBox();
-        hBox.getStyleClass().add("hboxCheck");
+        hBox.getStyleClass().add(CHECK_CSS_STYLE);
         hBox.setAlignment(Pos.CENTER_RIGHT);
 
         hBox.getChildren().add(addSolveButton(graphData, textField));
@@ -115,12 +112,12 @@ public class Word {
     }
 
     private Button addSolveButton(GraphData graphData, TextField textField) {
-        Button button = new Button("Lösen");
-        button.getStyleClass().add("buttonSolve");
+        Button button = new Button(SOLVE);
+        button.getStyleClass().add(SOLVE_CSS_ID);
 
         button.setOnAction(_ -> Platform.runLater(() -> {
-            pointSystemAdministrator.subtractPoints(20);
-            textField.getStyleClass().removeAll("wrongAnswer", "correctAnswer");
+            pointSystemAdministrator.subtractPoints(SUBTRACT_POINTS_ON_SOLVE);
+            textField.getStyleClass().removeAll(WRONG_ANSWER_CSS_ID, CORRECT_ANSWER_CSS_ID);
             textField.setText(graphAdministrator.findAcceptingInputForGraphData(graphData));
         }));
 
@@ -128,16 +125,16 @@ public class Word {
     }
 
     private Button addCheckButton(GraphData graphData, TextField textField, AutomataSimulation automata) {
-        Button button = new Button("Prüfe Lösung");
-        button.getStyleClass().add("buttonCheck");
+        Button button = new Button(CHECK_SOLUTION);
+        button.getStyleClass().add(CHECK_SOLUTION_CSS_ID);
 
         button.setOnAction(_ -> Platform.runLater(() -> {
-            textField.getStyleClass().removeAll("wrongAnswer",  "correctAnswer");
+            textField.getStyleClass().removeAll(WRONG_ANSWER_CSS_ID,  CORRECT_ANSWER_CSS_ID);
             boolean result = graphAdministrator.isInputAccepted(graphData, textField.getText(), automata);
 
-            textField.getStyleClass().add(result ? "correctAnswer" : "wrongAnswer");
-            if(result) pointSystemAdministrator.addPoints(5);
-            pointSystemAdministrator.subtractPoints(10);
+            textField.getStyleClass().add(result ? CORRECT_ANSWER_CSS_ID : WRONG_ANSWER_CSS_ID);
+            if(result) pointSystemAdministrator.addPoints(ADD_POINTS_CORRECT_CHECK);
+            pointSystemAdministrator.subtractPoints(SUBTRACT_POINTS_WRONG_CHECK);
         }));
 
         return button;

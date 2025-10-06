@@ -6,19 +6,26 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.util.Duration;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+
+import static de.hausknecht.master.ConstantProvider.ANIMATION_DURATIONS;
+import static de.hausknecht.master.ConstantProvider.TRANSITION_DURATIONS;
 
 @Component
 @RequiredArgsConstructor
 public class BatchOverlayContainer {
-    private final PauseTransition pauseTransition = new PauseTransition(Duration.seconds(5));
+    static final double ANIMATION_SCALE_FROM = 0.25;
+    static final double ANIMATION_SCALE_TO = 1.0;
+    static final double ANIMATION_FADE_FROM = 0.0;
+    static final double ANIMATION_FADE_TO = 1.0;
+    static final double INITIAL_OPACITY = 0;
 
     @FXML private StackPane batchOverlay;
     @FXML private ImageView batchImage;
     @FXML private VBox batchContentBox;
 
+    private final PauseTransition pauseTransition = new PauseTransition(ANIMATION_DURATIONS);
     private Animation scale;
 
     @FXML
@@ -44,24 +51,24 @@ public class BatchOverlayContainer {
 
     private void scaleUpSetPreconditions() {
         batchOverlay.setVisible(true);
-        batchOverlay.setOpacity(0);
-        batchContentBox.setScaleX(0.25);
-        batchContentBox.setScaleY(0.25);
+        batchOverlay.setOpacity(INITIAL_OPACITY);
+        batchContentBox.setScaleX(ANIMATION_SCALE_FROM);
+        batchContentBox.setScaleY(ANIMATION_SCALE_FROM);
     }
 
     private FadeTransition createFadeTransition() {
-        FadeTransition fadeTransition = new FadeTransition(Duration.millis(500), batchOverlay);
-        fadeTransition.setFromValue(0.0);
-        fadeTransition.setToValue(1.0);
+        FadeTransition fadeTransition = new FadeTransition(TRANSITION_DURATIONS, batchOverlay);
+        fadeTransition.setFromValue(ANIMATION_FADE_FROM);
+        fadeTransition.setToValue(ANIMATION_FADE_TO);
         return fadeTransition;
     }
 
     private ScaleTransition createScaleTransition() {
-        ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(500), batchContentBox);
-        scaleTransition.setFromX(0.25);
-        scaleTransition.setFromY(0.25);
-        scaleTransition.setToX(1.0);
-        scaleTransition.setToY(1.0);
+        ScaleTransition scaleTransition = new ScaleTransition(TRANSITION_DURATIONS, batchContentBox);
+        scaleTransition.setFromX(ANIMATION_SCALE_FROM);
+        scaleTransition.setFromY(ANIMATION_SCALE_FROM);
+        scaleTransition.setToX(ANIMATION_SCALE_TO);
+        scaleTransition.setToY(ANIMATION_SCALE_TO);
         scaleTransition.setInterpolator(Interpolator.EASE_OUT);
         return scaleTransition;
     }

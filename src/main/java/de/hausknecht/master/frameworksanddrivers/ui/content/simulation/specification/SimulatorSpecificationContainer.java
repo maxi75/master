@@ -15,12 +15,15 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class SimulatorSpecificationContainer {
+
+    static final double COLLAPSED = 24.0;
+    static final double EXPANDED  = 400.0;
+    static final String ARROW_DOWN = "▼";
+    static final String ARROW_UP  = "▲";
     @FXML private VBox specificationContainer;
     @FXML private HBox specificationContent;
     @FXML private Button specificationTabBtn;
 
-    private static final double COLLAPSED = 24.0;
-    private static final double EXPANDED  = 400.0;
     private boolean expanded = false;
 
     @FXML
@@ -50,7 +53,7 @@ public class SimulatorSpecificationContainer {
     private void toggleContainer(boolean collapsed) {
         specificationContent.setVisible(collapsed);
         specificationContent.setManaged(collapsed);
-        specificationTabBtn.setText(collapsed ? "▼" : "▲");
+        specificationTabBtn.setText(collapsed ? ARROW_DOWN : ARROW_UP);
     }
 
     private void playAnimation()

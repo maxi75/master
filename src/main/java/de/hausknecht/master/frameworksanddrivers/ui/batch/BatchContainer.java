@@ -15,6 +15,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
+import static de.hausknecht.master.ConstantProvider.*;
+
 @Component
 @RequiredArgsConstructor
 public class BatchContainer {
@@ -69,53 +71,53 @@ public class BatchContainer {
     }
 
     private void updateImages(Duration duration, boolean withAnimation) {
-        if (duration.greaterThan(Duration.minutes(5)) && !timeNovice.getImage().getUrl().contains("/packaging/batches/time/TimeNovice.png")) {
-            timeNovice.setImage(new Image("/packaging/batches/time/TimeNovice.png", true));
-            if (withAnimation) batchOverlayContainer.show("/packaging/batches/time/TimeNovice.png");
+        if (duration.greaterThan(Duration.minutes(5)) && !timeNovice.getImage().getUrl().contains(BATCH_TIME_NOVICE_PATH)) {
+            timeNovice.setImage(new Image(BATCH_TIME_NOVICE_PATH, true));
+            if (withAnimation) batchOverlayContainer.show(BATCH_TIME_NOVICE_PATH);
         }
-        if (duration.greaterThan(Duration.minutes(15)) && !timeIntermediate.getImage().getUrl().contains("/packaging/batches/time/TimeIntermediate.png")) {
-            timeIntermediate.setImage(new Image("/packaging/batches/time/TimeIntermediate.png", true));
-            if (withAnimation) batchOverlayContainer.show("/packaging/batches/time/TimeIntermediate.png");
+        if (duration.greaterThan(Duration.minutes(15)) && !timeIntermediate.getImage().getUrl().contains(BATCH_TIME_INTERMEDIATE_PATH)) {
+            timeIntermediate.setImage(new Image(BATCH_TIME_INTERMEDIATE_PATH, true));
+            if (withAnimation) batchOverlayContainer.show(BATCH_TIME_INTERMEDIATE_PATH);
         }
-        if (duration.greaterThan(Duration.minutes(90)) && !timeMaster.getImage().getUrl().contains("/packaging/batches/time/TimeMaster.png")) {
-            timeMaster.setImage(new Image("/packaging/batches/time/TimeMaster.png", true));
-            if (withAnimation) batchOverlayContainer.show("/packaging/batches/time/TimeMaster.png");
+        if (duration.greaterThan(Duration.minutes(90)) && !timeMaster.getImage().getUrl().contains(BATCH_TIME_MASTER_PATH)) {
+            timeMaster.setImage(new Image(BATCH_TIME_MASTER_PATH, true));
+            if (withAnimation) batchOverlayContainer.show(BATCH_TIME_MASTER_PATH);
         }
-        if (duration.greaterThan(Duration.minutes(300)) && !timeKing.getImage().getUrl().contains("/packaging/batches/time/TimeKing.png")) {
-            timeKing.setImage(new Image("/packaging/batches/time/TimeKing.png", true));
-            if (withAnimation) batchOverlayContainer.show("/packaging/batches/time/TimeKing.png");
+        if (duration.greaterThan(Duration.minutes(300)) && !timeKing.getImage().getUrl().contains(BATCH_TIME_KING_PATH)) {
+            timeKing.setImage(new Image(BATCH_TIME_KING_PATH, true));
+            if (withAnimation) batchOverlayContainer.show(BATCH_TIME_KING_PATH);
         }
 
         showLegendIfNecessary(withAnimation);
     }
     private void updateImages(int points, boolean withAnimation) {
-        if (points >= 25 && !exerciseNovice.getImage().getUrl().contains("/packaging/batches/exercise/ExerciseNovice.png")) {
-            exerciseNovice.setImage(new Image("/packaging/batches/exercise/ExerciseNovice.png", true));
-            if (withAnimation) batchOverlayContainer.show("/packaging/batches/exercise/ExerciseNovice.png");
+        if (points >= 25 && !exerciseNovice.getImage().getUrl().contains(BATCH_EXERCISE_NOVICE_PATH)) {
+            exerciseNovice.setImage(new Image(BATCH_EXERCISE_NOVICE_PATH, true));
+            if (withAnimation) batchOverlayContainer.show(BATCH_EXERCISE_NOVICE_PATH);
         }
-        if (points >= 75 && !exerciseIntermediate.getImage().getUrl().contains("/packaging/batches/exercise/ExerciseIntermediate.png")) {
-            exerciseIntermediate.setImage(new Image("/packaging/batches/exercise/ExerciseIntermediate.png", true));
-            if (withAnimation) batchOverlayContainer.show("/packaging/batches/exercise/ExerciseIntermediate.png");
+        if (points >= 75 && !exerciseIntermediate.getImage().getUrl().contains(BATCH_EXERCISE_INTERMEDIATE_PATH)) {
+            exerciseIntermediate.setImage(new Image(BATCH_EXERCISE_INTERMEDIATE_PATH, true));
+            if (withAnimation) batchOverlayContainer.show(BATCH_EXERCISE_INTERMEDIATE_PATH);
         }
-        if (points >= 150 && !exerciseMaster.getImage().getUrl().contains("/packaging/batches/exercise/ExerciseMaster.png")) {
-            exerciseMaster.setImage(new Image("/packaging/batches/exercise/ExerciseMaster.png", true));
-            if (withAnimation) batchOverlayContainer.show("/packaging/batches/exercise/ExerciseMaster.png");
+        if (points >= 150 && !exerciseMaster.getImage().getUrl().contains(BATCH_EXERCISE_MASTER_PATH)) {
+            exerciseMaster.setImage(new Image(BATCH_EXERCISE_MASTER_PATH, true));
+            if (withAnimation) batchOverlayContainer.show(BATCH_EXERCISE_MASTER_PATH);
         }
-        if (points >= 450 && !exerciseKing.getImage().getUrl().contains("/packaging/batches/exercise/ExerciseKing.png")) {
-            exerciseKing.setImage(new Image("/packaging/batches/exercise/ExerciseKing.png", true));
-            if (withAnimation) batchOverlayContainer.show("/packaging/batches/exercise/ExerciseKing.png");
+        if (points >= 450 && !exerciseKing.getImage().getUrl().contains(BATCH_EXERCISE_KING_PATH)) {
+            exerciseKing.setImage(new Image(BATCH_EXERCISE_KING_PATH, true));
+            if (withAnimation) batchOverlayContainer.show(BATCH_EXERCISE_KING_PATH);
         }
 
         showLegendIfNecessary(withAnimation);
     }
 
     private void showLegendIfNecessary(boolean withAnimation) {
-        if (timeKing.getImage().getUrl().contains("/packaging/batches/time/TimeKing.png") &&
-                exerciseKing.getImage().getUrl().contains("/packaging/batches/exercise/ExerciseKing.png") &&
-                legend.getImage().getUrl().contains("/packaging/batches/legend/LegendWithoutSaturation.png")) {
+        if (timeKing.getImage().getUrl().contains(BATCH_TIME_KING_PATH) &&
+                exerciseKing.getImage().getUrl().contains(BATCH_EXERCISE_KING_PATH) &&
+                legend.getImage().getUrl().contains(BATCH_LEGEND_WITHOUT_SATURATION_PATH)) {
 
-            legend.setImage(new Image("/packaging/batches/legend/Legend.png", true));
-            if (withAnimation) batchOverlayContainer.show("/packaging/batches/legend/Legend.png");
+            legend.setImage(new Image(BATCH_LEGEND_PATH, true));
+            if (withAnimation) batchOverlayContainer.show(BATCH_LEGEND_PATH);
         }
     }
 }

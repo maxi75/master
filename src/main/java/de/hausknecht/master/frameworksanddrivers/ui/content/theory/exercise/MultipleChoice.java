@@ -17,17 +17,24 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
+import static de.hausknecht.master.ConstantProvider.*;
+
 @Component
 @AllArgsConstructor
 public class MultipleChoice {
 
-    private static final String CONTAINER_NAME = "Multiple Choice";
+    static final String CONTAINER_NAME = "Multiple Choice";
+    static final String ERROR_WHILE_LOADING_QUESTION = "Error while loading question.";
+    static final String ANSWER_CSS_STYLE = "exerciseMultipleChoiceAnswer";
+    static final String ANSWER_CONTAINER_CSS_STYLE = "hboxAnswerContainer";
+    static final String WRONG_ANSWER_CSS_ID = "multipleChoiceWrongAnswer";
+    static final String CORRECT_ANSWER_CSS_ID = "multipleChoiceCorrectAnswer";
 
     private final PointSystemAdministrator pointSystemAdministrator;
 
     public void addMultipleChoiceExercise(TheoryPageData.Exercise exercise, VBox container, ExerciseContainer exerciseContainer) {
         exerciseContainer.addTitle(container, CONTAINER_NAME);
-        exerciseContainer.addQuestion(container, exercise.getQuestion() != null ? exercise.getQuestion() : "Error loading question");
+        exerciseContainer.addQuestion(container, exercise.getQuestion() != null ? exercise.getQuestion() : ERROR_WHILE_LOADING_QUESTION);
 
         List<CheckBox> checkBoxes = new ArrayList<>();
         List<String> answers = exercise.getAnswers() != null ? exercise.getAnswers() : List.of();
@@ -37,7 +44,7 @@ public class MultipleChoice {
 
     private void addAnswer(String answer, VBox container, List<CheckBox> boxes, ExerciseContainer exerciseContainer) {
         HBox hBox = new HBox();
-        hBox.getStyleClass().add("hboxAnswerContainer");
+        hBox.getStyleClass().add(ANSWER_CONTAINER_CSS_STYLE);
         hBox.setSpacing(25);
 
         CheckBox checkBox = new CheckBox();
@@ -45,7 +52,7 @@ public class MultipleChoice {
         boxes.add(checkBox);
 
         Text answerText = new Text(answer);
-        answerText.getStyleClass().add("exerciseMultipleChoiceAnswer");
+        answerText.getStyleClass().add(ANSWER_CSS_STYLE);
         TextFlow textFlow = exerciseContainer.createTextFlow(answerText, container);
 
         hBox.getChildren().add(textFlow);
@@ -54,7 +61,7 @@ public class MultipleChoice {
 
     private void addCheck(TheoryPageData.Exercise exercise, List<CheckBox> checkBoxes, VBox container) {
         HBox hBox = new HBox();
-        hBox.getStyleClass().add("hboxCheck");
+        hBox.getStyleClass().add(CHECK_CSS_STYLE);
         hBox.setAlignment(Pos.CENTER_RIGHT);
 
         hBox.getChildren().add(addSolveButton(exercise, checkBoxes));
@@ -64,37 +71,37 @@ public class MultipleChoice {
     }
 
     private Button addSolveButton(TheoryPageData.Exercise exercise, List<CheckBox> checkBoxes) {
-        Button button = new Button("Lösen");
-        button.getStyleClass().add("buttonSolve");
+        Button button = new Button(SOLVE);
+        button.getStyleClass().add(SOLVE_CSS_ID);
 
         button.setOnAction(_ -> {
             IntStream.range(0, checkBoxes.size())
                 .forEach(i -> Platform.runLater(() -> {
-                    checkBoxes.get(i).getStyleClass().removeAll("multipleChoiceWrongAnswer", "multipleChoiceCorrectAnswer");
+                    checkBoxes.get(i).getStyleClass().removeAll(WRONG_ANSWER_CSS_ID, CORRECT_ANSWER_CSS_ID);
                     checkBoxes.get(i).setSelected(exercise.getCorrectAnswers().contains(i));
                 }));
-            pointSystemAdministrator.subtractPoints(20);
+            pointSystemAdministrator.subtractPoints(SUBTRACT_POINTS_ON_SOLVE);
         });
 
         return button;
     }
 
     private Button addCheckButton(TheoryPageData.Exercise exercise, List<CheckBox> checkBoxes) {
-        Button button = new Button("Prüfe Lösung");
-        button.getStyleClass().add("buttonCheck");
+        Button button = new Button(CHECK_SOLUTION);
+        button.getStyleClass().add(CHECK_SOLUTION_CSS_ID);
 
         button.setOnAction(_ -> {
             int points = 0;
             for (int i = 0; i < checkBoxes.size(); i++) {
-                checkBoxes.get(i).getStyleClass().removeAll("multipleChoiceWrongAnswer", "multipleChoiceCorrectAnswer");
+                checkBoxes.get(i).getStyleClass().removeAll(WRONG_ANSWER_CSS_ID, CORRECT_ANSWER_CSS_ID);
                 boolean isSelected = checkBoxes.get(i).isSelected();
                 boolean shouldBeSelected = exercise.getCorrectAnswers().contains(i);
 
                 checkBoxes.get(i).getStyleClass().add(isSelected != shouldBeSelected ?
-                        "multipleChoiceWrongAnswer" :
-                        "multipleChoiceCorrectAnswer");
+                        WRONG_ANSWER_CSS_ID :
+                        CORRECT_ANSWER_CSS_ID);
 
-                points = isSelected != shouldBeSelected ? points - 2 : points + 1;
+                points = isSelected != shouldBeSelected ? points - MULTIPLE_CHOICE_WRONG_ANSWER_POINTS : points + MULTIPLE_CHOICE_CORRECT_ANSWER_POINTS;
             }
 
             if (points >= 0) pointSystemAdministrator.addPoints(points);

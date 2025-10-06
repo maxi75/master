@@ -5,23 +5,23 @@ import de.hausknecht.master.entity.service.content.ClasspathLoader;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import static de.hausknecht.master.ConstantProvider.THEORY_IMAGES_PATH;
+import static de.hausknecht.master.ConstantProvider.THEORY_JSON_PATH;
+
 @Service
 @RequiredArgsConstructor
 public class ClasspathData {
-    static final String CLASS_PATH_JSON_PREFIX = "theory/json/";
-    static final String CLASS_PATH_IMAGE_PREFIX = "packaging/theory/";
-
     private final ClasspathLoader classpathLoader;
 
     public TheoryPageData getNewPageData(String fileName) {
         return classpathLoader
-                .getJsonFromResource(CLASS_PATH_JSON_PREFIX + fileName, TheoryPageData.class)
+                .getJsonFromResource(THEORY_JSON_PATH + fileName, TheoryPageData.class)
                 .orElse(null);
     }
 
     public String loadImage(String image) {
         return classpathLoader
-                .getStringFromResource(CLASS_PATH_IMAGE_PREFIX + image)
+                .getStringFromResource(THEORY_IMAGES_PATH + image)
                 .orElse(null);
     }
 }

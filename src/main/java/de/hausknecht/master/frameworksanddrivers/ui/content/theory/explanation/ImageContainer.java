@@ -13,6 +13,10 @@ import org.springframework.util.StringUtils;
 @Component
 @RequiredArgsConstructor
 public class ImageContainer {
+    static final String CSS_PAGE_IMAGE_EXCEPTION = "image-exception";
+    static final String CSS_PAGE_THEORY_IMAGE = "theory-image";
+    static final String CSS_PAGE_IMAGE_CAPTION = "image-caption";
+    static final String CSS_PAGE_IMAGE_CONTAINER = "image-container";
     static final String LOAD_IMAGE_EXCEPTION = "[Warning: An image could not be loaded]";
 
     private final ClasspathData classpathData;
@@ -24,19 +28,19 @@ public class ImageContainer {
 
         String imageString = classpathData.loadImage(section.getImage());
         if (imageString == null) {
-            errorHandler.showError("image-exception",  LOAD_IMAGE_EXCEPTION, theoryContainer);
+            errorHandler.showError(CSS_PAGE_IMAGE_EXCEPTION,  LOAD_IMAGE_EXCEPTION, theoryContainer);
             return;
         }
 
         ImageView image = new ImageView(new Image(imageString, true));
         image.setPreserveRatio(true);
         image.setSmooth(true);
-        image.getStyleClass().add("theory-image");
+        image.getStyleClass().add(CSS_PAGE_THEORY_IMAGE);
         if (StringUtils.hasText(section.getImageAltText()))
             image.setAccessibleText(section.getImageAltText());
 
         VBox imageContainer = new VBox();
-        imageContainer.getStyleClass().add("image-container");
+        imageContainer.getStyleClass().add(CSS_PAGE_IMAGE_CONTAINER);
         image.fitWidthProperty().bind(imageContainer.widthProperty().multiply(0.60));
 
         imageContainer.getChildren().add(image);
@@ -48,7 +52,7 @@ public class ImageContainer {
         if (!StringUtils.hasText(section.getImageSubText())) return;
 
         Label caption = new Label(section.getText());
-        caption.getStyleClass().add("image-caption");
+        caption.getStyleClass().add(CSS_PAGE_IMAGE_CAPTION);
         caption.setWrapText(true);
         imageContainer.getChildren().add(caption);
     }

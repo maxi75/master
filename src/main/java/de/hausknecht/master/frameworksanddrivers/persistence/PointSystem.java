@@ -1,5 +1,6 @@
 package de.hausknecht.master.frameworksanddrivers.persistence;
 
+import de.hausknecht.master.ConstantProvider;
 import de.hausknecht.master.entity.domain.eventdata.PointsChangedEvent;
 import lombok.AllArgsConstructor;
 import org.springframework.context.ApplicationEventPublisher;
@@ -21,11 +22,11 @@ public class PointSystem {
 
     public void addPoints(int points) {
         preferences.putInt(KEY, getTotalPoints() + points);
-        publisher.publishEvent(new PointsChangedEvent("+ " + points, true));
+        publisher.publishEvent(new PointsChangedEvent(ConstantProvider.PLUS + points, true));
     }
 
     public void subtractPoints(int points) {
         preferences.putInt(KEY, getTotalPoints() - points);
-        publisher.publishEvent(new PointsChangedEvent("- " + points, false));
+        publisher.publishEvent(new PointsChangedEvent(ConstantProvider.MINUS + points, false));
     }
 }

@@ -12,6 +12,8 @@ import org.springframework.context.ConfigurableApplicationContext;
 
 import java.util.Objects;
 
+import static de.hausknecht.master.ConstantProvider.*;
+
 public class JavaFxApp extends Application {
     private ConfigurableApplicationContext context;
     private SessionTime sessionTime;
@@ -23,29 +25,19 @@ public class JavaFxApp extends Application {
     }
 
     @Override public void start(Stage stage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/fxml/Main.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(MAIN_FXML_PATH));
         loader.setControllerFactory(context::getBean);
 
         Parent root = loader.load();
         Scene scene = new Scene(root);
-        scene.getStylesheets().add(
-                Objects.requireNonNull(getClass().getResource("/ui/css/overlay.css")).toExternalForm());
-        scene.getStylesheets().add(
-                Objects.requireNonNull(getClass().getResource("/ui/css/menu.css")).toExternalForm());
-        scene.getStylesheets().add(
-                Objects.requireNonNull(getClass().getResource("/ui/css/batch.css")).toExternalForm());
-        scene.getStylesheets().add(
-                Objects.requireNonNull(getClass().getResource("/ui/css/splitPane.css")).toExternalForm());
-        scene.getStylesheets().add(
-                Objects.requireNonNull(getClass().getResource("/ui/css/theory.css")).toExternalForm());
-        scene.getStylesheets().add(
-                Objects.requireNonNull(getClass().getResource("/ui/css/simulation.css")).toExternalForm());
+        ConstantProvider.getCSSFiles().forEach(cssFile ->
+                scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource(cssFile)).toExternalForm()));
 
-        stage.setTitle("Automata Theory");
+
+        stage.setTitle(APPLICATION_NAME);
         stage.setMaximized(true);
-        stage.getIcons().add(new javafx.scene.image.Image(
-                Objects.requireNonNull(getClass().getResourceAsStream("/packaging/icons/icon.png"))));
-
+        stage.getIcons().add(
+                new javafx.scene.image.Image(Objects.requireNonNull(getClass().getResourceAsStream(MAIN_ICON_PATH))));
         stage.setScene(scene);
         stage.show();
 

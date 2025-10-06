@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class TheoryContainer {
+    static final String CSS_PAGE_EXCEPTION = "page-exception";
     static final String LOAD_PAGE_EXCEPTION = "[ERROR: Page not found]";
     static final String FIRST_PAGE = "chapterOne/alphabet.json";
 
@@ -39,7 +40,7 @@ public class TheoryContainer {
         deleteAlreadyExistingContent();
 
         TheoryPageData theoryPageData = classpathData.getNewPageData(fileName);
-        if (theoryPageData == null) errorHandler.showError("page-exception", LOAD_PAGE_EXCEPTION, theoryContainer);
+        if (theoryPageData == null) errorHandler.showError(CSS_PAGE_EXCEPTION, LOAD_PAGE_EXCEPTION, theoryContainer);
         if (theoryPageData != null) renderNewPage(theoryPageData);
     }
 

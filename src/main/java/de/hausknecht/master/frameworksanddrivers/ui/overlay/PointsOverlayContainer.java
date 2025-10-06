@@ -5,15 +5,24 @@ import javafx.animation.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
-import javafx.util.Duration;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
+import static de.hausknecht.master.ConstantProvider.ANIMATION_DURATIONS;
+import static de.hausknecht.master.ConstantProvider.TRANSITION_DURATIONS;
+
 @Component
 @RequiredArgsConstructor
 public class PointsOverlayContainer {
-    private final PauseTransition pauseTransition = new PauseTransition(Duration.seconds(3));
+    static final String CSS_CLASS_SUCCESS = "success";
+    static final String CSS_CLASS_FAILURE = "failure";
+    static final double ANIMATION_FADE_FROM = 0.0;
+    static final double ANIMATION_FADE_TO = 1.0;
+    static final double ANIMATION_TRANSLATE_TO = 0.0;
+    static final double INITIAL_OPACITY = 0;
+
+    private final PauseTransition pauseTransition = new PauseTransition(ANIMATION_DURATIONS);
 
     @FXML private StackPane overlayContainer;
     @FXML private Label overlayMessage;
@@ -41,22 +50,22 @@ public class PointsOverlayContainer {
 
     private double setPreconditions() {
         double distance = overlayContainer.getWidth();
-        overlayMessage.setOpacity(0.0);
+        overlayMessage.setOpacity(INITIAL_OPACITY);
         overlayMessage.setTranslateX(distance);
         return distance;
     }
 
     private TranslateTransition createTranslateTransition(double distance) {
-        TranslateTransition transition = new TranslateTransition(Duration.millis(250), overlayMessage);
+        TranslateTransition transition = new TranslateTransition(TRANSITION_DURATIONS, overlayMessage);
         transition.setFromX(distance);
-        transition.setToX(0);
+        transition.setToX(ANIMATION_TRANSLATE_TO);
         return transition;
     }
 
     private FadeTransition createFadeTransition() {
-        FadeTransition fadeTransition = new FadeTransition(Duration.millis(250), overlayMessage);
-        fadeTransition.setFromValue(0.0);
-        fadeTransition.setToValue(1.0);
+        FadeTransition fadeTransition = new FadeTransition(TRANSITION_DURATIONS, overlayMessage);
+        fadeTransition.setFromValue(ANIMATION_FADE_FROM);
+        fadeTransition.setToValue(ANIMATION_FADE_TO);
         return fadeTransition;
     }
 
@@ -77,10 +86,10 @@ public class PointsOverlayContainer {
     }
 
     public void show(String message, boolean successful) {
-        overlayMessage.getStyleClass().removeAll("success", "failure");
+        overlayMessage.getStyleClass().removeAll(CSS_CLASS_SUCCESS, CSS_CLASS_FAILURE);
         overlayMessage.setText(message);
         overlayMessage.setVisible(true);
-        overlayMessage.getStyleClass().add(successful ? "success" : "failure");
+        overlayMessage.getStyleClass().add(successful ? CSS_CLASS_SUCCESS : CSS_CLASS_FAILURE);
     }
 
     public void hide() {

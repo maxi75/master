@@ -14,6 +14,7 @@ import java.util.prefs.Preferences;
 @RequiredArgsConstructor
 public class SessionTime {
     private static final String KEY = "time.total.ms";
+    private static final String NAME = "session-timer";
 
     private final Preferences preferences = Preferences.userNodeForPackage(this.getClass());
 
@@ -45,7 +46,7 @@ public class SessionTime {
     }
 
     private void startTimer() {
-        timer = new Timer("session-timer", true);
+        timer = new Timer(NAME, true);
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {

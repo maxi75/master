@@ -11,6 +11,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.*;
 
+import static de.hausknecht.master.ConstantProvider.EMPTY_STRING;
+import static de.hausknecht.master.ConstantProvider.SPLIT_BY_REGEX;
+
 @Service
 @AllArgsConstructor
 public class Simulator {
@@ -79,7 +82,7 @@ public class Simulator {
     private Word<String> getTokenFromInput(String input) {
         List<String> inputTokens = input == null || input.isBlank() ?
                 List.of() :
-                Arrays.asList(input.trim().split("\\s+"));
+                Arrays.asList(input.trim().split(SPLIT_BY_REGEX));
         return Word.fromList(inputTokens);
     }
 
@@ -88,7 +91,7 @@ public class Simulator {
 
         Integer current = dfa.getInitialState();
         if (current == null) return Optional.empty();
-        if (dfa.isAccepting(current)) return Optional.of("");
+        if (dfa.isAccepting(current)) return Optional.of(EMPTY_STRING);
 
         List<Integer> visited = new ArrayList<>();
         visited.add(current);

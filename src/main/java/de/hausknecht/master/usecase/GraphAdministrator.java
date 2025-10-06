@@ -16,9 +16,14 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.Optional;
 
+
 @Component
 @AllArgsConstructor
 public class GraphAdministrator {
+
+    static final String ERROR_SEARCHING_SOLUTIONS = "Error while searching for valid solutions.";
+
+
     private final NodeRegistry nodeRegistry;
     private final NodeDefinitionRegistry nodeDefinitionRegistry;
     private final TransitionRegistry transitionRegistry;
@@ -71,6 +76,6 @@ public class GraphAdministrator {
 
     public String findAcceptingInputForGraphData(GraphData graphData) {
         Optional<String> result = simulator.findAcceptingInputForGraphData(graphData);
-        return result.orElse("Error while searching for valid solutions.");
+        return result.orElse(ERROR_SEARCHING_SOLUTIONS);
     }
 }
