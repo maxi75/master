@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 @Component
 @AllArgsConstructor
 public class PointSystemAdministrator {
-
     private final PointSystem pointSystem;
 
     public void addPoints(int points) {

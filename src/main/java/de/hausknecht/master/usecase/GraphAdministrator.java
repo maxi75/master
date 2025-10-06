@@ -20,9 +20,7 @@ import java.util.Optional;
 @Component
 @AllArgsConstructor
 public class GraphAdministrator {
-
     static final String ERROR_SEARCHING_SOLUTIONS = "Error while searching for valid solutions.";
-
 
     private final NodeRegistry nodeRegistry;
     private final NodeDefinitionRegistry nodeDefinitionRegistry;
