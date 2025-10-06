@@ -1,7 +1,7 @@
 package de.hausknecht.master.frameworksanddrivers.ui.content.simulation.simulationOverlay;
 
 import de.hausknecht.master.entity.domain.AutomataSimulation;
-import de.hausknecht.master.entity.domain.eventdata.GraphChanged;
+import de.hausknecht.master.entity.domain.eventdata.GraphChangedEvent;
 import de.hausknecht.master.entity.domain.eventdata.SimulationEvent;
 import de.hausknecht.master.interfaceadapters.GraphAdministrator;
 import javafx.fxml.FXML;
@@ -85,7 +85,7 @@ public class SimulationOverlay {
     private void simulateStop() {
         alreadyStarted = false;
         alreadySimulatedWord = "";
-        applicationEventPublisher.publishEvent(new GraphChanged());
+        applicationEventPublisher.publishEvent(new GraphChangedEvent());
     }
 
     private void calculateNextInput(){

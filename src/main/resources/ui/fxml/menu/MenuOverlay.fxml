@@ -4,10 +4,14 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.HBox?>
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="de.hausknecht.master.frameworksanddrivers.ui.menu.MenuOverlay" fx:id="menuOverlay">
 
     <StackPane>
+        <VBox VBox.vgrow="ALWAYS">
+            <Label fx:id="statusPoints" styleClass="statusPoints">Punktzahl: </Label>
+        </VBox>
         <Button fx:id="closeButton" styleClass="mainButtons">
             <graphic>
                 <ImageView fitWidth="20" fitHeight="20" preserveRatio="true">
@@ -19,6 +23,17 @@
 
     <ScrollPane fitToWidth="true" fitToHeight="true" pannable="true">
         <VBox>
+            <!-- Kapitel 0 -->
+            <Label styleClass="navLabels, newChapters">0. Allgemein</Label>
+            <Button styleClass="navButtons" fx:id="batchNavigation">
+                <userData>chapterFourConstructionDEA.json</userData>
+                0.1 Batches
+            </Button>
+            <Button styleClass="navButtons" onAction="#loadContent">
+                <userData>applicationExplanation.json</userData>
+                0.2 Einführung in die Lernsoftware
+            </Button>
+
             <!-- Kapitel 1 -->
             <Label styleClass="navLabels, newChapters">1. Grundlagen</Label>
             <Label styleClass="subchapter, secondRow">1.1 Begriffsdefinitionen</Label>
@@ -113,6 +128,18 @@
                 <userData>chapterFourStar.json</userData>
                 4.4.5 Kleene-Stern
             </Button>
+
+            <!-- Spezialübungen -->
+            <Label styleClass="navLabels, newChapters">5. Zusatz</Label>
+            <HBox>
+                <Button styleClass="navButtons" fx:id="specialExercise">
+                    <userData>chapterFourConstructionDEA.json</userData>
+                    5.1 Spezialübungen (500 Punkte)
+                </Button>
+                <ImageView fitWidth="23" fitHeight="23" preserveRatio="true" styleClass="lockImage" fx:id="lockImage">
+                    <Image url="/packaging/lock.png"/>
+                </ImageView>
+            </HBox>
         </VBox>
     </ScrollPane>
 </VBox>

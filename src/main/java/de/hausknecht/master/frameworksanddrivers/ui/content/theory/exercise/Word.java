@@ -3,6 +3,7 @@ package de.hausknecht.master.frameworksanddrivers.ui.content.theory.exercise;
 import de.hausknecht.master.entity.domain.*;
 import de.hausknecht.master.interfaceadapters.DataAccessor;
 import de.hausknecht.master.interfaceadapters.GraphAdministrator;
+import de.hausknecht.master.interfaceadapters.PointSystemAdministrator;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -24,6 +25,7 @@ public class Word {
 
     private final DataAccessor dataAccessor;
     private final GraphAdministrator graphAdministrator;
+    private final PointSystemAdministrator pointSystemAdministrator;
 
     public void addWordExercise(TheoryPageData.Exercise exercise, VBox container, ExerciseContainer exerciseContainer) {
         GraphData data = dataAccessor.getGraphDataFromTheoryPageDataExercise(exercise);
@@ -113,6 +115,7 @@ public class Word {
         button.getStyleClass().add("buttonSolve");
 
         button.setOnAction(_ -> Platform.runLater(() -> {
+            pointSystemAdministrator.subtractPoints(20);
             textField.getStyleClass().removeAll("wrongAnswer", "correctAnswer");
             textField.setText(graphAdministrator.findAcceptingInputForGraphData(graphData));
         }));
@@ -127,7 +130,10 @@ public class Word {
         button.setOnAction(_ -> Platform.runLater(() -> {
             textField.getStyleClass().removeAll("wrongAnswer",  "correctAnswer");
             boolean result = graphAdministrator.isInputAccepted(graphData, textField.getText(), automata);
+
             textField.getStyleClass().add(result ? "correctAnswer" : "wrongAnswer");
+            if(result) pointSystemAdministrator.addPoints(5);
+            pointSystemAdministrator.subtractPoints(10);
         }));
 
         return button;

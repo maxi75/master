@@ -13,8 +13,8 @@
     </HBox>
 
     <HBox fx:id="specificationContent" managed="false">
-        <fx:include source="nodeContainer.fxml" HBox.hgrow="ALWAYS" styleClass="contentSection"/>
-        <fx:include source="nodeDefinitionContainer.fxml" HBox.hgrow="ALWAYS" styleClass="contentSection"/>
-        <fx:include source="transitionContainer.fxml" HBox.hgrow="ALWAYS" styleClass="contentSection"/>
+        <fx:include source="NodeContainer.fxml" HBox.hgrow="ALWAYS" styleClass="contentSection"/>
+        <fx:include source="NodeDefinitionContainer.fxml" HBox.hgrow="ALWAYS" styleClass="contentSection"/>
+        <fx:include source="TransitionContainer.fxml" HBox.hgrow="ALWAYS" styleClass="contentSection"/>
     </HBox>
 </VBox>

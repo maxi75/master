@@ -2,7 +2,6 @@ package de.hausknecht.master.frameworksanddrivers.ui.content.simulation.specific
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
@@ -11,7 +10,7 @@ public interface ListElementContainer {
     void delete(String elementName, Parent listElementParent);
 
     default Parent addListItemToUI(VBox listElementContainer, String name) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/fxml/content/simulation/specification/listElements.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/fxml/content/simulation/specification/ListElements.fxml"));
         try {
             Parent elementView = loader.load();
 

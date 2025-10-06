@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           fx:controller="de.hausknecht.master.frameworksanddrivers.ui.overlay.BatchOverlayContainer"
+           fx:id="batchOverlay"
+           pickOnBounds="false" maxWidth="Infinity" maxHeight="Infinity">
+
+    <VBox style="-fx-alignment: CENTER" fx:id="batchContentBox">
+        <ImageView fitWidth="750" fitHeight="750" preserveRatio="true" fx:id="batchImage"/>
+        <Label fx:id="batchMessage" styleClass="batchMessage" text="Achievement erhalten!" StackPane.alignment="CENTER"/>
+    </VBox>
+</StackPane>

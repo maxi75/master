@@ -4,7 +4,7 @@
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="de.hausknecht.master.frameworksanddrivers.ui.content.simulation.SimulatorContainer">
 
-    <fx:include source="simulationOverlay/simulationOverlay.fxml"/>
-    <fx:include source="graphView/graphView.fxml" VBox.vgrow="ALWAYS"/>
-    <fx:include source="specification/specificationContainer.fxml" HBox.hgrow="ALWAYS"/>
+    <fx:include source="simulationOverlay/SimulationOverlay.fxml"/>
+    <fx:include source="graphView/GraphView.fxml" VBox.vgrow="ALWAYS"/>
+    <fx:include source="specification/SpecificationContainer.fxml" HBox.hgrow="ALWAYS"/>
 </VBox>

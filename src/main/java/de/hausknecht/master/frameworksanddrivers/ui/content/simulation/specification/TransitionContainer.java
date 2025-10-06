@@ -1,7 +1,7 @@
 package de.hausknecht.master.frameworksanddrivers.ui.content.simulation.specification;
 
 import de.hausknecht.master.entity.domain.TransitionTriple;
-import de.hausknecht.master.entity.domain.eventdata.TransitionRemoved;
+import de.hausknecht.master.entity.domain.eventdata.TransitionRemovedEvent;
 import de.hausknecht.master.interfaceadapters.NodeAdministrator;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -67,7 +67,7 @@ public class TransitionContainer implements ListElementContainer {
     }
 
     @EventListener
-    public void onNodeRemoved(TransitionRemoved event) {
+    public void onNodeRemoved(TransitionRemovedEvent event) {
         javafx.application.Platform.runLater(() ->{
             List<HBox> list = listElementContainer.getChildren().stream()
                     .filter(HBox.class::isInstance)

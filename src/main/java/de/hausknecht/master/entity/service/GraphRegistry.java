@@ -1,7 +1,7 @@
 package de.hausknecht.master.entity.service;
 
 import de.hausknecht.master.entity.domain.AutomataSimulation;
-import de.hausknecht.master.entity.domain.eventdata.GraphChanged;
+import de.hausknecht.master.entity.domain.eventdata.GraphChangedEvent;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationEventPublisher;
@@ -16,6 +16,6 @@ public class GraphRegistry {
 
     public void changeSelectedGraph(AutomataSimulation selectedGraph) {
         this.selectedGraph = selectedGraph;
-        applicationEventPublisher.publishEvent(new GraphChanged());
+        applicationEventPublisher.publishEvent(new GraphChangedEvent());
     }
 }

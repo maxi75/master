@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.geometry.Insets?>
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           fx:controller="de.hausknecht.master.frameworksanddrivers.ui.overlay.PointsOverlayContainer"
+           fx:id="overlayContainer"
+           pickOnBounds="false" maxWidth="Infinity" maxHeight="Infinity">
+
+    <Label fx:id="overlayMessage" styleClass="overlayMessage" text="Good Job :D" StackPane.alignment="BOTTOM_RIGHT">
+        <StackPane.margin>
+            <Insets bottom="100" right="50"/>
+        </StackPane.margin>
+    </Label>
+</StackPane>

@@ -1,6 +1,7 @@
 package de.hausknecht.master.frameworksanddrivers.ui.content.theory.exercise;
 
 import de.hausknecht.master.entity.domain.TheoryPageData;
+import de.hausknecht.master.interfaceadapters.PointSystemAdministrator;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -9,6 +10,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -16,9 +18,12 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 @Component
+@AllArgsConstructor
 public class MultipleChoice {
 
     private static final String CONTAINER_NAME = "Multiple Choice";
+
+    private final PointSystemAdministrator pointSystemAdministrator;
 
     public void addMultipleChoiceExercise(TheoryPageData.Exercise exercise, VBox container, ExerciseContainer exerciseContainer) {
         exerciseContainer.addTitle(container, CONTAINER_NAME);
@@ -62,11 +67,14 @@ public class MultipleChoice {
         Button button = new Button("Lösen");
         button.getStyleClass().add("buttonSolve");
 
-        button.setOnAction(_ -> IntStream.range(0, checkBoxes.size())
+        button.setOnAction(_ -> {
+            IntStream.range(0, checkBoxes.size())
                 .forEach(i -> Platform.runLater(() -> {
                     checkBoxes.get(i).getStyleClass().removeAll("multipleChoiceWrongAnswer", "multipleChoiceCorrectAnswer");
                     checkBoxes.get(i).setSelected(exercise.getCorrectAnswers().contains(i));
-                })));
+                }));
+            pointSystemAdministrator.subtractPoints(20);
+        });
 
         return button;
     }
@@ -75,16 +83,23 @@ public class MultipleChoice {
         Button button = new Button("Prüfe Lösung");
         button.getStyleClass().add("buttonCheck");
 
-        button.setOnAction(_ -> IntStream.range(0, checkBoxes.size())
-                .forEach(i -> Platform.runLater(() -> {
-                    checkBoxes.get(i).getStyleClass().removeAll("multipleChoiceWrongAnswer", "multipleChoiceCorrectAnswer");
-                    boolean isSelected = checkBoxes.get(i).isSelected();
-                    boolean shouldBeSelected = exercise.getCorrectAnswers().contains(i);
+        button.setOnAction(_ -> {
+            int points = 0;
+            for (int i = 0; i < checkBoxes.size(); i++) {
+                checkBoxes.get(i).getStyleClass().removeAll("multipleChoiceWrongAnswer", "multipleChoiceCorrectAnswer");
+                boolean isSelected = checkBoxes.get(i).isSelected();
+                boolean shouldBeSelected = exercise.getCorrectAnswers().contains(i);
 
-                    checkBoxes.get(i).getStyleClass().add(isSelected != shouldBeSelected ?
-                                    "multipleChoiceWrongAnswer" :
-                                    "multipleChoiceCorrectAnswer");
-                })));
+                checkBoxes.get(i).getStyleClass().add(isSelected != shouldBeSelected ?
+                        "multipleChoiceWrongAnswer" :
+                        "multipleChoiceCorrectAnswer");
+
+                points = isSelected != shouldBeSelected ? points - 2 : points + 1;
+            }
+
+            if (points >= 0) pointSystemAdministrator.addPoints(points);
+            else pointSystemAdministrator.subtractPoints((points * -1));
+        });
 
         return button;
     }
