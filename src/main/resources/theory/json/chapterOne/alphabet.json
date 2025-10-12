@@ -3,27 +3,27 @@
   "content": [
     {
       "heading": "Einführung",
-      "text": "Die Automatentheorie dient der Modellierung von Algorithmen und der maschinellen Prüfung auf Gültigkeit. Automaten sind Zustandsmodelle, welche eine Eingabe entgegennehmen, diese Stück für Stück einlesen und validieren, ob diese Eingabe akzeptiert wird oder nicht."
+      "text": "Die Automatentheorie dient der Modellierung von Algorithmen und der maschinellen Prüfung auf Gültigkeit. Automaten sind Zustandsmodelle, die eine Eingabe entgegennehmen, sie schrittweise einlesen und entscheiden, ob diese Eingabe akzeptiert wird oder nicht."
     },
     {
-      "text": "Ein gängiges Beispiel ist das eines Fahrkartenautomaten. Eine Fahrkarte kostet 1.50€. Es sind 0.50€ und 1€ Münzen erlaubt. Ein Automat würde nun einen Startzustand vorgeben, welcher 0.50€ oder 1€ akzeptiert. Wirft ein Kunde 1€ in den Automaten würde sich der Zustand ändern und der Folgezustand erlaubt nur noch 0.50€ Münzen. Hätte der Kunde alternativ am Anfang eine 0.50€ Münze eingeworfen, wäre er in einem anderen Folgezustand gelandet, von wo aus er erneut 0.50€ oder 1€ hätte einwerfen können."
+      "text": "Ein gängiges Beispiel ist ein Fahrkartenautomat. Eine Fahrkarte kostet 1,50 €. Zulässig sind 0,50 €- und 1 €-Münzen. Der Automat startet in einem Anfangszustand, der 0,50 € oder 1 € akzeptiert. Wirft eine Person 1 € ein, wechselt der Automat in einen Folgezustand, in dem nur noch 0,50 € erlaubt ist. Hätte die Person stattdessen zunächst 0,50 € eingeworfen, wäre sie in einem anderen Folgezustand gelandet, von dem aus erneut 0,50 € oder 1 € möglich sind."
     },
     {
-      "text": "Ein Automat gibt sogenannte Endzustände vor. Wirft der Kunde einen falschen Betrag oder nicht genügend Geld in den Automaten, dann gelangt er in keinen der festgelegten Endzustände (welche nach der Eingabe von 1.50€ erreicht werden). Somit ist seine Eingabe nicht valide."
+      "text": "Ein Automat definiert Endzustände. Wird ein falscher Betrag oder insgesamt zu wenig Geld eingeworfen, landet der Automat in keinem Endzustand (der nach 1,50 € erreicht wird). Die Eingabe gilt dann als nicht gültig."
     },
     {
       "heading": "Alphabet",
-      "text": "Einem Automat liegt in der Regel ein Eingabealhabet zu Grunde. Ein solches Alphabet kann aus diversen Zeichen bestehen. Aus Buchstaben, Symbolen, aber auch Zahlen. Ein solches Eingabealphabet definiert, welche Eingaben ein Automat überhaupt erlaubt. Im Falle des Fahrkartenautomats besteht das Eingabealphabet aus den beiden Werten 0.50€ und 1€"
+      "text": "Einem Automaten liegt in der Regel ein Eingabealphabet zugrunde. Dieses Alphabet kann aus Buchstaben, Symbolen oder Zahlen bestehen und legt fest, welche Eingaben überhaupt erlaubt sind. Im Beispiel des Fahrkartenautomaten besteht das Eingabealphabet aus den Symbolen 0,50 € und 1 €."
     },
     {
       "heading": "Grammatiken und formale Sprachen",
-      "text": "Grammatiken geben Konstruktionsregeln an, um festzulegen ob eine Eingabe gültig ist oder nicht. Auch wenn das Alphabet mit 0.50€ und 1€ bereits die Möglichkeiten einschränkt, so könnte ein Fahrgast dennoch auch zweimal 1€ in den Automaten einwerfen. Grammatiken geben Regeln vor mit denen sich prüfen lässt, ob eine Eingabe valide war oder nicht."
+      "text": "Grammatiken beschreiben Konstruktionsregeln, mit denen festgelegt wird, ob eine Eingabe gültig ist. Auch wenn das Alphabet (0,50 € und 1 €) die Möglichkeiten einschränkt, könnte eine Person z. B. zweimal 1 € einwerfen. Die Grammatik gibt Regeln vor, anhand derer sich prüfen lässt, ob die gesamte Eingabe gültig war."
     },
     {
-      "text": "Formale Sprachen nutzen die Kombination aus Grammatiken und dem zugrunde liegenden Alphabet. Eine formale Sprache gibt schlussendlich einfach nur vor, welche Wörter (mehrere zusammenhängende Zeichen des Alphabets) akzeptiert werden."
+      "text": "Formale Sprachen nutzen die Kombination aus Grammatik und zugrunde liegendem Alphabet. Eine formale Sprache legt letztlich fest, welche Wörter (also Folgen von Alphabet-Symbolen) akzeptiert werden."
     },
     {
-      "text": "Das Alphebet, formale Sprachen und Grammatiken bilden die formale Repräsentation eines Automaten."
+      "text": "Alphabet, formale Sprachen und Grammatiken bilden zusammen die formale Grundlage, auf der Automaten definiert und analysiert werden."
     }
   ]
 }
