@@ -29,11 +29,11 @@ public class TransitionContainer implements ListElementContainer {
     static final String ERROR_WHILE_MATCHING = "Matching not possible";
     static final Pattern NODE_NAME_PATTERN = Pattern.compile("^\\s*(.*?)\\s--\\s*(.*?)\\s*-->\\s*(.*?)\\s*$");
 
-    @FXML private VBox listElementContainer;
-    @FXML private Button addButton;
-    @FXML private ComboBox<String> fromTransition;
-    @FXML private ComboBox<String> toTransition;
-    @FXML private TextField transitionWord;
+    @FXML VBox listElementContainer;
+    @FXML Button addButton;
+    @FXML ComboBox<String> fromTransition;
+    @FXML ComboBox<String> toTransition;
+    @FXML TextField transitionWord;
 
     private final NodeAdministrator nodeAdministrator;
 

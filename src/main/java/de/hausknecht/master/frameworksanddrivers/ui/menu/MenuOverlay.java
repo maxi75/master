@@ -29,15 +29,15 @@ public class MenuOverlay {
     private final PointSystemAdministrator pointSystemAdministrator;
     private final BatchContainer batchContainer;
 
-    @FXML private VBox menuOverlay;
-    @FXML private Button closeButton;
-    @FXML private Label statusPoints;
-    @FXML private Button batchNavigation;
-    @FXML private Button specialExercise;
-    @FXML private ImageView lockImage;
+    @FXML VBox menuOverlay;
+    @FXML Button closeButton;
+    @FXML Label statusPoints;
+    @FXML Button batchNavigation;
+    @FXML Button specialExercise;
+    @FXML ImageView lockImage;
 
     @FXML
-    public void initialize() {
+    void initialize() {
         menuOverlay.setMaxWidth(Region.USE_PREF_SIZE);
         menuOverlay.setMaxHeight(Double.MAX_VALUE);
         menuOverlay.setPadding(new Insets(30, 50, 20, 50));

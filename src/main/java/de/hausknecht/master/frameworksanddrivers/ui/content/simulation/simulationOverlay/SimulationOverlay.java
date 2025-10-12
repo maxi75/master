@@ -22,23 +22,23 @@ import static de.hausknecht.master.ConstantProvider.*;
 @Component
 @RequiredArgsConstructor
 public class SimulationOverlay {
-    @FXML private TextField word;
-    @FXML private Button startBtn;
-    @FXML private Button fastBackwordBtn;
-    @FXML private Button backwardBtn;
-    @FXML private Button forwardBtn;
-    @FXML private Button fastForwardBtn;
-    @FXML private Button stopBtn;
-    @FXML private ComboBox<AutomataSimulation> graphBox;
+    @FXML TextField word;
+    @FXML Button startBtn;
+    @FXML Button fastBackwordBtn;
+    @FXML Button backwardBtn;
+    @FXML Button forwardBtn;
+    @FXML Button fastForwardBtn;
+    @FXML Button stopBtn;
+    @FXML ComboBox<AutomataSimulation> graphBox;
 
-    private String alreadySimulatedWord = EMPTY_STRING;
-    private boolean alreadyStarted = false;
+    String alreadySimulatedWord = EMPTY_STRING;
+    boolean alreadyStarted = false;
 
     private final ApplicationEventPublisher applicationEventPublisher;
     private final GraphAdministrator graphAdministrator;
 
     @FXML
-    public void initialize(){
+    void initialize(){
         word.textProperty().addListener(_ -> alreadySimulatedWord = EMPTY_STRING);
         forwardBtn.setOnAction(_ -> simulateForward());
         backwardBtn.setOnAction(_ -> simulateBack());
@@ -63,11 +63,35 @@ public class SimulationOverlay {
         applicationEventPublisher.publishEvent(new SimulationEvent(this.alreadySimulatedWord));
     }
 
+    private void calculateNextInput(){
+        List<String> allWordsInTextField = List.of(word.getText().trim().split(SPLIT_BY_REGEX));
+        List<String> alreadyCalculatedWords = alreadySimulatedWord == null || alreadySimulatedWord.isBlank() ?
+                List.of() :
+                List.of(alreadySimulatedWord.trim().split(SPLIT_BY_REGEX));
+
+        if (allWordsInTextField.isEmpty() ||
+                Objects.equals(alreadySimulatedWord, word.getText()) ||
+                alreadyCalculatedWords.size() >= allWordsInTextField.size()) return;
+
+        String nextWord = allWordsInTextField.get(alreadyCalculatedWords.size());
+        alreadySimulatedWord = alreadySimulatedWord + nextWord + SPACE;
+    }
+
     private void simulateBack() {
         if (!alreadyStarted) return;
 
         calculateLastInput();
         applicationEventPublisher.publishEvent(new SimulationEvent(this.alreadySimulatedWord));
+    }
+
+    private void calculateLastInput(){
+        List<String> alreadyCalculatedWords = alreadySimulatedWord == null || alreadySimulatedWord.isBlank() ?
+                List.of() :
+                List.of(alreadySimulatedWord.trim().split(SPLIT_BY_REGEX));
+
+        alreadySimulatedWord = (alreadyCalculatedWords.size() <= 1) ?
+                EMPTY_STRING :
+                String.join(SPACE, alreadyCalculatedWords.subList(0, alreadyCalculatedWords.size() - 1)) + SPACE;
     }
 
     private void simulateFirst() {
@@ -87,29 +111,5 @@ public class SimulationOverlay {
         alreadyStarted = false;
         alreadySimulatedWord = EMPTY_STRING;
         applicationEventPublisher.publishEvent(new GraphChangedEvent());
-    }
-
-    private void calculateNextInput(){
-        List<String> allWordsInTextField = List.of(word.getText().trim().split(SPLIT_BY_REGEX));
-        List<String> alreadyCalculatedWords = alreadySimulatedWord == null || alreadySimulatedWord.isBlank() ?
-                List.of() :
-                List.of(alreadySimulatedWord.trim().split(SPLIT_BY_REGEX));
-
-        if (allWordsInTextField.isEmpty() ||
-                Objects.equals(alreadySimulatedWord, word.getText()) ||
-                alreadyCalculatedWords.size() >= allWordsInTextField.size()) return;
-
-        String nextWord = allWordsInTextField.get(alreadyCalculatedWords.size());
-        alreadySimulatedWord = alreadySimulatedWord + nextWord + SPACE;
-    }
-
-    private void calculateLastInput(){
-        List<String> alreadyCalculatedWords = alreadySimulatedWord == null || alreadySimulatedWord.isBlank() ?
-                List.of() :
-                List.of(alreadySimulatedWord.trim().split(SPLIT_BY_REGEX));
-
-        alreadySimulatedWord = (alreadyCalculatedWords.size() <= 1) ?
-                EMPTY_STRING :
-                String.join(SPACE, alreadyCalculatedWords.subList(0, alreadyCalculatedWords.size() - 1)) + SPACE;
     }
 }

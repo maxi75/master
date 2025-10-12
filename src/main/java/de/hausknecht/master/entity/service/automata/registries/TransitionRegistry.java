@@ -18,7 +18,8 @@ public class TransitionRegistry {
     private final List<TransitionTriple> transitions = new ArrayList<>();
 
     public boolean addTransition(TransitionTriple transition) {
-        if (isBlank(transition.fromNode()) ||
+        if (transition == null ||
+                isBlank(transition.fromNode()) ||
                 isBlank(transition.toNode()) ||
                 isBlank(transition.transitionWord()) ||
                 transition.transitionWord().chars().anyMatch(Character::isWhitespace)) return false;
@@ -30,12 +31,12 @@ public class TransitionRegistry {
 
         if (alreadyExisting) return false;
 
-        applicationEventPublisher.publishEvent(new GraphChangedEvent());
         transitions.add(transition);
+        applicationEventPublisher.publishEvent(new GraphChangedEvent());
         return true;
     }
 
-    public void removeAllNodesThatContainNode(String containingNode) {
+    public void removeAllTransitionsThatContainNode(String containingNode) {
         if (isBlank(containingNode)) return;
 
         List<TransitionTriple> toRemove = transitions.stream()
@@ -44,15 +45,11 @@ public class TransitionRegistry {
                 .toList();
 
         if (toRemove.isEmpty()) return;
-        toRemove.forEach(this::removeNode);
+        toRemove.forEach(this::removeTransition);
     }
 
-    private boolean isBlank(String value) {
-        return value == null || value.isBlank();
-    }
-
-    public void removeNode(TransitionTriple transitionTriple) {
-        if (isBlank(transitionTriple.fromNode()) || isBlank(transitionTriple.toNode()) || isBlank(transitionTriple.transitionWord())) return;
+    public void removeTransition(TransitionTriple transitionTriple) {
+        if (transitionTriple == null || isBlank(transitionTriple.fromNode()) || isBlank(transitionTriple.toNode()) || isBlank(transitionTriple.transitionWord())) return;
 
         TransitionTriple foundTriple = transitions.stream().filter(transition ->
                 transitionTriple.fromNode().equals(transition.fromNode()) &&
@@ -67,5 +64,9 @@ public class TransitionRegistry {
                     new TransitionRemovedEvent(foundTriple.fromNode(), foundTriple.toNode(), foundTriple.transitionWord()));
             applicationEventPublisher.publishEvent(new GraphChangedEvent());
         }
+    }
+
+    private boolean isBlank(String value) {
+        return value == null || value.isBlank();
     }
 }

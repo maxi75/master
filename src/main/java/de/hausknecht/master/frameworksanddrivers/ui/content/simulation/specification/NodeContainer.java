@@ -15,16 +15,16 @@ import java.util.Map;
 @Component
 @RequiredArgsConstructor
 public class NodeContainer implements ListElementContainer {
-    @FXML private VBox listElementContainer;
-    @FXML private Button addButton;
-    @FXML private TextField nameField;
+    @FXML VBox listElementContainer;
+    @FXML Button addButton;
+    @FXML TextField nameField;
 
     private final NodeAdministrator nodeAdministrator;
 
-    private final Map<String, Parent> items = new HashMap<>();
+    final Map<String, Parent> items = new HashMap<>();
 
     @FXML
-    public void initialize(){
+    void initialize(){
         addButton.setOnAction(_ -> addListItem(nameField.getText()));
     }
 

@@ -18,12 +18,15 @@ public class NodeRegistry {
     public boolean addNode(String name){
         if (name == null || name.isBlank() || nodes.contains(name)) return false;
 
+        nodes.add(name);
         applicationEventPublisher.publishEvent(new GraphChangedEvent());
-        return nodes.add(name);
+        return true;
     }
 
     public void removeNode(String name){
-        applicationEventPublisher.publishEvent(new GraphChangedEvent());
+        if (name == null || name.isBlank()) return;
+
         nodes.remove(name);
+        applicationEventPublisher.publishEvent(new GraphChangedEvent());
     }
 }

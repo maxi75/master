@@ -21,9 +21,9 @@ public class BatchOverlayContainer {
     static final double ANIMATION_FADE_TO = 1.0;
     static final double INITIAL_OPACITY = 0;
 
-    @FXML private StackPane batchOverlay;
-    @FXML private ImageView batchImage;
-    @FXML private VBox batchContentBox;
+    @FXML StackPane batchOverlay;
+    @FXML ImageView batchImage;
+    @FXML VBox batchContentBox;
 
     private final PauseTransition pauseTransition = new PauseTransition(ANIMATION_DURATIONS);
     private Animation scale;

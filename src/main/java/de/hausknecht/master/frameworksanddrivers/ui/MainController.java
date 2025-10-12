@@ -14,7 +14,7 @@ public class MainController {
     @FXML private Node menuOverlay;
 
     @FXML
-    public void initialize(){
+    void initialize(){
         StackPane.setAlignment(menuOverlay, Pos.TOP_LEFT);
     }
 }

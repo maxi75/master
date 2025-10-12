@@ -23,8 +23,9 @@ public class NodeDefinitionRegistry {
     public boolean addNode(String name){
         if (name == null || name.isBlank() || endingNodes.contains(name)) return false;
 
+        endingNodes.add(name);
         applicationEventPublisher.publishEvent(new GraphChangedEvent());
-        return endingNodes.add(name);
+        return true;
     }
 
     public void removeNode(String name){
@@ -35,7 +36,9 @@ public class NodeDefinitionRegistry {
     }
 
     public void setStartingNode(String name){
-        applicationEventPublisher.publishEvent(new GraphChangedEvent());
+        if (name == null || name.isBlank()) return;
+
         startingNode = name;
+        applicationEventPublisher.publishEvent(new GraphChangedEvent());
     }
 }

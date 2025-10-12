@@ -2,19 +2,23 @@ package de.hausknecht.master.frameworksanddrivers.persistence;
 
 import de.hausknecht.master.ConstantProvider;
 import de.hausknecht.master.entity.domain.eventdata.PointsChangedEvent;
-import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 
 import java.util.prefs.Preferences;
 
 @Service
-@AllArgsConstructor
 public class PointSystem {
-    private static final String KEY = "points.total";
-    private final Preferences preferences = Preferences.userNodeForPackage(this.getClass());
+    static final String KEY = "points.total";
+    private final Preferences preferences;
 
     private final ApplicationEventPublisher publisher;
+
+    public PointSystem(@Qualifier("pointsPreferences") Preferences preferences, ApplicationEventPublisher publisher) {
+        this.preferences = preferences;
+        this.publisher = publisher;
+    }
 
     public int getTotalPoints() {
         return preferences.getInt(KEY, 0);

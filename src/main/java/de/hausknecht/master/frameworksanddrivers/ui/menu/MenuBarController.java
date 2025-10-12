@@ -11,8 +11,8 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class MenuBarController {
-    @FXML private VBox menuBar;
-    @FXML private Button openMenuButton;
+    @FXML VBox menuBar;
+    @FXML Button openMenuButton;
 
     private final MenuOverlay menuOverlay;
 

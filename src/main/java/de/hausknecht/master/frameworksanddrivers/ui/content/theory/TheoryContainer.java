@@ -20,7 +20,7 @@ public class TheoryContainer {
     static final String LOAD_PAGE_EXCEPTION = "[ERROR: Page not found]";
     static final String FIRST_PAGE = "chapterOne/alphabet.json";
 
-    @FXML private VBox theoryContainer;
+    @FXML VBox theoryContainer;
 
     private final ClasspathData classpathData;
     private final ErrorHandler errorHandler;
@@ -31,7 +31,7 @@ public class TheoryContainer {
     private final ExerciseContainer exerciseContainer;
 
     @FXML
-    public void initialize() {
+    void initialize() {
         theoryContainer.setPadding(new Insets(30, 100, 20, 100));
         renderTheoryData(FIRST_PAGE);
     }

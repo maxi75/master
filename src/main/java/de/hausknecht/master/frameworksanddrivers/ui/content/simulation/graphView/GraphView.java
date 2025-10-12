@@ -21,7 +21,7 @@ public class GraphView {
     static final String ERROR_WHILE_RENDERING = "Error while trying to render graph: ";
     static final String SVG_MEDIATYPE = "image/svg+xml";
 
-    @FXML private WebView graphView;
+    @FXML WebView graphView;
 
     private final GraphAdministrator graphAdministrator;
 
