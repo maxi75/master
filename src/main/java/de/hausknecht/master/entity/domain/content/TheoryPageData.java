@@ -23,7 +23,7 @@ public class TheoryPageData {
     @Data
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static class Exercise {
-        private ExcerciseType kind;
+        private ExerciseType kind;
         private String question;
         private List<Integer> correctAnswers;
         private List<String> answers;

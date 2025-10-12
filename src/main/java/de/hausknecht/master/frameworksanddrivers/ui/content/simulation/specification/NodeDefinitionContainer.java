@@ -19,15 +19,15 @@ import java.util.Objects;
 @Component
 @RequiredArgsConstructor
 public class NodeDefinitionContainer implements ListElementContainer {
-    @FXML private VBox listElementContainer;
-    @FXML private Button addButton;
-    @FXML private ComboBox<String> startingNode;
-    @FXML private ComboBox<String> endingNode;
+    @FXML VBox listElementContainer;
+    @FXML Button addButton;
+    @FXML ComboBox<String> startingNode;
+    @FXML ComboBox<String> endingNode;
 
     private final NodeAdministrator nodeAdministrator;
 
     @FXML
-    public void initialize(){
+    void initialize(){
         startingNode.setOnAction(_ -> nodeAdministrator.setStartingNode(startingNode.getValue()));
         startingNode.setItems(nodeAdministrator.getNodes());
         endingNode.setItems(nodeAdministrator.getNodes());

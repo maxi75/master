@@ -1,5 +1,6 @@
 package de.hausknecht.master.entity.service.content;
 
+import de.hausknecht.master.entity.domain.automata.DfaValues;
 import de.hausknecht.master.entity.domain.automata.GraphData;
 import de.hausknecht.master.entity.domain.automata.GraphEvaluationResult;
 import de.hausknecht.master.entity.service.automata.definition.AutomataGenerator;
@@ -87,7 +88,11 @@ public class Simulator {
     }
 
     public Optional<String> findAcceptingInputForGraphData(GraphData graphData) {
-        CompactDFA<String> dfa = automataGenerator.generateCompactDFA(graphData).dfa();
+        if (graphData == null || graphData.transitions() == null) return Optional.empty();
+
+        DfaValues dfaValues = automataGenerator.generateCompactDFA(graphData);
+        if (dfaValues == null || dfaValues.dfa() == null) return Optional.empty();
+        CompactDFA<String> dfa = dfaValues.dfa();
 
         Integer current = dfa.getInitialState();
         if (current == null) return Optional.empty();

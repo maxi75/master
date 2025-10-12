@@ -26,24 +26,29 @@ public class GraphRendering {
     }
 
     public Optional<String> simulatedDFAToDot(GraphData graphData, String input) {
+        if (graphData == null) return Optional.empty();
+
         DfaValues dfaValues = automataGenerator.generateCompactDFA(graphData);
         Optional<GraphEvaluationResult> simulationResult = simulator.simulatedDFA(dfaValues.dfa(), input);
         Set<Integer> highlightState = simulationResult.map(GraphEvaluationResult::nodeID).orElse(null);
         Boolean accepted = simulationResult.map(GraphEvaluationResult::accepted).orElse(null);
 
         try {
-            return Optional.of(toDotConverter.toDot(dfaValues, null, highlightState, accepted));
+            return Optional.ofNullable(toDotConverter.toDot(dfaValues, null, highlightState, accepted));
         } catch (IOException e) {
             return Optional.empty();
         }
     }
 
     public CompactDFA<String> getCompactDFAFromGraphData(GraphData graphData) {
-        return automataGenerator.generateCompactDFA(graphData).dfa();
+        DfaValues dfaValues = automataGenerator.generateCompactDFA(graphData);
+        return dfaValues != null ? dfaValues.dfa() : null;
     }
 
     public boolean acceptsInputDFA(GraphData graphData, String input) {
         DfaValues dfaValues = automataGenerator.generateCompactDFA(graphData);
+        if (dfaValues == null) return false;
+
         Optional<GraphEvaluationResult> simulationResult = simulator.simulatedDFA(dfaValues.dfa(), input);
         return Boolean.TRUE.equals(simulationResult.map(GraphEvaluationResult::accepted).orElse(null));
     }
@@ -53,6 +58,8 @@ public class GraphRendering {
     }
 
     public Optional<String> simulatedNFAToDot(GraphData graphData, String input) {
+        if (graphData == null) return Optional.empty();
+
         NfaValues nfaValues = automataGenerator.generateCompactNFA(graphData);
         Optional<GraphEvaluationResult> simulationResult = simulator.simulatedNFA(nfaValues.nfa(), input);
 
@@ -60,7 +67,7 @@ public class GraphRendering {
         Boolean accepted = simulationResult.map(GraphEvaluationResult::accepted).orElse(null);
 
         try {
-            return Optional.of(toDotConverter.toDot(null, nfaValues, highlightState, accepted));
+            return Optional.ofNullable(toDotConverter.toDot(null, nfaValues, highlightState, accepted));
         } catch (IOException e) {
             return Optional.empty();
         }
@@ -68,6 +75,8 @@ public class GraphRendering {
 
     public boolean acceptsInputNFA(GraphData graphData, String input) {
         NfaValues nfaValues = automataGenerator.generateCompactNFA(graphData);
+        if (nfaValues == null) return false;
+
         Optional<GraphEvaluationResult> simulationResult = simulator.simulatedNFA(nfaValues.nfa(), input);
         return Boolean.TRUE.equals(simulationResult.map(GraphEvaluationResult::accepted).orElse(null));
     }

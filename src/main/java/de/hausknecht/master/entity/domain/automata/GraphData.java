@@ -21,7 +21,7 @@ public record GraphData(List<String> availableNodes, String startingNode, List<S
     }
 
     public String getNodesAsString() {
-        return getNodesAsString(endingNodes);
+        return getNodesAsString(availableNodes);
     }
 
     private String getNodesAsString(List<String> nodes) {
@@ -37,6 +37,7 @@ public record GraphData(List<String> availableNodes, String startingNode, List<S
 
     private Set<String> fetchAlphabet() {
         return transitions.stream()
+                .filter(Objects::nonNull)
                 .map(TransitionTriple::transitionWord)
                 .filter(Objects::nonNull)
                 .map(String::trim)

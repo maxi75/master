@@ -1,0 +1,191 @@
+package de.hausknecht.master.usecase;
+
+import de.hausknecht.master.TestDataGenerator;
+import de.hausknecht.master.entity.domain.automata.AutomataSimulation;
+import de.hausknecht.master.entity.domain.automata.GraphData;
+import de.hausknecht.master.entity.service.automata.graph.GraphRendering;
+import de.hausknecht.master.entity.service.automata.registries.GraphRegistry;
+import de.hausknecht.master.entity.service.automata.registries.NodeDefinitionRegistry;
+import de.hausknecht.master.entity.service.automata.registries.NodeRegistry;
+import de.hausknecht.master.entity.service.automata.registries.TransitionRegistry;
+import de.hausknecht.master.entity.service.content.Simulator;
+import javafx.collections.FXCollections;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
+
+import java.util.Optional;
+
+import static de.hausknecht.master.usecase.GraphAdministrator.ERROR_SEARCHING_SOLUTIONS;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
+
+class GraphAdministratorTest {
+
+    private final NodeRegistry nodeRegistryMock = mock();
+    private final NodeDefinitionRegistry nodeDefinitionRegistryMock = mock();
+    private final TransitionRegistry transitionRegistryMock = mock();
+    private final GraphRendering graphRenderingMock = mock();
+    private final GraphRegistry graphRegistryMock = mock();
+    private final Simulator simulatorMock = mock();
+
+    private final GraphAdministrator classUnderTest = new GraphAdministrator(nodeRegistryMock, nodeDefinitionRegistryMock, transitionRegistryMock,
+            graphRenderingMock, graphRegistryMock, simulatorMock);
+
+    @BeforeEach
+    void setUp() {
+        when(nodeRegistryMock.getNodes()).thenReturn(FXCollections.observableArrayList());
+
+        when(nodeDefinitionRegistryMock.getStartingNode()).thenReturn("");
+        when(nodeDefinitionRegistryMock.getEndingNodes()).thenReturn(FXCollections.observableArrayList());
+
+        when(transitionRegistryMock.getTransitions()).thenReturn(FXCollections.observableArrayList());
+
+        when(graphRegistryMock.getSelectedGraph()).thenReturn(AutomataSimulation.DFA);
+
+        when(graphRenderingMock.dfaToDot(any())).thenReturn(Optional.empty());
+        when(graphRenderingMock.nfaToDot(any())).thenReturn(Optional.empty());
+        when(graphRenderingMock.simulatedDFAToDot(any(), anyString())).thenReturn(Optional.empty());
+        when(graphRenderingMock.simulatedNFAToDot(any(), anyString())).thenReturn(Optional.empty());
+        when(graphRenderingMock.getCompactDFAFromGraphData(any())).thenReturn(TestDataGenerator.getCorrectDfa(true, true, true, true));
+        when(graphRenderingMock.acceptsInputDFA(any(), anyString())).thenReturn(true);
+        when(graphRenderingMock.acceptsInputNFA(any(), anyString())).thenReturn(true);
+
+        when(simulatorMock.findAcceptingInputForGraphData(any())).thenReturn(Optional.of(""));
+    }
+
+    @Nested
+    class ReturnGraphDefinition {
+
+        @Test
+        void returnGraphDefinitionDfa() {
+            classUnderTest.returnGraphDefinition();
+
+            verify(nodeRegistryMock, times(1)).getNodes();
+            verify(nodeDefinitionRegistryMock, times(1)).getStartingNode();
+            verify(nodeDefinitionRegistryMock, times(1)).getEndingNodes();
+            verify(transitionRegistryMock, times(1)).getTransitions();
+            verify(graphRegistryMock, times(1)).getSelectedGraph();
+            verify(graphRenderingMock, times(1)).dfaToDot(any());
+            verify(graphRenderingMock, times(0)).nfaToDot(any());
+        }
+
+        @Test
+        void returnGraphDefinitionNfa() {
+            when(graphRegistryMock.getSelectedGraph()).thenReturn(AutomataSimulation.NFA);
+            classUnderTest.returnGraphDefinition();
+
+            verify(nodeRegistryMock, times(1)).getNodes();
+            verify(nodeDefinitionRegistryMock, times(1)).getStartingNode();
+            verify(nodeDefinitionRegistryMock, times(1)).getEndingNodes();
+            verify(transitionRegistryMock, times(1)).getTransitions();
+            verify(graphRegistryMock, times(1)).getSelectedGraph();
+            verify(graphRenderingMock, times(0)).dfaToDot(any());
+            verify(graphRenderingMock, times(1)).nfaToDot(any());
+        }
+    }
+
+    @Nested
+    class GetCompactDFAFromCurrentSimulation {
+
+        @Test
+        void getCompactDFAFromCurrentSimulation() {
+            classUnderTest.getCompactDFAFromCurrentSimulation();
+
+            verify(graphRenderingMock, times(1)).getCompactDFAFromGraphData(any());
+        }
+    }
+
+    @Nested
+    class GetCompactDFAFromGraphData {
+
+        @Test
+        void getCompactDFAFromGraphData() {
+            classUnderTest.getCompactDFAFromGraphData(TestDataGenerator.getCorrectGraphData());
+
+            verify(graphRenderingMock, times(1)).getCompactDFAFromGraphData(any());
+        }
+    }
+
+    @Nested
+    class ReturnSimulatedGraphDefinition {
+
+        @Test
+        void returnSimulatedGraphDefinitionDfa() {
+            classUnderTest.returnSimulatedGraphDefinition("input");
+
+            verify(nodeRegistryMock, times(1)).getNodes();
+            verify(nodeDefinitionRegistryMock, times(1)).getStartingNode();
+            verify(nodeDefinitionRegistryMock, times(1)).getEndingNodes();
+            verify(transitionRegistryMock, times(1)).getTransitions();
+            verify(graphRegistryMock, times(1)).getSelectedGraph();
+            verify(graphRenderingMock, times(1)).simulatedDFAToDot(any(), anyString());
+            verify(graphRenderingMock, times(0)).simulatedNFAToDot(any(), anyString());
+        }
+
+        @Test
+        void returnSimulatedGraphDefinitionNfa() {
+            when(graphRegistryMock.getSelectedGraph()).thenReturn(AutomataSimulation.NFA);
+            classUnderTest.returnSimulatedGraphDefinition("input");
+
+            verify(nodeRegistryMock, times(1)).getNodes();
+            verify(nodeDefinitionRegistryMock, times(1)).getStartingNode();
+            verify(nodeDefinitionRegistryMock, times(1)).getEndingNodes();
+            verify(transitionRegistryMock, times(1)).getTransitions();
+            verify(graphRegistryMock, times(1)).getSelectedGraph();
+            verify(graphRenderingMock, times(0)).simulatedDFAToDot(any(), anyString());
+            verify(graphRenderingMock, times(1)).simulatedNFAToDot(any(), anyString());
+        }
+    }
+
+    @Nested
+    class ChangeSelectedGraph {
+
+        @Test
+        void changeSelectedGraph() {
+            classUnderTest.changeSelectedGraph(AutomataSimulation.NFA);
+
+            verify(graphRegistryMock, times(1)).changeSelectedGraph(any());
+        }
+    }
+
+    @Nested
+    class IsInputAccepted {
+
+        @Test
+        void isInputAcceptedWithDFA() {
+            GraphData graphData = TestDataGenerator.getCorrectGraphData();
+            classUnderTest.isInputAccepted(graphData, "input", AutomataSimulation.DFA);
+
+            verify(graphRenderingMock, times(1)).acceptsInputDFA(any(), anyString());
+            verify(graphRenderingMock, times(0)).acceptsInputNFA(any(), anyString());
+        }
+
+        @Test
+        void isInputAcceptedWithNFA() {
+            GraphData graphData = TestDataGenerator.getCorrectGraphData();
+            classUnderTest.isInputAccepted(graphData, "input", AutomataSimulation.NFA);
+
+            verify(graphRenderingMock, times(0)).acceptsInputDFA(any(), anyString());
+            verify(graphRenderingMock, times(1)).acceptsInputNFA(any(), anyString());
+        }
+    }
+
+    @Nested
+    class FindAcceptingInputForGraphData {
+
+        @Test
+        void findAcceptingInputForGraphDataWithValue() {
+            GraphData graphData = TestDataGenerator.getCorrectGraphData();
+            assertEquals("", classUnderTest.findAcceptingInputForGraphData(graphData));
+        }
+
+        @Test
+        void findAcceptingInputForGraphDataWithoutValue() {
+            when(simulatorMock.findAcceptingInputForGraphData(any())).thenReturn(Optional.empty());
+            GraphData graphData = TestDataGenerator.getCorrectGraphData();
+            assertEquals(ERROR_SEARCHING_SOLUTIONS, classUnderTest.findAcceptingInputForGraphData(graphData));
+        }
+    }
+}

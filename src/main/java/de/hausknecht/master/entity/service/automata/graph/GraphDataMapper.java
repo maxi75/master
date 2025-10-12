@@ -11,10 +11,14 @@ import java.util.regex.Pattern;
 
 @Service
 public class GraphDataMapper {
-    private static final String TRANSITION_MID = "--\\s*\\[?(.*?)]?\\s*-->";
-    private static final Pattern TRANSITION = Pattern.compile("^\\s*(\\S+)\\s*" + TRANSITION_MID + "\\s*(\\S+)\\s*$");
+    private static final String FROM_NODE = "^\\s*(\\S+)\\s*";
+    private static final String TRANSITION_WORD = "--\\s*\\[?(.*?)]?\\s*-->";
+    private static final String TO_NODE = "\\s*(\\S+)\\s*$";
+    private static final Pattern TRANSITION = Pattern.compile(FROM_NODE + TRANSITION_WORD + TO_NODE);
 
     public GraphData mapTheoryPageDataExerciseToGraphData(TheoryPageData.Exercise exercise) {
+        if (exercise == null) return null;
+
         return new GraphData(
                 extractAvailableNodes(exercise),
                 getStartingNode(exercise),
@@ -35,6 +39,8 @@ public class GraphDataMapper {
     }
 
     private List<TransitionTriple> extractTransitionTriple(TheoryPageData.Exercise exercise) {
+        if (exercise.getTransitions() == null) return null;
+
         List<TransitionTriple> transitionTriples = new ArrayList<>();
         exercise.getTransitions().forEach(transition -> computeSingleTransitionTriple(transition, transitionTriples));
         return transitionTriples;

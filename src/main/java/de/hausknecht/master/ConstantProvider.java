@@ -50,7 +50,7 @@ public class ConstantProvider {
     public static final String DOUBLE_MINUS = " --";
     public static final String ARROW = "--> ";
     public static final String PLUS = "+ ";
-    public static final String MINUS = "_ ";
+    public static final String MINUS = "- ";
     public static final String COMMA = ", ";
 
     public static final String CHECK_CSS_STYLE = "hboxCheck";

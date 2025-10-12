@@ -28,10 +28,12 @@ public class ClasspathLoader {
     }
 
     private Optional<URL> getClasspathURL(String path) {
+        if (path == null) return Optional.empty();
+
         Resource resource = new ClassPathResource(path);
         try {
             return resource.exists() ? Optional.of(resource.getURL()) : Optional.empty();
-        } catch (IOException e) {
+        } catch (Exception e) {
             return Optional.empty();
         }
     }

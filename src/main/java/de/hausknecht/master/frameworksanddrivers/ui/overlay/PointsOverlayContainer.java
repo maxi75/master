@@ -24,8 +24,8 @@ public class PointsOverlayContainer {
 
     private final PauseTransition pauseTransition = new PauseTransition(ANIMATION_DURATIONS);
 
-    @FXML private StackPane overlayContainer;
-    @FXML private Label overlayMessage;
+    @FXML StackPane overlayContainer;
+    @FXML Label overlayMessage;
 
     private Animation slideIn;
 

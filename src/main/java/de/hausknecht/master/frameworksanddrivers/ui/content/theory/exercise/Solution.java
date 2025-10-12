@@ -38,8 +38,9 @@ public class Solution {
     private final GraphAdministrator graphAdministrator;
     private final PointSystemAdministrator pointSystemAdministrator;
 
-    public void addWordExercise(TheoryPageData.Exercise exercise, VBox container, ExerciseContainer exerciseContainer) {
+    public void addExercise(TheoryPageData.Exercise exercise, VBox container, ExerciseContainer exerciseContainer) {
         GraphData data = dataAccessor.getGraphDataFromTheoryPageDataExercise(exercise);
+        if (data == null) return;
 
         exerciseContainer.addTitle(container, CONTAINER_NAME);
         exerciseContainer.addQuestion(container, exercise.getQuestion() != null ? exercise.getQuestion() : ERROR_WHILE_LOADING_QUESTION);

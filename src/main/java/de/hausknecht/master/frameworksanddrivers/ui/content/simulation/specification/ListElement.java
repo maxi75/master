@@ -10,13 +10,13 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class ListElement {
-    @FXML private Label listElementName;
-    @FXML private Button deleteBtn;
+    @FXML Label listElementName;
+    @FXML Button deleteBtn;
 
     @Setter private ListElementContainer listElementContainer;
 
     @FXML
-    private void initialize() {
+    void initialize() {
         deleteBtn.setOnAction(_ -> listElementContainer.delete(listElementName.getText(), deleteBtn.getParent()));
     }
 

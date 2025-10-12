@@ -45,8 +45,8 @@ public class ExerciseContainer {
         switch (exercise.getKind()) {
             case MULTIPLE_CHOICE -> multipleChoice.addMultipleChoiceExercise(exercise, container, this);
             case DEA_WORD, NEA_WORD -> word.addWordExercise(exercise, container, this);
-            case DEA_NEA, NEA_DEA -> changeAutomata.addWordExercise(exercise, container, this);
-            case SOLUTION -> solution.addWordExercise(exercise, container, this);
+            case DEA_NEA, NEA_DEA -> changeAutomata.addExercise(exercise, container, this);
+            case SOLUTION -> solution.addExercise(exercise, container, this);
         }
     }
 

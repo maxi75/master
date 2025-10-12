@@ -18,11 +18,11 @@ public class NodeAdministrator {
     public void removeNodeFromNodeRegistry(String nodeName) {
         nodeRegistry.removeNode(nodeName);
         nodeDefinitionRegistry.removeNode(nodeName);
-        transitionRegistry.removeAllNodesThatContainNode(nodeName);
+        transitionRegistry.removeAllTransitionsThatContainNode(nodeName);
     }
 
     public void removeNodeFromTransitionRegistry(TransitionTriple transition) {
-        transitionRegistry.removeNode(transition);
+        transitionRegistry.removeTransition(transition);
     }
 
     public boolean addTransition(TransitionTriple transition) {

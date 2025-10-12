@@ -20,14 +20,14 @@ public class SimulatorSpecificationContainer {
     static final double EXPANDED  = 400.0;
     static final String ARROW_DOWN = "▼";
     static final String ARROW_UP  = "▲";
-    @FXML private VBox specificationContainer;
-    @FXML private HBox specificationContent;
-    @FXML private Button specificationTabBtn;
+    @FXML VBox specificationContainer;
+    @FXML HBox specificationContent;
+    @FXML Button specificationTabBtn;
 
-    private boolean expanded = false;
+    boolean expanded = false;
 
     @FXML
-    private void initialize() {
+    void initialize() {
         specificationContainer.setPrefHeight(COLLAPSED);
         prepareContainerForCollapsing();
         specificationTabBtn.setOnAction(_ -> toggle());

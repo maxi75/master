@@ -78,7 +78,7 @@ public class ToDotConverter {
     }
 
     private void setUpSimulatedNodeStyle(Set<Integer> highlightStates, Boolean accepted, Integer node, Map<String, String> properties) {
-        if (accepted != null && node != null && highlightStates.contains(node)) {
+        if (accepted != null && node != null && highlightStates != null && highlightStates.contains(node)) {
             if (accepted) {
                 properties.put("style", "filled");
                 properties.put("fillcolor", "#d4edda");

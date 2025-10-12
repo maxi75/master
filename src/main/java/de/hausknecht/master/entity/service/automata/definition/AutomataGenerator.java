@@ -18,6 +18,8 @@ import java.util.Map;
 public class AutomataGenerator {
 
     public DfaValues generateCompactDFA(GraphData graphData) {
+        if (graphData == null || graphData.transitions() == null) return null;
+
         Alphabet<String> alphabet = extractAlphabet(graphData);
         CompactDFA<String> dfa = new CompactDFA<>(alphabet);
         DfaValues dfaValues = addNodes(graphData, dfa);
@@ -26,6 +28,8 @@ public class AutomataGenerator {
     }
 
     public NfaValues generateCompactNFA(GraphData graphData) {
+        if (graphData == null || graphData.transitions() == null) return null;
+
         Alphabet<String> alphabet = extractAlphabet(graphData);
         CompactNFA<String> nfa = new CompactNFA<>(alphabet);
         NfaValues nfaValues = addNodes(graphData, nfa);

@@ -20,23 +20,23 @@ import static de.hausknecht.master.ConstantProvider.*;
 @Component
 @RequiredArgsConstructor
 public class BatchContainer {
-    @FXML private HBox batchPage;
-    @FXML private ImageView timeNovice;
-    @FXML private ImageView timeIntermediate;
-    @FXML private ImageView timeMaster;
-    @FXML private ImageView timeKing;
-    @FXML private ImageView exerciseNovice;
-    @FXML private ImageView exerciseIntermediate;
-    @FXML private ImageView exerciseMaster;
-    @FXML private ImageView exerciseKing;
-    @FXML private ImageView legend;
+    @FXML HBox batchPage;
+    @FXML ImageView timeNovice;
+    @FXML ImageView timeIntermediate;
+    @FXML ImageView timeMaster;
+    @FXML ImageView timeKing;
+    @FXML ImageView exerciseNovice;
+    @FXML ImageView exerciseIntermediate;
+    @FXML ImageView exerciseMaster;
+    @FXML ImageView exerciseKing;
+    @FXML ImageView legend;
 
     private final SessionTimeAccessor sessionTimeAccessor;
     private final BatchOverlayContainer batchOverlayContainer;
     private final PointSystemAdministrator pointSystemAdministrator;
 
     @FXML
-    public void initialize(){
+    void initialize(){
         batchPage.setVisible(false);
 
         Duration duration = sessionTimeAccessor.getSessionTime();

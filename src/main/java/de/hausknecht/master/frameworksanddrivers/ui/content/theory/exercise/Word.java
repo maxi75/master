@@ -3,7 +3,7 @@ package de.hausknecht.master.frameworksanddrivers.ui.content.theory.exercise;
 import de.hausknecht.master.entity.domain.automata.AutomataSimulation;
 import de.hausknecht.master.entity.domain.automata.GraphData;
 import de.hausknecht.master.entity.domain.automata.TransitionTriple;
-import de.hausknecht.master.entity.domain.content.ExcerciseType;
+import de.hausknecht.master.entity.domain.content.ExerciseType;
 import de.hausknecht.master.entity.domain.content.TheoryPageData;
 import de.hausknecht.master.usecase.DataAccessor;
 import de.hausknecht.master.usecase.GraphAdministrator;
@@ -38,12 +38,13 @@ public class Word {
 
     public void addWordExercise(TheoryPageData.Exercise exercise, VBox container, ExerciseContainer exerciseContainer) {
         GraphData data = dataAccessor.getGraphDataFromTheoryPageDataExercise(exercise);
+        if (data == null) return;
 
         exerciseContainer.addTitle(container, CONTAINER_NAME);
         exerciseContainer.addQuestion(container, buildQuestion(data));
         TextField textField = addInput(container);
 
-        addCheck(data, textField, exercise.getKind().equals(ExcerciseType.DEA_WORD) ? DFA : NFA, container);
+        addCheck(data, textField, exercise.getKind().equals(ExerciseType.DEA_WORD) ? DFA : NFA, container);
     }
 
     private String buildQuestion(GraphData data) {
@@ -61,6 +62,7 @@ public class Word {
 
     private String buildTransitionDefinition(GraphData data) {
         Map<String, Set<String>> byTarget = new HashMap<>();
+        if (data.transitions() == null) return "";
         data.transitions().forEach(transition -> computeSingleTransitionDefinition(transition, byTarget));
 
         StringBuilder definitionBuilder = new StringBuilder();
@@ -133,8 +135,8 @@ public class Word {
             boolean result = graphAdministrator.isInputAccepted(graphData, textField.getText(), automata);
 
             textField.getStyleClass().add(result ? CORRECT_ANSWER_CSS_ID : WRONG_ANSWER_CSS_ID);
-            if(result) pointSystemAdministrator.addPoints(ADD_POINTS_CORRECT_CHECK);
-            pointSystemAdministrator.subtractPoints(SUBTRACT_POINTS_WRONG_CHECK);
+            if (result) pointSystemAdministrator.addPoints(ADD_POINTS_CORRECT_CHECK);
+            else pointSystemAdministrator.subtractPoints(SUBTRACT_POINTS_WRONG_CHECK);
         }));
 
         return button;

@@ -2,7 +2,7 @@ package de.hausknecht.master.frameworksanddrivers.persistence;
 
 import de.hausknecht.master.entity.domain.eventdata.UpdatedTimeEvent;
 import javafx.util.Duration;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 
@@ -11,17 +11,21 @@ import java.util.TimerTask;
 import java.util.prefs.Preferences;
 
 @Service
-@RequiredArgsConstructor
 public class SessionTime {
-    private static final String KEY = "time.total.ms";
+    static final String KEY = "time.total.ms";
     private static final String NAME = "session-timer";
 
-    private final Preferences preferences = Preferences.userNodeForPackage(this.getClass());
+    private final Preferences preferences;
 
     private volatile long sessionStart = -1L;
     private Timer timer;
 
     private final ApplicationEventPublisher applicationEventPublisher;
+
+    public SessionTime(@Qualifier("sessionPreferences") Preferences preferences, ApplicationEventPublisher publisher) {
+        this.preferences = preferences;
+        this.applicationEventPublisher = publisher;
+    }
 
     public synchronized void startSession() {
         if (sessionStart != -1) return;

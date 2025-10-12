@@ -3,7 +3,7 @@ package de.hausknecht.master.frameworksanddrivers.ui.content.theory.exercise;
 import de.hausknecht.master.entity.domain.automata.AutomataSimulation;
 import de.hausknecht.master.entity.domain.automata.GraphData;
 import de.hausknecht.master.entity.domain.automata.TransitionTriple;
-import de.hausknecht.master.entity.domain.content.ExcerciseType;
+import de.hausknecht.master.entity.domain.content.ExerciseType;
 import de.hausknecht.master.entity.domain.content.TheoryPageData;
 import de.hausknecht.master.frameworksanddrivers.ui.content.simulation.simulationOverlay.SimulationOverlay;
 import de.hausknecht.master.frameworksanddrivers.ui.content.simulation.specification.NodeContainer;
@@ -49,13 +49,14 @@ public class ChangeAutomata {
     private final GraphAdministrator graphAdministrator;
     private final PointSystemAdministrator pointSystemAdministrator;
 
-    public void addWordExercise(TheoryPageData.Exercise exercise, VBox container, ExerciseContainer exerciseContainer) {
+    public void addExercise(TheoryPageData.Exercise exercise, VBox container, ExerciseContainer exerciseContainer) {
         GraphData data = dataAccessor.getGraphDataFromTheoryPageDataExercise(exercise);
+        if (data == null) return;
 
         exerciseContainer.addTitle(container, CONTAINER_NAME);
         exerciseContainer.addQuestion(container, buildQuestion(data, exercise));
 
-        addCheck(data, exercise.getKind().equals(ExcerciseType.DEA_NEA) ? DFA : NFA, container);
+        addCheck(data, exercise.getKind().equals(ExerciseType.DEA_NEA) ? DFA : NFA, container);
     }
 
     private String buildQuestion(GraphData data, TheoryPageData.Exercise exercise) {
@@ -73,6 +74,7 @@ public class ChangeAutomata {
 
     private String buildTransitionDefinition(GraphData data) {
         Map<String, Set<String>> byTarget = new HashMap<>();
+        if (data.transitions() == null) return "";
         data.transitions().forEach(transition -> computeSingleTransitionDefinition(transition, byTarget));
 
         StringBuilder definitionBuilder = new StringBuilder();
@@ -80,12 +82,6 @@ public class ChangeAutomata {
                 definitionBuilder.append(computeTransitionDefinitionByTarget(target, definitions)));
 
         return String.format(DEFINITION, definitionBuilder);
-    }
-
-    private String buildQuestionPostfix(TheoryPageData.Exercise exercise) {
-        return String.format(QUESTION,
-                exercise.getKind().equals(ExcerciseType.DEA_NEA) ? DEA : NEA,
-                exercise.getKind().equals(ExcerciseType.DEA_NEA) ? NEA : DEA);
     }
 
     private void computeSingleTransitionDefinition(TransitionTriple transition, Map<String, Set<String>> byTarget) {
@@ -104,6 +100,12 @@ public class ChangeAutomata {
         }
         definitionByTarget.append(target).append(SEMICOLON);
         return definitionByTarget.toString();
+    }
+
+    private String buildQuestionPostfix(TheoryPageData.Exercise exercise) {
+        return String.format(QUESTION,
+                exercise.getKind().equals(ExerciseType.DEA_NEA) ? DEA : NEA,
+                exercise.getKind().equals(ExerciseType.DEA_NEA) ? NEA : DEA);
     }
 
     private void addCheck(GraphData graphData, AutomataSimulation automata, VBox container) {
