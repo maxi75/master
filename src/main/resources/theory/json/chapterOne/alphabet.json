@@ -1,143 +1,29 @@
 {
-  "mainHeading": "Überschrift Hauptkapitel",
+  "mainHeading": "Alphabet, formale Sprachen und Grammatiken",
   "content": [
     {
-      "heading": "Überschrift Subkapitel 1",
-      "text": "Dies ist ein Text den ich darstellen möchte mit Lorem Ipsum dolor etc.",
-      "image": "",
-      "imageAltText": "",
-      "imageSubText": "",
-      "exercises": [
-        {
-          "kind": "MULTIPLE_CHOICE",
-          "question": "This is the question",
-          "correctAnswers": [
-            2,
-            3
-          ],
-          "answers": [
-            "abc",
-            "cde",
-            "def",
-            "hurray"
-          ]
-        },
-
-        {
-          "kind": "DEA_WORD",
-          "nodes": [
-            "s0", "s1", "s2"
-          ],
-          "startingNode": "s0",
-          "endingNodes": [
-            "s1", "s2"
-          ],
-          "transitions": [
-            "s0 --a--> s1",
-            "s1 --b--> s2",
-            "s2 --biggerWord--> s2",
-            "s2 --c--> s1"
-          ]
-        },
-
-        {
-          "kind": "DEA_NEA",
-          "nodes": [
-            "s0", "s1", "s2"
-          ],
-          "startingNode": "s0",
-          "endingNodes": [
-            "s1", "s2"
-          ],
-          "transitions": [
-            "s0 --a--> s1",
-            "s1 --b--> s2",
-            "s2 --biggerWord--> s2",
-            "s2 --c--> s1"
-          ]
-        },
-
-        {
-          "kind": "SOLUTION",
-          "question": "Gegeben ist folgende Automatendefinition: \n A=({a, b, c}, {s1, s2}, δ, s0, {s1, s2}) \n\n mit der Zustandsübergangsfunktion: \n δ(s0,a) = δ(s2,c) = s1; δ(s1,b) = s2; \n\n Und die Automatendefinition: \n A=({a, b, c}, {s1, s2}, δ, s0, {s1, s2}) \n\n mit der Zustandsübergangsfunktion: \n δ(s0,a) = δ(s2,c) = s1; δ(s1,b) = s2; \n\n Vereinige beide Definitionen und konstruiere einen beispielhaften Automaten in der Simulation.",
-          "nodes": [
-            "s0", "s1", "s2"
-          ],
-          "startingNode": "s0",
-          "endingNodes": [
-            "s1", "s2"
-          ],
-          "transitions": [
-            "s0 --a--> s1",
-            "s1 --b--> s2",
-            "s2 --biggerWord--> s2",
-            "s2 --c--> s1"
-          ]
-        }
-      ]
+      "heading": "Einführung",
+      "text": "Die Automatentheorie dient der Modellierung von Algorithmen und der maschinellen Prüfung auf Gültigkeit. Automaten sind Zustandsmodelle, welche eine Eingabe entgegennehmen, diese Stück für Stück einlesen und validieren, ob diese Eingabe akzeptiert wird oder nicht."
     },
     {
-      "heading": "Überschrift Subkapitel 2",
-      "text": "Dies ist ein zweiter längerer längerer längerer längerer längerer längerer längerer längerer längerer längerer längerer Text den ich darstellen möchte mit Lorem Ipsum dolor etc.",
-      "image": "",
-      "imageAltText": "",
-      "imageSubText": ""
+      "text": "Ein gängiges Beispiel ist das eines Fahrkartenautomaten. Eine Fahrkarte kostet 1.50€. Es sind 0.50€ und 1€ Münzen erlaubt. Ein Automat würde nun einen Startzustand vorgeben, welcher 0.50€ oder 1€ akzeptiert. Wirft ein Kunde 1€ in den Automaten würde sich der Zustand ändern und der Folgezustand erlaubt nur noch 0.50€ Münzen. Hätte der Kunde alternativ am Anfang eine 0.50€ Münze eingeworfen, wäre er in einem anderen Folgezustand gelandet, von wo aus er erneut 0.50€ oder 1€ hätte einwerfen können."
     },
     {
-      "text": "Dies ist ein zweiter längerer längerer längerer längerer längerer längerer längerer längerer längerer längerer längerer Text den ich darstellen möchte mit Lorem Ipsum dolor etc.",
-      "image": "dea.png",
-      "imageAltText": "Ein alternativer Text",
-      "imageSubText": "Der hier ist wohl der Untertitel des Textes (dummy)"
+      "text": "Ein Automat gibt sogenannte Endzustände vor. Wirft der Kunde einen falschen Betrag oder nicht genügend Geld in den Automaten, dann gelangt er in keinen der festgelegten Endzustände (welche nach der Eingabe von 1.50€ erreicht werden). Somit ist seine Eingabe nicht valide."
     },
     {
-      "heading": "Überschrift Subkapitel 3",
-      "text": "Dies ist ein zweiter längerer längerer längerer längerer längerer längerer längerer längerer längerer längerer längerer Text den ich darstellen möchte mit Lorem Ipsum dolor etc. Dies ist ein zweiter längerer längerer längerer längerer längerer längerer längerer längerer längerer längerer längerer Text den ich darstellen möchte mit Lorem Ipsum dolor etc. Dies ist ein zweiter längerer längerer längerer längerer längerer längerer längerer längerer längerer längerer längerer Text den ich darstellen möchte mit Lorem Ipsum dolor etc.",
-      "image": "",
-      "imageAltText": "",
-      "imageSubText": ""
+      "heading": "Alphabet",
+      "text": "Einem Automat liegt in der Regel ein Eingabealhabet zu Grunde. Ein solches Alphabet kann aus diversen Zeichen bestehen. Aus Buchstaben, Symbolen, aber auch Zahlen. Ein solches Eingabealphabet definiert, welche Eingaben ein Automat überhaupt erlaubt. Im Falle des Fahrkartenautomats besteht das Eingabealphabet aus den beiden Werten 0.50€ und 1€"
     },
     {
-      "text": "Dies ist ein zweiter längerer längerer längerer längerer längerer längerer längerer längerer längerer längerer längerer Text den ich darstellen möchte mit Lorem Ipsum dolor etc.",
-      "image": "de.png",
-      "imageAltText": "",
-      "imageSubText": ""
+      "heading": "Grammatiken und formale Sprachen",
+      "text": "Grammatiken geben Konstruktionsregeln an, um festzulegen ob eine Eingabe gültig ist oder nicht. Auch wenn das Alphabet mit 0.50€ und 1€ bereits die Möglichkeiten einschränkt, so könnte ein Fahrgast dennoch auch zweimal 1€ in den Automaten einwerfen. Grammatiken geben Regeln vor mit denen sich prüfen lässt, ob eine Eingabe valide war oder nicht."
     },
     {
-      "heading": "Überschrift Subkapitel 4",
-      "text": "Dies ist ein zweiter längerer längerer längerer längerer längerer längerer längerer längerer längerer längerer längerer Text den ich darstellen möchte mit Lorem Ipsum dolor etc. Dies ist ein zweiter längerer längerer längerer längerer längerer längerer längerer längerer längerer längerer längerer Text den ich darstellen möchte mit Lorem Ipsum dolor etc. Dies ist ein zweiter längerer längerer längerer längerer längerer längerer längerer längerer längerer längerer längerer Text den ich darstellen möchte mit Lorem Ipsum dolor etc.",
-      "image": "",
-      "imageAltText": "",
-      "imageSubText": "",
-      "exercises": [
-        {
-          "kind": "MULTIPLE_CHOICE",
-          "question": "This is the question This is the question This is the question This is the question This is the question This is the question This is the question This is the question This is the question This is the question This is the question This is the question This is the question This is the question This is the question This is the question This is the question This is the question This is the question This is the question This is the question",
-          "correctAnswers": [
-            1,
-            3
-          ],
-          "answers": [
-            "abc",
-            "cde",
-            "def",
-            "hurray"
-          ]
-        },
-
-        {
-          "kind": "DEA_WORD",
-          "nodes": [
-
-          ],
-          "startingNode": "",
-          "endingNodes": [
-
-          ],
-          "transitions": [
-
-          ]
-        }
-      ]
+      "text": "Formale Sprachen nutzen die Kombination aus Grammatiken und dem zugrunde liegenden Alphabet. Eine formale Sprache gibt schlussendlich einfach nur vor, welche Wörter (mehrere zusammenhängende Zeichen des Alphabets) akzeptiert werden."
+    },
+    {
+      "text": "Das Alphebet, formale Sprachen und Grammatiken bilden die formale Repräsentation eines Automaten."
     }
   ]
 }
