@@ -20,7 +20,7 @@
       "text": "Grammatiken beschreiben Konstruktionsregeln, mit denen festgelegt wird, ob eine Eingabe gültig ist. Auch wenn das Alphabet (0,50 € und 1 €) die Möglichkeiten einschränkt, könnte eine Person z. B. zweimal 1 € einwerfen. Die Grammatik gibt Regeln vor, anhand derer sich prüfen lässt, ob die gesamte Eingabe gültig war."
     },
     {
-      "text": "Formale Sprachen nutzen die Kombination aus Grammatik und zugrunde liegendem Alphabet. Eine formale Sprache legt letztlich fest, welche Wörter (also Folgen von Alphabet-Symbolen) akzeptiert werden."
+      "text": "Formale Sprachen nutzen die Kombination aus Grammatik und zugrunde liegendem Alphabet. Eine formale Sprache legt letztlich fest, welche Wörter (also Folgen von Alphabet-Symbolen) akzeptiert werden. Somit schränkt eine formale Sprache die Menge aller möglichen Wörter über einem Aphabet ein."
     },
     {
       "text": "Alphabet, formale Sprachen und Grammatiken bilden zusammen die formale Grundlage, auf der Automaten definiert und analysiert werden."

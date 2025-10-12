@@ -1,0 +1,25 @@
+{
+  "mainHeading": "Deterministische und nichtdeterministische endliche Automaten",
+  "content": [
+    {
+      "heading": "Automaten",
+      "text": "Wie bereits kennengelernt verfügt ein Automat über sogenannte Zustände, welche sich durch die Eingabe von Zeichen aus dem Eingabealphabet verändern können. Auch wurde bereits erwähnt, dass es einen Startzustand, beliebig viele Endzustände und logischerweise auch Zustände die weder noch sind, gibt."
+    },
+    {
+      "heading": "Deterministisch vs nichtdeterministisch",
+      "text": "Im weiteren Verlauf wird von endlichen Automaten gesprochen, da jeder (endliche) Automat, der betrachtet wird, über eine endliche Anzahl an Zuständen verfügt."
+    },
+    {
+      "text": "Allerdings wird zwischen deterministischen endlichen Automaten (DEA) und nichtdeterministischen endlichen Automaten (NEA) unterschieden. Im englischen auch unter den Begriffen \"deterministic finite automaton\" (DFA) oder \"non-deterministic finite automaton\" (NFA) bekannt."
+    },
+    {
+      "text": "Deterministisch bezieht sich auf den Übergang von einem Zustand in einen Folgezustand. In einem deterministischen Automaten ist für jede Eingabe eines Zeichens aus dem Alphabet eindeutig definiert, in welchen Folgezustand der Automat gelangt. In einem nichtdeterministischen Automaten ist das nicht so. Während in einem DEA beispielsweise ein Zustand 1 mit dem Eingabezeichen A in den Zustand 2 gelangt, kann bei einem NFA ein Zustand 1 mit dem Eingabezeichen A sowohl in den Zustand 2, aber auch in den Zustand 3 gelangen."
+    },
+    {
+      "text": "Bei einem NEA wird der Maschine die Wahl überlassen, welchem Pfad sie folgen wird. In der Praxis entscheiden Maschinen nicht nach belieben, ob sie Weg 1 oder Weg 2 nutzen. Reale Maschinen sind daher eher auf die Implementierung von DEAs ausgelegt. Für die Spezifikation eines Algorithmus kann ein NFA allerdings unter Umständen einfacher zu konstruieren oder kürzer sein."
+    },
+    {
+      "text": "Wichtig zu wissen ist, dass jeder DEA in einen NEA umgewandelt werden kann und andersherum ebenfalls. Jeder NEA kann in einen DEA umgewandelt werden."
+    }
+  ]
+}
