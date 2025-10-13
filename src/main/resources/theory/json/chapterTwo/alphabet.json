@@ -1,0 +1,22 @@
+{
+  "mainHeading": "Alphabet & formale Sprachen",
+  "content": [
+    {
+      "heading": "Wiederholung und formale Definition",
+      "text": "Wie bereits eingeführt sind Automaten Zustandsmodelle, welche über diverse Zustände verfügen und diese Zustände mittels Transitionen wechseln können. Die Grundlage für solche Transitionen bildet das Alphabet, welches vorgibt, welche Eingaben allgemein erlaubt sind. \n\n Alphabete können divers sein und sind in der Praxis relativ häufig vertreten. In der deutschen Sprache beispielsweise erlaubt das Alphabet Klein- und Großbuchstaben, Zahlen, Umlaute, Satz- und Sonderzeichen, aus welchen Wörter und aus denen wiederum mithilfe von Grammatik valide Sätze gebildet werden können. Im Zusammenhang mit Computern besteht das Alphabet aus 0 und 1 und bei einem Fahrkartenautomaten besteht das Alphabet wiederum beispielsweise aus Münzbeträgen. \n\n In der Automatentheorie können diese Zeichen des Alphabets beliebig gewählt werden, sofern es eine endliche Menge gibt (also das Alphabet nicht aus unendlich vielen Zeichen besteht). Die Symbole eines Alphabets werden auch Terminalsymbole genannt. Durch das aneinanderhängen beliebig vieler Zeichen aus dem Alphabet lassen sich Wörter bilden. In der Theorie gibt es zwei Zeichen. Das Σ repräsentiert ein Alphabet, während Σ* die Menge aller Wörter repräsentiert, die sich durch ein Alphabet Σ bilden lassen."
+    },
+    {
+      "text": "Formal ausgedrückt: Ein Alphabet (Σ) umfasst eine endliche, nicht leere Menge an Buchstaben, Ziffern und Sonderzeichen bzw. Zeichen im Allgemeinen und dient der Bildung von Wörtern durch eine endliche Konkatenation dieser. Die Menge aller möglichen Wörter über einem Alphabet Σ wird durch Σ* beschrieben."
+    },
+    {
+      "heading": "Formale Sprachen",
+      "text": "Aus den Zeichen eines Alphabets lassen sich durch Konkatenation sogenannte Wörter bilden. Die Menge aller möglichen Wörter über einem Alphabet Σ wurde bereits als Σ* definiert. Bei formalen Sprachen handelt es sich um Teilmengen dieser Gesamtwortmenge Σ*. Werden die Wörter, die man mithilfe eines Alphabets bilden könnte mit Grammatiken eingeschränkt, so ergibt das nur noch eine Teilwortmenge von Σ*. Da diese Teilwortmenge, bzw. formale Sprache durch ein L symbolisiert wird, lässt es sich auch wie folgt schreiben:",
+      "image": "chapterTwo/language.png",
+      "imageAltText": "Bild: zeigt die Formel L Teilmenge von Σ*.",
+      "imageSubText": "L Teilmenge von Σ*."
+    },
+    {
+      "text": "In Σ* sind also alle Worte aus L enthalten, aber in L sind nicht alle Worte aus Σ*."
+    }
+  ]
+}

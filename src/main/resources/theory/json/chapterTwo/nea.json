@@ -1,0 +1,41 @@
+{
+  "mainHeading": "Grammatiken",
+  "content": [
+    {
+      "heading": "Wiederholung, Einführung und formale Definition",
+      "text": "Bei Automaten handelt es sich um Zustandsmodelle, welche Sprachen und Grammatiken visualisieren können. Ein Automat liest ein Eingabewort Zeichen für Zeichen (bzw. Token für Token, wenn Terminalsymbole aus mehreren Zeichen zusammengesetzt sind) ein und berechnet mithilfe einer Zustandsübergangsfunktion (δ) den nächsten Zustand in Abhängigkeit des eingelesenen Zeichens/Tokens."
+    },
+    {
+      "text": "Für das Einlesen startet der Automat bei einem Startzustand und wenn nach dem Einlesen ein akzeptierter Endzustand erreicht wird, liegt das Eingabewort in der vom Automaten visualisierten Sprache. Die Beschreibung eines DEA geschieht über ein Tupel A mit den 5 Komponenten:\n\n1) Dem zugrunde liegenden Alphabet\n2) einer endlichen Menge an Zuständen Z\n3) einer Zustandsübergangsfunktion δ \n4) einem Startzustand z₀ \n5) einer endlichen Menge an Endzuständen E"
+    },
+    {
+      "text": "Für den Startzustand gilt z₀ ∈ Z und für die Endzustände E gilt E ⊆ Z. Das bedeutet, dass der Startzustand, sowie die Endzustände in der Menge aller Zustände liegen müssen."
+    },
+    {
+      "text": "Für die Zustandsübergangsfunktion δ gilt: δ : Z × Σ → Z. Das bedeutet, dass jedes Eingabezeichen aus dem bekannten Alphabet von irgendeinem Zustand aus Z wieder zu irgendeinem Zustand in Z führt."
+    },
+    {
+      "heading": "Beispiel",
+      "text": "Ein Automat besitzt die Definition A = ({A, B, C}, {z₀, z₁, z₂}, δ, z₀, {z₀, z₁}) und die Übergangsfunktion δ:{z₀, z₁, z₂} × {A, B, C} → {z₀, z₁, z₂}, δ(z₀,a)=δ(z₂,c)=z₁, δ(z₁,b)=δ(z₂,b)=z₂."
+    },
+    {
+      "text": "Aus dem ersten Teil der Automatendefinition lässt sich ablesen, dass der Automat die Zustände z₀, z₁ und z₂ besitzt, wobei z₀ Startzustand und sowohl z₁ als auch z₂ akzeptierende Endzustände sind."
+    },
+    {
+      "text": "Aus der Übergangsfunktion lässt sich zum einen Ablesen, was aus der Formel δ : Z × Σ → Z bekannt sein dürfte: Wenn auf einem der drei Zustände eine A-, B- oder C-Transition stattfindet, ist das Ergebnis dieser Transition wieder einer dieser drei Zustände."
+    },
+    {
+      "text": "Zusätzlich gibt es allerdings noch die Info, dass ein Wechsel vom Startzustand z₀ in den den Zustand z₁ durch Eingabe eines A erfolgt. In Zustand z₁ kann durch Eingabe eines B's in Zustand z₂ gewechselt werden und Zustand z₂ erlaubt entweder beliebig viele B-Transitionen auf sich selbst oder eine C-Transition zurück in Zustand z₁. Wird nur der Buchstabe A eingegeben, wird der Zustand z₁ erreicht, welcher ein akzeptierender Endzustand ist. A liegt also in der visualisierten Sprache. Das Wort ABC oder ABB liegt ebenfalls in der Sprache, während das Wort ABA nicht darin liegt."
+    },
+    {
+      "text": "Generell kann ausgesagt werden, dass der Automat, bzw. die zugrunde liegende Sprache alle Wörter akzeptiert und enthält, welche mit einem A beginnen und dann über beliebig viele B's oder CB-Kombinationen verfügen."
+    },
+    {
+      "text": "Aufgabe: Baue diesen beispielhaften Automaten im Simulator rechts nach."
+    },
+    {
+      "heading": "Vollständige Übergangsfunktion δ*",
+      "text": "Ein weiteres Konstrukt ist die vollständige Übergangsfunktion δ*. Die bisherige Übergangsfunktion δ wurde bisher nur für die Darstellung eines Überganges von einem Anfangszustand über ein Eingabezeichen, bzw. Token zu einem Endzustand genutzt. Die Vollständige Übergansfunktion δ* beschreibt dagegen den Übergang von einem Startzustand z₀ zu einem beliebigen Folgezustand z"
+    }
+  ]
+}

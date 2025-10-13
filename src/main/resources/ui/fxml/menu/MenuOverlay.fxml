@@ -53,35 +53,26 @@
             <Label styleClass="navLabels, newChapters">2. Formale Repräsentation der Grundlagen</Label>
             <Button styleClass="navButtons" onAction="#loadContent">
                 <userData>chapterTwo/alphabet.json</userData>
-                2.1 Alphabet
-            </Button>
-            <Button styleClass="navButtons" onAction="#loadContent">
-                <userData>chapterTwo/languages.json</userData>
-                2.2 Formale Sprachen
+                2.1 Alphabet und formale Sprachen
             </Button>
             <Button styleClass="navButtons" onAction="#loadContent">
                 <userData>chapterTwo/grammar.json</userData>
-                .3 Grammatik
+                2.2 Grammatik
             </Button>
             <Button styleClass="navButtons" onAction="#loadContent">
                 <userData>chapterTwo/dea.json</userData>
-                2.4 DEA
+                2.3 DEA
             </Button>
             <Button styleClass="navButtons" onAction="#loadContent">
                 <userData>chapterTwo/nea.json</userData>
-                2.5 NEA
+                2.4 NEA
             </Button>
 
             <!-- Kapitel 3 -->
             <Label styleClass="navLabels, newChapters">3. Definitionen und Regeln</Label>
-            <Label styleClass="subchapter, secondRow">3.1 Verknüpfung von Wörtern und Sprachen</Label>
-            <Button styleClass="navButtons, thirdRow" onAction="#loadContent">
-                <userData>chapterThree/words.json</userData>
-                3.1.1 Wortebene
-            </Button>
-            <Button styleClass="navButtons, thirdRow" onAction="#loadContent">
+            <Button styleClass="navButtons" onAction="#loadContent">
                 <userData>chapterThree/language.json</userData>
-                3.1.2 Sprachebene
+                3.1 Verknüpfung von Wörtern und Sprachen
             </Button>
             <Button styleClass="navButtons" onAction="#loadContent">
                 <userData>chapterThree/accepting.json</userData>
