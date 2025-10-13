@@ -42,14 +42,13 @@ class GraphAdministratorTest {
 
         when(transitionRegistryMock.getTransitions()).thenReturn(FXCollections.observableArrayList());
 
-        when(graphRegistryMock.getSelectedGraph()).thenReturn(AutomataSimulation.DFA);
+        when(graphRegistryMock.getSelectedGraph()).thenReturn(AutomataSimulation.DEA);
 
         when(graphRenderingMock.dfaToDot(any())).thenReturn(Optional.empty());
         when(graphRenderingMock.nfaToDot(any())).thenReturn(Optional.empty());
         when(graphRenderingMock.simulatedDFAToDot(any(), anyString())).thenReturn(Optional.empty());
         when(graphRenderingMock.simulatedNFAToDot(any(), anyString())).thenReturn(Optional.empty());
         when(graphRenderingMock.getCompactDFAFromGraphData(any())).thenReturn(TestDataGenerator.getCorrectDfa(true, true, true, true));
-        when(graphRenderingMock.acceptsInputDFA(any(), anyString())).thenReturn(true);
         when(graphRenderingMock.acceptsInputNFA(any(), anyString())).thenReturn(true);
 
         when(simulatorMock.findAcceptingInputForGraphData(any())).thenReturn(Optional.of(""));
@@ -73,7 +72,7 @@ class GraphAdministratorTest {
 
         @Test
         void returnGraphDefinitionNfa() {
-            when(graphRegistryMock.getSelectedGraph()).thenReturn(AutomataSimulation.NFA);
+            when(graphRegistryMock.getSelectedGraph()).thenReturn(AutomataSimulation.NEA);
             classUnderTest.returnGraphDefinition();
 
             verify(nodeRegistryMock, times(1)).getNodes();
@@ -126,7 +125,7 @@ class GraphAdministratorTest {
 
         @Test
         void returnSimulatedGraphDefinitionNfa() {
-            when(graphRegistryMock.getSelectedGraph()).thenReturn(AutomataSimulation.NFA);
+            when(graphRegistryMock.getSelectedGraph()).thenReturn(AutomataSimulation.NEA);
             classUnderTest.returnSimulatedGraphDefinition("input");
 
             verify(nodeRegistryMock, times(1)).getNodes();
@@ -144,7 +143,7 @@ class GraphAdministratorTest {
 
         @Test
         void changeSelectedGraph() {
-            classUnderTest.changeSelectedGraph(AutomataSimulation.NFA);
+            classUnderTest.changeSelectedGraph(AutomataSimulation.NEA);
 
             verify(graphRegistryMock, times(1)).changeSelectedGraph(any());
         }
@@ -154,20 +153,10 @@ class GraphAdministratorTest {
     class IsInputAccepted {
 
         @Test
-        void isInputAcceptedWithDFA() {
-            GraphData graphData = TestDataGenerator.getCorrectGraphData();
-            classUnderTest.isInputAccepted(graphData, "input", AutomataSimulation.DFA);
-
-            verify(graphRenderingMock, times(1)).acceptsInputDFA(any(), anyString());
-            verify(graphRenderingMock, times(0)).acceptsInputNFA(any(), anyString());
-        }
-
-        @Test
         void isInputAcceptedWithNFA() {
             GraphData graphData = TestDataGenerator.getCorrectGraphData();
-            classUnderTest.isInputAccepted(graphData, "input", AutomataSimulation.NFA);
+            classUnderTest.isInputAccepted(graphData, "input");
 
-            verify(graphRenderingMock, times(0)).acceptsInputDFA(any(), anyString());
             verify(graphRenderingMock, times(1)).acceptsInputNFA(any(), anyString());
         }
     }

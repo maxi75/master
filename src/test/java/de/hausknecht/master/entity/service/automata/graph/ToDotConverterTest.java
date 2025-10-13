@@ -27,7 +27,7 @@ class ToDotConverterTest {
             Set<Integer> highlightStates = new HashSet<>(CORRECT_ANSWERS);
             Boolean accepted = true;
 
-            String actual = classUnderTest.toDot(dfaValueInput, null, highlightStates, accepted);
+            String actual = classUnderTest.toDot(dfaValueInput.dfa(), null, highlightStates, accepted);
 
             assertLinesMatch(
                     List.of(TestDataGenerator.getDot(true, true, false).split("\\R")),
@@ -62,7 +62,7 @@ class ToDotConverterTest {
             DfaValues dfaValueInput = TestDataGenerator.getCorrectDfaValues(true, true, true, true);
             Boolean accepted = true;
 
-            String actual = classUnderTest.toDot(dfaValueInput, null, null, accepted);
+            String actual = classUnderTest.toDot(dfaValueInput.dfa(), null, null, accepted);
 
             assertLinesMatch(
                     List.of(TestDataGenerator.getDot(true, false, true).split("\\R")),
@@ -75,7 +75,7 @@ class ToDotConverterTest {
             Set<Integer> highlightStates = new HashSet<>();
             Boolean accepted = true;
 
-            String actual = classUnderTest.toDot(dfaValueInput, null, highlightStates, accepted);
+            String actual = classUnderTest.toDot(dfaValueInput.dfa(), null, highlightStates, accepted);
 
             assertLinesMatch(
                     List.of(TestDataGenerator.getDot(true, false, false).split("\\R")),
@@ -87,7 +87,7 @@ class ToDotConverterTest {
             DfaValues dfaValueInput = TestDataGenerator.getCorrectDfaValues(true, true, true, true);
             Set<Integer> highlightStates = new HashSet<>(CORRECT_ANSWERS);
 
-            String actual = classUnderTest.toDot(dfaValueInput, null, highlightStates, null);
+            String actual = classUnderTest.toDot(dfaValueInput.dfa(), null, highlightStates, null);
 
             assertLinesMatch(
                     List.of(TestDataGenerator.getDot(true, false, false).split("\\R")),

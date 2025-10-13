@@ -13,10 +13,10 @@ import static de.hausknecht.master.entity.domain.content.ExerciseType.SOLUTION;
 
 public class TestDataGenerator {
 
-    public static String NODE_0 = "s0";
-    public static String NODE_1 = "s1";
-    public static String NODE_2 = "s2";
-    public static String NODE_3 = "s3";
+    public static String NODE_0 = "0";
+    public static String NODE_1 = "1";
+    public static String NODE_2 = "2";
+    public static String NODE_3 = "3";
 
     public static String CHAR_A = "a";
     public static String CHAR_B = "b";
@@ -47,8 +47,8 @@ public class TestDataGenerator {
                   node  [fontname="Arial"];
                   edge  [fontname="Arial"];
                 
-                	s0 [shape="circle" label="s0"];
-                	s1 [shape="circle" label="s1"];
+                	s0 [shape="circle" label="0"];
+                	s1 [shape="circle" label="1"];
                 	%s
                 	s0 -> s1 [label="a"];
                 	s1 -> s2 [label="b"];
@@ -61,14 +61,14 @@ public class TestDataGenerator {
                 }
                 """;
 
-    private static final String DOT_HIGHLIGHT = "s2 [penwidth=\"2\" fillcolor=\"#d4edda\" shape=\"doublecircle\" color=\"#2e7d32\" fontcolor=\"#1b5e20\" style=\"filled\" label=\"s2\"];\n" +
-            "\ts3 [penwidth=\"2\" fillcolor=\"#d4edda\" shape=\"doublecircle\" color=\"#2e7d32\" fontcolor=\"#1b5e20\" style=\"filled\" label=\"s3\"];";
+    private static final String DOT_HIGHLIGHT = "s2 [penwidth=\"2\" fillcolor=\"#d4edda\" shape=\"doublecircle\" color=\"#2e7d32\" fontcolor=\"#1b5e20\" style=\"filled\" label=\"2\"];\n" +
+            "\ts3 [penwidth=\"2\" fillcolor=\"#d4edda\" shape=\"doublecircle\" color=\"#2e7d32\" fontcolor=\"#1b5e20\" style=\"filled\" label=\"3\"];";
 
-    private static final String DOT_HIGHLIGHT_IS_NULL= "s2 [shape=\"doublecircle\" label=\"s2\"];\n" +
-            "\ts3 [shape=\"doublecircle\" label=\"s3\"];";
+    private static final String DOT_HIGHLIGHT_IS_NULL= "s2 [shape=\"doublecircle\" label=\"2\"];\n" +
+            "\ts3 [shape=\"doublecircle\" label=\"3\"];";
 
-    private static final String DOT_WITHOUT_HIGHLIGHT = "s2 [shape=\"doublecircle\" label=\"s2\"];\n" +
-            "\ts3 [shape=\"doublecircle\" label=\"s3\"];";
+    private static final String DOT_WITHOUT_HIGHLIGHT = "s2 [shape=\"doublecircle\" label=\"2\"];\n" +
+            "\ts3 [shape=\"doublecircle\" label=\"3\"];";
 
     private static final String DOT_NFA_EXTRA_LINE = "\n\ts3 -> s2 [label=\"c\"];";
 

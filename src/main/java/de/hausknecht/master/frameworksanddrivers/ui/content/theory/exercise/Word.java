@@ -1,9 +1,7 @@
 package de.hausknecht.master.frameworksanddrivers.ui.content.theory.exercise;
 
-import de.hausknecht.master.entity.domain.automata.AutomataSimulation;
 import de.hausknecht.master.entity.domain.automata.GraphData;
 import de.hausknecht.master.entity.domain.automata.TransitionTriple;
-import de.hausknecht.master.entity.domain.content.ExerciseType;
 import de.hausknecht.master.entity.domain.content.TheoryPageData;
 import de.hausknecht.master.usecase.DataAccessor;
 import de.hausknecht.master.usecase.GraphAdministrator;
@@ -20,8 +18,6 @@ import org.springframework.stereotype.Component;
 import java.util.*;
 
 import static de.hausknecht.master.ConstantProvider.*;
-import static de.hausknecht.master.entity.domain.automata.AutomataSimulation.DFA;
-import static de.hausknecht.master.entity.domain.automata.AutomataSimulation.NFA;
 
 @Component
 @RequiredArgsConstructor
@@ -44,7 +40,7 @@ public class Word {
         exerciseContainer.addQuestion(container, buildQuestion(data));
         TextField textField = addInput(container);
 
-        addCheck(data, textField, exercise.getKind().equals(ExerciseType.DEA_WORD) ? DFA : NFA, container);
+        addCheck(data, textField, container);
     }
 
     private String buildQuestion(GraphData data) {
@@ -102,13 +98,13 @@ public class Word {
         return textField;
     }
 
-    private void addCheck(GraphData graphData, TextField textField, AutomataSimulation automata, VBox container) {
+    private void addCheck(GraphData graphData, TextField textField, VBox container) {
         HBox hBox = new HBox();
         hBox.getStyleClass().add(CHECK_CSS_STYLE);
         hBox.setAlignment(Pos.CENTER_RIGHT);
 
         hBox.getChildren().add(addSolveButton(graphData, textField));
-        hBox.getChildren().add(addCheckButton(graphData, textField, automata));
+        hBox.getChildren().add(addCheckButton(graphData, textField));
 
         container.getChildren().add(hBox);
     }
@@ -126,13 +122,13 @@ public class Word {
         return button;
     }
 
-    private Button addCheckButton(GraphData graphData, TextField textField, AutomataSimulation automata) {
+    private Button addCheckButton(GraphData graphData, TextField textField) {
         Button button = new Button(CHECK_SOLUTION);
         button.getStyleClass().add(CHECK_SOLUTION_CSS_ID);
 
         button.setOnAction(_ -> Platform.runLater(() -> {
             textField.getStyleClass().removeAll(WRONG_ANSWER_CSS_ID,  CORRECT_ANSWER_CSS_ID);
-            boolean result = graphAdministrator.isInputAccepted(graphData, textField.getText(), automata);
+            boolean result = graphAdministrator.isInputAccepted(graphData, textField.getText());
 
             textField.getStyleClass().add(result ? CORRECT_ANSWER_CSS_ID : WRONG_ANSWER_CSS_ID);
             if (result) pointSystemAdministrator.addPoints(ADD_POINTS_CORRECT_CHECK);

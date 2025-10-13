@@ -1,12 +1,13 @@
 package de.hausknecht.master.entity.service.content;
 
-import de.hausknecht.master.entity.domain.automata.DfaValues;
 import de.hausknecht.master.entity.domain.automata.GraphData;
 import de.hausknecht.master.entity.domain.automata.GraphEvaluationResult;
+import de.hausknecht.master.entity.domain.automata.NfaValues;
 import de.hausknecht.master.entity.service.automata.definition.AutomataGenerator;
 import lombok.AllArgsConstructor;
 import net.automatalib.automaton.fsa.impl.CompactDFA;
 import net.automatalib.automaton.fsa.impl.CompactNFA;
+import net.automatalib.util.automaton.fsa.NFAs;
 import net.automatalib.word.Word;
 import org.springframework.stereotype.Service;
 
@@ -90,9 +91,9 @@ public class Simulator {
     public Optional<String> findAcceptingInputForGraphData(GraphData graphData) {
         if (graphData == null || graphData.transitions() == null) return Optional.empty();
 
-        DfaValues dfaValues = automataGenerator.generateCompactDFA(graphData);
-        if (dfaValues == null || dfaValues.dfa() == null) return Optional.empty();
-        CompactDFA<String> dfa = dfaValues.dfa();
+        NfaValues nfaValues = automataGenerator.generateCompactNFA(graphData);
+        if (nfaValues == null || nfaValues.nfa() == null) return Optional.empty();
+        CompactDFA<String> dfa = NFAs.determinize(nfaValues.nfa(), nfaValues.nfa().getInputAlphabet());
 
         Integer current = dfa.getInitialState();
         if (current == null) return Optional.empty();

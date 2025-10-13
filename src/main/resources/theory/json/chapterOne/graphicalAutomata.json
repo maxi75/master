@@ -1,0 +1,62 @@
+{
+  "mainHeading": "Grafische Repräsentation von Automaten",
+  "content": [
+    {
+      "heading": "Deterministischer endlicher Automat (DEA)",
+      "text": "Ein Automat kann entweder formal oder grafisch dargestellt werden. Die formale Schreibweise eines endlichen Automaten wird in einem späteren Kapitel betrachtet."
+    },
+    {
+      "text": "Die grafische Repräsentation kann dabei helfen, einen Automaten leichter zu verstehen und nachzuvollziehen. Jeder endliche Automat besteht aus einer endlichen Menge an Zuständen, welche in Form von einfachen Kreisen dargestellt werden. Endzustände werden als doppelte Kreise visualisiert."
+    },
+    {
+      "text": "Der Übergang von einem Zustand zu einem Folgezustand mittels eines Eingabezeichens aus dem Eingabealphabet bezeichnet man Transition. Transitionen werden typischerweise mit einem Pfeil von einem Zustand X zu einem Zustand X+1 eingezeichnet und mit dem erlaubten Eingabezeichen, bzw. den erlaubten Eingabezeichen versehen."
+    },
+    {
+      "text": "Der Startzustand wird mit einem Transitionspfeil ohne Eingabezeichen und ohne Anfangszustand eingezeichnet.",
+      "image": "chapterOne/dea.png",
+      "imageAltText": "Bild: Startzustand Z1 in rot. Führt mit Eingabezeichen A zu grünem Folgezustand Z2 und mit Eingabezeichen B zu lila Endzustand Z3. Eine Transition mit dem Eingabezeichen C führt von Z3 wieder in zu Z2.",
+      "imageSubText": "Der abgebildete Automat verfügt über einen Startzustand Z1 in rot. Von diesem Zustand Z1 kann mittels A-Transition der Folgezustand Z2 (grün) und von dort mittels B-Transition der Endzustand Z3 (lila) erreicht werden. Eine C-Transition von Z3 nach Z2 erlaubt beliebig viele cb-Postfixe eines Eingabewortes."
+    },
+    {
+      "heading": "Nichtdeterministischer endlicher Automat (NEA)",
+      "text": "Wie ein DEA auch verfügt der NEA über einen einzelnen Startzustand, welcher mittels Transitionspfeil ohne Anfang und Eingabezeichen visualisiert wird. Ebenfalls wie beim DEA verfügt der NEA über beliebig viele Zustände und Endzustände, wobei letztere auch mit zwei Kreisen markiert werden."
+    },
+    {
+      "text": "Der Unterschied zwischen DEA und NEA liegt in der Darstellung der Transitionen. Die Kombination aus Anfangszustand und Transitionszeichen kann beim DEA immer nur zu einem Folgezustand führen. Beim NEA kann diese Kombination zu diversen Folgezuständen führen."
+    },
+    {
+      "text": "Ein gültiger NEA wäre:",
+      "image": "chapterOne/nea.png",
+      "imageAltText": "Bild: Startzustand Z1 in rot. Führt mit Eingabezeichen A zu grünem Folgezustand Z2 und mit Eingabezeichen B zu lila Endzustand Z3. Eine Transition mit dem Eingabezeichen C führt von Z3 wieder in zu Z2. Zusätzlich führt eine C-Transition von Z3 auch wieder zu Z3.",
+      "imageSubText": "Der abgebildete Automat verfügt über einen Startzustand Z1 in rot. Von diesem Zustand Z1 kann mittels A-Transition der Folgezustand Z2 (grün) und von dort mittels B-Transition der Endzustand Z3 (lila) erreicht werden. Eine C-Transition von Z3 nach Z2 erlaubt beliebig viele cb-Postfixe eines Eingabewortes. Alternativ erlaubt die C-Transition von Z3 nach Z3 beliebig viele c-Postfixe."
+    },
+    {
+      "heading": "Automaten im Simulator anlegen",
+      "text": "Der im rechten Fenster angeordnete Simulator kann zur Repräsentation von Automaten und soll das bessere Verständnis fördern. Rechts unten befindet sich ein ausklappbares Fenster, in welchem Zustände und Transitionen des Automaten definiert werden können."
+    },
+    {
+      "text": "In dem linken Menü (\"Zustände des Automaten\") lassen sich durch Eingabe eines Namen und klicken des +-Buttons neue Zustände festlegen. Das mittlere Menü bietet die Auswahl eines Startzustandes und beliebig vieler Endzustände an. Die Einträge in den DropDowns sind identisch mit den zuvor angelegten Zuständen des Automaten. Wurden keine Zustände angelegt, sind die DropDowns leer."
+    },
+    {
+      "text": "Das rechte Menü gibt die Transitionen an und benötigt eine Eingabe (entweder in Form eines einzelnen Zeichens oder als Zeichenkette, je nachdem was das Alphabet unterstützen soll). Zusätzlich müssen in den DropDowns die Anfangs- und Folgezustände gewählt werden. Auch hier gilt, die Einträge in den DropDowns sind identisch mit den bereits angelegten Zuständen und gibt es keine Zustände, sind auch die DropDowns leer.",
+      "image": "chapterOne/nea.png",
+      "imageAltText": "Bild: zeigt das Aufklappen des Fensters sowie die Menüeinträge um Zustände und Transitionen festzulegen.",
+      "imageSubText": "Der rot markierte Button dient dem öffnen und schließen des Fensters. Der grüne Menüpunkt dient der Konfiguration aller Zustände, der gelbe Menüpunkt dient der Spezifikation von Start- und Endzuständen und der lila Menüpunkt dient der Definition von Transitionen."
+    },
+    {
+      "text": "Angelegte Zustände, Endzustände oder Transitionen lassen sich mittels Papierkorb-Symbols löschen. Das Löschen eines Zustandes führt auch zu einer Löschung des Startzustandes, Endzustandes oder von Transitionen sofern der gelöschte Zustand dort genutzt wurde.",
+      "image": "chapterOne/nea.png",
+      "imageAltText": "Bild: zeigt den Menüpunkt zum Löschen eines Zustandes.",
+      "imageSubText": "Menüpunkt zum Löschen eines Zustandes."
+    },
+    {
+      "text": "In der oberen Simulationsleiste kann zum einen eine Folge von Eingabezeichen/Eingabewörtern eingetragen werden und über die Multimediatasten lässt sich der Automat schrittweise nachvollziehen. Rote Kreise stehen dabei für nicht akzeptierende Zustände (also nicht Endzustände) und grüne Kreise für akzeptierende (End-) Zustände. Mittels des DropDowns kann zwischen der grafischen Darstellung von DEA und NEA gewechselt werden.",
+      "image": "chapterOne/nea.png",
+      "imageAltText": "Bild: zeigt die Multimediatasten zum Simulieren von Eingaben.",
+      "imageSubText": "Multimediatasten zum Simulieren von Eingaben."
+    },
+    {
+      "text": "Achtung: Jeder DEA ist gleichzeitig auch ein NEA, aber nicht jeder NEA ist auch ein DEA. Aus diesem Grund wird standardmäßig die (mächtigere) NEA-Ansicht angezeigt. Soll explizit ein NEA in einen DEA mittels Potenzmengenkonstruktion (wird später beschrieben) umgewandelt werden, kann dies mithilfe des DropDowns vorgenommen werden. Aus technischen Gründen verlieren die Zustände in der DEA-Ansicht allerdings ihre Benennungen und werden nur durch eine Zahl repräsentiert. Auch MUSS zwingend ein Startzustand und mindestens ein Endzustand gesetzt werden, um valide Ergebnisse zu erhalten. Ansonsten ändert sich der Automat nicht!"
+    }
+  ]
+}

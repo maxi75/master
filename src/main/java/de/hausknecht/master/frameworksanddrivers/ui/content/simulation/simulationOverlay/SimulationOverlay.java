@@ -48,7 +48,7 @@ public class SimulationOverlay {
         stopBtn.setOnAction(_ -> simulateStop());
 
         graphBox.getItems().setAll(AutomataSimulation.values());
-        graphBox.setValue(AutomataSimulation.DFA);
+        graphBox.setValue(AutomataSimulation.NEA);
         graphBox.setOnAction(_ -> graphAdministrator.changeSelectedGraph(graphBox.getValue()));
     }
 
