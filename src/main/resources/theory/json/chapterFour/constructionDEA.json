@@ -1,0 +1,43 @@
+{
+  "mainHeading": "Automatenkonstruktion DEA",
+  "content": [
+    {
+      "heading": "Konstruktion aus einer Automatendefinition",
+      "text": "In Kapitel 2.3 sollte bereits beispielhaft ein DEA aus einer Automatendefinition heraus in der Simulation konstruiert werden. Dieses Vorgehen wird noch einmal Schritt für Schritt definiert und ist auch ohne digitale Hilfsmittel umsetzbar:"
+    },
+    {
+      "text": "(1) Für die visuelle Darstellung ist für jeden Zustand aus der Menge Z (Zustände) ein einfacher Kreis zu zeichnen, welcher den Namen des Zustandes trägt."
+    },
+    {
+      "text": "(2) Bei den Zuständen, welche auch gleichzeitig einen Endzustand darstellen, ist ein zweiter Kreis um den ersten herum zu zeichnen."
+    },
+    {
+      "text": "(3) Die Verbindungen zwischen den Zuständen werden mit Pfeilen und entsprechenden Zeichen/Token aus dem Eingabealphabet versehen. Diese Transitionen lassen sich aus der Übergangsfunktion δ ermitteln."
+    },
+    {
+      "text": "(4) Der Startzustand ist mit einem Transitionspfeil ohne Anfangszustand und ohne Eingabzeichen zu versehen."
+    },
+    {
+      "text": "Umgekehrt lässt sich aus einem gezeichneten Automaten auch seine Automatendefinition ermitteln."
+    },
+    {
+      "heading": "Konstruktion einer formalen Sprache aus einem Automaten",
+      "text": "Eine formale Sprache wird in der nachfolgenden Schreibweise angegeben: L(A) = {w ∈ Σ∗|δ∗(s0, w) ∈ E}"
+    },
+    {
+      "text": "Das bedeutet, eine Sprache besteht aus allen Wörtern w, welche sich aus der Konkatenation der Zeichen des Eingabealphabets Σ∗ bilden lassen. Dabei bestehen gewissen Einschränkungen, welche mit der vollständigen Übergangsfunktion δ∗(s0, w) beschrieben werden und welche definieren, wann ein Wort akzeptiert wird."
+    },
+    {
+      "text": "Ein Beispiel wäre: A = ({A, B, C}, {z₀, z₁, z₂}, δ, z₀, {z₀, z₁}) mit der Übergangsfunktion δ:{z₀, z₁, z₂} × {A, B, C} → {z₀, z₁, z₂}, δ(z₀,A)=δ(z₂,C)=z₁, δ(z₁,B)=δ(z₂,B)=z₂."
+    },
+    {
+      "text": "Daraus lässt sich die Sprache L(A) = {w ∈ {a, b, c}∗ | w beginnt mit einem a, in w kann ein c nur auf ein b folgen und es gibt beliebig viele b's} ableiten. Formal aufgeschrieben wäre das: L(A) = {w ∈ {a, b, c}∗|δ∗(s0, w) ∈ {s1, s2}}"
+    },
+    {
+      "text": "Eine alternative Schreibweise wäre in Form eines regulären Ausdrucks: L(A) = {a(b+c)∗b∗}."
+    },
+    {
+      "text": "Erkennbar ist, dass bei der Umwandlung einer Automatendefinition in eine reguläre Sprache, bzw. einen regulären Ausdruck immer weniger Details über den ursprünglichen Automaten vorhanden sind. Dementsprechend ist die Umwandlung eines Automaten in eine reguläre Sprache vergleichsweise einfach, während umgekehrt die Umwandlung von einer regulären Sprache zu einer Automatendefinition etwas schwieriger ist."
+    }
+  ]
+}
