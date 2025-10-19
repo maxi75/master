@@ -22,7 +22,7 @@
       "text": "(4) Die Übergangsfunktion lässt sich ebenfalls durch Bildung des Kreuzproduktes erzeugen. Das heißt, die beiden separaten Transitionen aus A₁ und A₂ werden kombiniert. Für z.B. Zustand z₁ gibt es eine A-Transition auf z₂ in A₁. Für Zustand x₂ gibt es eine A-Transition auf x₁ in A₂. Der Zustand z₁x₂ führt nun mit einer A-Transition in den Zustand z₂x₁."
     },
     {
-      "text": "Formal lässt sich die Automatendefinition für die Vereinigung wie folgt angeben: A₁,2 = (Σ, Z₁ × Z₂, δ, (Z₁z₀ Z₂z₀), E₁ × Z₂ ∪ Z₁ × E₂) mit der Automatendefinition: δ : Z₁ × Z₂ × Σ → Z₁ × Z₂"
+      "text": "Formal lässt sich die Automatendefinition für die Vereinigung wie folgt angeben: A₁,₂ = (Σ, Z₁ × Z₂, δ, (Z₁z₀ Z₂z₀), E₁ × Z₂ ∪ Z₁ × E₂) mit der Automatendefinition: δ : Z₁ × Z₂ × Σ → Z₁ × Z₂"
     }
   ]
 }
