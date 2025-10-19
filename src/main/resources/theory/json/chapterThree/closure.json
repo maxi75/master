@@ -1,0 +1,32 @@
+{
+  "mainHeading": "Abgeschlossenheit",
+  "content": [
+    {
+      "text": "In Zusammenhang mit regulären Sprachen ist die Abgeschlossenheit von Sprachklassen ein wichtiges Konstrukt, um Aussagen über das Ergebnis von Beziehungen zweier Sprachen L₁ und L₂ anzustellen."
+    },
+    {
+      "text": "Neben regulärer Sprachen gibt es auch nicht-reguläre Sprachen und die Abgeschlossenheit von Sprachklassen beschreibt, dass das Ergebnis einer Beziehung von zwei regulären Sprachen L₁ und L₂ eine reguläre Sprache ist."
+    },
+    {
+      "text": "Verkettung: L₁ ◦ L₂ \nErgebnis: reguläre Sprache"
+    },
+    {
+      "text": "Vereinigung: L₁ ∪ L₂\nErgebnis: reguläre Sprache"
+    },
+    {
+      "text": "Kleensche Hülle: L*\nErgebnis: reguläre Sprache"
+    },
+    {
+      "text": "Komplement: L̅ oder Σ*\\L\nErgebnis: reguläre Sprache"
+    },
+    {
+      "text": "Schnitt: L₁ ∩ L₂\nErgebnis: reguläre Sprache"
+    },
+    {
+      "text": "Differenz: L₁ \\ L₂\nErgebnis: reguläre Sprache"
+    },
+    {
+      "text": "Inverses: L₁ᴿ\nErgebnis: reguläre Sprache"
+    }
+  ]
+}
