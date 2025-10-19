@@ -16,13 +16,13 @@
     },
     {
       "heading": "Beispiel",
-      "text": "Ein Automat besitzt die Definition A = ({A, B, C}, {z₀, z₁, z₂}, δ, z₀, {z₀, z₁}) und die Übergangsfunktion δ:{z₀, z₁, z₂} × {A, B, C} → {z₀, z₁, z₂}, δ(z₀,a)=δ(z₂,c)=z₁, δ(z₁,b)=δ(z₂,b)=z₂."
+      "text": "Ein Automat besitzt die Definition A = ({A, B, C}, {z₀, z₁, z₂}, δ, z₀, {z₀, z₁}) und die Übergangsfunktion δ:{z₀, z₁, z₂} × {A, B, C} → {z₀, z₁, z₂}, δ(z₀,A)=δ(z₂,C)=z₁, δ(z₁,B)=δ(z₂,B)=z₂."
     },
     {
       "text": "Aus dem ersten Teil der Automatendefinition lässt sich ablesen, dass der Automat die Zustände z₀, z₁ und z₂ besitzt, wobei z₀ Startzustand und sowohl z₁ als auch z₂ akzeptierende Endzustände sind."
     },
     {
-      "text": "Aus der Übergangsfunktion lässt sich zum einen Ablesen, was aus der Formel δ : Z × Σ → Z bekannt sein dürfte: Wenn auf einem der drei Zustände eine A-, B- oder C-Transition stattfindet, ist das Ergebnis dieser Transition wieder einer dieser drei Zustände."
+      "text": "Aus der Übergangsfunktion lässt sich zum einen ablesen, was aus der Formel δ : Z × Σ → Z bekannt sein dürfte: Wenn auf einem der drei Zustände eine A-, B- oder C-Transition stattfindet, ist das Ergebnis dieser Transition wieder einer dieser drei Zustände."
     },
     {
       "text": "Zusätzlich gibt es allerdings noch die Info, dass ein Wechsel vom Startzustand z₀ in den den Zustand z₁ durch Eingabe eines A erfolgt. In Zustand z₁ kann durch Eingabe eines B's in Zustand z₂ gewechselt werden und Zustand z₂ erlaubt entweder beliebig viele B-Transitionen auf sich selbst oder eine C-Transition zurück in Zustand z₁. Wird nur der Buchstabe A eingegeben, wird der Zustand z₁ erreicht, welcher ein akzeptierender Endzustand ist. A liegt also in der visualisierten Sprache. Das Wort ABC oder ABB liegt ebenfalls in der Sprache, während das Wort ABA nicht darin liegt."
