@@ -15,10 +15,10 @@
       "text": "(3) Alle Zustände im resultierenden Automaten sind akzeptierend, wenn sie einen akzeptierenden Endzustand von A₂ repräsentieren. Wenn in A₁ z₂ und in A₂ x₂ Endzustände sind, dann ist im resultierenden Automaten x₂ ein akzeptierender Endzustand."
     },
     {
-      "text": "(3) Bei der Übergangsfunktion bleiben die Transitionen für A₁ bestehen, für A₂ ändert sich, dass Transitionen nicht mehr vom Startzustand (x₁) in den Folgezustand (x₂) führen, sondern von den Endzuständen aus A₁. x₁ ist somit ein nicht erreichbarer Zustand."
+      "text": "(4) Bei der Übergangsfunktion bleiben die Transitionen für A₁ bestehen, für A₂ ändert sich, dass Transitionen nicht mehr vom Startzustand (x₁) in den Folgezustand (x₂) führen, sondern von den Endzuständen aus A₁. x₁ ist somit ein nicht erreichbarer Zustand."
     },
     {
-      "text": "Formal lässt sich die Automatendefinition für die Konkatenation wie folgt angeben: A₁,₂ = (Σ, Z₁ ∪ Z₂, δ, z₀, E₂) mit der Automatendefinition: δ : (Z₁ ∪ Z₂) × Σ → P(Z₁ × Z₂)"
+      "text": "Formal lässt sich die Automatendefinition für die Konkatenation wie folgt angeben: A₁,₂ = (Σ, Z₁ ∪ Z₂, δ, z₀, E₂) mit der Übergangsfunktion: δ' : δ(z₀,a) mit a ∈ Σ, für alle Zustände, welche keine Endzustände sind. Für alle Endzustände gilt die Funktion: δ' : δ(e,a) ∪ δ(z₀,a) mit a ∈ Σ und e ∈ E. Letzteres ermöglicht eine Transition von einem Endzustand (e) in einen Startzustand."
     }
   ]
 }

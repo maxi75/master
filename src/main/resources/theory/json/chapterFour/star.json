@@ -1,0 +1,18 @@
+{
+  "mainHeading": "Abschlusseigenschaften - Kleene-Stern",
+  "content": [
+    {
+      "heading": "Definition",
+      "text": "Die Bildung des Kleene-Stern, bzw. der Kleenschen Hülle ist ähnlich der Konkatenation. Da Kleene-Stern auch das leere Wort ε erlaubt, muss sowohl die Menge an Zuständen, der Startzustand sowie die Menge an Endzuständen mit ε vereinigt werden. Für den Zustand, der ε repräsentiert kann ein beliebiges Zeichen gewählt werden, in dieser Übung wird ⋆ genutzt. In der Übergangsfunktion muss der Übergang von einem Endzustand zu einem Startzustand berücksichtigt werden."
+    },
+    {
+      "text": "(1) Dem Automat A₁ muss ein zusätzlicher Zustand ⋆ berücksichtigt werden, welcher sowohl Start, als auch Endzustand ist."
+    },
+    {
+      "text": "(2) Wie bei der Bildung der Konkatenation führt ein Endzustand mit den selben Transitionen wie der Startzustand zu allen Folgezuständen des Startzustandes (um eine Art Wiederholung zu gewährleisten)."
+    },
+    {
+      "text": "Formal lässt sich die Automatendefinition für die Konkatenation wie folgt angeben: A₁,₂ = (Σ, Z₁ ∪ {⋆}, δ', z₀ ∪ {⋆}, E₂ ∪ {⋆}) mit der Übergangsfunktion: δ : (Z₁ ∪ Z₂) × Σ → P(Z₁ × Z₂)"
+    }
+  ]
+}
