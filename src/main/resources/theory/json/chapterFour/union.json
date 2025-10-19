@@ -1,0 +1,28 @@
+{
+  "mainHeading": "Abschlusseigenschaften - Vereinigung",
+  "content": [
+    {
+      "heading": "Einführung",
+      "text": "Wie in Kapitel 3.3 bereits für Sprachklassen die Abgeschlossenheit definiert wurde, wenn Sprachen in einer Beziehung zueinander stehen, so kann dieses Konzept auch auf Automaten angewandt werden. Nachdem ein Automat eine Sprache repräsentieren kann und zwei Sprachen L₁ und L₂ in einer Beziehung zueinander stehen können, können auch zwei Automaten in einer Beziehung zueinander stehen."
+    },
+    {
+      "text": "Aus zwei, in Beziehung zueinander stehenden Automaten lässt sich ein einzelner, resultierender Automat erzeugen."
+    },
+    {
+      "heading": "Definition",
+      "text": "(1) Die Vereinigung zweier Automaten A₁ und A₂ erfolgt, indem der resultierende Automat als Zustände das Kreuzprodukt der Zustände von A₁ und A₂ nutzt. Wenn A₁ beispielsweise über die Zustände {z₁, z₂} und A₂ über die Zustände {x₁, x₂} verfügt, dann nutzt der resultierende Automat die Zustände {(z₁x₁),(z₁x₂),(z₂x₁),(z₂x₂)}."
+    },
+    {
+      "text": "(2) Startzustand ist der Zustand, welcher beide Startzustände aus A₁ und A₂ repräsentiert. Ist bei A₁ z₁ der Startzustand und bei A₂ x₁, dann ist der Startzustand des resultierenden Automaten (z₁x₁)."
+    },
+    {
+      "text": "(3) Alle Zustände im resultierenden Automaten sind akzeptierend, wenn sie einen akzeptierenden Endzustand von A₁ oder A₂ repräsentieren. Wenn in A₁ z₂ und in A₂ x₂ Endzustände sind, dann sind im resultierenden Automaten z₂x₁, z₁x₂ und z₂x₂ akzeptierende Endzustände."
+    },
+    {
+      "text": "(4) Die Übergangsfunktion lässt sich ebenfalls durch Bildung des Kreuzproduktes erzeugen. Das heißt, die beiden separaten Transitionen aus A₁ und A₂ werden kombiniert. Für z.B. Zustand z₁ gibt es eine A-Transition auf z₂ in A₁. Für Zustand x₂ gibt es eine A-Transition auf x₁ in A₂. Der Zustand z₁x₂ führt nun mit einer A-Transition in den Zustand z₂x₁."
+    },
+    {
+      "text": "Formal lässt sich die Automatendefinition für die Vereinigung wie folgt angeben: A₁,2 = (Σ, Z₁ × Z₂, δ, (Z₁z₀ Z₂z₀), E₁ × Z₂ ∪ Z₁ × E₂) mit der Automatendefinition: δ : Z₁ × Z₂ × Σ → Z₁ × Z₂"
+    }
+  ]
+}
