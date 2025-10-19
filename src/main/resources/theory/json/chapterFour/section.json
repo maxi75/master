@@ -1,0 +1,21 @@
+{
+  "mainHeading": "Abschlusseigenschaften - Schnitt",
+  "content": [
+    {
+      "heading": "Definition",
+      "text": "Der Schnitt zweier Automaten A₁ und A₂ lässt sich durch das Bilden des Kreuzproduktes der Zustände und Endzustände erzeugen. Zur Vereinigung steht eine hohe Ähnlichkeit mit dem Unterschied, dass die Endzustände anders ermittelt werden."
+    },
+    {
+      "text": "(1) Der Schnitt zweier Automaten A₁ und A₂ erfolgt, indem der resultierende Automat als Zustände das Kreuzprodukt der Zustände von A₁ und A₂ nutzt. Wenn A₁ beispielsweise über die Zustände {z₁, z₂} und A₂ über die Zustände {x₁, x₂} verfügt, dann nutzt der resultierende Automat die Zustände {(z₁x₁),(z₁x₂),(z₂x₁),(z₂x₂)}."
+    },
+    {
+      "text": "(2) Startzustand ist der Zustand, welcher beide Startzustände aus A₁ und A₂ repräsentiert. Ist bei A₁ z₁ der Startzustand und bei A₂ x₁, dann ist der Startzustand des resultierenden Automaten (z₁x₁)."
+    },
+    {
+      "text": "(3) Alle Zustände im resultierenden Automaten sind akzeptierend, wenn sie einen akzeptierenden Endzustand von A₁ und A₂ repräsentieren. Wenn in A₁ z₂ und in A₂ x₂ Endzustände sind, dann ist im resultierenden Automaten z₂x₂ ein akzeptierender Endzustand."
+    },
+    {
+      "text": "Formal lässt sich die Automatendefinition für den Schnitt wie folgt angeben: A₁,₂ = (Σ, Z₁ × Z₂, δ, (Z₁z₀ Z₂z₀), E₁ × E₂) mit der Automatendefinition: δ : Z₁ × Z₂ × Σ → Z₁ × Z₂"
+    }
+  ]
+}
