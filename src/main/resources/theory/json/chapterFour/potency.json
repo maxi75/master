@@ -37,7 +37,7 @@
       "text": "Zuletzt müssen die Zustände als Endzustände markiert werden, welche im NEA die Zustände z₁ oder z₂ repräsentieren. Das sind im DEA die Zustände z₁, z₂ und z₁z₂."
     },
     {
-      "image": "chapterFour/potencyAutomata.png",
+      "image": "chapterFour/potency.png",
       "imageAltText": "Bild: Umgewandelter Potenzmengenautomat",
       "imageSubText": "Umgewandelter Potenzmengenautomat"
     }
