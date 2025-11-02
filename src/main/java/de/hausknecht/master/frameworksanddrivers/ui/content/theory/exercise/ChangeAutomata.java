@@ -30,8 +30,6 @@ import java.util.Map;
 import java.util.Set;
 
 import static de.hausknecht.master.ConstantProvider.*;
-import static de.hausknecht.master.entity.domain.automata.AutomataSimulation.DFA;
-import static de.hausknecht.master.entity.domain.automata.AutomataSimulation.NFA;
 
 @Component
 @RequiredArgsConstructor
@@ -56,7 +54,7 @@ public class ChangeAutomata {
         exerciseContainer.addTitle(container, CONTAINER_NAME);
         exerciseContainer.addQuestion(container, buildQuestion(data, exercise));
 
-        addCheck(data, exercise.getKind().equals(ExerciseType.DEA_NEA) ? DFA : NFA, container);
+        addCheck(data, exercise.getKind().equals(ExerciseType.DEA_NEA) ? AutomataSimulation.DEA : AutomataSimulation.NEA, container);
     }
 
     private String buildQuestion(GraphData data, TheoryPageData.Exercise exercise) {
@@ -135,7 +133,7 @@ public class ChangeAutomata {
                 graphData.endingNodes().forEach(nodeDefinitionContainer::addListItem);
                 nodeDefinitionContainer.setStartingNode(graphData.startingNode());
                 graphData.transitions().forEach(transitionContainer::addListItem);
-                simulationOverlay.setComboBox(automata == DFA ? NFA : DFA);
+                simulationOverlay.setComboBox(automata == AutomataSimulation.DEA ? AutomataSimulation.NEA : AutomataSimulation.DEA);
             });
         });
         return button;

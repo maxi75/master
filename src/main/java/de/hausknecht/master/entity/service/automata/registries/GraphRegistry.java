@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class GraphRegistry {
     private final ApplicationEventPublisher applicationEventPublisher;
-    private AutomataSimulation selectedGraph = AutomataSimulation.DFA;
+    private AutomataSimulation selectedGraph = AutomataSimulation.NEA;
 
     public void changeSelectedGraph(AutomataSimulation selectedGraph) {
         this.selectedGraph = selectedGraph;

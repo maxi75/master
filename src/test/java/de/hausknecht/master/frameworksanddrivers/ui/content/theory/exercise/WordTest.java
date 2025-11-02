@@ -63,7 +63,7 @@ class WordTest extends UITest {
             verify(exerciseContainerMock).addQuestion(any(), captor.capture());
             assertEquals("""
                     Gegeben ist folgende Automatendefinition:\s
-                     A=({Error: Fehler beim Ermitteln der Transitions}, {s0, s1, s2, s3}, δ, s0, {s2, s3})\s
+                    A=({Error: Fehler beim Ermitteln der Transitions}, {0, 1, 2, 3}, δ, 0, {2, 3})\s
                     
                     Welche beispielhafte Eingabefolge wird von dem Automaten akzeptiert?\s
                     """, captor.getValue());
@@ -83,10 +83,10 @@ class WordTest extends UITest {
             verify(exerciseContainerMock).addQuestion(any(), captor.capture());
             assertEquals("""
                     Gegeben ist folgende Automatendefinition:\s
-                     A=({a, b, c}, {s0, s1, s2, s3}, δ, s0, {s2, s3})\s
+                    A=({a, b, c}, {0, 1, 2, 3}, δ, 0, {2, 3})\s
                     
                     mit der Zustandsübergangsfunktion:\s
-                     δ(s3,c) = s3;   δ(s0,a) = s1;   δ(s1,b) = δ(s3,c) = s2;   \s
+                    δ(0,a) = 1;   δ(1,b) = δ(3,c) = 2;   δ(3,c) = 3;   \s
                     
                     Welche beispielhafte Eingabefolge wird von dem Automaten akzeptiert?\s
                     """, captor.getValue());

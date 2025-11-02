@@ -51,7 +51,7 @@ public class ImageContainer {
     private void addCaption(VBox imageContainer, TheoryPageData.Section section) {
         if (!StringUtils.hasText(section.getImageSubText())) return;
 
-        Label caption = new Label(section.getText());
+        Label caption = new Label(section.getImageSubText());
         caption.getStyleClass().add(CSS_PAGE_IMAGE_CAPTION);
         caption.setWrapText(true);
         imageContainer.getChildren().add(caption);

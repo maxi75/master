@@ -1,0 +1,15 @@
+{
+  "mainHeading": "Abschlusseigenschaften - Komplement",
+  "content": [
+    {
+      "heading": "Definition",
+      "text": "Das Komplement eines Automaten A₁ ist einfacher zu bilden, als die Vereinigung zweier Automaten."
+    },
+    {
+      "text": "(1) Für die Bildung des Komplements müssen einfach akzeptierende und nicht akzeptierende Zustände vertauscht werden. Ein Zustand der im normalen Automaten ein akzeptierender Endzustand ist, ist dies beim Komplement nicht und umgekehrt, ein Zustand der keinen validen Endzustand angegeben hat, ist bei der Bildung des Komplements ein Endzustand."
+    },
+    {
+      "text": "Formal lässt sich die Automatendefinition für die Bildung des Komplements wie folgt angeben: A₁ = (Σ, Z₁, δ, z₀, Z₁\\E₁)."
+    }
+  ]
+}

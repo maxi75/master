@@ -1,0 +1,45 @@
+{
+  "mainHeading": "Potenzmengenkonstruktion",
+  "content": [
+    {
+      "heading": "Konstruktion eines DEA aus einem NEA",
+      "text": "Ein DEA kann als Spezialfall eines NEA betrachtet werden, da ein DEA die Möglichkeiten eines NEA nur einschränkt, aber nicht erweitert. Umgekehrt ist ein NEA nicht immer auch ein DEA, aber jeder NEA kann zu einem DEA umgewandelt werden. Hierfür bedient man sich der Potenzmengenkonstruktion."
+    },
+    {
+      "text": "NEA's verzichten häufig durch Transitionen auf mehrere unterschiedliche Folgezustände mit dem selben Eingabewort, welche bei einem DEA allerdings benötigt werden. Jeder dieser zusätzlichen Zustände im DEA repräsentieren nicht nur einen einzelnen, sondern eine Menge an Zuständen eines NEA. Der Algorithmus zur Konstruktion des Potenzmengenautomaten läuft wie folgt ab:"
+    },
+    {
+      "text": "(1) Es wird im zu konstruierenden DEA ein Startzustand erstellt, welcher identisch mit dem Startzustand des NEA ist."
+    },
+    {
+      "text": "(2) Ausgehend von diesem Startzsutand werden alle möglichen Folgezustände ermittelt. Gibt es eine eindeutige Transition von einem Startzustand z₀ in einen Zustand z₁, kann diese Transition übernommen werden. Gibt es im NEA eine z.B. A-Transition vom Zustand z₀ in die beiden Zustände z₁ und z₂, dann würde im DEA ein zusätzlicher Zustand z₁z₂ erstellt werden, auf welchen die A-Transition abgebildet wird."
+    },
+    {
+      "text": "(3) Diese Prüfung wird für jeden Folgezustand ebenfalls durchlaufen, bis alle möglichen Zustände und Transitionen in den DEA überführt wurden."
+    },
+    {
+      "text": "(4) Zuletzt wird jeder Zustand im DEA als Endzustand markiert, welcher einen oder mehrere Endzustände im NEA repräsentiert. Wenn im NEA z.B. der Zustand z₂ ein Endzustand war, dann ist auch im DEA der Zustand z₂ ein Endzustand. Aber auch neu erzeugte, zusammengesetzte Zustände, wie z₁z₂."
+    },
+    {
+      "heading": "Beispiel",
+      "text": "Gegeben ist der bereits bekannte NEA: A = ({A, B, C}, {z₀, z₁, z₂}, δ, z₀, {z₁, z₂}) mit der Übergangsfunktion δ:{z₀, z₁, z₂} × {A, B, C} → P({z₀, z₁, z₂}), δ(z₀,A)=δ(z₂,C)=z₁, δ(z₁,B)=δ(z₂,C)=z₂:",
+      "image": "chapterFour/nea.png",
+      "imageAltText": "Bild: Visualisierung der gegebenen Automatendefinition",
+      "imageSubText": "Visualisierung der gegebenen Automatendefinition"
+    },
+    {
+      "text": "Bei der Konstruktion des DEA würde zuerst mit dem Startzustand z₀ gestartet werden, welcher nur eine einzelne A-Transition auf z₁ besitzt. Diese Transition und der Zustand z₁ können dementsprechend im DEA genau so übernommen werden. Auch die B-Transition von z₁ nach z₂ ist eindeutig und kann so in den DEA übernommen werden. Von z₂ gibt es nun allerdings zwei C-Transitionen. Eine in den Zustand z₂ und die andere zurück in den Zustand z₁. Daraus wird im DEA eine einzelne C-Transition aus dem Zustand z₂ in den Zustand z₁z₂ gemacht."
+    },
+    {
+      "text": "Nun müssen die Folgezustände von z₁z₂ in Abhängigkeit ihres repräsentierten Zustandes ermittelt werden. Steht z₁z₂ für den Zustand z₁ wäre eine B-Transition in den Zustand z₂ möglich. Steht z₁z₂ für den Zustand z₂, wäre C-Transition auf sich selbst möglich. Dementsprechend kann von z₁z₂ aus eine B-Transition auf z₂ und eine C-Transition auf z₁z₂ eingezeichnet werden. Mit dieser Umwandlung gibt es keine nichtdeterministischen oder nicht berücksichtigten Pfade mehr und der gesamte NEA wurde in einen DEA umgewandelt."
+    },
+    {
+      "text": "Zuletzt müssen die Zustände als Endzustände markiert werden, welche im NEA die Zustände z₁ oder z₂ repräsentieren. Das sind im DEA die Zustände z₁, z₂ und z₁z₂."
+    },
+    {
+      "image": "chapterFour/potency.png",
+      "imageAltText": "Bild: Umgewandelter Potenzmengenautomat",
+      "imageSubText": "Umgewandelter Potenzmengenautomat"
+    }
+  ]
+}

@@ -48,7 +48,7 @@ public class SimulationOverlay {
         stopBtn.setOnAction(_ -> simulateStop());
 
         graphBox.getItems().setAll(AutomataSimulation.values());
-        graphBox.setValue(AutomataSimulation.DFA);
+        graphBox.setValue(AutomataSimulation.NEA);
         graphBox.setOnAction(_ -> graphAdministrator.changeSelectedGraph(graphBox.getValue()));
     }
 
@@ -95,8 +95,6 @@ public class SimulationOverlay {
     }
 
     private void simulateFirst() {
-        if (!alreadyStarted) return;
-
         alreadySimulatedWord = EMPTY_STRING;
         applicationEventPublisher.publishEvent(new SimulationEvent(this.alreadySimulatedWord));
     }

@@ -1,0 +1,36 @@
+{
+  "mainHeading": "Sprachen",
+  "content": [
+    {
+      "heading": "Verknüpfung von Sprachen",
+      "text": "Da es sich bei Sprachen nur um Mengen von Wörtern handelt, können normale Operationen angewandt werden. So können verschiedene Wörter beliebig oft aneinandergehängt (verkettet) werden. Die Sonderform der Potenz beschreibt das Verketten des selben Wortes. Oder es lässt sich das Inverse eines Wortes bilden. Auf Sprachebene lassen sich Mengenoperationen wie die Verkettung oder das Potenzieren von Sprachen sowie die Bildung der kleenschen Hülle, des Schnitts, der Vereinigung oder des Komplements durchführen."
+    },
+    {
+      "text": "Auf Wortebene:\n\nVerkettung: w * v = wv \nDie Verkettung beschreibt das aneinanderreihen von Wörtern."
+    },
+    {
+      "text": "Potenz: wⁿ = w₁ w₂ ... wₙ \nDie Potenz beschreibt das aneinanderreihen gleicher Wörtern."
+    },
+    {
+      "text": "Inverses: wᵀ = wₙ wₙ₋₁ ... w₁ \nDas Inverse beschreibt die Umkehr eines Wortes."
+    },
+    {
+      "text": "Auf Sprachebene:\n\nVerkettung: L₁ ◦ L₂ \nBei der Verkettung zweier Sprachen wird jedes Wort wx aus der Sprache L₁ mit einem Wort wy aus der Sprache L₂ verkettet. Beispiel: L₁ = {a, b} und L₂ = {c, d} ergeben L = {ac, ad, bc, bd}"
+    },
+    {
+      "text": "Potenz: Lⁿ = w₁ w₂ ... wₙ\nDie Potenz beschreibt die n-fache Verkettung der gleichen Sprache. Wenn L¹ = {a, b}, dann ist L² = {aa, ab, ba, bb}, L³ = {aaa, aab, aba, abb, baa, bab, bba, bbb}, etc."
+    },
+    {
+      "text": "Kleensche Hülle: L*\nDie Kleensche Hülle umfasst alle möglichen Potenzen einer Sprache, inklusive des leeren Wortes ε. Wenn L die Potenzen L¹ = {a, b}, dann ist L² = {aa, ab, ba, bb}, L³ = {aaa, aab, aba, abb, baa, bab, bba, bbb}, etc. hat, dann besteht die Kleensche Hülle aus der Vereinigung all dieser Mengen: L* = {ε, a, b, aa, ab, ba, bb, aaa, aab, aba, abb, baa, bab, bba, bbb, ...}."
+    },
+    {
+      "text": "Schnitt: L₁ ∩ L₂\nDas Ergebnis des Schnitts umfasst alle Wörter, die sowohl in L₁ als auch L₂ vorkommen. Wenn L₁ = {a, b} und L₂ = {a, c}, dann ist L₁ ∩ L₂ = {a}."
+    },
+    {
+      "text": "Vereinigung: L₁ ∪ L₂\nDas Ergebnis der Vereinigung umfasst alle Wörter, die in L₁ oder L₂ (oder in beiden Sprachen) vorkommen. Wenn L₁ = {a, b} und L₂ = {a, c}, dann ist L₁ ∪ L₂ = {a, b, c}."
+    },
+    {
+      "text": "Komplement: L̅ oder Σ*\\L\nDas Komplement umfasst alle Wörter, die nicht in L, aber in Σ* vorkommen. Wenn L₁ = {a, b} und Σ* = {a, b, c, c}, dann ist Σ*\\L = {c, d}."
+    }
+  ]
+}

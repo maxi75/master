@@ -1,0 +1,202 @@
+{
+  "mainHeading": "Übungsaufgaben",
+  "content": [
+    {
+      "heading": "Abschlusseigenschaften",
+      "exercises": [
+        {
+          "kind": "MULTIPLE_CHOICE",
+          "question": "Es gibt den Automaten A₁ mit den Zuständen {hoch, runter} und den Automaten A₂ mit den Zuständen {links, rechts}. Welche Zustände stehen für den vereinigten Automaten A₁₂?",
+          "correctAnswers": [
+            2
+          ],
+          "answers": [
+            "{hoch, runter, links, rechts}",
+            "{hoch, runter, links, rechts, ⋆}",
+            "{hochlinks, hochrechts, runterlinks, runterrechts}",
+            "{hochlinks, hochrechts, runterlinks, runterrechts, ⋆}"
+          ]
+        },
+        {
+          "kind": "MULTIPLE_CHOICE",
+          "question": "Automat A₁ mit den Zuständen {hoch, runter}  hat als Startzustand 'hoch' und der Automat A₂ mit den Zuständen {links, rechts} hat als Startzustand 'links'. Welche Startzustände stehen für den vereinigten Automaten A₁₂?",
+          "correctAnswers": [
+            0
+          ],
+          "answers": [
+            "{hochlinks}",
+            "{hochlinks, ⋆}",
+            "{hoch}",
+            "{hoch, ⋆}"
+          ]
+        },
+        {
+          "kind": "MULTIPLE_CHOICE",
+          "question": "Automat A₁ mit den Zuständen {hoch, runter}  hat als Endzustand 'runter' und der Automat A₂ mit den Zuständen {links, rechts} hat als Endzustand 'rechts'. Welche Endzustände stehen für den vereinigten Automaten A₁₂?",
+          "correctAnswers": [
+            2
+          ],
+          "answers": [
+            "{runterrechts}",
+            "{runterrechts, ⋆}",
+            "{hochrechts, runterlinks, runterrechts}",
+            "{hochrechts, runterlinks, runterrechts, ⋆}",
+            "{rechts}",
+            "{rechts, ⋆}"
+          ]
+        },
+        {
+          "kind": "SOLUTION",
+          "question": "Gegeben ist folgende Automatendefinition: \n A₁=({1, 2, 3}, {a, b, c, d}, δ, a, {d}) \n\n mit der Zustandsübergangsfunktion: \nδ(a,1) = δ(c,2) = b; δ(a,2) = δ(b,1) = c; δ(c,3) = d;\n\n Und die Automatendefinition: \n A₂=({1, 2, 3}, {x, y, z}, δ, x, {y, z}) \n\n mit der Zustandsübergangsfunktion: \nδ(x,1) = δ(z,2) = y; δ(x,2) = δ(y,3) = z; \n\nVereinige beide Definitionen und konstruiere einen beispielhaften Automaten in der Simulation.",
+          "nodes": [
+            "ax", "by", "cz"
+          ],
+          "startingNode": "ax",
+          "endingNodes": [
+            "by", "cz"
+          ],
+          "transitions": [
+            "ax --1--> by",
+            "ax --2--> cz",
+            "cz --2--> by"
+          ]
+        },
+        {
+          "kind": "MULTIPLE_CHOICE",
+          "question": "Es gibt den Automaten A₁ mit den Zuständen {hoch, runter} und den Automaten A₂ mit den Zuständen {links, rechts}. Welche Zustände stehen für den konkatenierten Automaten A₁₂?",
+          "correctAnswers": [
+            1
+          ],
+          "answers": [
+            "{hoch, rechts, runter, links}",
+            "{hoch, rechts, runter, links, ⋆}",
+            "{hochlinks, hochrechts, runterlinks, runterrechts}",
+            "{hochlinks, hochrechts, runterlinks, runterrechts, ⋆}"
+          ]
+        },
+        {
+          "kind": "MULTIPLE_CHOICE",
+          "question": "Automat A₁ mit den Zuständen {hoch, runter}  hat als Startzustand 'hoch' und der Automat A₂ mit den Zuständen {links, rechts} hat als Startzustand 'links'. Welche Startzustände stehen für den konkatenierten Automaten A₁₂?",
+          "correctAnswers": [
+            0
+          ],
+          "answers": [
+            "{hochlinks}",
+            "{hochlinks, ⋆}",
+            "{hoch}",
+            "{hoch, ⋆}"
+          ]
+        },
+        {
+          "kind": "MULTIPLE_CHOICE",
+          "question": "Automat A₁ mit den Zuständen {hoch, runter}  hat als Endzustand 'runter' und der Automat A₂ mit den Zuständen {links, rechts} hat als Endzustand 'rechts'. Welche Endzustände stehen für den konkatenierten Automaten A₁₂?",
+          "correctAnswers": [
+            4
+          ],
+          "answers": [
+            "{runterrechts}",
+            "{runterrechts, ⋆}",
+            "{hochrechts, runterlinks, runterrechts}",
+            "{hochrechts, runterlinks, runterrechts, ⋆}",
+            "{rechts}",
+            "{rechts, ⋆}"
+          ]
+        },
+        {
+          "kind": "SOLUTION",
+          "question": "Gegeben ist folgende Automatendefinition: \n A₁=({1, 2, 3}, {a, b, c, d}, δ, a, {d}) \n\n mit der Zustandsübergangsfunktion: \nδ(a,1) = δ(c,2) = b; δ(a,2) = δ(b,1) = c; δ(c,3) = d;\n\n Und die Automatendefinition: \n A₂=({1, 2, 3}, {x, y, z}, δ, x, {y, z}) \n\n mit der Zustandsübergangsfunktion: \nδ(x,1) = δ(z,2) = y; δ(x,2) = δ(y,3) = z; \n\nKonkateniere beide Definitionen und konstruiere einen beispielhaften Automaten in der Simulation.",
+          "nodes": [
+            "a", "b", "c", "d", "y", "z"
+          ],
+          "startingNode": "a",
+          "endingNodes": [
+            "y", "z"
+          ],
+          "transitions": [
+            "a --1--> b",
+            "a --2--> c",
+            "b --1--> c",
+            "c --2--> b",
+            "c --3--> d",
+            "d --1--> y",
+            "d --2--> z",
+            "y --3--> z",
+            "z --2--> y"
+          ]
+        },
+        {
+          "kind": "MULTIPLE_CHOICE",
+          "question": "Es gibt den Automaten A₁ mit den Zuständen {hoch, runter} und den Automaten A₂ mit den Zuständen {links, rechts}. Welche Zustände stehen für den Schnitt bei Automat A₁₂?",
+          "correctAnswers": [
+            2
+          ],
+          "answers": [
+            "{hoch, rechts, runter, links}",
+            "{hoch, rechts, runter, links, ⋆}",
+            "{hochlinks, hochrechts, runterlinks, runterrechts}",
+            "{hochlinks, hochrechts, runterlinks, runterrechts, ⋆}"
+          ]
+        },
+        {
+          "kind": "MULTIPLE_CHOICE",
+          "question": "Automat A₁ mit den Zuständen {hoch, runter}  hat als Startzustand 'hoch' und der Automat A₂ mit den Zuständen {links, rechts} hat als Startzustand 'links'. Welche Startzustände stehen für den Schnitt bei Automat A₁₂?",
+          "correctAnswers": [
+            2
+          ],
+          "answers": [
+            "{hochlinks}",
+            "{hochlinks, ⋆}",
+            "{hoch}",
+            "{hoch, ⋆}"
+          ]
+        },
+        {
+          "kind": "MULTIPLE_CHOICE",
+          "question": "Automat A₁ mit den Zuständen {hoch, runter}  hat als Endzustand 'runter' und der Automat A₂ mit den Zuständen {links, rechts} hat als Endzustand 'rechts'. Welche Endzustände stehen für den Schnitt bei Automat A₁₂?",
+          "correctAnswers": [
+            0
+          ],
+          "answers": [
+            "{runterrechts}",
+            "{runterrechts, ⋆}",
+            "{hochrechts, runterlinks, runterrechts}",
+            "{hochrechts, runterlinks, runterrechts, ⋆}",
+            "{rechts}",
+            "{rechts, ⋆}"
+          ]
+        },
+        {
+          "kind": "SOLUTION",
+          "question": "Gegeben ist folgende Automatendefinition: \n A₁=({1, 2, 3}, {a, b, c, d}, δ, a, {d}) \n\n mit der Zustandsübergangsfunktion: \nδ(a,1) = δ(c,2) = b; δ(a,2) = δ(b,1) = c; δ(c,3) = d;\n\n Und die Automatendefinition: \n A₂=({1, 2, 3}, {x, y, z}, δ, x, {y, z}) \n\n mit der Zustandsübergangsfunktion: \nδ(x,1) = δ(z,2) = y; δ(x,2) = δ(y,3) = z; \n\nBilde den Schnitt beider Definitionen und konstruiere einen beispielhaften Automaten in der Simulation.",
+          "nodes": [
+            "ax", "by", "cz"
+          ],
+          "startingNode": "ax",
+          "transitions": [
+            "ax --1--> by",
+            "ax --2--> cz",
+            "cz --2--> by"
+          ]
+        },
+        {
+          "kind": "SOLUTION",
+          "question": "Gegeben ist folgende Automatendefinition: \n A₁=({1, 2, 3}, {a, b, c, d}, δ, a, {d}) \n\n mit der Zustandsübergangsfunktion: \nδ(a,1) = δ(c,2) = b; δ(a,2) = δ(b,1) = c; δ(c,3) = d;\n\nBilde das Komplement und konstruiere einen beispielhaften Automaten in der Simulation.",
+          "nodes": [
+            "a", "b", "c", "d"
+          ],
+          "startingNode": "a",
+          "endingNodes": [
+            "a", "b", "c"
+          ],
+          "transitions": [
+            "a --1--> b",
+            "a --2--> c",
+            "b --1--> c",
+            "c --2--> b",
+            "c --3--> d"
+          ]
+        }
+      ]
+    }
+  ]
+}

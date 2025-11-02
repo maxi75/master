@@ -28,9 +28,8 @@ class GraphRenderingTest {
 
     @BeforeEach
     void setUp() throws IOException {
-        when(automataGeneratorMock.generateCompactDFA(any())).thenReturn(TestDataGenerator.getCorrectDfaValues(true, true, true, true));
         when(automataGeneratorMock.generateCompactNFA(any())).thenReturn(TestDataGenerator.getCorrectNfaValues(true, true, true, true));
-        when(automataGeneratorMock.generateCompactDFA(isNull())).thenReturn(null);
+        when(automataGeneratorMock.removeSinkNodes(any())).thenReturn(TestDataGenerator.getCorrectDfa(true, true, true, true));
         when(automataGeneratorMock.generateCompactNFA(isNull())).thenReturn(null);
         when(simulatorMock.simulatedDFA(any(), anyString())).thenReturn(TestDataGenerator.getGraphEvaluationResultOptional());
         when(simulatorMock.simulatedNFA(any(), anyString())).thenReturn(TestDataGenerator.getGraphEvaluationResultOptional());
@@ -49,7 +48,7 @@ class GraphRenderingTest {
 
             Optional<String> actual = classUnderTest.dfaToDot(graphDataInput);
 
-            verify(automataGeneratorMock, times(1)).generateCompactDFA(any());
+            verify(automataGeneratorMock, times(1)).generateCompactNFA(any());
             verify(simulatorMock, times(1)).simulatedDFA(any(), isNull());
             verify(toDotConverterMock, times(1)).toDot(any(), isNull(), isNull(), isNull());
             assertThat(actual).isEqualTo(Optional.empty());
@@ -59,7 +58,7 @@ class GraphRenderingTest {
         void graphDataNull() throws IOException {
             Optional<String> actual = classUnderTest.dfaToDot(null);
 
-            verify(automataGeneratorMock, times(0)).generateCompactDFA(any());
+            verify(automataGeneratorMock, times(0)).generateCompactNFA(any());
             verify(simulatorMock, times(0)).simulatedDFA(any(), isNull());
             verify(toDotConverterMock, times(0)).toDot(any(), isNull(), isNull(), isNull());
             assertThat(actual).isEqualTo(Optional.empty());
@@ -76,7 +75,7 @@ class GraphRenderingTest {
 
             assertThatNoException().isThrownBy(() -> classUnderTest.simulatedDFAToDot(graphDataInput, stringInput));
 
-            verify(automataGeneratorMock, times(1)).generateCompactDFA(any());
+            verify(automataGeneratorMock, times(1)).generateCompactNFA(any());
             verify(simulatorMock, times(1)).simulatedDFA(any(), anyString());
             verify(toDotConverterMock, times(1)).toDot(any(), any(), any(), anyBoolean());
         }
@@ -94,7 +93,7 @@ class GraphRenderingTest {
 
             assertThatNoException().isThrownBy(() -> classUnderTest.simulatedDFAToDot(graphDataInput, null));
 
-            verify(automataGeneratorMock, times(1)).generateCompactDFA(any());
+            verify(automataGeneratorMock, times(1)).generateCompactNFA(any());
             verify(simulatorMock, times(1)).simulatedDFA(any(), isNull());
             verify(toDotConverterMock, times(1)).toDot(any(), isNull(), isNull(), isNull());
         }
@@ -108,7 +107,7 @@ class GraphRenderingTest {
 
             assertThatNoException().isThrownBy(() -> classUnderTest.simulatedDFAToDot(graphDataInput, stringInput));
 
-            verify(automataGeneratorMock, times(1)).generateCompactDFA(any());
+            verify(automataGeneratorMock, times(1)).generateCompactNFA(any());
             verify(simulatorMock, times(1)).simulatedDFA(any(), anyString());
             verify(toDotConverterMock, times(1)).toDot(any(), isNull(), isNull(), anyBoolean());
         }
@@ -121,7 +120,7 @@ class GraphRenderingTest {
 
             Optional<String> actual =  classUnderTest.simulatedDFAToDot(graphDataInput, stringInput);
 
-            verify(automataGeneratorMock, times(1)).generateCompactDFA(any());
+            verify(automataGeneratorMock, times(1)).generateCompactNFA(any());
             verify(simulatorMock, times(1)).simulatedDFA(any(), anyString());
             verify(toDotConverterMock, times(1)).toDot(any(), any(), any(), anyBoolean());
             assertThat(actual).isEmpty();
@@ -149,76 +148,12 @@ class GraphRenderingTest {
 
         @Test
         void automataGeneratorResultIsNull() {
-            when(automataGeneratorMock.generateCompactDFA(any())).thenReturn(null);
+            when(automataGeneratorMock.generateCompactNFA(any())).thenReturn(null);
             GraphData graphDataInput = TestDataGenerator.getCorrectGraphData();
 
             CompactDFA<String> actual =  classUnderTest.getCompactDFAFromGraphData(graphDataInput);
 
             assertThat(actual).isNull();
-        }
-    }
-
-    @Nested
-    class AcceptsInputDFA {
-
-        @Test
-        void withValues() {
-            GraphData graphDataInput = TestDataGenerator.getCorrectGraphData();
-            String stringInput = "SampleString";
-
-            boolean result = classUnderTest.acceptsInputDFA(graphDataInput, stringInput);
-
-            verify(automataGeneratorMock, times(1)).generateCompactDFA(any());
-            verify(simulatorMock, times(1)).simulatedDFA(any(), anyString());
-            assertTrue(result);
-        }
-
-        @Test
-        void graphDataNull() {
-            String stringInput = "SampleString";
-
-            boolean result = classUnderTest.acceptsInputDFA(null, stringInput);
-
-            verify(automataGeneratorMock, times(1)).generateCompactDFA(any());
-            verify(simulatorMock, times(0)).simulatedDFA(any(), anyString());
-            assertFalse(result);
-        }
-
-        @Test
-        void inputNull() {
-            GraphData graphDataInput = TestDataGenerator.getCorrectGraphData();
-
-            boolean result = classUnderTest.acceptsInputDFA(graphDataInput, null);
-
-            verify(automataGeneratorMock, times(1)).generateCompactDFA(any());
-            verify(simulatorMock, times(1)).simulatedDFA(any(), isNull());
-            assertFalse(result);
-        }
-
-        @Test
-        void dfaValuesNull() {
-            when(automataGeneratorMock.generateCompactDFA(any())).thenReturn(null);
-            GraphData graphDataInput = TestDataGenerator.getCorrectGraphData();
-            String stringInput = "SampleString";
-
-            boolean result = classUnderTest.acceptsInputDFA(graphDataInput, stringInput);
-
-            verify(automataGeneratorMock, times(1)).generateCompactDFA(any());
-            verify(simulatorMock, times(0)).simulatedDFA(any(), anyString());
-            assertFalse(result);
-        }
-
-        @Test
-        void simulationResultEmpty() {
-            when(simulatorMock.simulatedDFA(any(), anyString())).thenReturn(Optional.empty());
-            GraphData graphDataInput = TestDataGenerator.getCorrectGraphData();
-            String stringInput = "SampleString";
-
-            boolean result = classUnderTest.acceptsInputDFA(graphDataInput, stringInput);
-
-            verify(automataGeneratorMock, times(1)).generateCompactDFA(any());
-            verify(simulatorMock, times(1)).simulatedDFA(any(), anyString());
-            assertFalse(result);
         }
     }
 

@@ -1,0 +1,138 @@
+{
+  "mainHeading": "Übungsaufgaben",
+  "content": [
+    {
+      "heading": "Automaten, formale Sprachen und Grammatiken",
+      "exercises": [
+        {
+          "kind": "MULTIPLE_CHOICE",
+          "question": "Was sind Automaten?",
+          "correctAnswers": [
+            0,
+            1
+          ],
+          "answers": [
+            "Zustandsmodell, die Eingaben einlesen",
+            "Zustandsmodelle, die der Modellierung von Algorithmen dienen",
+            "Modelle zur Verifikation von Code",
+            "Modelle zur Generierung von Code"
+          ]
+        },
+        {
+          "kind": "MULTIPLE_CHOICE",
+          "question": "Ein Modell erlaubt die Eingabe von 1€, 2€ und 5€. Kann ein gültiger Endzustand irgendwie erreicht werden, wenn ein Nutzer 10€ eingibt?",
+          "correctAnswers": [
+            1
+          ],
+          "answers": [
+            "Ja",
+            "Nein"
+          ]
+        },
+        {
+          "kind": "MULTIPLE_CHOICE",
+          "question": "Woraus darf ein Alphabet bestehen?",
+          "correctAnswers": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "answers": [
+            "Buchstaben",
+            "Symbolen",
+            "Zahlen",
+            "Sonderzeichen"
+          ]
+        },
+        {
+          "kind": "MULTIPLE_CHOICE",
+          "question": "Wozu dienen Grammatiken?",
+          "correctAnswers": [
+            1,
+            3
+          ],
+          "answers": [
+            "Definition eines Alphabets",
+            "Festlegen der Regeln einer Sprache",
+            "Erweitern eines Alphabets",
+            "Einschränken eines Alphabets"
+          ]
+        },
+        {
+          "kind": "MULTIPLE_CHOICE",
+          "question": "Kann ein Automat mehr Endzustände als Startzustände besitzen?",
+          "correctAnswers": [
+            0
+          ],
+          "answers": [
+            "Ja",
+            "Nein"
+          ]
+        },
+        {
+          "kind": "MULTIPLE_CHOICE",
+          "question": "Was steht für deterministischer endlicher Automat?",
+          "correctAnswers": [
+            0,
+            3
+          ],
+          "answers": [
+            "DEA",
+            "SEA",
+            "NFA",
+            "DFA",
+            "DFM"
+          ]
+        },
+        {
+          "kind": "MULTIPLE_CHOICE",
+          "question": "Wofür/Warum eignet sich manchmal ein NEA?",
+          "correctAnswers": [
+            0,
+            2
+          ],
+          "answers": [
+            "ein NEA ist manchmal kürzer als ein DEA",
+            "ein NEA ist schneller in der Ausführung",
+            "ein NEA ist einfacher zu konstruieren",
+            "ein NEA ist speichereffizienter"
+          ]
+        },
+        {
+          "kind": "MULTIPLE_CHOICE",
+          "question": "Ist ein NEA auch immer ein DEA?",
+          "correctAnswers": [
+            1
+          ],
+          "answers": [
+            "Ja",
+            "Nein"
+          ]
+        },
+        {
+          "kind": "MULTIPLE_CHOICE",
+          "question": "Ist ein DEA auch immer ein NEA?",
+          "correctAnswers": [
+            0
+          ],
+          "answers": [
+            "Ja",
+            "Nein"
+          ]
+        },
+        {
+          "kind": "MULTIPLE_CHOICE",
+          "question": "Kann ein NEA immer in einen DEA umgewandelt werden?",
+          "correctAnswers": [
+            0
+          ],
+          "answers": [
+            "Ja",
+            "Nein"
+          ]
+        }
+      ]
+    }
+  ]
+}

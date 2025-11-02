@@ -48,7 +48,7 @@ class SimulationOverlayTest extends UITest {
 
             fxWait(1000);
             assertThat(classUnderTest.graphBox.getItems()).containsAll(Arrays.asList(AutomataSimulation.values()));
-            assertEquals(AutomataSimulation.DFA, classUnderTest.graphBox.getValue());
+            assertEquals(AutomataSimulation.NEA, classUnderTest.graphBox.getValue());
         }
 
         @Test
@@ -146,7 +146,7 @@ class SimulationOverlayTest extends UITest {
             });
 
             fxWait(1000);
-            verify(applicationEventPublisherMock, times(0)).publishEvent(new SimulationEvent(EMPTY_STRING));
+            verify(applicationEventPublisherMock, times(1)).publishEvent(new SimulationEvent(EMPTY_STRING));
         }
 
         @Test
@@ -169,7 +169,7 @@ class SimulationOverlayTest extends UITest {
             });
 
             fxWait(1000);
-            verify(applicationEventPublisherMock, times(0)).publishEvent(new SimulationEvent(EMPTY_STRING));
+            verify(applicationEventPublisherMock, times(1)).publishEvent(new SimulationEvent(EMPTY_STRING));
         }
 
         @Test
@@ -218,9 +218,9 @@ class SimulationOverlayTest extends UITest {
         Platform.runLater(classUnderTest::initialize);
         fxWait(1000);
 
-        classUnderTest.setComboBox(AutomataSimulation.NFA);
+        classUnderTest.setComboBox(AutomataSimulation.NEA);
 
-        assertEquals(AutomataSimulation.NFA, classUnderTest.graphBox.getValue());
-        verify(graphAdministratorMock, times(1)).changeSelectedGraph(AutomataSimulation.NFA);
+        assertEquals(AutomataSimulation.NEA, classUnderTest.graphBox.getValue());
+        verify(graphAdministratorMock, times(1)).changeSelectedGraph(AutomataSimulation.NEA);
     }
 }

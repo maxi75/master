@@ -28,10 +28,6 @@
             <Button styleClass="navButtons" fx:id="batchNavigation">
                 0.1 Batches
             </Button>
-            <Button styleClass="navButtons" onAction="#loadContent">
-                <userData>chapterZero/introduction.json</userData>
-                0.2 Einführung in die Lernsoftware
-            </Button>
 
             <!-- Kapitel 1 -->
             <Label styleClass="navLabels, newChapters">1. Grundlagen</Label>
@@ -44,44 +40,47 @@
                 <userData>chapterOne/automata.json</userData>
                 1.1.2 Deterministische und nichtdeterministische endliche Automaten
             </Button>
+            <Button styleClass="navButtons, thirdRow" onAction="#loadContent">
+                <userData>chapterOne/ExercisesOne.json</userData>
+                1.1.3 Übungsaufgaben Automaten, formale Sprachen und Grammatiken
+            </Button>
             <Button styleClass="navButtons" onAction="#loadContent">
                 <userData>chapterOne/graphicalAutomata.json</userData>
                 1.2 Grafische Repräsentation von Automaten
+            </Button>
+            <Button styleClass="navButtons" onAction="#loadContent">
+                <userData>chapterOne/ExercisesTwo.json</userData>
+                1.3 Übungsaufgaben Automatenkonstruktion
             </Button>
 
             <!-- Kapitel 2 -->
             <Label styleClass="navLabels, newChapters">2. Formale Repräsentation der Grundlagen</Label>
             <Button styleClass="navButtons" onAction="#loadContent">
                 <userData>chapterTwo/alphabet.json</userData>
-                2.1 Alphabet
-            </Button>
-            <Button styleClass="navButtons" onAction="#loadContent">
-                <userData>chapterTwo/languages.json</userData>
-                2.2 Formale Sprachen
+                2.1 Alphabet und formale Sprachen
             </Button>
             <Button styleClass="navButtons" onAction="#loadContent">
                 <userData>chapterTwo/grammar.json</userData>
-                .3 Grammatik
+                2.2 Grammatik
             </Button>
             <Button styleClass="navButtons" onAction="#loadContent">
                 <userData>chapterTwo/dea.json</userData>
-                2.4 DEA
+                2.3 DEA
             </Button>
             <Button styleClass="navButtons" onAction="#loadContent">
                 <userData>chapterTwo/nea.json</userData>
-                2.5 NEA
+                2.4 NEA
+            </Button>
+            <Button styleClass="navButtons" onAction="#loadContent">
+                <userData>chapterTwo/ExercisesOne.json</userData>
+                2.5 Übungsaufgaben formale Repräsentation der Grundlagen
             </Button>
 
             <!-- Kapitel 3 -->
             <Label styleClass="navLabels, newChapters">3. Definitionen und Regeln</Label>
-            <Label styleClass="subchapter, secondRow">3.1 Verknüpfung von Wörtern und Sprachen</Label>
-            <Button styleClass="navButtons, thirdRow" onAction="#loadContent">
-                <userData>chapterThree/words.json</userData>
-                3.1.1 Wortebene
-            </Button>
-            <Button styleClass="navButtons, thirdRow" onAction="#loadContent">
+            <Button styleClass="navButtons" onAction="#loadContent">
                 <userData>chapterThree/language.json</userData>
-                3.1.2 Sprachebene
+                3.1 Verknüpfung von Wörtern und Sprachen
             </Button>
             <Button styleClass="navButtons" onAction="#loadContent">
                 <userData>chapterThree/accepting.json</userData>
@@ -91,49 +90,62 @@
                 <userData>chapterThree/closure.json</userData>
                 3.3 Abgeschlossenheit von Sprachklassen
             </Button>
+            <Button styleClass="navButtons" onAction="#loadContent">
+                <userData>chapterThree/ExercisesOne.json</userData>
+                3.3 Übungsaufgaben Verknüpfungen und Abgeschlossenheit
+            </Button>
 
             <!-- Kapitel 4 -->
             <Label styleClass="navLabels, newChapters">4. Automatenkonstruktion</Label>
-            <Button styleClass="navButtons" onAction="#loadContent">
+            <Label styleClass="subchapter, secondRow">4.1 Konstruktion</Label>
+            <Button styleClass="navButtons, thirdRow" onAction="#loadContent">
                 <userData>chapterFour/constructionDEA.json</userData>
-                4.1 Konstruktion eines DEA
+                4.1.1 Konstruktion eines DEA
             </Button>
-            <Button styleClass="navButtons" onAction="#loadContent">
+            <Button styleClass="navButtons, thirdRow" onAction="#loadContent">
                 <userData>chapterFour/constructionNEA.json</userData>
-                4.2 Konstruktion eines NEA
+                4.1.2 Konstruktion eines NEA
             </Button>
-            <Button styleClass="navButtons" onAction="#loadContent">
+            <Button styleClass="navButtons, thirdRow" onAction="#loadContent">
                 <userData>chapterFour/potency.json</userData>
-                4.3 Potenzmengenkonstruktion
+                4.1.3 Potenzmengenkonstruktion
             </Button>
-            <Label styleClass="subchapter, secondRow">4.4 Abschlusseigenschaften</Label>
+            <Button styleClass="navButtons, thirdRow" onAction="#loadContent">
+                <userData>chapterFour/ExercisesOne.json</userData>
+                4.1.4 Übungsaufgaben Konstruktion
+            </Button>
+            <Label styleClass="subchapter, secondRow">4.2 Abschlusseigenschaften</Label>
             <Button styleClass="navButtons, thirdRow" onAction="#loadContent">
                 <userData>chapterFour/union.json</userData>
-                4.4.1 Vereinigung
+                4.2.1 Vereinigung
             </Button>
             <Button styleClass="navButtons, thirdRow" onAction="#loadContent">
                 <userData>chapterFour/complement.json</userData>
-                4.4.2 Komplement
+                4.2.2 Komplement
             </Button>
             <Button styleClass="navButtons, thirdRow" onAction="#loadContent">
                 <userData>chapterFour/section.json</userData>
-                4.4.3 Schnitt
+                4.2.3 Schnitt
             </Button>
             <Button styleClass="navButtons, thirdRow" onAction="#loadContent">
                 <userData>chapterFour/concatenation.json</userData>
-                4.4.4 Konkatenation
+                4.2.4 Konkatenation / Verkettung
             </Button>
             <Button styleClass="navButtons, thirdRow" onAction="#loadContent">
                 <userData>chapterFour/star.json</userData>
-                4.4.5 Kleene-Stern
+                4.2.5 Kleene-Stern
+            </Button>
+            <Button styleClass="navButtons, thirdRow" onAction="#loadContent">
+                <userData>chapterFour/ExercisesTwo.json</userData>
+                4.2.6 Übungsaufgaben Abschlusseigenschaften
             </Button>
 
-            <!-- Spezialübungen -->
+            <!-- Bonusaufgaben -->
             <Label styleClass="navLabels, newChapters">5. Zusatz</Label>
             <HBox>
                 <Button styleClass="navButtons" fx:id="specialExercise">
                     <userData>chapterFive/specialExercises.json</userData>
-                    5.1 Spezialübungen (500 Punkte)
+                    5.1 Bonusaufgaben (325 Punkte)
                 </Button>
                 <ImageView fitWidth="23" fitHeight="23" preserveRatio="true" styleClass="lockImage" fx:id="lockImage">
                     <Image url="/packaging/icons/lock.png"/>

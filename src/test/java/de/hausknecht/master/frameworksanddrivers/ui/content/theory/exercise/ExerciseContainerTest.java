@@ -98,7 +98,7 @@ class ExerciseContainerTest extends UITest {
         @Test
         void noErrorDeaWord() {
             TheoryPageData.Exercise exercise = TestDataGenerator.getCorrectExerciseData();
-            exercise.setKind(ExerciseType.DEA_WORD);
+            exercise.setKind(ExerciseType.WORD);
             VBox container = new VBox();
 
             classUnderTest.addExercise(exercise, container);
@@ -113,7 +113,7 @@ class ExerciseContainerTest extends UITest {
         @Test
         void noErrorNeaWord() {
             TheoryPageData.Exercise exercise = TestDataGenerator.getCorrectExerciseData();
-            exercise.setKind(ExerciseType.NEA_WORD);
+            exercise.setKind(ExerciseType.WORD);
             VBox container = new VBox();
 
             classUnderTest.addExercise(exercise, container);

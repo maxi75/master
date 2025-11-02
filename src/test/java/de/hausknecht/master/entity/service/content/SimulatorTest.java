@@ -1,9 +1,9 @@
 package de.hausknecht.master.entity.service.content;
 
 import de.hausknecht.master.TestDataGenerator;
-import de.hausknecht.master.entity.domain.automata.DfaValues;
 import de.hausknecht.master.entity.domain.automata.GraphData;
 import de.hausknecht.master.entity.domain.automata.GraphEvaluationResult;
+import de.hausknecht.master.entity.domain.automata.NfaValues;
 import de.hausknecht.master.entity.service.automata.definition.AutomataGenerator;
 import net.automatalib.automaton.fsa.impl.CompactDFA;
 import net.automatalib.automaton.fsa.impl.CompactNFA;
@@ -129,7 +129,7 @@ class SimulatorTest {
 
         @BeforeEach
         void setUp() {
-            when(automataGeneratorMock.generateCompactDFA(any())).thenReturn(TestDataGenerator.getCorrectDfaValues(true, true, true, true));
+            when(automataGeneratorMock.generateCompactNFA(any())).thenReturn(TestDataGenerator.getCorrectNfaValues(true, true, true, true));
         }
 
         @Test
@@ -149,7 +149,7 @@ class SimulatorTest {
 
         @Test
         void dfaValuesAreNull() {
-            when(automataGeneratorMock.generateCompactDFA(any())).thenReturn(null);
+            when(automataGeneratorMock.generateCompactNFA(any())).thenReturn(null);
             GraphData graphDataInput = TestDataGenerator.getCorrectGraphData();
             Optional<String> actual = classUnderTest.findAcceptingInputForGraphData(graphDataInput);
 
@@ -158,9 +158,9 @@ class SimulatorTest {
 
         @Test
         void dfaIsNull() {
-            DfaValues dfaValuesTemplate = TestDataGenerator.getCorrectDfaValues(true, true, true, true);
-            DfaValues dfaValues = new DfaValues(null, dfaValuesTemplate.idToNode(), dfaValuesTemplate.nodeToId());
-            when(automataGeneratorMock.generateCompactDFA(any())).thenReturn(dfaValues);
+            NfaValues nfaValuesTemplate = TestDataGenerator.getCorrectNfaValues(true, true, true, true);
+            NfaValues dfaValues = new NfaValues(null, nfaValuesTemplate.idToNode(), nfaValuesTemplate.nodeToId());
+            when(automataGeneratorMock.generateCompactNFA(any())).thenReturn(dfaValues);
             GraphData graphDataInput = TestDataGenerator.getCorrectGraphData();
             Optional<String> actual = classUnderTest.findAcceptingInputForGraphData(graphDataInput);
 
@@ -169,10 +169,10 @@ class SimulatorTest {
 
         @Test
         void initialStateIsNull() {
-            DfaValues dfaValuesTemplate = TestDataGenerator.getCorrectDfaValues(true, true, true, true);
-            CompactDFA<String> dfa = TestDataGenerator.getCorrectDfa(true, true, false, true);
-            DfaValues dfaValues = new DfaValues(dfa, dfaValuesTemplate.idToNode(), dfaValuesTemplate.nodeToId());
-            when(automataGeneratorMock.generateCompactDFA(any())).thenReturn(dfaValues);
+            NfaValues nfaValuesTemplate = TestDataGenerator.getCorrectNfaValues(true, true, true, true);
+            CompactNFA<String> nfa = TestDataGenerator.getCorrectNfa(true, true, false, true);
+            NfaValues nfaValues = new NfaValues(nfa, nfaValuesTemplate.idToNode(), nfaValuesTemplate.nodeToId());
+            when(automataGeneratorMock.generateCompactNFA(any())).thenReturn(nfaValues);
             GraphData graphDataInput = TestDataGenerator.getCorrectGraphData();
             Optional<String> actual = classUnderTest.findAcceptingInputForGraphData(graphDataInput);
 
@@ -181,9 +181,9 @@ class SimulatorTest {
 
         @Test
         void firstStateIsAccepting() {
-            DfaValues dfaValues = TestDataGenerator.getCorrectDfaValues(true, true, true, true);
-            dfaValues.dfa().setAccepting(0, true);
-            when(automataGeneratorMock.generateCompactDFA(any())).thenReturn(dfaValues);
+            NfaValues nfaValues = TestDataGenerator.getCorrectNfaValues(true, true, true, true);
+            nfaValues.nfa().setAccepting(0, true);
+            when(automataGeneratorMock.generateCompactNFA(any())).thenReturn(nfaValues);
             GraphData graphDataInput = TestDataGenerator.getCorrectGraphData();
             Optional<String> actual = classUnderTest.findAcceptingInputForGraphData(graphDataInput);
 

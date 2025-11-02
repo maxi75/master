@@ -1,0 +1,99 @@
+{
+  "mainHeading": "Übungsaufgaben",
+  "content": [
+    {
+      "heading": "Konstruktion",
+      "exercises": [
+        {
+          "kind": "NEA_DEA",
+          "nodes": [
+            "a", "b", "c", "d", "e"
+          ],
+          "startingNode": "a",
+          "endingNodes": [
+            "b", "c"
+          ],
+          "transitions": [
+            "a --x--> b",
+            "a --y--> d",
+
+            "b --x--> c",
+
+            "c --y--> e",
+
+            "d --x--> e",
+
+            "e --y--> b",
+            "e --y--> c"
+          ]
+        },
+        {
+          "kind": "MULTIPLE_CHOICE",
+          "question": "In einer vorherigen Aufgabe gab es einen Ticketautomaten: \n\nEs gibt den NEA 'Ticket-Automat', welcher 50€, 100€ und 200€ als Eingabe erlaubt. Der Startzustand nennt sich 'Eingabe'. Die Endzustände nennen sich 'Berlin', 'Rom', 'Paris'. Ein Ticket nach Berlin soll 150€ kosten, ein Ticket nach Rom 200€ und ein Ticket nach Paris 250€. \n\nVon dem Zustand 'Eingabe' aus, gibt es eine 50€-Transition in den Zustand '50€', eine 100€-Transition in den Zustand '100€', eine 200€-Transition in den Zustand '200€' und eine 200€-Transition in den Zustand 'Rom'. \n\nVom Zustand '50€' gibt es eine 50€ Transition in den Zustand '100€', eine 100€-Transition in den Zustand '150€', eine 100€-Transition in den Zustand 'Berlin' und eine 200€-Transition in den Zustand 'Paris'. \n\nVom Zustand '100€' gibt es eine 50€-Transition in den Zustand '150€', eine 50€-Transition in den Zustand 'Berlin', eine 100€-Transition in den Zustand '200€' und eine 100€-Transition in den Zustand 'Rom'. \n\nVon Zustand '150€' gibt es eine 50€-Transition in den Zustand '200€', eine 50€-Transition in den Zustand 'Rom' und eine 100€-Transition in den Zustand 'Paris'. \n\nVon Zustand '200€' gibt es eine 50€-Transition in den Zustand 'Paris'. \n\nWelche sind die dazugehörigen Automatendefinitionen?",
+          "correctAnswers": [
+            3,
+            5
+          ],
+          "answers": [
+            "A = ({50€, 100€, 200€}, {Eingabe, 50€, 100€, 150€, 200€, Berlin, Rom, Paris}, δ, {Eingabe}, {Berlin, Rom, Paris} \n\n mit der Übergangsfunktion: \n δ:{Eingabe, 50€, 100€, 150€, 200€, Berlin, Rom, Paris} × {50€, 100€, 200€} → {Eingabe, 50€, 100€, 150€, 200€, Berlin, Rom, Paris} \n\n δ(Eingabe,50€)=50€, \n δ(50€,50€)=δ(Eingabe,100€)=100€, \n δ(100€,50€)=δ(50€,100€)=150€, \n δ(150€,50€)=δ(100€,100€)=δ(Eingabe,200€)=200€, \n δ(150€,50€)=δ(100€,100€)=δ(Eingabe,200€)=Rom, \n δ(100€,50€)=δ(50€,100€)=Berlin, \n δ(200€,50€)=δ(150€,100€)=δ(50€,200€)=Paris",
+            "A = ({50€, 100€, 200€}, {Eingabe, 50€, 100€, 150€, 200€, Berlin, Rom, Paris}, δ, {Eingabe}, {Berlin, Rom, Paris} \n\n mit der Übergangsfunktion: \n δ:{Eingabe, 50€, 100€, 150€, 200€, Berlin, Rom, Paris} × {50€, 100€, 200€} → P({Eingabe, 50€, 100€, 150€, 200€, Berlin, Rom, Paris}) \n\n δ(Eingabe,50€)=50€, \n δ(50€,50€)=δ(Eingabe,100€)=100€, \n δ(100€,50€)=δ(50€,100€)=150€, \n δ(150€,50€)=δ(100€,100€)=δ(Eingabe,200€)=200€, \n δ(150€,50€)=δ(100€,100€)=δ(Eingabe,200€)=Rom, \n δ(100€,50€)=δ(50€,100€)=Berlin, \n δ(200€,50€)=δ(150€,100€)=δ(50€,200€)=Paris",
+            "A = ({50€, 100€, 200€}, {Eingabe, 50€, 100€, 150€, 200€, Berlin, Rom, Paris}, δ, {Berlin, Rom, Paris}, {Eingabe} \n\n mit der Übergangsfunktion: \n δ:{Eingabe, 50€, 100€, 150€, 200€, Berlin, Rom, Paris} × {50€, 100€, 200€} → P({Eingabe, 50€, 100€, 150€, 200€, Berlin, Rom, Paris}) \n\n δ(Eingabe,50€)=50€, \n δ(50€,50€)=δ(Eingabe,100€)=100€, \n δ(100€,50€)=δ(50€,100€)=150€, \n δ(150€,50€)=δ(100€,100€)=δ(Eingabe,200€)=200€, \n δ(150€,50€)=δ(100€,100€)=δ(Eingabe,200€)=Rom, \n δ(100€,50€)=δ(50€,100€)=Berlin, \n δ(200€,50€)=δ(150€,100€)=δ(50€,200€)=Paris",
+            "A = ({50€, 100€, 200€}, {Eingabe, 50€, 100€, 150€, 200€, Berlin, Rom, Paris}, δ, {Eingabe}, {Berlin, Rom, Paris} \n\n mit der Übergangsfunktion: \n δ:{Eingabe, 50€, 100€, 150€, 200€, Berlin, Rom, Paris} × {50€, 100€, 200€} → P({Eingabe, 50€, 100€, 150€, 200€, Berlin, Rom, Paris}) \n\n δ(Eingabe,50€)=50€, \n δ(50€,50€)=δ(Eingabe,100€)=100€, \n δ(100€,50€)=δ(50€,100€)=150€, \n δ(150€,50€)=δ(100€,100€)=δ(Eingabe,200€)=200€, \n δ(150€,50€)=δ(100€,100€)=δ(Eingabe,200€)=Rom, \n δ(100€,50€)=δ(50€,100€)=Berlin, \n δ(200€,50€)=δ(150€,100€)=δ(50€,200€)=Paris",
+            "A = ({Eingabe, 50€, 100€, 150€, 200€, Berlin, Rom, Paris}, {50€, 100€, 200€}, δ, {Eingabe}, {Berlin, Rom, Paris} \n\n mit der Übergangsfunktion: \n δ:{Eingabe, 50€, 100€, 150€, 200€, Berlin, Rom, Paris} × {50€, 100€, 200€} → P({Eingabe, 50€, 100€, 150€, 200€, Berlin, Rom, Paris}) \n\n δ(Eingabe,50€)=50€, \n δ(50€,50€)=δ(Eingabe,100€)=100€, \n δ(100€,50€)=δ(50€,100€)=150€, \n δ(150€,50€)=δ(100€,100€)=δ(Eingabe,200€)=200€, \n δ(150€,50€)=δ(100€,100€)=δ(Eingabe,200€)=Rom, \n δ(100€,50€)=δ(50€,100€)=Berlin, \n δ(200€,50€)=δ(150€,100€)=δ(50€,200€)=Paris",
+            "A = ({50€, 100€, 200€}, {Eingabe, 50€, 100€, 150€, 200€, Berlin, Rom, Paris}, δ, {Eingabe}, {Berlin, Rom, Paris} \n\n mit der Übergangsfunktion: \n δ:{Eingabe, 50€, 100€, 150€, 200€, Berlin, Rom, Paris} × {50€, 100€, 200€} → P({Eingabe, 50€, 100€, 150€, 200€, Berlin, Rom, Paris}) \n\n δ(Eingabe,50€)=50€, \n δ(50€,50€)=δ(Eingabe,100€)=100€, \n δ(100€,50€)=δ(50€,100€)={150€, Berlin}, \n δ(150€,50€)=δ(100€,100€)=δ(Eingabe,200€)={200€,Rom}, \n δ(200€,50€)=δ(150€,100€)=δ(50€,200€)=Paris"
+          ]
+        },
+        {
+          "kind": "MULTIPLE_CHOICE",
+          "question": "Welche Sprache lässt sich daraus herleiten?",
+          "correctAnswers": [
+            3
+          ],
+          "answers": [
+            "L(A) = {w ∈ {50€, 100€, 200€}∗|δ∗(Eingabe, w) ∈ {Berlin, Rom, Paris}}",
+            "L(A) = {w ∈ {Eingabe, 50€, 100€, 150€, 200€, Berlin, Rom, Paris}∗|δ∗(Eingabe, w) ∩ {Berlin, Rom, Paris}} ≠ ∅",
+            "L(A) = {w ∈ {Eingabe, 50€, 100€, 150€, 200€, Berlin, Rom, Paris}∗|δ∗(Eingabe, w) ∈ {Berlin, Rom, Paris}}",
+            "L(A) = {w ∈ {50€, 100€, 200€}∗|δ∗(Eingabe, w) ∩ {Berlin, Rom, Paris}} ≠ ∅"
+          ]
+        },
+        {
+          "kind": "NEA_DEA",
+          "nodes": [
+            "Eingabe", "50€", "100€", "150€", "200€", "Berlin", "Rom", "Paris"
+          ],
+          "startingNode": "Eingabe",
+          "endingNodes": [
+            "Berlin", "Rom", "Paris"
+          ],
+          "transitions": [
+            "Eingabe --50€--> 50€",
+            "Eingabe --100€--> 100€",
+            "Eingabe --200€--> 200€",
+            "Eingabe --200€--> Rom",
+
+            "50€ --50€--> 100€",
+            "50€ --100€--> 150€",
+            "50€ --100€--> Berlin",
+            "50€ --200€--> Paris",
+
+            "100€ --50€--> 150€",
+            "100€ --50€--> Berlin",
+            "100€ --100€--> 200€",
+            "100€ --100€--> Rom",
+
+            "100€ --50€--> 150€",
+            "100€ --50€--> Berlin",
+            "100€ --100€--> 200€",
+            "100€ --100€--> Rom",
+
+            "150€ --50€--> 200€",
+            "150€ --50€--> Rom",
+            "150€ --100€--> Paris",
+
+            "200€ --50€--> Paris"
+          ]
+        }
+      ]
+    }
+  ]
+}

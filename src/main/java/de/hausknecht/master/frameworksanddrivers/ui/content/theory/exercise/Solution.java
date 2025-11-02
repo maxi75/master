@@ -72,7 +72,7 @@ public class Solution {
             Platform.runLater(() -> {
                 checkButton.getStyleClass().removeAll(WRONG_ANSWER_CSS_ID, CORRECT_ANSWER_CSS_ID);
                 graphData.availableNodes().forEach(nodeContainer::addListItem);
-                graphData.endingNodes().forEach(nodeDefinitionContainer::addListItem);
+                if (graphData.endingNodes() != null) graphData.endingNodes().forEach(nodeDefinitionContainer::addListItem);
                 nodeDefinitionContainer.setStartingNode(graphData.startingNode());
                 graphData.transitions().forEach(transitionContainer::addListItem);
             });

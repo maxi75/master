@@ -1,0 +1,138 @@
+{
+  "mainHeading": "Übungsaufgaben",
+  "content": [
+    {
+      "heading": "Formale Repräsentation der Grundlagen",
+      "exercises": [
+        {
+          "kind": "MULTIPLE_CHOICE",
+          "question": "Welche Eigenschaften treffen auf Alphabete zu?",
+          "correctAnswers": [
+            1,
+            3,
+            5,
+            6
+          ],
+          "answers": [
+            "Σ steht für die Menge aller Wörter über einem Alphabet",
+            "Ein Aplhabet ist begrenzt",
+            "Terminalsymbole sind spezielle Sonderzeichen",
+            "Σ* steht für die Menge aller Wörter über einem Alphabet",
+            "Ein Alphabet kann unendlich viele Zeichen enthalten",
+            "Σ steht für das Alphabet",
+            "Die Zeichen eines Alphabets werden Terminalsymbole genannt",
+            "Σ* steht für das Alphabet"
+          ]
+        },
+        {
+          "kind": "MULTIPLE_CHOICE",
+          "question": "Welche Aussagen stimmen?",
+          "correctAnswers": [
+            2,
+            4
+          ],
+          "answers": [
+            "Grammatiken bestehen aus formalen Sprachen und einem Alphabet",
+            "Ein Alphabet besteht aus einer formalen Sprache und Grammatiken",
+            "Formale Sprachen bestehen aus Grammatiken und einem Alphabet",
+            "L = Σ*",
+            "L ist eine Teilmenge von Σ*",
+            "Σ* ist eine Teilmenge von L"
+          ]
+        },
+        {
+          "kind": "MULTIPLE_CHOICE",
+          "question": "Welche Aussagen über Grammatiken stimmen?",
+          "correctAnswers": [
+            1
+          ],
+          "answers": [
+            "bestehen aus einem Tupel mit fünf Komponenten",
+            "bestehen aus einem Tupel mit vier Komponenten",
+            "Terminalsymbole sind das Gleiche, wie Variablen"
+          ]
+        },
+        {
+          "kind": "MULTIPLE_CHOICE",
+          "question": "Ein Passwort besteht aus den Zeichen x & y und darf beliebig lang sein. Welche Grammatik erzeugt die passende formale Sprache?",
+          "correctAnswers": [
+            2
+          ],
+          "answers": [
+            "G = ({a, b}, {S}, {S -> aSb | ε}, S)",
+            "G = ({a, b, S}, {S -> aSb | ε}, S)",
+            "G = ({a, b}, {S}, {S -> aS | bS | ε}, S)",
+            "G = ({a, b}, {S}, {S -> aS | b}, S)"
+          ]
+        },
+        {
+          "kind": "MULTIPLE_CHOICE",
+          "question": "Ein <p>-Tag in HTML besteht immer aus einem öffnenden <p>-Tag, einem beliebig langem Test (hier vereinfacht aus den Buchstaben a bis z) und einem schließendem </p>-Tag. Also z.B.: <p></p>, <p>hallo</p>, <p>test</p>. Welche Grammatik erzeugt diese Sprache?",
+          "correctAnswers": [
+            1
+          ],
+          "answers": [
+            "G = ({<p>, </p>, <i>, </i>, a, ..., z}, {S}, {S -> <p>S</p> | <i>S</i> | aS | ... | zS}, S)",
+            "G = ({<p>, </p>, a, ..., z}, {S, T}, {S -> <p>T</p>, T -> aT | ... | zT | ε}, S)",
+            "G = ({<p>, </p>, a, ..., z}, {S}, {S -> <p>S</p> | aS | ... | zS}, S)",
+            "G = ({<p>, </p>, a, ..., z}, {S, T}, {S -> <p>T</p>, T -> aT | ... | zT}, S)"
+          ]
+        },
+        {
+          "kind": "SOLUTION",
+          "question": "Erstelle im Simulator einen DEA, welcher einen Aufzug simuliert. Wenn der Knopf nach oben gedrückt wird, fährt der Aufzug nach oben. Wird der Knopf nach unten gedrückt, fährt der Aufzug nach unten. Beim Knopf Erdgeschoss fährt der Aufzug in seine Startposition. Bei einem Notaus stoppt der Automat. Gegeben ist folgende Automatendefinition: A=({Up, Down, Notfall, Erdgeschoss}, {Erdgeschoss, FahreHoch, FahreRunter, Fehler}, δ, Erdgeschoss, {Fehler}) \n\n mit der Zustandsübergangsfunktion: δ:{Erdgeschoss, FahreHoch, FahreRunter, Fehler} × {Up, Down, Notfall, Erdgeschoss} → {Erdgeschoss, FahreHoch, FahreRunter, Fehler}, δ(Erdgeschoss, Erdgeschoss)=δ(FahreRunter, Erdgeschoss)=δ(FahreHoch, Erdgeschoss)=Erdgeschoss, δ(FahreHoch, Up)=δ(Erdgeschoss, Up)=δ(FahreRunter, Up)=FahreHoch, δ(FahreRunter, Down)=δ(Erdgeschoss, Down)=δ(FahreHoch, Down)=FahreRunter, δ(Erdgeschoss, Notfall)=δ(FahreHoch, Notfall)=δ(FahreRunter, Notfall)=Fehler",
+          "nodes": [
+            "Erdgeschoss", "FahreHoch", "FahreRunter", "Fehler"
+          ],
+          "startingNode": "Erdgeschoss",
+          "endingNodes": [
+            "Fehler"
+          ],
+          "transitions": [
+            "Erdgeschoss --Erdgeschoss--> Erdgeschoss",
+            "Erdgeschoss --Down--> FahreRunter",
+            "Erdgeschoss --Up--> FahreHoch",
+            "Erdgeschoss --Notfall--> Fehler",
+
+            "FahreRunter --Erdgeschoss--> Erdgeschoss",
+            "FahreRunter --Down--> FahreRunter",
+            "FahreRunter --Up--> FahreHoch",
+            "FahreRunter --Notfall--> Fehler",
+
+            "FahreHoch --Erdgeschoss--> Erdgeschoss",
+            "FahreHoch --Down--> FahreRunter",
+            "FahreHoch --Up--> FahreHoch",
+            "FahreHoch --Notfall--> Fehler"
+          ]
+        },
+        {
+          "kind": "SOLUTION",
+          "question": "Dieser Automat lässt sich so ähnlich auch als NEA darstellen: A=({Bewegung, Erdgeschoss, Notfall}, {Erdgeschoss, FahreHoch, FahreRunter, Fehler}, δ, Erdgeschoss, {Fehler}) \n\n mit der Zustandsübergangsfunktion: δ:{Erdgeschoss, FahreHoch, FahreRunter, Fehler} × {Bewegung, Notfall, Erdgeschoss} → P({Erdgeschoss, FahreHoch, FahreRunter, Fehler}), δ(Erdgeschoss, Erdgeschoss)=δ(FahreRunter, Erdgeschoss)=δ(FahreHoch, Erdgeschoss)=Erdgeschoss, δ(FahreHoch, Bewegung)=δ(Erdgeschoss, Bewegung)=δ(FahreRunter, Bewegung)=FahreHoch, δ(FahreRunter, Bewegung)=δ(Erdgeschoss, Bewegung)=δ(FahreHoch, Bewegung)=FahreRunter, δ(Erdgeschoss, Notfall)=δ(FahreHoch, Notfall)=δ(FahreRunter, Notfall)=Fehler",
+          "nodes": [
+            "Erdgeschoss", "FahreHoch", "FahreRunter", "Fehler"
+          ],
+          "startingNode": "Erdgeschoss",
+          "endingNodes": [
+            "Fehler"
+          ],
+          "transitions": [
+            "Erdgeschoss --Erdgeschoss--> Erdgeschoss",
+            "Erdgeschoss --Bewegung--> FahreRunter",
+            "Erdgeschoss --Bewegung--> FahreHoch",
+            "Erdgeschoss --Notfall--> Fehler",
+
+            "FahreRunter --Erdgeschoss--> Erdgeschoss",
+            "FahreRunter --Bewegung--> FahreRunter",
+            "FahreRunter --Bewegung--> FahreHoch",
+            "FahreRunter --Notfall--> Fehler",
+
+            "FahreHoch --Erdgeschoss--> Erdgeschoss",
+            "FahreHoch --Bewegung--> FahreRunter",
+            "FahreHoch --Bewegung--> FahreHoch",
+            "FahreHoch --Notfall--> Fehler"
+          ]
+        }
+      ]
+    }
+  ]
+}

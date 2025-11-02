@@ -1,7 +1,7 @@
 package de.hausknecht.master.entity.service.automata.graph;
 
-import de.hausknecht.master.entity.domain.automata.DfaValues;
 import de.hausknecht.master.entity.domain.automata.NfaValues;
+import net.automatalib.automaton.fsa.impl.CompactDFA;
 import net.automatalib.automaton.graph.TransitionEdge;
 import net.automatalib.serialization.dot.DefaultDOTVisualizationHelper;
 import net.automatalib.serialization.dot.GraphDOT;
@@ -15,7 +15,7 @@ import java.util.Set;
 @Service
 public class ToDotConverter {
 
-    public String toDot(DfaValues dfaValues, NfaValues nfaValues, Set<Integer> highlightStates, Boolean accepted) throws IOException {
+    public String toDot(CompactDFA<String> dfa, NfaValues nfaValues, Set<Integer> highlightStates, Boolean accepted) throws IOException {
         StringWriter stringWriter = new StringWriter();
         DefaultDOTVisualizationHelper<Integer, TransitionEdge<String, Integer>> helper = new DefaultDOTVisualizationHelper<>() {
             @Override
@@ -41,21 +41,21 @@ public class ToDotConverter {
 
             @Override
             public boolean getNodeProperties(Integer node, Map<String, String> properties) {
-                setUpNodeShape(dfaValues, nfaValues, node, properties);
-                setUpNodeLabel(dfaValues, nfaValues, node, properties);
+                setUpNodeShape(dfa, nfaValues, node, properties);
+                setUpNodeLabel(dfa, nfaValues, node, properties);
                 setUpSimulatedNodeStyle(highlightStates, accepted, node, properties);
                 return true;
             }
         };
 
-        if (dfaValues != null) GraphDOT.write(dfaValues.dfa(), dfaValues.dfa().getInputAlphabet(), stringWriter, helper);
+        if (dfa != null) GraphDOT.write(dfa, dfa.getInputAlphabet(), stringWriter, helper);
         if (nfaValues != null) GraphDOT.write(nfaValues.nfa(), nfaValues.nfa().getInputAlphabet(), stringWriter, helper);
         return stringWriter.toString();
     }
 
-    private void setUpNodeShape(DfaValues dfaValues, NfaValues nfaValues, Integer node, Map<String, String> properties) {
-        if (dfaValues != null && node != null) {
-            if (dfaValues.dfa().isAccepting(node)) properties.put("shape", "doublecircle");
+    private void setUpNodeShape(CompactDFA<String> dfa, NfaValues nfaValues, Integer node, Map<String, String> properties) {
+        if (dfa != null && node != null) {
+            if (dfa.isAccepting(node)) properties.put("shape", "doublecircle");
             else properties.put("shape", "circle");
         }
 
@@ -65,11 +65,11 @@ public class ToDotConverter {
         }
     }
 
-    private void setUpNodeLabel(DfaValues dfaValues, NfaValues nfaValues, Integer node, Map<String, String> properties) {
-        if (dfaValues != null && node != null) {
-            String name = dfaValues.idToNode().get(node);
+    private void setUpNodeLabel(CompactDFA<String> dfa, NfaValues nfaValues, Integer node, Map<String, String> properties) {
+       /* if (dfa != null && node != null) {
+            String name = dfa.idToNode().get(node);
             if (name != null) properties.put("label", name);
-        }
+        }*/
 
         if (nfaValues != null && node != null) {
             String name = nfaValues.idToNode().get(node);

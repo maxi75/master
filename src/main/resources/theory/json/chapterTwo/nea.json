@@ -1,0 +1,37 @@
+{
+  "mainHeading": "Nichtdeterministischer endlicher Automat",
+  "content": [
+    {
+      "heading": "Wiederholung, Einführung und formale Definition",
+      "text": "Wie bei einem DEA auch, handelt es sich bei NEA um Zustandsmodelle zur Visualisierung von Grammatiken und Sprachen. Auch mit NEA lassen sich Eingabewörter Zeichen für Zeichen einlesen und mittels Zustandsübergangsfunktionen die nächsten Zustände berechnen. Der Unterschied zum DEA ist die Eindeutigkeit einer Transition. Bei einem DEA führt ein Zustand X mit einem Eingabezeichen Y zu einem eindeutigen Folgezustand. Bei einem NEA kann ein Anfangszustand X mit einem Eingabezeichen Y zu einer Menge an Folgezuständen, also zu mehreren unterschiedlichen Folgezuständen führen."
+    },
+    {
+      "text": "Für das Einlesen startet der Automat bei einem Startzustand und wenn nach dem Einlesen ein akzeptierter Endzustand erreicht wird, liegt das Eingabewort in der vom Automaten visualisierten Sprache. Die Beschreibung eines NEA geschieht über ein Tupel A, welches gleich wie das Tupel des DEA aufgebaut ist, mit den 5 Komponenten:\n\n1) Dem zugrunde liegenden Alphabet\n2) einer endlichen Menge an Zuständen Z\n3) einer Zustandsübergangsfunktion δ \n4) einem Startzustand z₀ \n5) einer endlichen Menge an Endzuständen E"
+    },
+    {
+      "text": "Wie auch beim DEA gilt für den Startzustand z₀ ∈ Z und für die Endzustände E gilt E ⊆ Z. Das bedeutet, dass der Startzustand, sowie die Endzustände in der Menge aller Zustände liegen müssen."
+    },
+    {
+      "text": "Die Zustandsübergangsfunktion unterscheidet sich allerdins vom DEA und wird wie folgt definiert: δ : Z × Σ → P(Z). Das bedeutet, dass jedes Eingabezeichen aus dem bekannten Alphabet von irgendeinem Zustand aus Z wieder zu der Potenzmenge von Z führt. Vereinfacht ausgedrückt: Jede Eingabe kann zu keinem, einen oder mehreren Folgezuständen führen."
+    },
+    {
+      "heading": "Beispiel",
+      "text": "Ein Automat besitzt die Definition A = ({A, B, C}, {z₀, z₁, z₂}, δ, z₀, {z₁, z₂}) und die Übergangsfunktion δ:{z₀, z₁, z₂} × {A, B, C} → P({z₀, z₁, z₂}), δ(z₀,A)=δ(z₂,C)=z₁, δ(z₁,B)=δ(z₂,C)=z₂."
+    },
+    {
+      "text": "Aus dem ersten Teil der Automatendefinition lässt sich ablesen, dass der Automat die Zustände z₀, z₁ und z₂ besitzt, wobei z₀ Startzustand und sowohl z₁ als auch z₂ akzeptierende Endzustände sind."
+    },
+    {
+      "text": "Aus der Übergangsfunktion lässt sich zum einen Ablesen, was aus der Formel δ : Z × Σ → P(Z) bekannt sein dürfte: Wenn auf einem der drei Zustände eine A-, B- oder C-Transition stattfindet, ist das Ergebnis dieser Transition wieder eine Menge aus diesen drei Zustände."
+    },
+    {
+      "text": "Zusätzlich gibt es allerdings noch die Info, dass ein Wechsel vom Startzustand z₀ in den den Zustand z₁ durch Eingabe eines A erfolgt. In Zustand z₁ kann durch Eingabe eines B's in Zustand z₂ gewechselt werden und Zustand z₂ erlaubt entweder beliebig viele C-Transitionen auf sich selbst oder eine C-Transition zurück in Zustand z₁. Wird nur der Buchstabe A eingegeben, wird der Zustand z₁ erreicht, welcher ein akzeptierender Endzustand ist. A liegt also in der visualisierten Sprache. Das Wort ABCC oder ABCB liegt ebenfalls in der Sprache, während das Wort ABA nicht darin liegt."
+    },
+    {
+      "text": "Generell kann ausgesagt werden, dass der Automat, bzw. die zugrunde liegende Sprache alle Wörter akzeptiert und enthält, welche mit einem A beginnen und dann über beliebig viele C's als Nachfolger eines B's oder beliebig viele BC-Kombinationen verfügen."
+    },
+    {
+      "text": "Aufgabe: Baue diesen beispielhaften Automaten im Simulator rechts nach."
+    }
+  ]
+}

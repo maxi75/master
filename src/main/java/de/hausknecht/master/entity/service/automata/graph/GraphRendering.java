@@ -1,13 +1,15 @@
 package de.hausknecht.master.entity.service.automata.graph;
 
-import de.hausknecht.master.entity.domain.automata.DfaValues;
 import de.hausknecht.master.entity.domain.automata.GraphData;
 import de.hausknecht.master.entity.domain.automata.GraphEvaluationResult;
 import de.hausknecht.master.entity.domain.automata.NfaValues;
 import de.hausknecht.master.entity.service.automata.definition.AutomataGenerator;
 import de.hausknecht.master.entity.service.content.Simulator;
 import lombok.AllArgsConstructor;
+import net.automatalib.alphabet.Alphabet;
 import net.automatalib.automaton.fsa.impl.CompactDFA;
+import net.automatalib.automaton.fsa.impl.CompactNFA;
+import net.automatalib.util.automaton.fsa.NFAs;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -26,31 +28,33 @@ public class GraphRendering {
     }
 
     public Optional<String> simulatedDFAToDot(GraphData graphData, String input) {
-        if (graphData == null) return Optional.empty();
+        if (graphData == null || graphData.startingNode() == null || graphData.startingNode().isBlank() ||
+            graphData.endingNodes() == null || graphData.endingNodes().isEmpty()) return Optional.empty();
 
-        DfaValues dfaValues = automataGenerator.generateCompactDFA(graphData);
-        Optional<GraphEvaluationResult> simulationResult = simulator.simulatedDFA(dfaValues.dfa(), input);
+        NfaValues nfaValues = automataGenerator.generateCompactNFA(graphData);
+        if (nfaValues == null || nfaValues.nodeToId().isEmpty()) return Optional.empty();
+
+        CompactDFA<String> dfa = getDFAFromNFA(nfaValues.nfa());
+        Optional<GraphEvaluationResult> simulationResult = simulator.simulatedDFA(dfa, input);
         Set<Integer> highlightState = simulationResult.map(GraphEvaluationResult::nodeID).orElse(null);
         Boolean accepted = simulationResult.map(GraphEvaluationResult::accepted).orElse(null);
 
         try {
-            return Optional.ofNullable(toDotConverter.toDot(dfaValues, null, highlightState, accepted));
+            return Optional.ofNullable(toDotConverter.toDot(dfa, null, highlightState, accepted));
         } catch (IOException e) {
             return Optional.empty();
         }
     }
 
     public CompactDFA<String> getCompactDFAFromGraphData(GraphData graphData) {
-        DfaValues dfaValues = automataGenerator.generateCompactDFA(graphData);
-        return dfaValues != null ? dfaValues.dfa() : null;
+        NfaValues nfaValues = automataGenerator.generateCompactNFA(graphData);
+        return nfaValues != null ? getDFAFromNFA(nfaValues.nfa()) : null;
     }
 
-    public boolean acceptsInputDFA(GraphData graphData, String input) {
-        DfaValues dfaValues = automataGenerator.generateCompactDFA(graphData);
-        if (dfaValues == null) return false;
-
-        Optional<GraphEvaluationResult> simulationResult = simulator.simulatedDFA(dfaValues.dfa(), input);
-        return Boolean.TRUE.equals(simulationResult.map(GraphEvaluationResult::accepted).orElse(null));
+    private CompactDFA<String> getDFAFromNFA(CompactNFA<String> compactNFA) {
+        Alphabet<String> alphabet = compactNFA.getInputAlphabet();
+        CompactDFA<String> dfa = NFAs.determinize(compactNFA, alphabet);
+        return automataGenerator.removeSinkNodes(dfa);
     }
 
     public Optional<String> nfaToDot(GraphData graphData) {

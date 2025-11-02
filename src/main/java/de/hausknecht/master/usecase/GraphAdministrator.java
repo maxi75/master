@@ -32,7 +32,7 @@ public class GraphAdministrator {
     public Optional<String> returnGraphDefinition() {
         GraphData graphData = getGraphDataFromCurrentSimulation();
 
-        return graphRegistry.getSelectedGraph().equals(AutomataSimulation.DFA) ?
+        return graphRegistry.getSelectedGraph().equals(AutomataSimulation.DEA) ?
                 graphRendering.dfaToDot(graphData) :
                 graphRendering.nfaToDot(graphData);
     }
@@ -48,7 +48,7 @@ public class GraphAdministrator {
     public Optional<String> returnSimulatedGraphDefinition(String input) {
         GraphData graphData = getGraphDataFromCurrentSimulation();
 
-        return graphRegistry.getSelectedGraph().equals(AutomataSimulation.DFA) ?
+        return graphRegistry.getSelectedGraph().equals(AutomataSimulation.DEA) ?
                 graphRendering.simulatedDFAToDot(graphData, input) :
                 graphRendering.simulatedNFAToDot(graphData, input);
     }
@@ -66,10 +66,8 @@ public class GraphAdministrator {
         graphRegistry.changeSelectedGraph(automataSimulation);
     }
 
-    public boolean isInputAccepted(GraphData graphData, String input, AutomataSimulation automata) {
-        return automata == AutomataSimulation.DFA ?
-                graphRendering.acceptsInputDFA(graphData, input) :
-                graphRendering.acceptsInputNFA(graphData, input);
+    public boolean isInputAccepted(GraphData graphData, String input) {
+        return graphRendering.acceptsInputNFA(graphData, input);
     }
 
     public String findAcceptingInputForGraphData(GraphData graphData) {

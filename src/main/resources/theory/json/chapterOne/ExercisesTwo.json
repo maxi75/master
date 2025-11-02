@@ -1,0 +1,126 @@
+{
+  "mainHeading": "Übungsaufgaben",
+  "content": [
+    {
+      "heading": "Automatenkonstruktion",
+      "exercises": [
+        {
+          "kind": "SOLUTION",
+          "question": "Erstelle im Simulator einen DEA mit den drei Zuständen z0, z1 und z2. z0 ist ein Startzustand und z2 ein Endzustand. Von z0 führt die Eingabe a zu z1 und die Eingabe b führt von z1 zu z2. Mit einer Eingabe c ist eine Transition von z2 nach z1 möglich.",
+          "nodes": [
+            "z0", "z1", "z2"
+          ],
+          "startingNode": "z0",
+          "endingNodes": [
+            "z2"
+          ],
+          "transitions": [
+            "z0 --a--> z1",
+            "z1 --b--> z2",
+            "z2 --c--> z1"
+          ]
+        },
+        {
+          "kind": "SOLUTION",
+          "question": "Erstelle im Simulator einen NEA mit den drei Zuständen z0, z1 und z2. z0 ist ein Startzustand und z2 ein Endzustand. Von z0 führt die Eingabe a zu z1 und die Eingabe b führt von z1 zu z2. Mit einer Eingabe c ist eine Transition von z2 nach z1 möglich. Zusätzlich kann eine c-Eingabe auch von z2 nach z2 führen. Lasse dir im Simulator den passenden DEA zu dem NEA anzeigen.",
+          "nodes": [
+            "z0", "z1", "z2"
+          ],
+          "startingNode": "z0",
+          "endingNodes": [
+            "z2"
+          ],
+          "transitions": [
+            "z0 --a--> z1",
+            "z1 --b--> z2",
+            "z2 --c--> z1",
+            "z2 --c--> z2"
+          ]
+        },
+        {
+          "kind": "SOLUTION",
+          "question": "Erzeuge den NEA 'Ticket-Automat', welcher 50€, 100€ und 200€ als Eingabe erlaubt. Der Startzustand nennt sich 'Eingabe'. Die Endzustände nennen sich 'Berlin', 'Rom', 'Paris'. Ein Ticket nach Berlin soll 150€ kosten, ein Ticket nach Rom 200€ und ein Ticket nach Paris 250€. \n\nVon dem Zustand 'Eingabe' aus, gibt es eine 50€-Transition in den Zustand '50€', eine 100€-Transition in den Zustand '100€', eine 200€-Transition in den Zustand '200€' und eine 200€-Transition in den Zustand 'Rom'. \n\nVom Zustand '50€' gibt es eine 50€ Transition in den Zustand '100€', eine 100€-Transition in den Zustand '150€', eine 100€-Transition in den Zustand 'Berlin' und eine 200€-Transition in den Zustand 'Paris'. \n\nVom Zustand '100€' gibt es eine 50€-Transition in den Zustand '150€', eine 50€-Transition in den Zustand 'Berlin', eine 100€-Transition in den Zustand '200€' und eine 100€-Transition in den Zustand 'Rom'. \n\nVon Zustand '150€' gibt es eine 50€-Transition in den Zustand '200€', eine 50€-Transition in den Zustand 'Rom' und eine 100€-Transition in den Zustand 'Paris'. \n\nVon Zustand '200€' gibt es eine 50€-Transition in den Zustand 'Paris'. \n\nVergleiche nach Fertigstellung den NEA mit dem potentiellen DEA.",
+          "nodes": [
+            "Eingabe", "Berlin", "Rom", "Paris", "50€", "100€", "150€", "200€"
+          ],
+          "startingNode": "Eingabe",
+          "endingNodes": [
+            "Berlin", "Rom", "Paris"
+          ],
+          "transitions": [
+            "Eingabe --50€--> 50€",
+            "Eingabe --100€--> 100€",
+            "Eingabe --200€--> 200€",
+            "Eingabe --200€--> Rom",
+
+            "50€ --50€--> 100€",
+            "50€ --100€--> 150€",
+            "50€ --100€--> Berlin",
+            "50€ --200€--> Paris",
+
+            "100€ --50€--> 150€",
+            "100€ --50€--> Berlin",
+            "100€ --100€--> 200€",
+            "100€ --100€--> Rom",
+
+            "100€ --50€--> 150€",
+            "100€ --50€--> Berlin",
+            "100€ --100€--> 200€",
+            "100€ --100€--> Rom",
+
+            "150€ --50€--> 200€",
+            "150€ --50€--> Rom",
+            "150€ --100€--> Paris",
+
+            "200€ --50€--> Paris"
+          ]
+        },
+        {
+          "kind": "SOLUTION",
+          "question": "Aufbauend auf der vorherigen Aufgabe soll der Automat so erweitert werden, dass man von Berlin für 50€ Aufpreis nach Rom darf und für 100€ nach Paris. Aus Rom kann man für 50€nach Berling und für 50€ nach Paris. Aus Paris darf man für 50€ nach Rom und für 100€ nach Berlin. \n\n Erzeuge den Automaten. Verleiche erneut DEA und NEA.",
+          "nodes": [
+            "Eingabe", "Berlin", "Rom", "Paris", "50€", "100€", "150€", "200€"
+          ],
+          "startingNode": "Eingabe",
+          "endingNodes": [
+            "Berlin", "Rom", "Paris"
+          ],
+          "transitions": [
+            "Eingabe --50€--> 50€",
+            "Eingabe --100€--> 100€",
+            "Eingabe --200€--> 200€",
+            "Eingabe --200€--> Rom",
+
+            "50€ --50€--> 100€",
+            "50€ --100€--> 150€",
+            "50€ --100€--> Berlin",
+            "50€ --200€--> Paris",
+
+            "100€ --50€--> 150€",
+            "100€ --50€--> Berlin",
+            "100€ --100€--> 200€",
+            "100€ --100€--> Rom",
+
+            "100€ --50€--> 150€",
+            "100€ --50€--> Berlin",
+            "100€ --100€--> 200€",
+            "100€ --100€--> Rom",
+
+            "150€ --50€--> 200€",
+            "150€ --50€--> Rom",
+            "150€ --100€--> Paris",
+
+            "200€ --50€--> Paris",
+
+            "Berlin --50€--> Rom",
+            "Rom --50€--> Berlin",
+            "Berlin --100€--> Paris",
+            "Paris --100€--> Berlin",
+            "Paris --50€--> Rom",
+            "Rom --50€--> Paris"
+          ]
+        }
+      ]
+    }
+  ]
+}

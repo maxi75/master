@@ -19,17 +19,17 @@ class GraphRegistryTest {
 
         @Test
         void withValue() {
-            assertEquals(DFA, classUnderTest.getSelectedGraph());
+            assertEquals(NEA, classUnderTest.getSelectedGraph());
 
-            classUnderTest.changeSelectedGraph(NFA);
+            classUnderTest.changeSelectedGraph(NEA);
 
-            assertEquals(NFA, classUnderTest.getSelectedGraph());
+            assertEquals(NEA, classUnderTest.getSelectedGraph());
             verify(applicationEventPublisherMock, times(1)).publishEvent(new GraphChangedEvent());
         }
 
         @Test
         void selectedGraphIsNull() {
-            assertEquals(DFA, classUnderTest.getSelectedGraph());
+            assertEquals(NEA, classUnderTest.getSelectedGraph());
 
             classUnderTest.changeSelectedGraph(null);
 

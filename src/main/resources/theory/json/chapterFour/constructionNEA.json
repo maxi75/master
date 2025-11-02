@@ -1,0 +1,27 @@
+{
+  "mainHeading": "Automatenkonstruktion NEA",
+  "content": [
+    {
+      "heading": "Konstruktion aus einer Automatendefinition",
+      "text": "In Kapitel 2.4 sollte bereits beispielhaft ein NEA aus einer Automatendefinition heraus in der Simulation konstruiert werden. Dieses Vorgehen wird noch einmal Schritt für Schritt definiert und ist auch ohne digitale Hilfsmittel umsetzbar (die Beschreibung ist eins zu eins die, wie bei der Konstruktion eines DEA):"
+    },
+    {
+      "text": "(1) Für die visuelle Darstellung ist für jeden Zustand aus der Menge Z (Zustände) ein einfacher Kreis zu zeichnen, welcher den Namen des Zustandes trägt."
+    },
+    {
+      "text": "(2) Bei den Zuständen, welche auch gleichzeitig einen Endzustand darstellen, ist ein zweiter Kreis um den ersten herum zu zeichnen."
+    },
+    {
+      "text": "(3) Die Verbindungen zwischen den Zuständen werden mit Pfeilen und entsprechenden Zeichen/Token aus dem Eingabealphabet versehen. Diese Transitionen lassen sich aus der Übergangsfunktion δ ermitteln."
+    },
+    {
+      "text": "(4) Der Startzustand ist mit einem Transitionspfeil ohne Anfangszustand und ohne Eingabzeichen zu versehen."
+    },
+    {
+      "text": "Umgekehrt lässt sich aus einem gezeichneten Automaten auch seine Automatendefinition ermitteln."
+    },
+    {
+      "text": "Der einzige Unterschied zwischen der Konstruktion eines DEA und eines NEA ist, dass bei einem NEA beachtet werden muss, dass eine Transition nicht immer nur auf einen einzelnen, sondern auf verschiedene (bzw. eine Menge an) Folgezuständen verweisen kann."
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+
+{
+  "mainHeading": "Akzeptierendes und erzeugendes Konzept",
+  "content": [
+    {
+      "heading": "Erzeugendes Konzept",
+      "text": "Das erzeugende Konzept besagt, dass eine Sprache L aus einer Grammatik G abgeleitet werden kann (L(G))."
+    },
+    {
+      "text": "Das bedeutet, dass jede Sprache L durch die Regeln, welche durch eine Grammatik G vorgegeben werden, erzeugt und eine Sprache L somit auf rein formaler Ebene beschrieben werden kann."
+    },
+    {
+      "heading": "Akzeptierendes Konzept",
+      "text": "Das akzeptierende Konzept besagt, dass es einen Automaten gibt, welcher für jedes mögliche Wort aus Σ* in endlicher Zeit prüfen kann, ob das Wort auch Teil der Sprache L ist."
+    },
+    {
+      "text": "Ein Automat kann somit eine Grammatik repräsentieren und auf visueller, bzw. prüfender Ebene eingesetzt werden. Wenn ein Automat alle Wörter aus L akzeptiert und alle Wörter, die nicht in L liegen nicht akzeptiert, dann repräsentiert dieser Automat die Sprache L."
+    }
+  ]
+}
