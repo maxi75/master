@@ -95,8 +95,6 @@ public class SimulationOverlay {
     }
 
     private void simulateFirst() {
-        if (!alreadyStarted) return;
-
         alreadySimulatedWord = EMPTY_STRING;
         applicationEventPublisher.publishEvent(new SimulationEvent(this.alreadySimulatedWord));
     }

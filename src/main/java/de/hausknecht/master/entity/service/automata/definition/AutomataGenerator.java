@@ -40,7 +40,7 @@ public class AutomataGenerator {
         for (String node : graphData.availableNodes()) {
             int id = graphData.startingNode() != null && graphData.startingNode().equals(node) ?
                     nfa.addInitialState() : nfa.addState();
-            nfa.setAccepting(id, graphData.endingNodes().contains(node));
+            if (graphData.endingNodes() != null) nfa.setAccepting(id, graphData.endingNodes().contains(node));
             nodeToID.put(node, id);
             idToNode.put(id, node);
         }

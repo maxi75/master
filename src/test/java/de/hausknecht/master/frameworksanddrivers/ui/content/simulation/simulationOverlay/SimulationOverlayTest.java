@@ -146,7 +146,7 @@ class SimulationOverlayTest extends UITest {
             });
 
             fxWait(1000);
-            verify(applicationEventPublisherMock, times(0)).publishEvent(new SimulationEvent(EMPTY_STRING));
+            verify(applicationEventPublisherMock, times(1)).publishEvent(new SimulationEvent(EMPTY_STRING));
         }
 
         @Test
@@ -169,7 +169,7 @@ class SimulationOverlayTest extends UITest {
             });
 
             fxWait(1000);
-            verify(applicationEventPublisherMock, times(0)).publishEvent(new SimulationEvent(EMPTY_STRING));
+            verify(applicationEventPublisherMock, times(1)).publishEvent(new SimulationEvent(EMPTY_STRING));
         }
 
         @Test

@@ -28,7 +28,7 @@
       "text": "Das bedeutet, eine Sprache besteht aus allen Wörtern w, welche sich aus der Konkatenation der Zeichen des Eingabealphabets Σ∗ bilden lassen. Dabei bestehen gewissen Einschränkungen, welche mit der vollständigen Übergangsfunktion δ∗(s0, w) beschrieben werden und welche definieren, wann ein Wort akzeptiert wird."
     },
     {
-      "text": "Ein Beispiel wäre: A = ({A, B, C}, {z₀, z₁, z₂}, δ, z₁, {z₀, z₂}) mit der Übergangsfunktion δ:{z₀, z₁, z₂} × {A, B, C} → {z₀, z₁, z₂}, δ(z₀,A)=δ(z₂,C)=z₁, δ(z₁,B)=δ(z₂,B)=z₂."
+      "text": "Ein Beispiel wäre: A = ({a, b, c}, {z₀, z₁, z₂}, δ, z₁, {z₀, z₂}) mit der Übergangsfunktion δ:{z₀, z₁, z₂} × {a, b, c} → {z₀, z₁, z₂}, δ(z₀,A)=δ(z₂,C)=z₁, δ(z₁,B)=δ(z₂,B)=z₂."
     },
     {
       "text": "Daraus lässt sich die Sprache L(A) = {w ∈ {a, b, c}∗ | w beginnt mit einem a, in w kann ein c nur auf ein b folgen und es gibt beliebig viele b's} ableiten. Formal aufgeschrieben wäre das: L(A) = {w ∈ {a, b, c}∗|δ∗(s0, w) ∈ {z₁, z₂}}"

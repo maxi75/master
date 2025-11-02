@@ -34,10 +34,12 @@ public class ConstantProvider {
     public static final String BATCH_LEGEND_PATH = "/packaging/batches/legend/Legend.png";
     public static final String BATCH_LEGEND_WITHOUT_SATURATION_PATH = "/packaging/batches/legend/LegendWithoutSaturation.png";
 
+    public static final String LOCK = "/packaging/icons/lock.png";
+
     public static final Duration ANIMATION_DURATIONS = Duration.seconds(4);
     public static final Duration TRANSITION_DURATIONS = Duration.millis(350);
 
-    public static final int POINTS_SPECIAL_EXERCISE = 500;
+    public static final int POINTS_SPECIAL_EXERCISE = 325;
 
     public static final double GRAPH_ZOOM_MIN = 0.2;
     public static final double GRAPH_ZOOM_MAX = 5.0;
@@ -67,8 +69,8 @@ public class ConstantProvider {
     public static final int MULTIPLE_CHOICE_WRONG_ANSWER_POINTS = 2;
     public static final int MULTIPLE_CHOICE_CORRECT_ANSWER_POINTS = 2;
 
-    public static final String INTRODUCTION = "Gegeben ist folgende Automatendefinition: \n A=({%s}, {%s}, δ, %s, {%s}) \n\n";
-    public static final String DEFINITION = "mit der Zustandsübergangsfunktion: \n %s \n\n";
+    public static final String INTRODUCTION = "Gegeben ist folgende Automatendefinition: \nA=({%s}, {%s}, δ, %s, {%s}) \n\n";
+    public static final String DEFINITION = "mit der Zustandsübergangsfunktion: \n%s \n\n";
     public static final String TERM = "δ(%s,%s)";
 
     public static final String SPLIT_BY_REGEX = "\\s+";

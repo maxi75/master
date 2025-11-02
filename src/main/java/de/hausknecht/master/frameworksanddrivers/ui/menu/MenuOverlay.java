@@ -10,6 +10,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
@@ -18,6 +19,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
+import static de.hausknecht.master.ConstantProvider.LOCK;
 import static de.hausknecht.master.ConstantProvider.POINTS_SPECIAL_EXERCISE;
 
 @Component
@@ -58,16 +60,6 @@ public class MenuOverlay {
         });
     }
 
-    private void configureSpecialExercises() {
-        int points = pointSystemAdministrator.getPoints();
-        if (points >= POINTS_SPECIAL_EXERCISE) lockImage.setImage(null);
-
-        specialExercise.setOnAction(_ -> {
-            String file = (String) specialExercise.getUserData();
-            if (points >= POINTS_SPECIAL_EXERCISE) openMenuEntry(file);
-        });
-    }
-
     @FXML
     private void loadContent(ActionEvent e) {
         Button menuNavigationButton = (Button) e.getSource();
@@ -89,6 +81,17 @@ public class MenuOverlay {
             int currentPoints = pointSystemAdministrator.getPoints();
             statusPoints.setText(POINTS + currentPoints);
             configureSpecialExercises();
+        });
+    }
+
+    private void configureSpecialExercises() {
+        int points = pointSystemAdministrator.getPoints();
+        if (points >= POINTS_SPECIAL_EXERCISE) lockImage.setImage(null);
+        if (points < POINTS_SPECIAL_EXERCISE) lockImage.setImage(new Image(LOCK, true));
+
+        specialExercise.setOnAction(_ -> {
+            String file = (String) specialExercise.getUserData();
+            if (points >= POINTS_SPECIAL_EXERCISE) openMenuEntry(file);
         });
     }
 

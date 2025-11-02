@@ -1,0 +1,89 @@
+{
+  "mainHeading": "Übungsaufgaben",
+  "content": [
+    {
+      "heading": "Bonusaufgaben",
+      "exercises": [
+        {
+          "kind": "MULTIPLE_CHOICE",
+          "question": "Eine Firma richtet für ihre Mitarbeiter ein Kennwortsystem ein, wobei ein Nutzername und eine Pin vergeben werden müssen. Der Nutzername besteht aus mindestens einem Großbuchstaben und einer Ziffer. Der Übersichtlichkeit wegen wird für die Zeichen a bis z X geschrieben (X ∈ a...z), für die Zeichen A bis Z wird Y geschrieben (y ∈ A...Z) und für die Zahlen 0 bis 9 Z geschrieben (Z ∈ 0...9). Welche Grammatik passt zu dieser Anforderung?",
+          "correctAnswers": [
+            2
+          ],
+          "answers": [
+            "G = ({X, Y, Z}, {S, GS, ZS}, {S -> (X) S | (Y) GS | (Z) ZS, GS -> (X) GS | (Y) GS | (Z) ε, ZS -> (X) ZS | (Y) ε | (Z) ZS}, S)",
+            "G = ({X, Y, Z}, {S}, {S -> (X) S | (Y) S | (Z) S | ε}, S)",
+            "G = ({X, Y, Z}, {S, GS, ZS, GZS}, {S -> (X) S | (Y) GS | (Z) ZS, GS -> (X) GS | (Y) GS | (Z) GZS, ZS -> (X) ZS | (Y) GZS | (Z) ZS, GZS -> (X) GZS | (Y) GZS | (Z) GZS | ε}, S)",
+            "G = ({X, Y, Z}, {S, GS, ZS}, {S -> (X) S | (Y) GS | (Z) ZS, GS -> (X) GS | (Y) GS | (Z) ZS | ε, ZS -> (X) ZS | (Y) ZS | (Z) GS | ε}, S)"
+          ]
+        },
+        {
+          "kind": "SOLUTION",
+          "question": "Eine PIN besteht aus mindestens drei Ziffern, darf aber nicht mit 1 beginnen oder mit 2 enden. Erlaubt sind die Ziffern {0, 1, 2}. Konstruiere den resultierenden Automaten in der Simulation.",
+          "nodes": [
+            "a", "b", "c", "d"
+          ],
+          "startingNode": "a",
+          "endingNodes": [
+            "d"
+          ],
+          "transitions": [
+            "a --0--> b",
+            "a --2--> b",
+
+            "b --0--> c",
+            "b --1--> c",
+            "b --2--> c",
+
+            "c --0--> d",
+            "c --1--> d",
+            "c --2--> c",
+
+            "d --0--> d",
+            "d --1--> d",
+            "d --2--> c"
+          ]
+        },
+        {
+          "kind": "SOLUTION",
+          "question": "Aus der Grammatik des Nutzernamen lässt sich die Sprache L₁ ableiten. Aus dem Automaten zur Eingabe der PIN die Sprache L₂. Konstruiere einen Automaten, der die gesamte Logik abbilden kann (L₁ ◦ L₂). \n(Verwende auch weiterhin für die Zeichen a bis z X, für die Zeichen A bis Z Y und für die Ziffern 0 bis 9 Z)",
+          "nodes": [
+            "S", "ZS", "GS", "GZS", "b", "c", "d"
+          ],
+          "startingNode": "S",
+          "endingNodes": [
+            "d"
+          ],
+          "transitions": [
+            "S --X--> S",
+            "S --Y--> GS",
+            "S --Z--> ZS",
+
+            "GS --X--> GS",
+            "GS --Y--> GS",
+            "GS --Z--> GZS",
+
+            "ZS --X--> ZS",
+            "ZS --Y--> GZS",
+            "ZS --Z--> ZS",
+
+            "GZS --0--> b",
+            "GZS --2--> b",
+
+            "b --0--> c",
+            "b --1--> c",
+            "b --2--> c",
+
+            "c --0--> d",
+            "c --1--> d",
+            "c --2--> c",
+
+            "d --0--> d",
+            "d --1--> d",
+            "d --2--> c"
+          ]
+        }
+      ]
+    }
+  ]
+}

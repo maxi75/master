@@ -141,3 +141,5 @@
     }
   ]
 }
+
+"A = ({50€, 100€, 200€}, {Eingabe, 50€, 100€, 150€, 200€, Berlin, Rom, Paris}, δ, {Eingabe}, {Berlin, Rom, Paris} \n\n mit der Übergangsfunktion: \n δ:{Eingabe, 50€, 100€, 150€, 200€, Berlin, Rom, Paris} × {50€, 100€, 200€} → P({Eingabe, 50€, 100€, 150€, 200€, Berlin, Rom, Paris}) \n\n δ(Eingabe,50€)=50€, \n δ(50€,50€)=δ(Eingabe,100€)=100€, \n δ(100€,50€)=δ(50€,100€)=150€, \n δ(150€,50€)=δ(100€,100€)=δ(Eingabe,200€)=200€, \n δ(150€,50€)=δ(100€,100€)=δ(Eingabe,200€)=Rom, \n δ(100€,50€)=δ(50€,100€)=Berlin, \n δ(200€,50€)=δ(150€,100€)=δ(50€,200€)=Paris",
