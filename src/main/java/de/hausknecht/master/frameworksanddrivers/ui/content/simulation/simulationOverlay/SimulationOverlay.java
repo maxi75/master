@@ -1,5 +1,25 @@
 package de.hausknecht.master.frameworksanddrivers.ui.content.simulation.simulationOverlay;
 
+/*-
+ * #%L
+ * master
+ * %%
+ * Copyright (C) 2025 Maximilian Hausknecht
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * #L%
+ */
+
 import de.hausknecht.master.entity.domain.automata.AutomataSimulation;
 import de.hausknecht.master.entity.domain.eventdata.GraphChangedEvent;
 import de.hausknecht.master.entity.domain.eventdata.SimulationEvent;
@@ -39,17 +59,17 @@ public class SimulationOverlay {
 
     @FXML
     void initialize(){
-        word.textProperty().addListener(_ -> alreadySimulatedWord = EMPTY_STRING);
-        forwardBtn.setOnAction(_ -> simulateForward());
-        backwardBtn.setOnAction(_ -> simulateBack());
-        fastBackwordBtn.setOnAction(_ -> simulateFirst());
-        fastForwardBtn.setOnAction(_ -> simulateLast());
-        startBtn.setOnAction(_ -> simulateFirst());
-        stopBtn.setOnAction(_ -> simulateStop());
+        word.textProperty().addListener(ignored -> alreadySimulatedWord = EMPTY_STRING);
+        forwardBtn.setOnAction(ignored -> simulateForward());
+        backwardBtn.setOnAction(ignored -> simulateBack());
+        fastBackwordBtn.setOnAction(ignored -> simulateFirst());
+        fastForwardBtn.setOnAction(ignored -> simulateLast());
+        startBtn.setOnAction(ignored -> simulateFirst());
+        stopBtn.setOnAction(ignored -> simulateStop());
 
         graphBox.getItems().setAll(AutomataSimulation.values());
         graphBox.setValue(AutomataSimulation.NEA);
-        graphBox.setOnAction(_ -> graphAdministrator.changeSelectedGraph(graphBox.getValue()));
+        graphBox.setOnAction(ignored -> graphAdministrator.changeSelectedGraph(graphBox.getValue()));
     }
 
     public void setComboBox(AutomataSimulation simulation){

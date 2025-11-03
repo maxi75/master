@@ -12,7 +12,7 @@
       "text": "Wie auch beim DEA gilt für den Startzustand z₀ ∈ Z und für die Endzustände E gilt E ⊆ Z. Das bedeutet, dass der Startzustand, sowie die Endzustände in der Menge aller Zustände liegen müssen."
     },
     {
-      "text": "Die Zustandsübergangsfunktion unterscheidet sich allerdins vom DEA und wird wie folgt definiert: δ : Z × Σ → P(Z). Das bedeutet, dass jedes Eingabezeichen aus dem bekannten Alphabet von irgendeinem Zustand aus Z wieder zu der Potenzmenge von Z führt. Vereinfacht ausgedrückt: Jede Eingabe kann zu keinem, einen oder mehreren Folgezuständen führen."
+      "text": "Die Zustandsübergangsfunktion unterscheidet sich allerdings vom DEA und wird wie folgt definiert: δ : Z × Σ → P(Z). Das bedeutet, dass jedes Eingabezeichen aus dem bekannten Alphabet von irgendeinem Zustand aus Z wieder zu der Potenzmenge von Z führt. Vereinfacht ausgedrückt: Jede Eingabe kann zu keinem, einen oder mehreren Folgezuständen führen."
     },
     {
       "heading": "Beispiel",
