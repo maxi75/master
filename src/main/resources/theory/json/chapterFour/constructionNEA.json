@@ -15,7 +15,7 @@
       "text": "(3) Die Verbindungen zwischen den Zuständen werden mit Pfeilen und entsprechenden Zeichen/Token aus dem Eingabealphabet versehen. Diese Transitionen lassen sich aus der Übergangsfunktion δ ermitteln."
     },
     {
-      "text": "(4) Der Startzustand ist mit einem Transitionspfeil ohne Anfangszustand und ohne Eingabzeichen zu versehen."
+      "text": "(4) Der Startzustand ist mit einem Transitionspfeil ohne Anfangszustand und ohne Eingabezeichen zu versehen."
     },
     {
       "text": "Umgekehrt lässt sich aus einem gezeichneten Automaten auch seine Automatendefinition ermitteln."

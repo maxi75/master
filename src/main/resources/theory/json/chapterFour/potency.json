@@ -12,7 +12,7 @@
       "text": "(1) Es wird im zu konstruierenden DEA ein Startzustand erstellt, welcher identisch mit dem Startzustand des NEA ist."
     },
     {
-      "text": "(2) Ausgehend von diesem Startzsutand werden alle möglichen Folgezustände ermittelt. Gibt es eine eindeutige Transition von einem Startzustand z₀ in einen Zustand z₁, kann diese Transition übernommen werden. Gibt es im NEA eine z.B. A-Transition vom Zustand z₀ in die beiden Zustände z₁ und z₂, dann würde im DEA ein zusätzlicher Zustand z₁z₂ erstellt werden, auf welchen die A-Transition abgebildet wird."
+      "text": "(2) Ausgehend von diesem Startzustand werden alle möglichen Folgezustände ermittelt. Gibt es eine eindeutige Transition von einem Startzustand z₀ in einen Zustand z₁, kann diese Transition übernommen werden. Gibt es im NEA eine z.B. A-Transition vom Zustand z₀ in die beiden Zustände z₁ und z₂, dann würde im DEA ein zusätzlicher Zustand z₁z₂ erstellt werden, auf welchen die A-Transition abgebildet wird."
     },
     {
       "text": "(3) Diese Prüfung wird für jeden Folgezustand ebenfalls durchlaufen, bis alle möglichen Zustände und Transitionen in den DEA überführt wurden."

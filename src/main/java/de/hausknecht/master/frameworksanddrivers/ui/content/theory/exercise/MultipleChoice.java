@@ -1,5 +1,25 @@
 package de.hausknecht.master.frameworksanddrivers.ui.content.theory.exercise;
 
+/*-
+ * #%L
+ * master
+ * %%
+ * Copyright (C) 2025 Maximilian Hausknecht
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * #L%
+ */
+
 import de.hausknecht.master.entity.domain.content.TheoryPageData;
 import de.hausknecht.master.usecase.PointSystemAdministrator;
 import javafx.application.Platform;
@@ -74,7 +94,7 @@ public class MultipleChoice {
         Button button = new Button(SOLVE);
         button.getStyleClass().add(SOLVE_CSS_ID);
 
-        button.setOnAction(_ -> {
+        button.setOnAction(ignored -> {
             IntStream.range(0, checkBoxes.size())
                 .forEach(i -> Platform.runLater(() -> {
                     checkBoxes.get(i).getStyleClass().removeAll(WRONG_ANSWER_CSS_ID, CORRECT_ANSWER_CSS_ID);
@@ -90,7 +110,7 @@ public class MultipleChoice {
         Button button = new Button(CHECK_SOLUTION);
         button.getStyleClass().add(CHECK_SOLUTION_CSS_ID);
 
-        button.setOnAction(_ -> {
+        button.setOnAction(ignored -> {
             int points = 0;
             for (int i = 0; i < checkBoxes.size(); i++) {
                 checkBoxes.get(i).getStyleClass().removeAll(WRONG_ANSWER_CSS_ID, CORRECT_ANSWER_CSS_ID);

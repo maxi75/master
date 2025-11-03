@@ -77,7 +77,7 @@
         },
         {
           "kind": "SOLUTION",
-          "question": "Aufbauend auf der vorherigen Aufgabe soll der Automat so erweitert werden, dass man von Berlin für 50€ Aufpreis nach Rom darf und für 100€ nach Paris. Aus Rom kann man für 50€nach Berling und für 50€ nach Paris. Aus Paris darf man für 50€ nach Rom und für 100€ nach Berlin. \n\n Erzeuge den Automaten. Verleiche erneut DEA und NEA.",
+          "question": "Aufbauend auf der vorherigen Aufgabe soll der Automat so erweitert werden, dass man von Berlin für 50€ Aufpreis nach Rom darf und für 100€ nach Paris. Aus Rom kann man für 50€ nach Berlin und für 50€ nach Paris. Aus Paris darf man für 50€ nach Rom und für 100€ nach Berlin. \n\n Erzeuge den Automaten. Vergleiche erneut DEA und NEA.",
           "nodes": [
             "Eingabe", "Berlin", "Rom", "Paris", "50€", "100€", "150€", "200€"
           ],

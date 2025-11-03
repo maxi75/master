@@ -22,7 +22,7 @@
       "text": "Ausgehend von einer Startvariable S können die Produktionsregeln immer wieder angewandt werden, bis keine Ersetzung mehr möglich ist. Gibt es z.B. Produktionsregeln, die besagen, dass S in die Kombination aus Terminalsymbol A und Nichtterminalsymbol X übersetzt werden kann und das Nichtterminalsymbol X kann in die Kombination der Terminalsymbole B und C übersetzt werden, dann lässt sich S schrittweise zu ABC übersetzen: S -> AX -> ABC."
     },
     {
-      "text": "Eine komplexere Übersetzung wäre die, des DNA-Alphabets. Das DNA-ALhabet besteht aus den Terminalen Σ = {A, C, G, T}. Als Nichtterminalsymbol gibt es nur die Variable S, die auch gleichzeitig Startvariable ist. Es gelten die Produktionsregeln S -> AS | CS | GS | TS | ε. ε steht dabei für das leere Wort."
+      "text": "Eine komplexere Übersetzung wäre die, des DNA-Alphabets. Das DNA-Alphabet besteht aus den Terminalen Σ = {A, C, G, T}. Als Nichtterminalsymbol gibt es nur die Variable S, die auch gleichzeitig Startvariable ist. Es gelten die Produktionsregeln S -> AS | CS | GS | TS | ε. ε steht dabei für das leere Wort."
     },
     {
       "text": "Das bedeutet, dass ein Wort, beginnend mit dem Nichtterminalsymbol S auf eine beliebige Konkatenation aus A, C, G und T übersetzt werden kann. Die Menge an Worten, die L(G) damit unterstützt besteht also aus allen möglichen Kombinationen von A, C, G und T."
