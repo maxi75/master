@@ -202,18 +202,6 @@
                             </includes>
                         </configuration>
                     </execution>
-
-                    <execution>
-                        <id>generate-third-party</id>
-                        <goals>
-                            <goal>add-third-party</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>${project.basedir}</outputDirectory>
-                            <thirdPartyFilename>NOTICE.txt</thirdPartyFilename>
-                            <failOnMissing>true</failOnMissing>
-                        </configuration>
-                    </execution>
                 </executions>
             </plugin>
 		</plugins>

@@ -219,7 +219,8 @@ eigene Abbildung der Logik mit den resultierenden Zuständen gematcht werden kö
 
 ## Wartung und Weiterentwicklung
 Bei der Weiterentwicklung der Applikation ist darauf zu achten, dass die Lizenzinformationen aktualisiert werden, 
-sollten sich Versionen oder Bibliotheken ändern.
+sollten sich Versionen oder Bibliotheken ändern. Lizenzinformationen können mittels `mvn license:add-third-party` 
+generiert werden und befinden sich in der `target\generated-sources\license\THIRD-PARTY.txt`-Datei.
 
 Eine neue .jar-Datei kann mit dem Befehl`mvn -DskipTests clean package` erzeugt werden und befindet sich nach
 erfolgreicher Generierung im `target`-Ordner.
