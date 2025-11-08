@@ -25,9 +25,9 @@ Simulationsumgebung unterstützt auch die Eingabe mehrerer Zeichen und mittels v
 werden, ob ein akzeptierender Endzustand mit der Eingabe erreicht wird.
 
 ## Voraussetzungen
-1. **Entwicklung:** Für die Entwicklung wird eine lauffähige IDE, Java 21, sowie eine funktionierende Maven-Version 
+1. **Entwicklung:** Für die Entwicklung wird eine lauffähige IDE, Java 25, sowie eine funktionierende Maven-Version 
 vorausgesetzt.
-2. **Bisherige Entwicklung:** Die bisherige Entwicklung wurde mit Java 21, der IntelliJ IDEA 2025.2.2 (Ultimate Edition) 
+2. **Bisherige Entwicklung:** Die bisherige Entwicklung wurde mit Java 25, der IntelliJ IDEA 2025.2.2 (Ultimate Edition) 
 und Maven 3.9.11 auf einem Windows 11 PC durchgeführt.
 
 3. **Betrieb:** Der Betrieb und die Installation der Applikation verlangen ca. 100 MB Speicherplatz und bis zu 500 MB 

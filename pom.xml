@@ -17,7 +17,7 @@
 	<description>Application for teaching students the basics of automata theory</description>
 
 	<properties>
-		<java.version>21</java.version>
+		<java.version>25</java.version>
         <javafx.version>21.0.5</javafx.version>
         <lombok.version>1.18.42</lombok.version>
         <junit.version>5.14.1</junit.version>
