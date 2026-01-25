@@ -204,6 +204,30 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <plugin>
+                <groupId>org.panteleyev</groupId>
+                <artifactId>jpackage-maven-plugin</artifactId>
+                <version>${jpackage.plugin.version}</version>
+
+                <configuration>
+                    <name>AutomataTheory</name>
+                    <appVersion>${project.version}</appVersion>
+                    <vendor>Maximilian Hausknecht</vendor>
+
+                    <destination>${project.build.directory}/dist</destination>
+                    <removeDestination>true</removeDestination>
+
+                    <input>${project.build.directory}</input>
+                    <mainJar>${project.build.finalName}.jar</mainJar>
+                    <mainClass>org.springframework.boot.loader.launch.JarLauncher</mainClass>
+                    <runtimeImage>${java.home}</runtimeImage>
+
+                    <type>APP_IMAGE</type>
+
+                    <winConsole>true</winConsole>
+                </configuration>
+            </plugin>
 		</plugins>
 	</build>
 </project>

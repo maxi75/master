@@ -225,6 +225,9 @@ generiert werden und befinden sich in der `target\generated-sources\license\THIR
 Eine neue .jar-Datei kann mit dem Befehl`mvn -DskipTests clean package` erzeugt werden und befindet sich nach
 erfolgreicher Generierung im `target`-Ordner.
 
+Eine neue .exe-Datei kann mit dem Befehl `mvn -DskipTests clean package` und anschließend `mvn jpackage:jpackage` erzeugt
+werden. Diese befindet sich nach erfolgreicher Generierung im `target/dist`-Ordner.
+
 ## Starten der Applikation
 Für das Starten der .jar-Datei muss entweder eine CMD geöffnet und zu dem Speicherort navigiert oder alternativ direkt
 am Speicherort eine CMD gestartet werden.
