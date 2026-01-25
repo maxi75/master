@@ -16,7 +16,7 @@
     },
     {
       "heading": "Beispiel",
-      "text": "Ein Automat besitzt die Definition A = ({A, B, C}, {z₀, z₁, z₂}, δ, z₀, {z₁, z₂}) und die Übergangsfunktion δ:{z₀, z₁, z₂} × {A, B, C} → P({z₀, z₁, z₂}), δ(z₀,A)=δ(z₂,C)=z₁, δ(z₁,B)=δ(z₂,C)=z₂."
+      "text": "Ein Automat besitzt die Definition A = ({A, B, C}, {z₀, z₁, z₂}, δ, z₀, {z₁, z₂}) und die Übergangsfunktion δ:{z₀, z₁, z₂} × {A, B, C} → P({z₀, z₁, z₂}), δ(z₀,A)=δ(z₂,C)={z₁}, δ(z₁,B)=δ(z₂,C)={z₂}."
     },
     {
       "text": "Aus dem ersten Teil der Automatendefinition lässt sich ablesen, dass der Automat die Zustände z₀, z₁ und z₂ besitzt, wobei z₀ Startzustand und sowohl z₁ als auch z₂ akzeptierende Endzustände sind."

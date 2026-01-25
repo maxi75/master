@@ -47,7 +47,7 @@
         },
         {
           "kind": "SOLUTION",
-          "question": "Gegeben ist folgende Automatendefinition: \n A₁=({1, 2, 3}, {a, b, c, d}, δ, a, {d}) \n\n mit der Zustandsübergangsfunktion: \nδ(a,1) = δ(c,2) = b; δ(a,2) = δ(b,1) = c; δ(c,3) = d;\n\n Und die Automatendefinition: \n A₂=({1, 2, 3}, {x, y, z}, δ, x, {y, z}) \n\n mit der Zustandsübergangsfunktion: \nδ(x,1) = δ(z,2) = y; δ(x,2) = δ(y,3) = z; \n\nVereinige beide Definitionen und konstruiere einen beispielhaften Automaten in der Simulation.",
+          "question": "Gegeben ist folgende Automatendefinition: \nA₁=({1, 2, 3}, {a, b, c, d}, δ, a, {d}) \n\nmit der Zustandsübergangsfunktion: \nδ(a,1) = δ(c,2) = b; δ(a,2) = δ(b,1) = c; δ(c,3) = d;\n\nUnd die Automatendefinition: \nA₂=({1, 2, 3}, {x, y, z}, δ, x, {y, z}) \n\nmit der Zustandsübergangsfunktion: \nδ(x,1) = δ(z,2) = y; δ(x,2) = δ(y,3) = z; \n\nVereinige beide Definitionen und konstruiere einen beispielhaften Automaten in der Simulation.",
           "nodes": [
             "ax", "by", "cz"
           ],
@@ -104,7 +104,7 @@
         },
         {
           "kind": "SOLUTION",
-          "question": "Gegeben ist folgende Automatendefinition: \n A₁=({1, 2, 3}, {a, b, c, d}, δ, a, {d}) \n\n mit der Zustandsübergangsfunktion: \nδ(a,1) = δ(c,2) = b; δ(a,2) = δ(b,1) = c; δ(c,3) = d;\n\n Und die Automatendefinition: \n A₂=({1, 2, 3}, {x, y, z}, δ, x, {y, z}) \n\n mit der Zustandsübergangsfunktion: \nδ(x,1) = δ(z,2) = y; δ(x,2) = δ(y,3) = z; \n\nKonkateniere beide Definitionen und konstruiere einen beispielhaften Automaten in der Simulation.",
+          "question": "Gegeben ist folgende Automatendefinition: \nA₁=({1, 2, 3}, {a, b, c, d}, δ, a, {d}) \n\nmit der Zustandsübergangsfunktion: \nδ(a,1) = δ(c,2) = b; δ(a,2) = δ(b,1) = c; δ(c,3) = d;\n\nUnd die Automatendefinition: \nA₂=({1, 2, 3}, {x, y, z}, δ, x, {y, z}) \n\nmit der Zustandsübergangsfunktion: \nδ(x,1) = δ(z,2) = y; δ(x,2) = δ(y,3) = z; \n\nKonkateniere beide Definitionen und konstruiere einen beispielhaften Automaten in der Simulation.",
           "nodes": [
             "a", "b", "c", "d", "y", "z"
           ],
@@ -167,7 +167,7 @@
         },
         {
           "kind": "SOLUTION",
-          "question": "Gegeben ist folgende Automatendefinition: \n A₁=({1, 2, 3}, {a, b, c, d}, δ, a, {d}) \n\n mit der Zustandsübergangsfunktion: \nδ(a,1) = δ(c,2) = b; δ(a,2) = δ(b,1) = c; δ(c,3) = d;\n\n Und die Automatendefinition: \n A₂=({1, 2, 3}, {x, y, z}, δ, x, {y, z}) \n\n mit der Zustandsübergangsfunktion: \nδ(x,1) = δ(z,2) = y; δ(x,2) = δ(y,3) = z; \n\nBilde den Schnitt beider Definitionen und konstruiere einen beispielhaften Automaten in der Simulation.",
+          "question": "Gegeben ist folgende Automatendefinition: \nA₁=({1, 2, 3}, {a, b, c, d}, δ, a, {d}) \n\nmit der Zustandsübergangsfunktion: \nδ(a,1) = δ(c,2) = b; δ(a,2) = δ(b,1) = c; δ(c,3) = d;\n\nUnd die Automatendefinition: \nA₂=({1, 2, 3}, {x, y, z}, δ, x, {y, z}) \n\nmit der Zustandsübergangsfunktion: \nδ(x,1) = δ(z,2) = y; δ(x,2) = δ(y,3) = z; \n\nBilde den Schnitt beider Definitionen und konstruiere einen beispielhaften Automaten in der Simulation.",
           "nodes": [
             "ax", "by", "cz"
           ],
@@ -180,7 +180,7 @@
         },
         {
           "kind": "SOLUTION",
-          "question": "Gegeben ist folgende Automatendefinition: \n A₁=({1, 2, 3}, {a, b, c, d}, δ, a, {d}) \n\n mit der Zustandsübergangsfunktion: \nδ(a,1) = δ(c,2) = b; δ(a,2) = δ(b,1) = c; δ(c,3) = d;\n\nBilde das Komplement und konstruiere einen beispielhaften Automaten in der Simulation.",
+          "question": "Gegeben ist folgende Automatendefinition: \nA₁=({1, 2, 3}, {a, b, c, d}, δ, a, {d}) \n\nmit der Zustandsübergangsfunktion: \nδ(a,1) = δ(c,2) = b; δ(a,2) = δ(b,1) = c; δ(c,3) = d;\n\nBilde das Komplement und konstruiere einen beispielhaften Automaten in der Simulation.",
           "nodes": [
             "a", "b", "c", "d"
           ],

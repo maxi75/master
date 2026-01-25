@@ -14,7 +14,7 @@
       "text": "Vereinigung: L₁ ∪ L₂\nErgebnis: reguläre Sprache"
     },
     {
-      "text": "Kleensche Hülle: L*\nErgebnis: reguläre Sprache"
+      "text": "Kleenesche Hülle: L*\nErgebnis: reguläre Sprache"
     },
     {
       "text": "Komplement: L̅ oder Σ*\\L\nErgebnis: reguläre Sprache"

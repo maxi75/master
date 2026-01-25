@@ -13,14 +13,14 @@
     },
     {
       "heading": "Alphabet",
-      "text": "Einem Automaten liegt in der Regel ein Eingabealphabet zugrunde. Dieses Alphabet kann aus Buchstaben, Symbolen oder Zahlen bestehen und legt fest, welche Eingaben überhaupt erlaubt sind. Im Beispiel des Fahrkartenautomaten besteht das Eingabealphabet aus den Symbolen 0,50 € und 1 €."
+      "text": "Einem Automaten liegt in der Regel ein Eingabealphabet zugrunde. Dieses Alphabet besteht aus einer endlichen Menge an Symbolen und legt fest, welche Eingaben überhaupt erlaubt sind. Im Beispiel des Fahrkartenautomaten besteht das Eingabealphabet aus den Symbolen 0,50 € und 1 €."
     },
     {
       "heading": "Grammatiken und formale Sprachen",
       "text": "Grammatiken beschreiben Konstruktionsregeln, mit denen festgelegt wird, ob eine Eingabe gültig ist. Auch wenn das Alphabet (0,50 € und 1 €) die Möglichkeiten einschränkt, könnte eine Person z. B. zweimal 1 € einwerfen. Die Grammatik gibt Regeln vor, anhand derer sich prüfen lässt, ob die gesamte Eingabe gültig war."
     },
     {
-      "text": "Formale Sprachen nutzen die Kombination aus Grammatik und zugrunde liegendem Alphabet. Eine formale Sprache legt letztlich fest, welche Wörter (also Folgen von Alphabet-Symbolen) akzeptiert werden. Somit schränkt eine formale Sprache die Menge aller möglichen Wörter über einem Alphabet ein."
+      "text": "Formale Sprachen nutzen die Kombination aus Grammatik und zugrunde liegendem Alphabet. Eine formale Sprache beschreibt letztendlich, welche Wörter (also endliche Folgen von Alphabet-Symbolen) akzeptiert werden. Somit schränkt eine formale Sprache die Menge aller möglichen Wörter über einem Alphabet ein."
     },
     {
       "text": "Alphabet, formale Sprachen und Grammatiken bilden zusammen die formale Grundlage, auf der Automaten definiert und analysiert werden."

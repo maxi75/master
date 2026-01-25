@@ -6,7 +6,7 @@
       "text": "Um Automaten und die sie beschreibenden formalen Sprachen bilden zu können, bedarf es Grammatiken. Grammatiken bestehen aus vier Parametern. \n\n\t 1) Dem zugrunde liegenden Alphabet \n\t 2) Variablen oder auch Nichtterminalsymbole genannt \n\t 3) Produktionsregeln \n\t 4) Startvariable"
     },
     {
-      "text": "Die Schreibweise einer Grammatik wird durch den Tupel G mit den vier Komponenten Σ (Alphabet), V (Variablen), P (Produktionsregeln), S (Startvariable) vorgegeben: G = (Σ, V, P, S)"
+      "text": "Die Schreibweise einer Grammatik wird durch den Tupel G mit den vier Komponenten Σ (Alphabet), V (Variablen), P (Produktionsregeln), S (Startvariable) vorgegeben: G = (Σ, V, P, S) \n\nBei den Terminalsymbolen (Alphabet), wie auch bei den Nichtterminalsymbolen (Variablen) handelt es sich jeweils um eine endliche Menge an Symbolen."
     },
     {
       "text": "Produktionsregeln geben vor, wie Nichtterminalsymbole, bzw. Variablen in Terminalsymbole umgewandelt werden können.",
@@ -22,17 +22,17 @@
       "text": "Ausgehend von einer Startvariable S können die Produktionsregeln immer wieder angewandt werden, bis keine Ersetzung mehr möglich ist. Gibt es z.B. Produktionsregeln, die besagen, dass S in die Kombination aus Terminalsymbol A und Nichtterminalsymbol X übersetzt werden kann und das Nichtterminalsymbol X kann in die Kombination der Terminalsymbole B und C übersetzt werden, dann lässt sich S schrittweise zu ABC übersetzen: S -> AX -> ABC."
     },
     {
-      "text": "Eine komplexere Übersetzung wäre die, des DNA-Alphabets. Das DNA-Alphabet besteht aus den Terminalen Σ = {A, C, G, T}. Als Nichtterminalsymbol gibt es nur die Variable S, die auch gleichzeitig Startvariable ist. Es gelten die Produktionsregeln S -> AS | CS | GS | TS | ε. ε steht dabei für das leere Wort."
+      "text": "Eine komplexere Übersetzung wäre die, von DNA-Sequenzen. Das DNA-Alphabet besteht aus den Terminalen Σ = {A, C, G, T}. Als Nichtterminalsymbol gibt es nur die Variable S, die auch gleichzeitig Startvariable ist. Es gelten die Produktionsregeln S -> AS | CS | GS | TS | ε. ε steht dabei für das leere Wort."
     },
     {
-      "text": "Das bedeutet, dass ein Wort, beginnend mit dem Nichtterminalsymbol S auf eine beliebige Konkatenation aus A, C, G und T übersetzt werden kann. Die Menge an Worten, die L(G) damit unterstützt besteht also aus allen möglichen Kombinationen von A, C, G und T."
+      "text": "Das bedeutet, dass ein Wort, bzw. eine DNA-Sequenz, beginnend mit dem Nichtterminalsymbol S auf eine beliebige Konkatenation aus A, C, G und T übersetzt werden kann. Die Menge an Worten, die L(G) damit unterstützt besteht also aus allen möglichen Kombinationen von A, C, G und T."
     },
     {
       "text": "Zusammenfassend würde man die Grammatik wie folgt schreiben: G = ({A,C,G,T}, {S}, {S -> AS | CS | GS | TS | ε}, S)"
     },
     {
       "heading": "Reguläre Ausdrücke",
-      "text": "Abgesehen von Grammatiken können auch reguläre Ausdrücke genutzt werden, um Sprachen zu definieren. Reguläre Ausdrücke geben keine Übersetzungsregeln, sondern Muster zur Erstellung gültiger Wörter vor. Dafür wird | als \"oder\", ◦ als \"und\" und * als kleenscher Operator (wird in Kapitel 3.1 eingeführt) genutzt"
+      "text": "Abgesehen von Grammatiken können auch reguläre Ausdrücke genutzt werden, um Sprachen zu definieren. Reguläre Ausdrücke geben keine Übersetzungsregeln, sondern Muster zur Erstellung gültiger Wörter vor. Dafür wird | als \"oder\", ◦ als \"und\" und * als kleenescher Operator (wird in Kapitel 3.1 eingeführt) genutzt"
     },
     {
       "text": "(A|B)C* besagt beispielsweise, dass alle Wörter in der Sprache L liegen, die mit einem A oder einem B starten und anschließend beliebig viele C's enthalten. AC, ACCC oder BCC liegen dementsprechend in der Sprache L, während ABC nicht in der Sprache liegt."

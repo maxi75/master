@@ -31,6 +31,9 @@
       "text": "Generell kann ausgesagt werden, dass der Automat, bzw. die zugrunde liegende Sprache alle Wörter akzeptiert und enthält, welche mit einem A beginnen und dann über beliebig viele B's oder CB-Kombinationen verfügen."
     },
     {
+      "text": "Im ersten Kapitel zu deterministischen und nicht-deterministischen Automaten wurde bereits erläutert, dass ein DEA für jedes mögliche Eingabezeichen einen Folgezustand definiert. Das ist bei der vorgegebenen Übergangsfunktion nicht der Fall. Beispielsweise ist kein Übergang δ(z₀,B) festgelegt, weil der Automat diesen Übergang nicht erlaubt. Wird dieser nicht erlaubte Übergang in der Übergangsfunktion weggelassen, wird von einem partiellen DEA gesprochen."
+    },
+    {
       "text": "Aufgabe: Baue diesen beispielhaften Automaten im Simulator rechts nach."
     },
     {
