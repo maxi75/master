@@ -22,12 +22,15 @@ package de.hausknecht.master.frameworksanddrivers.ui.content.simulation.graphVie
 
 import de.hausknecht.master.entity.domain.eventdata.GraphChangedEvent;
 import de.hausknecht.master.entity.domain.eventdata.SimulationEvent;
+import de.hausknecht.master.entity.domain.eventdata.ToggleTheoryEvent;
 import de.hausknecht.master.usecase.GraphAdministrator;
 import guru.nidi.graphviz.engine.Format;
 import guru.nidi.graphviz.engine.Graphviz;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.web.WebView;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
@@ -42,8 +45,12 @@ public class GraphView {
     static final String SVG_MEDIATYPE = "image/svg+xml";
 
     @FXML WebView graphView;
+    @FXML Button fullsize;
 
     private final GraphAdministrator graphAdministrator;
+    private final ApplicationEventPublisher applicationEventPublisher;
+
+    private boolean isFullsize = true;
 
     @FXML
     public void initialize() {
@@ -62,6 +69,14 @@ public class GraphView {
                 graphView.setZoom(zoom);
             }
         });
+    }
+
+    @FXML
+    public void toggleTheory() {
+        applicationEventPublisher.publishEvent(new ToggleTheoryEvent("Fullsize"));
+        if (isFullsize) fullsize.setText("⤢");
+        else fullsize.setText("⤡");
+        isFullsize = !isFullsize;
     }
 
     @EventListener

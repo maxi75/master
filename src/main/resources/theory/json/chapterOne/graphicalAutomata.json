@@ -56,7 +56,17 @@
       "imageSubText": "Multimediatasten zum Simulieren von Eingaben."
     },
     {
-      "text": "Achtung: Jeder DEA ist gleichzeitig auch ein NEA, aber nicht jeder NEA ist auch ein DEA. Aus diesem Grund wird standardmäßig die (mächtigere) NEA-Ansicht angezeigt. Soll explizit ein NEA in einen DEA mittels Potenzmengenkonstruktion (wird später beschrieben) umgewandelt werden, kann dies mithilfe des DropDowns vorgenommen werden. Aus technischen Gründen verlieren die Zustände in der DEA-Ansicht allerdings ihre Benennungen und werden nur durch eine Zahl repräsentiert. Auch MUSS zwingend ein Startzustand und mindestens ein Endzustand gesetzt werden, um valide Ergebnisse zu erhalten. Ansonsten ändert sich der Automat nicht!"
+      "heading": "Achtung:",
+      "text": "Jeder DEA ist gleichzeitig auch ein NEA, aber nicht jeder NEA ist auch ein DEA. Aus diesem Grund wird standardmäßig die (mächtigere) NEA-Ansicht angezeigt. Soll explizit ein NEA in einen DEA mittels Potenzmengenkonstruktion (wird später beschrieben) umgewandelt werden, kann dies mithilfe des DropDowns vorgenommen werden. Aus technischen Gründen verlieren die Zustände in der DEA-Ansicht allerdings ihre Benennungen und werden nur durch eine Zahl repräsentiert."
+    },
+    {
+      "text": "Bei der Umwandlung von einem NEA in einen DEA können zusätzliche Zustände angezeigt werden, welche als Dead-State fungieren. Ein Dead-State zeichnet sich dadurch aus, dass es für jedes Zeichen im Alphabet eine Transition auf sich selbst und von anderen Zuständen ausschließlich eingehende Transitionen gibt. Ein Dead-State repräsentiert somit in einem partiellen DEA alle nicht definierten Transitionen, bzw. in einem vollständigen DEA alle Transitionen, welche nicht zu einem akzeptierendem Endzustand führen."
+    },
+    {
+      "text": "Es MUSS zwingend ein Startzustand und mindestens ein Endzustand gesetzt werden, um valide Ergebnisse zu erhalten. Ansonsten ändert sich der Automat nicht!"
+    },
+    {
+      "text": "Auch dürfen Zustände, Alphabete und Wortfolgen nicht nur aus Leerzeichen bestehen."
     }
   ]
 }

@@ -8,9 +8,9 @@
 <?import javafx.geometry.Insets?>
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="de.hausknecht.master.frameworksanddrivers.ui.content.simulation.specification.NodeDefinitionContainer"
-      styleClass="sectionContainer">
+      styleClass="sectionContainer" prefWidth="0" minWidth="0" maxWidth="Infinity" >
 
-    <ComboBox fx:id="startingNode" HBox.hgrow="ALWAYS" maxWidth="Infinity" prefWidth="0" styleClass="comboBox" promptText="Startzustand"/>
+    <ComboBox fx:id="startingNode" HBox.hgrow="ALWAYS" maxWidth="Infinity" prefWidth="0" minWidth="0" styleClass="comboBox" promptText="Startzustand"/>
 
     <HBox styleClass="sectionHeading">
         <VBox.margin>
@@ -25,7 +25,7 @@
 
     <VBox spacing="7">
         <HBox spacing="7">
-            <ComboBox fx:id="endingNode" HBox.hgrow="ALWAYS" maxWidth="Infinity" prefWidth="0" styleClass="comboBox" promptText="Endzustand"/>
+            <ComboBox fx:id="endingNode" prefWidth="0" minWidth="0" HBox.hgrow="ALWAYS" maxWidth="Infinity" styleClass="comboBox" promptText="Endzustand"/>
             <Button fx:id="addButton" styleClass="addButton">+</Button>
         </HBox>
     </VBox>

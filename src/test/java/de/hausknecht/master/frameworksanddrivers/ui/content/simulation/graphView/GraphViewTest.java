@@ -22,6 +22,7 @@ package de.hausknecht.master.frameworksanddrivers.ui.content.simulation.graphVie
 
 import de.hausknecht.master.entity.domain.eventdata.GraphChangedEvent;
 import de.hausknecht.master.entity.domain.eventdata.SimulationEvent;
+import de.hausknecht.master.entity.domain.eventdata.ToggleTheoryEvent;
 import de.hausknecht.master.frameworksanddrivers.ui.UITest;
 import de.hausknecht.master.usecase.GraphAdministrator;
 import javafx.application.Platform;
@@ -30,9 +31,12 @@ import javafx.scene.web.WebView;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentCaptor;
+import org.springframework.context.ApplicationEventPublisher;
 
 import java.util.Optional;
 
+import static de.hausknecht.master.ConstantProvider.EMPTY_STRING;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
@@ -40,8 +44,9 @@ import static org.mockito.Mockito.*;
 class GraphViewTest extends UITest {
 
     private final GraphAdministrator graphAdministratorMock = mock();
+    private final ApplicationEventPublisher applicationEventPublisherMock = mock();
 
-    private final GraphView classUnderTest = new GraphView(graphAdministratorMock);
+    private final GraphView classUnderTest = new GraphView(graphAdministratorMock, applicationEventPublisherMock);
 
     @BeforeEach
     void setUp() {
@@ -141,6 +146,35 @@ class GraphViewTest extends UITest {
                     ScrollEvent.VerticalTextScrollUnits.NONE, scrollValue,
                     scrollValue, null
             );
+        }
+    }
+
+    @Nested
+    class OnFullsizeClicked {
+
+        @Test
+        void checkEventPublication() {
+            Platform.runLater(() -> {
+                classUnderTest.toggleTheory();
+
+                ArgumentCaptor<ToggleTheoryEvent> captor = ArgumentCaptor.forClass(ToggleTheoryEvent.class);
+                verify(applicationEventPublisherMock, times(1)).publishEvent(captor.capture());
+                assertNotNull(captor.getValue());
+                assertEquals("Fullsize", captor.getValue().name());
+            });
+        }
+
+        @Test
+        void checkIconToggle() {
+            Platform.runLater(() -> {
+                assertEquals("⤢", classUnderTest.fullsize.getText());
+
+                classUnderTest.toggleTheory();
+                assertEquals("⤡", classUnderTest.fullsize.getText());
+
+                classUnderTest.toggleTheory();
+                assertEquals("⤢", classUnderTest.fullsize.getText());
+            });
         }
     }
 
