@@ -31,26 +31,31 @@
 
             <!-- Kapitel 1 -->
             <Label styleClass="navLabels, newChapters">1. Grundlagen</Label>
-            <Label styleClass="subchapter, secondRow">1.1 Begriffsdefinitionen</Label>
+
+            <Button styleClass="navButtons" onAction="#loadContent">
+                <userData>chapterOne/introduction.json</userData>
+                1.1 Einführung in die Applikation
+            </Button>
+            <Label styleClass="subchapter, secondRow">1.2 Begriffsdefinitionen</Label>
             <Button styleClass="navButtons, thirdRow" onAction="#loadContent">
                 <userData>chapterOne/alphabet.json</userData>
-                1.1.1 Alphabet, formale Sprachen und Grammatiken
+                1.2.1 Alphabet, formale Sprachen und Grammatiken
             </Button>
             <Button styleClass="navButtons, thirdRow" onAction="#loadContent">
                 <userData>chapterOne/automata.json</userData>
-                1.1.2 Deterministische und nichtdeterministische endliche Automaten
+                1.2.2 Deterministische und nichtdeterministische endliche Automaten
             </Button>
             <Button styleClass="navButtons, thirdRow" onAction="#loadContent">
                 <userData>chapterOne/ExercisesOne.json</userData>
-                1.1.3 Übungsaufgaben Automaten, formale Sprachen und Grammatiken
+                1.2.3 Übungsaufgaben Automaten, formale Sprachen und Grammatiken
             </Button>
             <Button styleClass="navButtons" onAction="#loadContent">
                 <userData>chapterOne/graphicalAutomata.json</userData>
-                1.2 Grafische Repräsentation von Automaten
+                1.3 Grafische Repräsentation von Automaten
             </Button>
             <Button styleClass="navButtons" onAction="#loadContent">
                 <userData>chapterOne/ExercisesTwo.json</userData>
-                1.3 Übungsaufgaben Automatenkonstruktion
+                1.4 Übungsaufgaben Automatenkonstruktion
             </Button>
 
             <!-- Kapitel 2 -->

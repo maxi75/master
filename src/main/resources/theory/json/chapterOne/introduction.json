@@ -1,0 +1,59 @@
+{
+  "mainHeading": "Einführung in die Lernsoftware für die Automatentheorie",
+  "content": [
+    {
+      "heading": "Konzept, Menüführung und Lerninhalte",
+      "text": "Diese Applikation bietet Lernmaterial für das Teilgebiet 'Automatentheorie' der theoretischen Informatik. In aufeinander aufbauenden Kapiteln befinden sich Erklärungen, Formeln und Übungsaufgaben. Der Stoff wird beginnt erst mit der abstrakten Erklärung einzelner Begrifflichkeiten und Konzepte und wird im Verlauf der Kapitel immer konkreter und detaillierter. Am Ende jeden Kapitels befinden sich Übungsaufgaben in unterschiedlicher Komplexität."
+    },
+    {
+      "text": "Für jede korrekt gelöste Übungsaufgabe gibt es Punkte. Für falsch gelöste Aufgaben gibt es Minuspunkte. Aufgabentypen, wie beispielsweise Multiple-Choice, die korrekte und fehlerhafte Antworten gleichzeitig ermöglichen geben Punkte in Abhängigkeit der korrekten/inkorrekten Antworten. Das heißt, dass die Punkte aus den korrekten Antworten mit den Minuspunkten aus den falschen Angaben verrechnet werden. Eine Übungsaufgabe kann mittels des Buttons \"Pruefe Lösung\" auf korrekte Eingabe geprüft werden. Fehlerhafte Eingaben werden in rot dargestellt, korrekte Eingaben in grün. Zusätzlich existiert der Button \"Lösen\", welcher für eine Aufgabe automatisch die korrekte Lösung ausfüllt. Für die Verwendung dieses Buttons werden ebenfalls Punkte abgezogen. Der \"Lösen\" Button sollte nur dann eingesetzt werden, wenn wirklich keine Lösung gefunden werden kann. Die erreichte Punktzahl lässt sich im Menü, welches sich auf der linken Seite befindet und über das Burgermenü geöffnet werden kann, einsehen."
+    },
+    {
+      "text": "Mittels der erreichten Punktzahl können am Ende des Kurses zusätzliche Übungsaufgaben freigeschaltet werden, welche ebenfalls über das Menü (unterster Eintrag) erreichbar sind. Auch werden für das Erreichen von Punkten Abzeichen, sogenannte Batches, vergeben. Bei erreichen eines Batch erscheint eine kurze Einblendung in der Applikation. Batches lassen sich auch über die verbrachte Lernzeit in der Applikation verdienen. Alle Batches sind über einen entsprechenden Menüeintrag einzusehen, wobei erhaltene Batches farbig und noch freizuschaltene Batches in grau dargestellt werden."
+    },
+    {
+      "text": "Jede Seite mit theoretischen Inhalten oder Übungsaufgaben verfügt über einen \"Weiter\"- und einen \"Zurück\"-Button, welche die Navigation zwischen einzelnen Kapiteln der Anwendung erleichtern sollen. Darüber hinaus befindet sich in der rechten oberen Ecke ein Button, welcher die Vollbildansicht der Erläuterungen und Übungsaufgaben regelt. Durch klicken auf diesen Button lässt sich eine zusätzliche Ansicht aktivieren oder deaktivieren, in welcher Automaten simuliert werden können. Ist die Vollbildansicht minimiert, erscheint der Automaten-Simulator auf der rechten Bildschirmhälfte. Die beiden Ansichten können an ihrer Trennlinie (durch verschieben dieser) in ihrer Größe verändert werden."
+    },
+    {
+      "heading": "Automaten-Simulator",
+      "text": "Der im rechten Fenster angeordnete Simulator kann zur Repräsentation von Automaten verwendet werden und soll das bessere Verständnis fördern. Die nachfolgende Erklärung setzt das Verständnis unterschiedlicher Konzepte voraus und kann regelmäßig als Nachschlagewerk dienen, wenn neue Konzepte gelernt und im Simulator angewandt werden oder sich der Simulator anders verhält als erwartet. Die Begrifflichkeiten und Konzepte werden innerhalb der nachfolgenden Kapiteln erläutert."
+    },
+    {
+      "text": "Unten in der Ansicht befindet sich ein ausklappbares Fenster, in welchem Zustände und Transitionen des Automaten definiert werden können."
+    },
+    {
+      "text": "In dem linken Menü (\"Zustände des Automaten\") lassen sich durch Eingabe eines Namen und klicken des +-Buttons neue Zustände festlegen. Das mittlere Menü bietet die Auswahl eines Startzustandes und beliebig vieler Endzustände an. Die Einträge in den DropDowns sind identisch mit den zuvor angelegten Zuständen des Automaten. Wurden keine Zustände angelegt, sind die DropDowns leer."
+    },
+    {
+      "text": "Das rechte Menü gibt die Transitionen an und benötigt eine Eingabe (entweder in Form eines einzelnen Zeichens oder als Zeichenkette, je nachdem was das Alphabet unterstützen soll). Zusätzlich müssen in den DropDowns die Anfangs- und Folgezustände gewählt werden. Auch hier gilt, die Einträge in den DropDowns sind identisch mit den bereits angelegten Zuständen und gibt es keine Zustände, sind auch die DropDowns leer.",
+      "image": "chapterOne/menu.png",
+      "imageAltText": "Bild: zeigt das Aufklappen des Fensters sowie die Menüeinträge um Zustände und Transitionen festzulegen.",
+      "imageSubText": "Der rot markierte Button dient dem öffnen und schließen des Fensters. Der grüne Menüpunkt dient der Konfiguration aller Zustände, der gelbe Menüpunkt dient der Spezifikation von Start- und Endzuständen und der lila Menüpunkt dient der Definition von Transitionen."
+    },
+    {
+      "text": "Angelegte Zustände, Endzustände oder Transitionen lassen sich mittels Papierkorb-Symbols löschen. Das Löschen eines Zustandes führt auch zu einer Löschung des Startzustandes, Endzustandes oder von Transitionen sofern der gelöschte Zustand dort genutzt wurde.",
+      "image": "chapterOne/delete.png",
+      "imageAltText": "Bild: zeigt den Menüpunkt zum Löschen eines Zustandes.",
+      "imageSubText": "Menüpunkt zum Löschen eines Zustandes."
+    },
+    {
+      "text": "In der oberen Simulationsleiste kann zum einen eine Folge von Eingabezeichen/Eingabewörtern eingetragen werden und über die Multimediatasten lässt sich der Automat schrittweise nachvollziehen. Rote Kreise stehen dabei für nicht akzeptierende Zustände (also nicht Endzustände) und grüne Kreise für akzeptierende (End-) Zustände. Mittels des DropDowns kann zwischen der grafischen Darstellung von DEA und NEA gewechselt werden.",
+      "image": "chapterOne/media.png",
+      "imageAltText": "Bild: zeigt die Multimediatasten zum Simulieren von Eingaben.",
+      "imageSubText": "Multimediatasten zum Simulieren von Eingaben."
+    },
+    {
+      "heading": "Achtung:",
+      "text": "Jeder DEA ist gleichzeitig auch ein NEA, aber nicht jeder NEA ist auch ein DEA. Aus diesem Grund wird standardmäßig die (mächtigere) NEA-Ansicht angezeigt. Soll explizit ein NEA in einen DEA mittels Potenzmengenkonstruktion (wird später beschrieben) umgewandelt werden, kann dies mithilfe des DropDowns vorgenommen werden. Aus technischen Gründen verlieren die Zustände in der DEA-Ansicht allerdings ihre Benennungen und werden nur durch eine Zahl repräsentiert."
+    },
+    {
+      "text": "Bei der Umwandlung von einem NEA in einen DEA können zusätzliche Zustände angezeigt werden, welche als Dead-State fungieren. Ein Dead-State zeichnet sich dadurch aus, dass es für jedes Zeichen im Alphabet eine Transition auf sich selbst und von anderen Zuständen ausschließlich eingehende Transitionen gibt. Ein Dead-State repräsentiert somit in einem partiellen DEA alle nicht definierten Transitionen, bzw. in einem vollständigen DEA alle Transitionen, welche nicht zu einem akzeptierendem Endzustand führen."
+    },
+    {
+      "text": "Es MUSS zwingend ein Startzustand und mindestens ein Endzustand gesetzt werden, um valide Ergebnisse zu erhalten. Ansonsten ändert sich der Automat nicht!"
+    },
+    {
+      "text": "Auch dürfen Zustände, Alphabete und Wortfolgen nicht nur aus Leerzeichen bestehen."
+    }
+  ]
+}

@@ -55,7 +55,7 @@ class ClasspathLoaderTest {
         @Test
         void withValue() {
             TheoryPageData expected = TestDataGenerator.getCorrectTheoryPageData();
-            Optional<TheoryPageData> actual = classUnderTest.getJsonFromResource("theory/json/chapterOne/alphabet.json", TheoryPageData.class);
+            Optional<TheoryPageData> actual = classUnderTest.getJsonFromResource("theory/json/chapterOne/introduction.json", TheoryPageData.class);
 
             assertTrue(actual.isPresent());
             assertThat(actual.get()).usingRecursiveComparison().isEqualTo(expected);

@@ -29,6 +29,7 @@ import de.hausknecht.master.frameworksanddrivers.ui.content.theory.explanation.H
 import de.hausknecht.master.frameworksanddrivers.ui.content.theory.explanation.ImageContainer;
 import de.hausknecht.master.frameworksanddrivers.ui.content.theory.explanation.TextContainer;
 import de.hausknecht.master.usecase.ClasspathData;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
@@ -42,7 +43,7 @@ import org.springframework.stereotype.Component;
 public class TheoryContainer {
     static final String CSS_PAGE_EXCEPTION = "page-exception";
     static final String LOAD_PAGE_EXCEPTION = "[ERROR: Page not found]";
-    static final String FIRST_PAGE = "chapterOne/alphabet.json";
+    static final String FIRST_PAGE = "chapterOne/introduction.json";
 
     @FXML VBox theoryContainer;
     @FXML Button fullsize;
@@ -61,7 +62,7 @@ public class TheoryContainer {
     @FXML
     void initialize() {
         theoryContainer.setPadding(new Insets(30, 100, 20, 100));
-        renderTheoryData(FIRST_PAGE);
+        Platform.runLater(() -> renderTheoryData(FIRST_PAGE));
     }
 
     @FXML

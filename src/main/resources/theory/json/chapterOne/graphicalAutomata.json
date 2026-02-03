@@ -29,44 +29,6 @@
       "image": "chapterOne/nea.png",
       "imageAltText": "Bild: Startzustand Z1 in rot. Führt mit Eingabezeichen A zu grünem Folgezustand Z2 und mit Eingabezeichen B zu lila Endzustand Z3. Eine Transition mit dem Eingabezeichen C führt von Z3 wieder in zu Z2. Zusätzlich führt eine C-Transition von Z3 auch wieder zu Z3.",
       "imageSubText": "Der abgebildete Automat verfügt über einen Startzustand Z1 in rot. Von diesem Zustand Z1 kann mittels A-Transition der Folgezustand Z2 (grün) und von dort mittels B-Transition der Endzustand Z3 (lila) erreicht werden. Eine C-Transition von Z3 nach Z2 erlaubt beliebig viele cb-Postfixe eines Eingabewortes. Alternativ erlaubt die C-Transition von Z3 nach Z3 beliebig viele c-Postfixe."
-    },
-    {
-      "heading": "Automaten im Simulator anlegen",
-      "text": "Der im rechten Fenster angeordnete Simulator kann zur Repräsentation von Automaten und soll das bessere Verständnis fördern. Rechts unten befindet sich ein ausklappbares Fenster, in welchem Zustände und Transitionen des Automaten definiert werden können."
-    },
-    {
-      "text": "In dem linken Menü (\"Zustände des Automaten\") lassen sich durch Eingabe eines Namen und klicken des +-Buttons neue Zustände festlegen. Das mittlere Menü bietet die Auswahl eines Startzustandes und beliebig vieler Endzustände an. Die Einträge in den DropDowns sind identisch mit den zuvor angelegten Zuständen des Automaten. Wurden keine Zustände angelegt, sind die DropDowns leer."
-    },
-    {
-      "text": "Das rechte Menü gibt die Transitionen an und benötigt eine Eingabe (entweder in Form eines einzelnen Zeichens oder als Zeichenkette, je nachdem was das Alphabet unterstützen soll). Zusätzlich müssen in den DropDowns die Anfangs- und Folgezustände gewählt werden. Auch hier gilt, die Einträge in den DropDowns sind identisch mit den bereits angelegten Zuständen und gibt es keine Zustände, sind auch die DropDowns leer.",
-      "image": "chapterOne/menu.png",
-      "imageAltText": "Bild: zeigt das Aufklappen des Fensters sowie die Menüeinträge um Zustände und Transitionen festzulegen.",
-      "imageSubText": "Der rot markierte Button dient dem öffnen und schließen des Fensters. Der grüne Menüpunkt dient der Konfiguration aller Zustände, der gelbe Menüpunkt dient der Spezifikation von Start- und Endzuständen und der lila Menüpunkt dient der Definition von Transitionen."
-    },
-    {
-      "text": "Angelegte Zustände, Endzustände oder Transitionen lassen sich mittels Papierkorb-Symbols löschen. Das Löschen eines Zustandes führt auch zu einer Löschung des Startzustandes, Endzustandes oder von Transitionen sofern der gelöschte Zustand dort genutzt wurde.",
-      "image": "chapterOne/delete.png",
-      "imageAltText": "Bild: zeigt den Menüpunkt zum Löschen eines Zustandes.",
-      "imageSubText": "Menüpunkt zum Löschen eines Zustandes."
-    },
-    {
-      "text": "In der oberen Simulationsleiste kann zum einen eine Folge von Eingabezeichen/Eingabewörtern eingetragen werden und über die Multimediatasten lässt sich der Automat schrittweise nachvollziehen. Rote Kreise stehen dabei für nicht akzeptierende Zustände (also nicht Endzustände) und grüne Kreise für akzeptierende (End-) Zustände. Mittels des DropDowns kann zwischen der grafischen Darstellung von DEA und NEA gewechselt werden.",
-      "image": "chapterOne/media.png",
-      "imageAltText": "Bild: zeigt die Multimediatasten zum Simulieren von Eingaben.",
-      "imageSubText": "Multimediatasten zum Simulieren von Eingaben."
-    },
-    {
-      "heading": "Achtung:",
-      "text": "Jeder DEA ist gleichzeitig auch ein NEA, aber nicht jeder NEA ist auch ein DEA. Aus diesem Grund wird standardmäßig die (mächtigere) NEA-Ansicht angezeigt. Soll explizit ein NEA in einen DEA mittels Potenzmengenkonstruktion (wird später beschrieben) umgewandelt werden, kann dies mithilfe des DropDowns vorgenommen werden. Aus technischen Gründen verlieren die Zustände in der DEA-Ansicht allerdings ihre Benennungen und werden nur durch eine Zahl repräsentiert."
-    },
-    {
-      "text": "Bei der Umwandlung von einem NEA in einen DEA können zusätzliche Zustände angezeigt werden, welche als Dead-State fungieren. Ein Dead-State zeichnet sich dadurch aus, dass es für jedes Zeichen im Alphabet eine Transition auf sich selbst und von anderen Zuständen ausschließlich eingehende Transitionen gibt. Ein Dead-State repräsentiert somit in einem partiellen DEA alle nicht definierten Transitionen, bzw. in einem vollständigen DEA alle Transitionen, welche nicht zu einem akzeptierendem Endzustand führen."
-    },
-    {
-      "text": "Es MUSS zwingend ein Startzustand und mindestens ein Endzustand gesetzt werden, um valide Ergebnisse zu erhalten. Ansonsten ändert sich der Automat nicht!"
-    },
-    {
-      "text": "Auch dürfen Zustände, Alphabete und Wortfolgen nicht nur aus Leerzeichen bestehen."
     }
   ]
 }
