@@ -22,6 +22,8 @@ package de.hausknecht.master.frameworksanddrivers.ui.content.theory;
 
 import de.hausknecht.master.TestDataGenerator;
 import de.hausknecht.master.entity.domain.content.TheoryPageData;
+import de.hausknecht.master.entity.domain.eventdata.ToggleContentEvent;
+import de.hausknecht.master.entity.domain.eventdata.ToggleContentType;
 import de.hausknecht.master.frameworksanddrivers.ui.UITest;
 import de.hausknecht.master.frameworksanddrivers.ui.content.theory.exercise.ExerciseContainer;
 import de.hausknecht.master.frameworksanddrivers.ui.content.theory.explanation.ErrorHandler;
@@ -30,11 +32,14 @@ import de.hausknecht.master.frameworksanddrivers.ui.content.theory.explanation.I
 import de.hausknecht.master.frameworksanddrivers.ui.content.theory.explanation.TextContainer;
 import de.hausknecht.master.usecase.ClasspathData;
 import javafx.application.Platform;
+import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentCaptor;
+import org.springframework.context.ApplicationEventPublisher;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -48,14 +53,17 @@ class TheoryContainerTest extends UITest {
     private final HeadingContainer headingContainerMock = mock();
     private final TextContainer textContainerMock = mock();
     private final ExerciseContainer exerciseContainerMock = mock();
+    private final ApplicationEventPublisher applicationEventPublisherMock = mock();
 
     private final TheoryContainer classUnderTest = new TheoryContainer(classpathDataMock, errorHandlerMock, imageContainerMock,
-            headingContainerMock, textContainerMock, exerciseContainerMock);
+            headingContainerMock, textContainerMock, exerciseContainerMock, applicationEventPublisherMock);
 
     @BeforeEach
     void setUp() {
         when(classpathDataMock.getNewPageData(anyString())).thenReturn(TestDataGenerator.getCorrectTheoryPageData());
         classUnderTest.theoryContainer = new VBox();
+        classUnderTest.fullsize = new Button();
+        classUnderTest.fullsize.setText("⤡");
     }
 
     @Nested
@@ -121,6 +129,32 @@ class TheoryContainerTest extends UITest {
             verify(imageContainerMock, times(0)).addImages(any(), any());
             verify(exerciseContainerMock, times(0)).addExercise(any(), any());
             verify(errorHandlerMock, times(1)).showError(anyString(), anyString(), any());
+        }
+    }
+
+    @Nested
+    class OnFullsizeClicked {
+
+        @Test
+        void checkEventPublication() {
+            classUnderTest.toggleTheory();
+
+            ArgumentCaptor<ToggleContentEvent> captor = ArgumentCaptor.forClass(ToggleContentEvent.class);
+            verify(applicationEventPublisherMock, times(1)).publishEvent(captor.capture());
+            assertNotNull(captor.getValue());
+            assertEquals(ToggleContentType.THEORY, captor.getValue().type());
+        }
+
+        @Test
+        void checkIconToggle() {
+            assertEquals("⤡", classUnderTest.fullsize.getText());
+
+            classUnderTest.toggleTheory();
+            assertEquals("⤢", classUnderTest.fullsize.getText());
+
+            classUnderTest.toggleTheory();
+            fxWait(200);
+            assertEquals("⤡", classUnderTest.fullsize.getText());
         }
     }
 }

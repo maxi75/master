@@ -20,4 +20,4 @@ package de.hausknecht.master.entity.domain.eventdata;
  * #L%
  */
 
-public record ToggleTheoryEvent(String name) {}
+public record ToggleContentEvent(ToggleContentType type) {}

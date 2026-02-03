@@ -22,7 +22,8 @@ package de.hausknecht.master.frameworksanddrivers.ui.content.simulation.graphVie
 
 import de.hausknecht.master.entity.domain.eventdata.GraphChangedEvent;
 import de.hausknecht.master.entity.domain.eventdata.SimulationEvent;
-import de.hausknecht.master.entity.domain.eventdata.ToggleTheoryEvent;
+import de.hausknecht.master.entity.domain.eventdata.ToggleContentEvent;
+import de.hausknecht.master.entity.domain.eventdata.ToggleContentType;
 import de.hausknecht.master.usecase.GraphAdministrator;
 import guru.nidi.graphviz.engine.Format;
 import guru.nidi.graphviz.engine.Graphviz;
@@ -73,9 +74,9 @@ public class GraphView {
 
     @FXML
     public void toggleTheory() {
-        applicationEventPublisher.publishEvent(new ToggleTheoryEvent("Fullsize"));
-        if (isFullsize) fullsize.setText("⤢");
-        else fullsize.setText("⤡");
+        applicationEventPublisher.publishEvent(new ToggleContentEvent(ToggleContentType.SIMULATION));
+        if (isFullsize) fullsize.setText("⤡");
+        else fullsize.setText("⤢");
         isFullsize = !isFullsize;
     }
 

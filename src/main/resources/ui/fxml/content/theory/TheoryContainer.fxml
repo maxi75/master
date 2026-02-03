@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.ScrollPane?>
-<ScrollPane fitToWidth="true"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="de.hausknecht.master.frameworksanddrivers.ui.content.theory.TheoryContainer">
-    <VBox fx:id="theoryContainer">
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.StackPane?>
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           fx:controller="de.hausknecht.master.frameworksanddrivers.ui.content.theory.TheoryContainer">
+    <ScrollPane fitToWidth="true">
+        <VBox fx:id="theoryContainer">
 
-    </VBox>
-</ScrollPane>
+        </VBox>
+    </ScrollPane>
+    <Button fx:id="fullsize" styleClass="expandButton" StackPane.alignment="TOP_RIGHT" onAction="#toggleTheory">
+        ⤡
+        <StackPane.margin>
+            <Insets top="15" right="15"/>
+        </StackPane.margin>
+    </Button>
+</StackPane>

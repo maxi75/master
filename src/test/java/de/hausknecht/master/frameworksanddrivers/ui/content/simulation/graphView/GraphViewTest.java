@@ -22,10 +22,12 @@ package de.hausknecht.master.frameworksanddrivers.ui.content.simulation.graphVie
 
 import de.hausknecht.master.entity.domain.eventdata.GraphChangedEvent;
 import de.hausknecht.master.entity.domain.eventdata.SimulationEvent;
-import de.hausknecht.master.entity.domain.eventdata.ToggleTheoryEvent;
+import de.hausknecht.master.entity.domain.eventdata.ToggleContentEvent;
+import de.hausknecht.master.entity.domain.eventdata.ToggleContentType;
 import de.hausknecht.master.frameworksanddrivers.ui.UITest;
 import de.hausknecht.master.usecase.GraphAdministrator;
 import javafx.application.Platform;
+import javafx.scene.control.Button;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.web.WebView;
 import org.junit.jupiter.api.BeforeEach;
@@ -36,7 +38,6 @@ import org.springframework.context.ApplicationEventPublisher;
 
 import java.util.Optional;
 
-import static de.hausknecht.master.ConstantProvider.EMPTY_STRING;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
@@ -51,6 +52,8 @@ class GraphViewTest extends UITest {
     @BeforeEach
     void setUp() {
         Platform.runLater(() -> classUnderTest.graphView = new WebView());
+        classUnderTest.fullsize = new Button();
+        classUnderTest.fullsize.setText("⤢");
 
         when(graphAdministratorMock.returnGraphDefinition()).thenReturn(Optional.of("diagraph { a -> b }"));
         when(graphAdministratorMock.returnSimulatedGraphDefinition(anyString())).thenReturn(Optional.of("digraph { a }"));
@@ -154,27 +157,23 @@ class GraphViewTest extends UITest {
 
         @Test
         void checkEventPublication() {
-            Platform.runLater(() -> {
-                classUnderTest.toggleTheory();
+            classUnderTest.toggleTheory();
 
-                ArgumentCaptor<ToggleTheoryEvent> captor = ArgumentCaptor.forClass(ToggleTheoryEvent.class);
-                verify(applicationEventPublisherMock, times(1)).publishEvent(captor.capture());
-                assertNotNull(captor.getValue());
-                assertEquals("Fullsize", captor.getValue().name());
-            });
+            ArgumentCaptor<ToggleContentEvent> captor = ArgumentCaptor.forClass(ToggleContentEvent.class);
+            verify(applicationEventPublisherMock, times(1)).publishEvent(captor.capture());
+            assertNotNull(captor.getValue());
+            assertEquals(ToggleContentType.SIMULATION, captor.getValue().type());
         }
 
         @Test
         void checkIconToggle() {
-            Platform.runLater(() -> {
-                assertEquals("⤢", classUnderTest.fullsize.getText());
+            assertEquals("⤢", classUnderTest.fullsize.getText());
 
-                classUnderTest.toggleTheory();
-                assertEquals("⤡", classUnderTest.fullsize.getText());
+            classUnderTest.toggleTheory();
+            assertEquals("⤡", classUnderTest.fullsize.getText());
 
-                classUnderTest.toggleTheory();
-                assertEquals("⤢", classUnderTest.fullsize.getText());
-            });
+            classUnderTest.toggleTheory();
+            assertEquals("⤢", classUnderTest.fullsize.getText());
         }
     }
 

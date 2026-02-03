@@ -20,9 +20,13 @@ package de.hausknecht.master.frameworksanddrivers.ui.content;
  * #L%
  */
 
+import de.hausknecht.master.entity.domain.eventdata.ToggleContentEvent;
+import de.hausknecht.master.entity.domain.eventdata.ToggleContentType;
 import de.hausknecht.master.frameworksanddrivers.ui.UITest;
 import javafx.application.Platform;
 import javafx.scene.control.SplitPane;
+import javafx.scene.layout.VBox;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
@@ -30,7 +34,17 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ContentContainerControllerTest extends UITest {
 
-    private final ContentContainerController classUnderTest = new ContentContainerController();
+    private ContentContainerController classUnderTest;
+
+    @BeforeEach
+    void setUp() {
+        classUnderTest = new ContentContainerController();
+        classUnderTest.contentSplitter = new SplitPane();
+        classUnderTest.theoryContainer = new VBox();
+        classUnderTest.simulatorContainer = new VBox();
+        classUnderTest.contentSplitter.getItems().add(classUnderTest.theoryContainer);
+        classUnderTest.contentSplitter.getItems().add(classUnderTest.simulatorContainer);
+    }
 
     @Nested
     class Initialize {
@@ -40,6 +54,7 @@ class ContentContainerControllerTest extends UITest {
             Platform.runLater(() -> {
                 assertTrue(SplitPane.isResizableWithParent(classUnderTest.getTheoryContainer()));
                 assertTrue(SplitPane.isResizableWithParent(classUnderTest.getSimulatorContainer()));
+                assertFalse(classUnderTest.isSimulationVisible());
             });
         }
     }
@@ -50,41 +65,68 @@ class ContentContainerControllerTest extends UITest {
         @Test
         void removeTheoryPane() {
             Platform.runLater(() -> {
-                classUnderTest.getContentSplitter().setDividerPositions(1.2);
-
-                classUnderTest.onToggleTheory(null);
-
-                assertEquals(1.2, classUnderTest.getDividerPosition());
-                assertFalse(classUnderTest.getContentSplitter().getItems().contains(classUnderTest.getTheoryContainer()));
-                try {
-                    assertFalse(classUnderTest.getClass().getField("theoryVisible").getBoolean(classUnderTest));
-                } catch (IllegalAccessException | NoSuchFieldException e) {
-                    fail();
-                }
+                classUnderTest.contentSplitter.setDividerPositions(1.2);
+                classUnderTest.handleToggle(new ToggleContentEvent(ToggleContentType.SIMULATION));
             });
+
+            fxWait(200);
+            assertEquals(1.2, classUnderTest.getDividerPosition());
+            assertFalse(classUnderTest.getContentSplitter().getItems().contains(classUnderTest.getTheoryContainer()));
+            assertFalse(classUnderTest.theoryVisible);
         }
 
         @Test
         void addTheoryPane() {
             Platform.runLater(() -> {
-                try {
-                    classUnderTest.getClass().getField("theoryVisible").setBoolean(classUnderTest, false);
-                } catch (IllegalAccessException | NoSuchFieldException e) {
-                    fail();
-                }
+                classUnderTest.theoryVisible = false;
                 classUnderTest.getContentSplitter().getItems().remove(classUnderTest.getTheoryContainer());
-                classUnderTest.getContentSplitter().setDividerPositions(1.2);
 
-                classUnderTest.onToggleTheory(null);
-
-                assertEquals(1.2, classUnderTest.getDividerPosition());
-                assertTrue(classUnderTest.getContentSplitter().getItems().contains(classUnderTest.getTheoryContainer()));
-                try {
-                    assertTrue(classUnderTest.getClass().getField("theoryVisible").getBoolean(classUnderTest));
-                } catch (IllegalAccessException | NoSuchFieldException e) {
-                    fail();
-                }
+                classUnderTest.handleToggle(new ToggleContentEvent(ToggleContentType.SIMULATION));
             });
+
+            fxWait(200);
+            assertTrue(classUnderTest.getContentSplitter().getItems().contains(classUnderTest.getTheoryContainer()));
+            assertTrue(classUnderTest.simulationVisible);
+        }
+
+        @Test
+        void removeSimulationPane() {
+            Platform.runLater(() -> {
+                classUnderTest.contentSplitter.setDividerPositions(1.2);
+                classUnderTest.handleToggle(new ToggleContentEvent(ToggleContentType.THEORY));
+            });
+
+            fxWait(200);
+            assertEquals(1.2, classUnderTest.getDividerPosition());
+            assertFalse(classUnderTest.getContentSplitter().getItems().contains(classUnderTest.getSimulatorContainer()));
+            assertFalse(classUnderTest.simulationVisible);
+        }
+
+        @Test
+        void addSimulationPane() {
+            Platform.runLater(() -> {
+                classUnderTest.simulationVisible = false;
+                classUnderTest.getContentSplitter().getItems().remove(classUnderTest.getSimulatorContainer());
+
+                classUnderTest.handleToggle(new ToggleContentEvent(ToggleContentType.THEORY));
+            });
+
+            fxWait(200);
+            assertTrue(classUnderTest.getContentSplitter().getItems().contains(classUnderTest.getSimulatorContainer()));
+            assertTrue(classUnderTest.simulationVisible);
+        }
+
+        @Test
+        void eventIsNull() {
+            fxWait(200);
+            assertTrue(classUnderTest.getContentSplitter().getItems().contains(classUnderTest.getTheoryContainer()));
+            assertTrue(classUnderTest.getContentSplitter().getItems().contains(classUnderTest.getSimulatorContainer()));
+
+            Platform.runLater(() -> classUnderTest.handleToggle(null));
+
+            fxWait(200);
+            assertTrue(classUnderTest.getContentSplitter().getItems().contains(classUnderTest.getTheoryContainer()));
+            assertTrue(classUnderTest.getContentSplitter().getItems().contains(classUnderTest.getSimulatorContainer()));
         }
     }
 }
