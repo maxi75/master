@@ -47,6 +47,8 @@ public class TheoryContainer {
 
     @FXML VBox theoryContainer;
     @FXML Button fullsize;
+    @FXML Button backButton;
+    @FXML Button nextButton;
 
     private final ClasspathData classpathData;
     private final ErrorHandler errorHandler;
@@ -58,19 +60,33 @@ public class TheoryContainer {
     private final ApplicationEventPublisher applicationEventPublisher;
 
     private boolean isFullsize = true;
+    String currentFile = FIRST_PAGE;
 
     @FXML
     void initialize() {
         theoryContainer.setPadding(new Insets(30, 100, 20, 100));
-        Platform.runLater(() -> renderTheoryData(FIRST_PAGE));
+        Platform.runLater(() -> renderTheoryData(currentFile));
     }
 
     @FXML
     public void toggleTheory() {
         applicationEventPublisher.publishEvent(new ToggleContentEvent(ToggleContentType.THEORY));
-        if (isFullsize) fullsize.setText("⤢");
-        else fullsize.setText("⤡");
+        fullsize.setText(isFullsize ? "⤢": "⤡");
         isFullsize = !isFullsize;
+    }
+
+    @FXML
+    public void back() {
+        int index = TheoryPages.PAGES.indexOf(currentFile);
+        if (index <= 0) return;
+        renderTheoryData(TheoryPages.PAGES.get(index - 1));
+    }
+
+    @FXML
+    public void next() {
+        int index = TheoryPages.PAGES.indexOf(currentFile);
+        if (index >= TheoryPages.PAGES.size() - 1) return;
+        renderTheoryData(TheoryPages.PAGES.get(index + 1));
     }
 
     public void renderTheoryData(String fileName) {
@@ -78,14 +94,17 @@ public class TheoryContainer {
 
         TheoryPageData theoryPageData = classpathData.getNewPageData(fileName);
         if (theoryPageData == null) errorHandler.showError(CSS_PAGE_EXCEPTION, LOAD_PAGE_EXCEPTION, theoryContainer);
-        if (theoryPageData != null) renderNewPage(theoryPageData);
+        if (theoryPageData != null) renderNewPage(theoryPageData, fileName);
+
+        updateNavigationButtons();
     }
 
     private void deleteAlreadyExistingContent() {
         theoryContainer.getChildren().removeAll(theoryContainer.getChildren());
     }
 
-    private void renderNewPage(TheoryPageData theoryPageData) {
+    private void renderNewPage(TheoryPageData theoryPageData, String fileName) {
+        currentFile = fileName;
         headingContainer.addHeadingToTheoryContainer(theoryPageData, theoryContainer);
         theoryPageData.getContent().forEach(this::addContentSections);
     }
@@ -97,5 +116,18 @@ public class TheoryContainer {
 
         if (section.getExercises() == null) return;
         section.getExercises().forEach(exercise -> exerciseContainer.addExercise(exercise, theoryContainer));
+    }
+
+    private void updateNavigationButtons() {
+        int index = TheoryPages.PAGES.indexOf(currentFile);
+        boolean isFirstPage = index == 0;
+        boolean isLastPage = index == TheoryPages.PAGES.size() - 1;
+        boolean isPageUnknown = index == -1;
+
+        backButton.setVisible(!isFirstPage && !isPageUnknown);
+        backButton.setManaged(!isFirstPage && !isPageUnknown);
+
+        nextButton.setVisible(!isLastPage && !isPageUnknown);
+        nextButton.setManaged(!isLastPage && !isPageUnknown);
     }
 }

@@ -193,9 +193,13 @@ werden:
 <Label styleClass="subchapter, secondRow">1.1 Begriffsdefinitionen</Label>
 <Button styleClass="navButtons, thirdRow" onAction="#loadContent">
     <userData>chapterOne/alphabet.json</userData>
-    1.1.1 Alphabet, formale Sprachen und Grammatiken
+    1.2.1 Alphabet, formale Sprachen und Grammatiken
 </Button>
 ```
+
+Zusätzlich muss in der Klasse `TheoryPages.java` die Liste `PAGES` erweitert werden. Jedes Kapitel, welches nicht
+in dieser Klasse eingetragen wird, verfügt nicht über die entsprechende Zurück- oder Weiter-Navigation zum vorherigen 
+oder nächsten Kapitel.
 
 Soll kein neues Unterkapitel eröffnet werden, kann auf das vorangestellte Label verzichtet werden.
 Die CSS-Klasse thirdRow im Beispiel muss durch secondRow ersetzt oder ganz entfernt werden, je nachdem an welcher 

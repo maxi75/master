@@ -17,4 +17,16 @@
             <Insets top="15" right="15"/>
         </StackPane.margin>
     </Button>
+    <Button fx:id="backButton" styleClass="expandButton" StackPane.alignment="BOTTOM_LEFT" onAction="#back">
+        Zurück
+        <StackPane.margin>
+            <Insets bottom="15" left="15"/>
+        </StackPane.margin>
+    </Button>
+    <Button fx:id="nextButton" styleClass="expandButton" StackPane.alignment="BOTTOM_RIGHT" onAction="#next">
+        Weiter
+        <StackPane.margin>
+            <Insets bottom="15" right="15"/>
+        </StackPane.margin>
+    </Button>
 </StackPane>

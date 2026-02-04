@@ -75,8 +75,7 @@ public class GraphView {
     @FXML
     public void toggleTheory() {
         applicationEventPublisher.publishEvent(new ToggleContentEvent(ToggleContentType.SIMULATION));
-        if (isFullsize) fullsize.setText("⤡");
-        else fullsize.setText("⤢");
+        fullsize.setText(isFullsize ? "⤡": "⤢");
         isFullsize = !isFullsize;
     }
 

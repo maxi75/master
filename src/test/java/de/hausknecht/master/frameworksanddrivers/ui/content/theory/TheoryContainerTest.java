@@ -64,6 +64,12 @@ class TheoryContainerTest extends UITest {
         classUnderTest.theoryContainer = new VBox();
         classUnderTest.fullsize = new Button();
         classUnderTest.fullsize.setText("⤡");
+        classUnderTest.backButton = new Button();
+        classUnderTest.backButton.setVisible(true);
+        classUnderTest.backButton.setManaged(true);
+        classUnderTest.nextButton = new Button();
+        classUnderTest.nextButton.setVisible(true);
+        classUnderTest.nextButton.setManaged(true);
     }
 
     @Nested
@@ -155,6 +161,115 @@ class TheoryContainerTest extends UITest {
             classUnderTest.toggleTheory();
             fxWait(200);
             assertEquals("⤡", classUnderTest.fullsize.getText());
+        }
+    }
+
+    @Nested
+    class BackButtonClicked {
+
+        @Test
+        void onFirstPage() {
+            Platform.runLater(() -> {
+                classUnderTest.currentFile = TheoryPages.PAGES.getFirst();
+                classUnderTest.back();
+            });
+
+            fxWait(200);
+            verify(classpathDataMock, times(0)).getNewPageData(classUnderTest.currentFile);
+        }
+
+        @Test
+        void onSecondPage() {
+            Platform.runLater(() -> {
+                classUnderTest.currentFile = TheoryPages.PAGES.get(1);
+                classUnderTest.back();
+            });
+
+            fxWait(200);
+            verify(classpathDataMock, times(1)).getNewPageData(classUnderTest.currentFile);
+            assertFalse(classUnderTest.backButton.isVisible());
+            assertFalse(classUnderTest.backButton.isManaged());
+            assertTrue(classUnderTest.nextButton.isVisible());
+            assertTrue(classUnderTest.nextButton.isManaged());
+        }
+
+        @Test
+        void onLastPage() {
+            Platform.runLater(() -> {
+                classUnderTest.currentFile = TheoryPages.PAGES.getLast();
+                classUnderTest.back();
+            });
+
+            fxWait(200);
+            verify(classpathDataMock, times(1)).getNewPageData(classUnderTest.currentFile);
+            assertTrue(classUnderTest.backButton.isVisible());
+            assertTrue(classUnderTest.backButton.isManaged());
+            assertTrue(classUnderTest.nextButton.isVisible());
+            assertTrue(classUnderTest.nextButton.isManaged());
+        }
+    }
+
+    @Nested
+    class NextButtonClicked {
+
+        @Test
+        void onFirstPage() {
+            Platform.runLater(() -> {
+                classUnderTest.currentFile = TheoryPages.PAGES.getFirst();
+                classUnderTest.next();
+            });
+
+            fxWait(200);
+            verify(classpathDataMock, times(1)).getNewPageData(classUnderTest.currentFile);
+            assertTrue(classUnderTest.backButton.isVisible());
+            assertTrue(classUnderTest.backButton.isManaged());
+            assertTrue(classUnderTest.nextButton.isVisible());
+            assertTrue(classUnderTest.nextButton.isManaged());
+        }
+
+        @Test
+        void onSecondLastPage() {
+            Platform.runLater(() -> {
+                classUnderTest.currentFile = TheoryPages.PAGES.get(TheoryPages.PAGES.size() - 2);
+                classUnderTest.next();
+            });
+
+            fxWait(200);
+            verify(classpathDataMock, times(1)).getNewPageData(classUnderTest.currentFile);
+            assertTrue(classUnderTest.backButton.isVisible());
+            assertTrue(classUnderTest.backButton.isManaged());
+            assertFalse(classUnderTest.nextButton.isVisible());
+            assertFalse(classUnderTest.nextButton.isManaged());
+        }
+
+        @Test
+        void onLastPage() {
+            Platform.runLater(() -> {
+                classUnderTest.currentFile = TheoryPages.PAGES.getLast();
+                classUnderTest.next();
+            });
+
+            fxWait(200);
+            verify(classpathDataMock, times(0)).getNewPageData(classUnderTest.currentFile);
+        }
+    }
+
+
+    @Nested
+    class RenderTheoryData {
+
+        @Test
+        void onUnknownPage() {
+            Platform.runLater(() -> {
+                classUnderTest.renderTheoryData("UnknownPage");
+            });
+
+            fxWait(200);
+            verify(classpathDataMock, times(1)).getNewPageData(classUnderTest.currentFile);
+            assertFalse(classUnderTest.backButton.isVisible());
+            assertFalse(classUnderTest.backButton.isManaged());
+            assertFalse(classUnderTest.nextButton.isVisible());
+            assertFalse(classUnderTest.nextButton.isManaged());
         }
     }
 }
