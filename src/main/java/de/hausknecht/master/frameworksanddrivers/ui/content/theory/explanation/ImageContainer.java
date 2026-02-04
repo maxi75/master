@@ -22,6 +22,7 @@ package de.hausknecht.master.frameworksanddrivers.ui.content.theory.explanation;
 
 import de.hausknecht.master.entity.domain.content.TheoryPageData;
 import de.hausknecht.master.usecase.ClasspathData;
+import javafx.beans.binding.Bindings;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -61,7 +62,10 @@ public class ImageContainer {
 
         VBox imageContainer = new VBox();
         imageContainer.getStyleClass().add(CSS_PAGE_IMAGE_CONTAINER);
-        image.fitWidthProperty().bind(imageContainer.widthProperty().multiply(0.60));
+        image.fitWidthProperty().bind(
+                Bindings.min(
+                        imageContainer.widthProperty().multiply(0.60),
+                        Bindings.selectDouble(imageContainer.sceneProperty(), "width").multiply(0.30)));
 
         imageContainer.getChildren().add(image);
         addCaption(imageContainer, section);
