@@ -223,7 +223,12 @@
                     <mainClass>org.springframework.boot.loader.launch.JarLauncher</mainClass>
                     <runtimeImage>${java.home}</runtimeImage>
 
-                    <type>APP_IMAGE</type>
+                    <type>EXE</type>
+                    <winMenu>true</winMenu>
+                    <winMenuGroup>AutomataTheory</winMenuGroup>
+                    <winShortcut>true</winShortcut>
+                    <winShortcutPrompt>true</winShortcutPrompt>
+                    <icon>${project.basedir}/src/main/resources/packaging/icons/icon.ico</icon>
 
                     <winConsole>true</winConsole>
                 </configuration>
